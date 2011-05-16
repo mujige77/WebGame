@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\String">
+      <UniqueIdentifier>{36ebbaba-5e1b-46dc-bbcd-7158d55ff456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\STL">
+      <UniqueIdentifier>{7ae17a13-ac81-4bce-bf96-e2edf6e3794f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\GnAllocator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnDebug.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnDebugAllocator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnFrameSkip.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMemoryDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMemoryManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMemoryObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnStandardAllocator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSystemDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSystemLibType.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSystemPCH.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTimer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnCharFunctions.h">
+      <Filter>소스 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnWCharFunctions.h">
+      <Filter>소스 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTCharFunctions.h">
+      <Filter>소스 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTOther.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTypeTraits.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTypeList.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTypeManip.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnList.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnBitwiseoperation.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSystemEBM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnLog.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSimpleString.h">
+      <Filter>소스 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnCriticalSection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTArray.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTAllocatorCollection.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSmartObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTMap.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTStringMap.h">
+      <Filter>소스 파일\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSimpleTString.h">
+      <Filter>소스 파일\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnPath.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\GnDebug.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnDebugAllocator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnFrameSkip.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMemoryDefine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMemoryManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMemoryObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnStandardAllocator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSystem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSystemPCH.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTimer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnWCharFunctions.cpp">
+      <Filter>소스 파일\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnCharFunctions.cpp">
+      <Filter>소스 파일\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSystemEBM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnLog.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnPath.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

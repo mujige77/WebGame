@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Log|Win32">
+      <Configuration>Log</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7E63DF66-3091-4F1E-BEE3-0A66BDEA2389}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GnMain</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\..\Builder\VS2010\GnBaseProps.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\..\Builder\VS2010\GnBaseProps.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\..\Builder\VS2010\GnBaseProps.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;GNDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;GNRELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;GNLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Gn2DBackBuffer.cpp" />
+    <ClCompile Include="..\..\Source\GnAVObject.cpp" />
+    <ClCompile Include="..\..\Source\GnCamera.cpp" />
+    <ClCompile Include="..\..\Source\GnFactoryManager.cpp" />
+    <ClCompile Include="..\..\Source\GnFile.cpp" />
+    <ClCompile Include="..\..\Source\GnMainEBM.cpp" />
+    <ClCompile Include="..\..\Source\GnMainPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnObjectStream.cpp" />
+    <ClCompile Include="..\..\Source\GnNode.cpp" />
+    <ClCompile Include="..\..\Source\GnObject.cpp" />
+    <ClCompile Include="..\..\Source\GnObjectForm.cpp" />
+    <ClCompile Include="..\..\Source\GnProperty.cpp" />
+    <ClCompile Include="..\..\Source\GnRect.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderer.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderObject.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderObjectArray.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderViewSet.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderTarget.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DTransform.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderView.cpp" />
+    <ClCompile Include="..\..\Source\GnRTTI.cpp" />
+    <ClCompile Include="..\..\Source\Gn3DTransform.cpp" />
+    <ClCompile Include="..\..\Source\GnStream.cpp" />
+    <ClCompile Include="..\..\Source\GnTexture.cpp" />
+    <ClCompile Include="..\..\Source\GnTextureMap.cpp" />
+    <ClCompile Include="..\..\Source\GnTextureObject.cpp" />
+    <ClCompile Include="..\..\Source\GnTextureProperty.cpp" />
+    <ClCompile Include="..\..\Source\GnTimeController.cpp" />
+    <ClCompile Include="..\..\Source\GnTransform.cpp" />
+    <ClCompile Include="..\..\Source\GnRenderFrame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Gn2DBackBuffer.h" />
+    <ClInclude Include="..\..\Source\GnAVObject.h" />
+    <ClInclude Include="..\..\Source\GnCamera.h" />
+    <ClInclude Include="..\..\Source\GnColor.h" />
+    <ClInclude Include="..\..\Source\GnFactoryManager.h" />
+    <ClInclude Include="..\..\Source\GnFile.h" />
+    <ClInclude Include="..\..\Source\GnFileMacro.h" />
+    <ClInclude Include="..\..\Source\GnListManager.h" />
+    <ClInclude Include="..\..\Source\GnMainEBM.h" />
+    <ClInclude Include="..\..\Source\GnMainHeader.h" />
+    <ClInclude Include="..\..\Source\GnMainLibType.h" />
+    <ClInclude Include="..\..\Source\GnMainPCH.h" />
+    <ClInclude Include="..\..\Source\GnObjectStream.h" />
+    <ClInclude Include="..\..\Source\GnNode.h" />
+    <ClInclude Include="..\..\Source\GnObject.h" />
+    <ClInclude Include="..\..\Source\GnObjectForm.h" />
+    <ClInclude Include="..\..\Source\GnProperty.h" />
+    <ClInclude Include="..\..\Source\GnRect.h" />
+    <ClInclude Include="..\..\Source\GnRenderer.h" />
+    <ClInclude Include="..\..\Source\GnRenderObject.h" />
+    <ClInclude Include="..\..\Source\GnRenderObjectArray.h" />
+    <ClInclude Include="..\..\Source\GnRenderViewSet.h" />
+    <ClInclude Include="..\..\Source\GnRenderTarget.h" />
+    <ClInclude Include="..\..\Source\Gn2DTransform.h" />
+    <ClInclude Include="..\..\Source\GnRenderView.h" />
+    <ClInclude Include="..\..\Source\GnRTTI.h" />
+    <ClInclude Include="..\..\Source\Gn3DTransform.h" />
+    <ClInclude Include="..\..\Source\GnStream.h" />
+    <ClInclude Include="..\..\Source\GnStreamMacro.h" />
+    <ClInclude Include="..\..\Source\GnTexture.h" />
+    <ClInclude Include="..\..\Source\GnTextureMap.h" />
+    <ClInclude Include="..\..\Source\GnTextureObject.h" />
+    <ClInclude Include="..\..\Source\GnTextureProperty.h" />
+    <ClInclude Include="..\..\Source\GnTimeController.h" />
+    <ClInclude Include="..\..\Source\GnTransform.h" />
+    <ClInclude Include="..\..\Source\GnVector2.h" />
+    <ClInclude Include="..\..\Source\GnVector3.h" />
+    <ClInclude Include="..\..\Source\GnRenderFrame.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_PropertySheetDisplayName>GnBaseProps</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)..\..\..\..\SDK\Bin\$(Configuration)\</OutDir>
+    <IntDir>..\..\..\..\..\..\Built\$(ProjectName)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeaderFile>$(TargetName)PCH.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>set SDK_INCLUDE=..\..\..\..\..\..\SDK\Include
+if not exist %SDK_INCLUDE% mkdir %SDK_INCLUDE%
+
+if exist ..\..\Source\*.h      xcopy /D /F /I /R /Y ..\..\Source\*.h %SDK_INCLUDE%
+if exist ..\..\Source\*.inl    xcopy /D /F /I /R /Y ..\..\Source\*.inl %SDK_INCLUDE%</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\SDK\Bin\$(Configuration)\</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

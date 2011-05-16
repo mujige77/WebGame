@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Ani">
+      <UniqueIdentifier>{493f2d59-2050-4d57-b816-12beef197945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2D">
+      <UniqueIdentifier>{3ad835ec-3b0c-4814-822c-3501566bf355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2D\Ani">
+      <UniqueIdentifier>{e739bf3f-215a-407e-8b9d-6bf54a196025}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\GnMeshPCH.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMeshLibType.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMesh.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnDataStreamLockPolicy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMeshData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnDataStream.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMeshHeader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSequence.h">
+      <Filter>소스 파일\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMeshEBM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnActorTool.h">
+      <Filter>소스 파일\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnActorStreamMacro.h">
+      <Filter>소스 파일\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSequenceManager.h">
+      <Filter>소스 파일\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMElement.h">
+      <Filter>소스 파일\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMGroup.h">
+      <Filter>소스 파일\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMTextureAniCtrl.h">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMPostionAniCtrl.h">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnPlaneActor.h">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMManager.h">
+      <Filter>소스 파일\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnScreenMesh.h">
+      <Filter>소스 파일\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSMRenderView.h">
+      <Filter>소스 파일\2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\GnMeshPCH.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMesh.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMeshData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnDataStream.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnDataStreamLockPolicy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSequence.cpp">
+      <Filter>소스 파일\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMeshEBM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnActorTool.cpp">
+      <Filter>소스 파일\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSequenceManager.cpp">
+      <Filter>소스 파일\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMElement.cpp">
+      <Filter>소스 파일\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMGroup.cpp">
+      <Filter>소스 파일\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMPostionAniCtrl.cpp">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMTextureAniCtrl.cpp">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnPlaneActor.cpp">
+      <Filter>소스 파일\2D\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMManager.cpp">
+      <Filter>소스 파일\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnScreenMesh.cpp">
+      <Filter>소스 파일\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSMRenderView.cpp">
+      <Filter>소스 파일\2D</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

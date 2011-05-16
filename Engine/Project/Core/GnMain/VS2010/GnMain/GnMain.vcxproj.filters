@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\RenderFrame">
+      <UniqueIdentifier>{58ce6998-1642-469b-a697-31a9fdf692d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Transform">
+      <UniqueIdentifier>{698cefd5-bec1-4f25-9a14-9b13d6c2b409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Stream">
+      <UniqueIdentifier>{7da40b19-a00f-409b-9bb4-a7345b723aa5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\GnMainPCH.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnCamera.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gn2DBackBuffer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderTarget.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnProperty.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTextureProperty.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTexture.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRect.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnObjectForm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnAVObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTransform.cpp">
+      <Filter>소스 파일\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gn2DTransform.cpp">
+      <Filter>소스 파일\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gn3DTransform.cpp">
+      <Filter>소스 파일\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderFrame.cpp">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRTTI.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnNode.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderView.cpp">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderObjectArray.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnRenderViewSet.cpp">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTextureMap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnFactoryManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTimeController.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnMainEBM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnStream.cpp">
+      <Filter>소스 파일\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnFile.cpp">
+      <Filter>소스 파일\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnObjectStream.cpp">
+      <Filter>소스 파일\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnTextureObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\GnMainPCH.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnCamera.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gn2DBackBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderTarget.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMainLibType.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnProperty.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTextureProperty.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTexture.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnObjectForm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnAVObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTransform.h">
+      <Filter>소스 파일\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gn2DTransform.h">
+      <Filter>소스 파일\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gn3DTransform.h">
+      <Filter>소스 파일\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnColor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnVector2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnVector3.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMainHeader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderFrame.h">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRTTI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnNode.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderView.h">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderObjectArray.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnRenderViewSet.h">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnListManager.h">
+      <Filter>소스 파일\RenderFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTextureMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnFactoryManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTimeController.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnMainEBM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnStream.h">
+      <Filter>소스 파일\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnFile.h">
+      <Filter>소스 파일\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnFileMacro.h">
+      <Filter>소스 파일\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnStreamMacro.h">
+      <Filter>소스 파일\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnObjectStream.h">
+      <Filter>소스 파일\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTextureObject.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
