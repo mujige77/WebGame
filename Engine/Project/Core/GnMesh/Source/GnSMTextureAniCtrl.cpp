@@ -53,7 +53,8 @@ void GnSMTextureAniCtrl::Update(float fTime)
 	}
 }
 
-void GnSMTextureAniCtrl::SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture, float fStartTime, float fEndTime)
+void GnSMTextureAniCtrl::SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture, float fStartTime
+	, float fEndTime)
 {
 	if( pTexture )
 		pTexture->SetControllerProperty( true );
@@ -94,11 +95,11 @@ void GnSMTextureAniCtrl::Start(float fTime)
 		object->DetachProperty( mpCurrentAni->mpsPrperty );
 
 	mCurrentAniIndex = 0;
-	mpCurrentAni = &mAnis.GetAt(mCurrentAniIndex++);
+	mpCurrentAni = &mAnis.GetAt( mCurrentAniIndex++ );
 	if( mpCurrentAni )
 	{
 		if( object )
-			object->AttachProperty(mpCurrentAni->mpsPrperty);
+			object->AttachProperty( mpCurrentAni->mpsPrperty );
 	}
 }
 
@@ -108,6 +109,8 @@ void GnSMTextureAniCtrl::LoadStream(GnObjectStream* pStream)
 {
 	GnTimeController::LoadStream( pStream );
 	
+	mImageRect.LoadStream( pStream );
+
 	guint32 numAni = pStream->LoadMultipleLinkIDs(); // mAnis
 	mAnis.SetSize( numAni );
 	for( gtuint i = 0 ; i < numAni ; i++ )
@@ -137,9 +140,10 @@ void GnSMTextureAniCtrl::SaveStream(GnObjectStream* pStream)
 {
 	GnTimeController::SaveStream( pStream );
 
+	mImageRect.SaveStream( pStream );
+
 	guint32 numProperty = (guint32)mAnis.GetSize();
 	pStream->SaveStream( numProperty );
-
 	for( gtuint i = 0 ; i < mAnis.GetSize() ; i++ )
 	{
 		GnAssert( mAnis[i].mpsPrperty );
@@ -163,4 +167,15 @@ void GnSMTextureAniCtrl::RegisterSaveObject(GnObjectStream* pStream)
 		GnAssert( mAnis[i].mpsPrperty );
 		mAnis[i].mpsPrperty->RegisterSaveObject( pStream );
 	}
+}
+
+bool GnSMTextureAniCtrl::SetTargetObject(GnObjectForm* pObject)
+{
+	if( GnTimeController::SetTargetObject( pObject ) == false )
+		return false;
+
+	//Gn2DMeshObject* element =  GnDynamicCast( Gn2DMeshObject, pObject );
+	//GnAssert( element );
+	//element->SetDisplayRect( mImageRect );
+	return true;
 }

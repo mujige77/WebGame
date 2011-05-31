@@ -69,3 +69,12 @@
 //{
 //	return strstr(pStr1, pStr2);
 //}
+
+gchar* GnAllocStrcpy(const gchar* GNRESTRICT src)
+{
+	gsize strSize = GnStrlen( src )+1;
+	gchar* outStr = GnAlloc( gchar, strSize ); 
+	GnStrcpy( outStr, src, strSize );
+	outStr[strSize-1] = '\0';
+	return outStr;
+}

@@ -43,6 +43,9 @@
     <Filter Include="GnTools\Ani\ActorEditPage">
       <UniqueIdentifier>{d49b4852-28e4-4557-b7e8-6c521850db31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GnTools\MFCGDI+">
+      <UniqueIdentifier>{57708307-7b1b-481a-a499-89a9a037c1d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\file_view.ico">
@@ -347,6 +350,18 @@
     <ClInclude Include="GtBoundedNumberPairProp.h">
       <Filter>GnTools\GtControl</Filter>
     </ClInclude>
+    <ClInclude Include="GtCrossDrawLine.h">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClInclude>
+    <ClInclude Include="GtDrawRect.h">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClInclude>
+    <ClInclude Include="GtDrawGDI.h">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClInclude>
+    <ClInclude Include="GtDrawMouseRectangle.h">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GnTools.cpp">
@@ -498,6 +513,18 @@
     </ClCompile>
     <ClCompile Include="GtBoundedNumberPairProp.cpp">
       <Filter>GnTools\GtControl</Filter>
+    </ClCompile>
+    <ClCompile Include="GtCrossDrawLine.cpp">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClCompile>
+    <ClCompile Include="GtDrawGDI.cpp">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClCompile>
+    <ClCompile Include="GtDrawRect.cpp">
+      <Filter>GnTools\MFCGDI+</Filter>
+    </ClCompile>
+    <ClCompile Include="GtDrawMouseRectangle.cpp">
+      <Filter>GnTools\MFCGDI+</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

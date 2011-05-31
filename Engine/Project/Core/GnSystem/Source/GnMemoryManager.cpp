@@ -5,12 +5,12 @@
 
 GnMemoryManager* GnMemoryManager::msMemManager = 0;
 
-//---------------------------------------------------------------------------
+
 bool GnMemoryManager::IsInitialized()
 {
 	return msMemManager != 0;
 }
-//---------------------------------------------------------------------------
+
 void GnMemoryManager::EBMStartup()
 {
 	msMemManager = GnExternalNew GnMemoryManager();
@@ -21,7 +21,7 @@ void GnMemoryManager::EBMStartup()
 #endif // #ifdef GN_MEMORY_DEBUGGER
 	msMemManager->mAllocator->Initialize();
 }
-//---------------------------------------------------------------------------
+
 void GnMemoryManager::EBMShutdown()
 {
 	GnAssert(msMemManager->mAllocator);
@@ -31,7 +31,7 @@ void GnMemoryManager::EBMShutdown()
 	GnExternalDelete msMemManager;
 	msMemManager = NULL;
 }
-//---------------------------------------------------------------------------
+
 bool GnMemoryManager::VerifyAddress(const void* pvMemory)
 {
 	GnAssert(msMemManager->mAllocator);
@@ -41,12 +41,12 @@ bool GnMemoryManager::VerifyAddress(const void* pvMemory)
 	return true;
 #endif
 }
-//---------------------------------------------------------------------------
+
 GnMemoryManager* GnMemoryManager::Instance()
 {
 	return msMemManager;
 }
-//---------------------------------------------------------------------------
+
 void* GnMemoryManager::Allocate(gsize stSizeInBytes, gsize stAlignment,
     GnMemoryEventType eEventType, bool bProvideAccurateSizeOnDeallocate,
     const char *pcSourceFile, int iSourceLine, const char* pcFunction)
@@ -58,7 +58,7 @@ void* GnMemoryManager::Allocate(gsize stSizeInBytes, gsize stAlignment,
     
 	return pvMem;
 }
-//---------------------------------------------------------------------------
+
 void* GnMemoryManager::Reallocate(void* pvMem, gsize stSizeInBytes, 
     gsize stAlignment, GnMemoryEventType eEventType, bool bProvideAccurateSizeOnDeallocate,
     gsize stSizeCurrent, const char *pcSourceFile, int iSourceLine, const char* pcFunction)
@@ -69,7 +69,7 @@ void* GnMemoryManager::Reallocate(void* pvMem, gsize stSizeInBytes,
 		bProvideAccurateSizeOnDeallocate, stSizeCurrent, pcSourceFile, iSourceLine, pcFunction);
 	return pvNewMem;
 }
-//---------------------------------------------------------------------------
+
 void GnMemoryManager::Deallocate(void* pvMem,
 	GnMemoryEventType eEventType, gsize stSizeinBytes)
 {
@@ -78,20 +78,20 @@ void GnMemoryManager::Deallocate(void* pvMem,
 	mAllocator->Deallocate(pvMem, eEventType, stSizeinBytes);
     
 }
-//---------------------------------------------------------------------------
-bool GnMemoryManager::TrackAllocate(const void* const pvMem,  
-    gsize stSizeInBytes, GnMemoryEventType eEventType, 
-    const char *pcSourceFile, int iSourceLine, const char* pcFunction)
+
+bool GnMemoryManager::TrackAllocate(const void* const pvMem, gsize stSizeInBytes
+	, GnMemoryEventType eEventType, const char *pcSourceFile, int iSourceLine, const char* pcFunction)
 {
 	GnAssert(mAllocator);
     
 #ifdef GN_MEMORY_DEBUGGER
-	return mAllocator->TrackAllocate(pvMem, stSizeInBytes, eEventType, pcSourceFile, iSourceLine, pcFunction);
+	return mAllocator->TrackAllocate(pvMem, stSizeInBytes, eEventType, pcSourceFile, iSourceLine
+		, pcFunction);
 #else
 	return false;
 #endif	
 }
-//---------------------------------------------------------------------------
+
 bool GnMemoryManager::TrackDeallocate(const void* const pvMem, GnMemoryEventType eEventType)
 {
 	GnAssert(mAllocator);
@@ -103,7 +103,7 @@ bool GnMemoryManager::TrackDeallocate(const void* const pvMem, GnMemoryEventType
 #endif	
 	
 }
-//---------------------------------------------------------------------------
+
 const char* GnMemoryManager::GnMemoryEventTypeToString(GnMemoryEventType eEventType)
 {
 	switch (eEventType)
@@ -140,4 +140,4 @@ const char* GnMemoryManager::GnMemoryEventTypeToString(GnMemoryEventType eEventT
     
 	return NULL;
 }
-//---------------------------------------------------------------------------
+

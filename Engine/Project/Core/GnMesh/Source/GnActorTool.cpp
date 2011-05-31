@@ -26,7 +26,6 @@ void GnActorTool::LoadStream(GnStream* pStream)
 {
 	gchar strData[MAX_ACTOR_PATH] = { 0, };
 	pStream->LoadStreams(strData, MAX_ACTOR_PATH);
-	mName = strData;
 	
 	gchar* filePath = NULL;
 	pStream->LoadStream( filePath );
@@ -48,8 +47,7 @@ void GnActorTool::LoadStream(GnStream* pStream)
 void GnActorTool::SaveStream(GnStream* pStream)
 {
 	gchar strData[MAX_ACTOR_PATH] = { 0, };
-	GnStrcpy( strData, mName.GetHandle(), sizeof(strData) );
-	pStream->SaveStreams(strData, MAX_ACTOR_PATH);	
+	pStream->SaveStreams(strData, MAX_ACTOR_PATH);
 	
 	const char* path = mGATFilePath.GetHandle();
 	pStream->SaveStream( path );
@@ -70,6 +68,16 @@ void GnActorTool::SaveStream(GnStream* pStream)
 	}
 }
 
+void GnActorTool::AddSequenceInfo(guint32 uiID, const gchar* pcName, const gchar* pcFileName)
+{
+	SequenceInfo* info = GnNew SequenceInfo();
+	info->SetSequenceID( uiID );
+	info->SetFileName( pcFileName );
+	info->SetSequenceName( pcName );	
+	AddSequenceInfo( uiID, info );
+}
+
+
 void GnActorTool::GetSequenceInfos(GnTPrimitiveArray<SequenceInfo*>& outInfos)
 {
 	gushort sequenceCount = mpSequences.Count();
@@ -87,12 +95,12 @@ void GnActorTool::GetSequenceInfos(GnTPrimitiveArray<SequenceInfo*>& outInfos)
 
 bool GnActorTool::GetGAFullFileName( SequenceInfo* pSequenceInfo, gchar* pcOutPath, gtuint uiMaxSize )
 {
-	if( pSequenceInfo->GetFileName().Exists()  == false )
+	if( pSequenceInfo->GetFileName() == NULL )
 	{
 		pcOutPath[0] = '\0';
 		return false;
 	}
-	GnStrcpy( pcOutPath, mGATFilePath, uiMaxSize );
+	GnStrcpy( pcOutPath, GnSystem::GetWorkDirectory(), uiMaxSize );
 	GnStrcat( pcOutPath, pSequenceInfo->GetFileName(), uiMaxSize );
 	GnAssert( GnStrlen(pcOutPath) <= uiMaxSize );
 	return true;

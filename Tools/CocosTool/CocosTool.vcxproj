@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Log|Win32">
+      <Configuration>Log</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1794BA05-F3B5-468A-8044-C50354624A61}</ProjectGuid>
+    <RootNamespace>CocosTool</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GtBaseProps.props" />
+    <Import Project="..\GtDebugProps.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GtBaseProps.props" />
+    <Import Project="..\GtReleaseProps.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GtBaseProps.props" />
+    <Import Project="..\GtLogProps.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0412</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="CocosTool.reg" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\Animation.bmp" />
+    <None Include="res\bitmap1.bmp" />
+    <None Include="res\buttons.bmp" />
+    <None Include="res\CocosTool.ico" />
+    <None Include="res\CocosTool.rc2" />
+    <None Include="res\CocosToolDoc.ico" />
+    <None Include="res\filelarge.bmp" />
+    <None Include="res\filesmall.bmp" />
+    <None Include="res\info.bmp" />
+    <None Include="res\main.bmp" />
+    <None Include="res\nav_large.bmp" />
+    <None Include="res\nav_large_hc.bmp" />
+    <None Include="res\pages.bmp" />
+    <None Include="res\pages_hc.bmp" />
+    <None Include="res\pages_small.bmp" />
+    <None Include="res\pages_small_hc.bmp" />
+    <None Include="res\Property2Button.bmp" />
+    <None Include="res\ribbon.mfcribbon-ms" />
+    <None Include="res\TemplateListViewBar.bmp" />
+    <None Include="res\TemplateListViewBar_hc.bmp" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="res\writelarge.bmp" />
+    <None Include="res\writesmall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CalendarBar.h" />
+    <ClInclude Include="CategoryAnimationManager.h" />
+    <ClInclude Include="CocosTool.h" />
+    <ClInclude Include="CocosToolDoc.h" />
+    <ClInclude Include="CocosToolView.h" />
+    <ClInclude Include="CreateAnimationKeyDlg.h" />
+    <ClInclude Include="Gc2DCollisionBoxPropEntity.h" />
+    <ClInclude Include="Gc2DRectPropEntity.h" />
+    <ClInclude Include="GcAnimationKeyList.h" />
+    <ClInclude Include="GcAnimationKeyPropEntity.h" />
+    <ClInclude Include="GcCollisionList.h" />
+    <ClInclude Include="GcCreateCollisionDlg.h" />
+    <ClInclude Include="GcSequenceCollisionDlg.h" />
+    <ClInclude Include="GtAniKeyHelper.h" />
+    <ClInclude Include="GtNumberString.h" />
+    <ClInclude Include="GcPropertyGridCtrl.h" />
+    <ClInclude Include="GcPropertyGridProperty.h" />
+    <ClInclude Include="GcSequenceDockable.h" />
+    <ClInclude Include="GcSequenceModifyDockable.h" />
+    <ClInclude Include="GcSequenceTimeDlg.h" />
+    <ClInclude Include="GcTabCtrl.h" />
+    <ClInclude Include="GcToolHeader.h" />
+    <ClInclude Include="GcMessageDefine.h" />
+    <ClInclude Include="GcPropertyGridTwoButtonsProperty.h" />
+    <ClInclude Include="Gt2DObject.h" />
+    <ClInclude Include="Gc2DTexturePropEntity.h" />
+    <ClInclude Include="GcBasicPropEntity.h" />
+    <ClInclude Include="GcCollectionEntities.h" />
+    <ClInclude Include="GcFloatSpinButtonCtrl.h" />
+    <ClInclude Include="GcPropertyGridNumberPair.h" />
+    <ClInclude Include="Gt2DSequence.h" />
+    <ClInclude Include="GtActorTool.h" />
+    <ClInclude Include="GtDrawPrimitives.h" />
+    <ClInclude Include="GtEditorPropSheet.h" />
+    <ClInclude Include="GtEditorPropSheetDlg.h" />
+    <ClInclude Include="GtObjectFactory.h" />
+    <ClInclude Include="GtObjectNew.h" />
+    <ClInclude Include="GcSequenceListCtrl.h" />
+    <ClInclude Include="GcPropertyEntity.h" />
+    <ClInclude Include="GcScreenMeshPropEntity.h" />
+    <ClInclude Include="GcSequenceInfoPropEntity.h" />
+    <ClInclude Include="GcTextureAnimationPropEntity.h" />
+    <ClInclude Include="GcPropertyGridFileProperty.h" />
+    <ClInclude Include="GcPropertyGridFloatSpinProperty.h" />
+    <ClInclude Include="GcEditorPropertyPage.h" />
+    <ClInclude Include="GcEditorSequenceMain.h" />
+    <ClInclude Include="GcEditorSequenceTexture.h" />
+    <ClInclude Include="GtToolEBM.h" />
+    <ClInclude Include="GtToolHeader.h" />
+    <ClInclude Include="Gt2DActor.h" />
+    <ClInclude Include="GtCocos2DApp.h" />
+    <ClInclude Include="GtConvertString.h" />
+    <ClInclude Include="GtGLView.h" />
+    <ClInclude Include="GcMediateObject.h" />
+    <ClInclude Include="GcNewObjectDlg.h" />
+    <ClInclude Include="GtObject.h" />
+    <ClInclude Include="GcTasksPane.h" />
+    <ClInclude Include="GcTemplateListCtrl.h" />
+    <ClInclude Include="GcTemplateDockable.h" />
+    <ClInclude Include="GcTemplateTasks.h" />
+    <ClInclude Include="GcToolBarDockable.h" />
+    <ClInclude Include="GtToolSettings.h" />
+    <ClInclude Include="GcVSListBox.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CalendarBar.cpp" />
+    <ClCompile Include="CategoryAnimationManager.cpp" />
+    <ClCompile Include="CocosTool.cpp" />
+    <ClCompile Include="CocosToolDoc.cpp" />
+    <ClCompile Include="CocosToolView.cpp" />
+    <ClCompile Include="CreateAnimationKeyDlg.cpp" />
+    <ClCompile Include="Gc2DCollisionBoxPropEntity.cpp" />
+    <ClCompile Include="Gc2DRectPropEntity.cpp" />
+    <ClCompile Include="GcAnimationKeyList.cpp" />
+    <ClCompile Include="GcAnimationKeyPropEntity.cpp" />
+    <ClCompile Include="GcCollisionList.cpp" />
+    <ClCompile Include="GcCreateCollisionDlg.cpp" />
+    <ClCompile Include="GcSequenceCollisionDlg.cpp" />
+    <ClCompile Include="GtAniKeyHelper.cpp" />
+    <ClCompile Include="GtNumberString.cpp" />
+    <ClCompile Include="GcPropertyGridCtrl.cpp" />
+    <ClCompile Include="GcPropertyGridProperty.cpp" />
+    <ClCompile Include="GcSequenceDockable.cpp" />
+    <ClCompile Include="GcPropertyGridTwoButtonsProperty.cpp" />
+    <ClCompile Include="GcSequenceModifyDockable.cpp" />
+    <ClCompile Include="GcSequenceTimeDlg.cpp" />
+    <ClCompile Include="GcTabCtrl.cpp" />
+    <ClCompile Include="Gt2DActor.cpp" />
+    <ClCompile Include="Gt2DObject.cpp" />
+    <ClCompile Include="Gc2DTexturePropEntity.cpp" />
+    <ClCompile Include="GcBasicPropEntity.cpp" />
+    <ClCompile Include="GcPropertyGridNumberPair.cpp" />
+    <ClCompile Include="Gt2DSequence.cpp" />
+    <ClCompile Include="GtActorTool.cpp" />
+    <ClCompile Include="GtCocos2DApp.cpp" />
+    <ClCompile Include="GcCollectionEntities.cpp" />
+    <ClCompile Include="GtConvertString.cpp" />
+    <ClCompile Include="GcFloatSpinButtonCtrl.cpp" />
+    <ClCompile Include="GtDrawPrimitives.cpp" />
+    <ClCompile Include="GtEditorPropSheet.cpp" />
+    <ClCompile Include="GtEditorPropSheetDlg.cpp" />
+    <ClCompile Include="GtGLView.cpp" />
+    <ClCompile Include="GcMediateObject.cpp" />
+    <ClCompile Include="GcNewObjectDlg.cpp" />
+    <ClCompile Include="GtObject.cpp" />
+    <ClCompile Include="GcTasksPane.cpp" />
+    <ClCompile Include="GcTemplateListCtrl.cpp" />
+    <ClCompile Include="GcTemplateDockable.cpp" />
+    <ClCompile Include="GcTemplateTasks.cpp" />
+    <ClCompile Include="GcToolBarDockable.cpp" />
+    <ClCompile Include="GtObjectFactory.cpp" />
+    <ClCompile Include="GcSequenceListCtrl.cpp" />
+    <ClCompile Include="GcPropertyEntity.cpp" />
+    <ClCompile Include="GcScreenMeshPropEntity.cpp" />
+    <ClCompile Include="GcSequenceInfoPropEntity.cpp" />
+    <ClCompile Include="GcTextureAnimationPropEntity.cpp" />
+    <ClCompile Include="GcPropertyGridFileProperty.cpp" />
+    <ClCompile Include="GcPropertyGridFloatSpinProperty.cpp" />
+    <ClCompile Include="GcEditorPropertyPage.cpp" />
+    <ClCompile Include="GcEditorSequenceMain.cpp" />
+    <ClCompile Include="GcEditorSequenceTexture.cpp" />
+    <ClCompile Include="GtToolEBM.cpp" />
+    <ClCompile Include="GtToolSettings.cpp" />
+    <ClCompile Include="GcVSListBox.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CocosTool.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="CocosTool.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

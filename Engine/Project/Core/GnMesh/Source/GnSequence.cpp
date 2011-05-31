@@ -41,6 +41,8 @@ void GnSequence::Stop()
 GnImplementCreateObject(GnSequence);
 void GnSequence::LoadStream(GnObjectStream* pStream)
 {
+	GnObject::LoadStream( pStream );
+
 	pStream->LoadFixedString( mName );
 	pStream->LoadLinkID(); // mpsTimeControls
 	
@@ -50,11 +52,15 @@ void GnSequence::LoadStream(GnObjectStream* pStream)
 
 void GnSequence::LinkObject(GnObjectStream* pStream)
 {
+	GnObject::LinkObject( pStream );
+
 	mpsTimeControls = (GnTimeController*)pStream->GetObjectFromLinkID();
 }
 
 void GnSequence::SaveStream(GnObjectStream* pStream)
 {
+	GnObject::SaveStream( pStream );
+
 	pStream->SaveFixedString( mName );
 
 	GnTimeController* control = mpsTimeControls;
@@ -69,6 +75,7 @@ void GnSequence::SaveStream(GnObjectStream* pStream)
 void GnSequence::RegisterSaveObject(GnObjectStream* pStream)
 {
 	GnObject::RegisterSaveObject( pStream );
+
 	pStream->RegisterFixedString( mName );
 
 	if( mpsTimeControls )

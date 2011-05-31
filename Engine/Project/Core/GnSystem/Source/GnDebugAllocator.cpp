@@ -103,7 +103,7 @@ bool GnDebugAllocator::VerifyAddress(const void* pvMemory)
 {
 	return false;
 }
-//---------------------------------------------------------------------------
+
 gsize GnDebugAllocator::PadForArrayOverrun(gsize stAlignment, gsize stSizeOriginal)
 {
 	return stSizeOriginal + 2 * stAlignment;

@@ -11,7 +11,6 @@ class GNMESH_ENTRY GnSequence : public GnObject
 		LOOP_MASK,
 	};
 
-
 protected:
 	GnTimeControllerPtr mpsTimeControls;
 	GnSimpleString mName;	

@@ -8,5 +8,5 @@
 
 #include <GnMainHeader.h>
 #include "GnMeshHeader.h"
-
+#include <cocos2d.h>
 #endif // GNMESHPCH_H

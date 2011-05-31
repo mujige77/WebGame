@@ -45,6 +45,7 @@
 #include "GnList.h"
 #include "GnTArray.h"
 #include "GnTMap.h"
+#include "GnTSet.h"
 #include "GnLog.h"
 #include "GnSimpleString.h"
 #include "GnSimpleTString.h"

@@ -177,6 +177,9 @@
     <ClInclude Include="..\..\Source\GnRenderView.h" />
     <ClInclude Include="..\..\Source\GnRTTI.h" />
     <ClInclude Include="..\..\Source\Gn3DTransform.h" />
+    <ClInclude Include="..\..\Source\GnSignal.h" />
+    <ClInclude Include="..\..\Source\GnSignalSlot.h" />
+    <ClInclude Include="..\..\Source\GnSignalSlotMacros.h" />
     <ClInclude Include="..\..\Source\GnStream.h" />
     <ClInclude Include="..\..\Source\GnStreamMacro.h" />
     <ClInclude Include="..\..\Source\GnTexture.h" />

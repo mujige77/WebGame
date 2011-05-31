@@ -4,7 +4,7 @@
 GnRTTI::GnRTTI( const gchar* pName, const GnRTTI* pBaseRTTI ) : mpName(pName), mpBaseRTTI(pBaseRTTI)
 {
 }
-//---------------------------------------------------------------------------
+
 bool GnRTTI::CopyName( gchar* nameBuffer, gtuint uiMaxSize ) const
 {
 	const char* pcName = GetName();

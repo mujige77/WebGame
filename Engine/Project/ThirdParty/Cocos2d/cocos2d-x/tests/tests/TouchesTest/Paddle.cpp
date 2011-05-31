@@ -11,7 +11,8 @@ Paddle::~Paddle(void)
 CCRect Paddle::rect()
 {
 	CCSize s = getTexture()->getContentSize();
-	return CCRectMake(-s.width / 2, -s.height / 2, s.width, s.height);
+	CCPoint sd = getAnchorPoint();
+	return CCRectMake(-s.width * sd.x, -s.height * sd.y, s.width, s.height);
 }
 
 Paddle* Paddle::paddleWithTexture(CCTexture2D* aTexture)

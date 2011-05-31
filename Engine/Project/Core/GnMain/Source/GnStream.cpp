@@ -5,11 +5,11 @@
 const guint32 GnStream::msGenieVersion = GnStream::GetVersion(GENIE_MAJOR_VERSION,
 	GENIE_MINOR_VERSION, GENIE_PATCH_VERSION, GENIE_INTERNAL_VERSION);
 
-GnTStringMap<GnStreamHelper::CreateFunction>* GnStreamHelper::mCreateFunctions = NULL;
+GnTStringMap<GnStreamHelper::LoadFunction>* GnStreamHelper::mCreateFunctions = NULL;
 
 void GnStreamHelper::EBMStartup()
 {
-	mCreateFunctions = GnNew GnTStringMap<GnStreamHelper::CreateFunction>(30, false);
+	mCreateFunctions = GnNew GnTStringMap<GnStreamHelper::LoadFunction>(30, false);
 }
 
 void GnStreamHelper::EBMShutdown()
@@ -17,7 +17,7 @@ void GnStreamHelper::EBMShutdown()
 	GnDelete mCreateFunctions;
 }
 
-GnStream::GnStream() : mFileVersion(GnStream::msGenieVersion)
+GnStream::GnStream() : mpFile(NULL), mFileVersion(GnStream::msGenieVersion)
 {
 
 }
@@ -47,10 +47,10 @@ bool GnStream::Load(const gchar* pcFilePath)
 	return true;
 }
 
-void GnStreamHelper::RegisterRTTIObject(gchar* pcName, CreateFunction pFunc)
+void GnStreamHelper::RegisterRTTIObject(gchar* pcName, LoadFunction pFunc)
 {
 #ifdef GNDEBUG
-	CreateFunction existsFunc = NULL;
+	LoadFunction existsFunc = NULL;
 	bool isExists = mCreateFunctions->GetAt( pcName, existsFunc );
 	GnAssert( isExists == false );
 #endif
@@ -83,15 +83,19 @@ void GnStream::LoadBinary(gwchar*& val)
 	val[len] = '\0';
 }
 
-void GnStream::SaveBinary(const gwchar*& val)
+void GnStream::SaveBinary(const gwchar* val)
 {
+	gushort len = 0;
 	if( val == NULL )
+	{
+		SaveStream( len );
 		return;
+	}
 
-	gushort len = (gushort)GnWStrlen(val);
+	len = (gushort)GnWStrlen(val);
 	if( len <= 0 )
 	{
-		val = NULL;
+		SaveStream( len );
 		return;
 	}
 	GnAssert( GnT::TypeTraits<gushort>::TestMax( len ) );
@@ -114,15 +118,19 @@ void GnStream::LoadBinary(gchar*& val)
 	val[len] = '\0';
 }
 
-void GnStream::SaveBinary(const gchar*& val)
+void GnStream::SaveBinary(const gchar* val)
 {
+	gushort len = 0;
 	if( val == NULL )
+	{
+		SaveStream( len );
 		return;
+	}
 
-	gushort len = (gushort)GnStrlen( val );
+	len = (gushort)GnStrlen( val );
 	if( len <= 0 )
 	{
-		val = NULL;
+		SaveStream( len );
 		return;
 	}
 	GnAssert( GnT::TypeTraits<gushort>::TestMax( len ) );

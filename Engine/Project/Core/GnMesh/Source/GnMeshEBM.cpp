@@ -7,30 +7,40 @@
 #include "GnMeshData.h"
 #include "GnMesh.h"
 #include "GnScreenMesh.h"
-#include "GnSMElement.h"
-#include "GnSMGroup.h"
+#include "Gn2DMeshObject.h"
+#include "Gn2DNode.h"
 
 
 void GnMeshEBM::StartupEBM()
 {
-	//GnRegisterStream(GnPlaneActor);
+	//GnRegisterStream(Gn2DActor);
 	GnRegisterStream(GnSequence);
+	GnRegisterStream(Gn2DSequence);
 	GnRegisterStream(GnSMTextureAniCtrl);
 	GnRegisterStream(GnMeshData);
 	GnRegisterStream(GnMesh);
 	GnRegisterStream(GnScreenMesh);
-	GnRegisterStream(GnSMElement);
-	GnRegisterStream(GnSMGroup);
+	GnRegisterStream(Gn2DMeshObject);
+	GnRegisterStream(Gn2DNode);
+	GnRegisterStream(Gn2DAVData);
+	GnRegisterStream(Gn2DTextureAni);
+
+	GnSceneManager::_StartupEBM();	
 }
 
 void GnMeshEBM::ShutdownEBM()
 {
-	//GnUnregisterStream(GnPlaneActor);
+	GnSceneManager::_ShutdownEBM();
+
+	//GnUnregisterStream(Gn2DActor);
 	GnUnregisterStream(GnSequence);
+	GnUnregisterStream(Gn2DSequence);
 	GnUnregisterStream(GnSMTextureAniCtrl);
 	GnUnregisterStream(GnMeshData);
 	GnUnregisterStream(GnMesh);
 	GnUnregisterStream(GnScreenMesh);
-	GnUnregisterStream(GnSMElement);
-	GnUnregisterStream(GnSMGroup);
+	GnUnregisterStream(Gn2DMeshObject);
+	GnUnregisterStream(Gn2DNode);
+	GnUnregisterStream(Gn2DAVData);
+	GnUnregisterStream(Gn2DTextureAni);
 }

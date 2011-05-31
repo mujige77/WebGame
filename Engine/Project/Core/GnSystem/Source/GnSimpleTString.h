@@ -66,7 +66,7 @@ inline GnSimpleTString& GnSimpleTString::operator=(const GnSimpleTString& str)
 	}
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnSimpleTString& GnSimpleTString::operator=(const gtchar* tcStr)
 {
 	if (mpHandle != tcStr)
@@ -88,7 +88,7 @@ inline bool GnSimpleTString::Exists() const
 	return mpHandle != NULL;
 }
 
-//---------------------------------------------------------------------------
+
 inline bool GnSimpleTString::Equals(const gtchar* tcStr) const
 {
 	if (mpHandle == tcStr)
@@ -99,7 +99,7 @@ inline bool GnSimpleTString::Equals(const gtchar* tcStr) const
 
 	return GnTStrcmp(mpHandle, tcStr) == 0;
 }
-//---------------------------------------------------------------------------
+
 inline bool GnSimpleTString::EqualsNoCase(const gtchar* tcStr) const
 {
 	if (mpHandle == tcStr)
@@ -111,7 +111,7 @@ inline bool GnSimpleTString::EqualsNoCase(const gtchar* tcStr) const
 	return GnTStricmp(mpHandle, tcStr) == 0;
 }
 
-//---------------------------------------------------------------------------
+
 inline bool GnSimpleTString::Contains(const gtchar* tcStr) const
 {
 	if (mpHandle == tcStr && tcStr != NULL)
@@ -126,32 +126,32 @@ inline bool GnSimpleTString::Contains(const gtchar* tcStr) const
 	return GnTStrstr(mpHandle, tcStr) != NULL;
 }
 
-//---------------------------------------------------------------------------
+
 inline bool operator==(const GnSimpleTString& str1, const GnSimpleTString& str2)
 {
 	return str1.Equals( str2.mpHandle );
 }
-//---------------------------------------------------------------------------
+
 inline bool operator!=(const GnSimpleTString& str1, const GnSimpleTString& str2)
 {
 	return !str1.Equals( str2.mpHandle );
 }
-//---------------------------------------------------------------------------
+
 inline bool operator==(const GnSimpleTString& str1, const gtchar* str2)
 {
 	return str1.Equals(str2);
 }
-//---------------------------------------------------------------------------
+
 inline bool operator!=(const GnSimpleTString& str1, const gtchar* str2)
 {
 	return !(str1.Equals(str2));
 }
-//---------------------------------------------------------------------------
+
 inline bool operator==(const gtchar* str1, const GnSimpleTString& str2)
 {
 	return str2.Equals(str1);
 }
-//---------------------------------------------------------------------------
+
 inline bool operator!=(const gtchar* str1, const GnSimpleTString& str2)
 {
 	return !(str2.Equals(str1));

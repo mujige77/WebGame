@@ -99,12 +99,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\Source\GnTSet.inl" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\GnAllocator.h" />
     <ClInclude Include="..\..\Source\GnPath.h" />
     <ClInclude Include="..\..\Source\GnSimpleTString.h" />
+    <ClInclude Include="..\..\Source\GnTSet.h" />
     <ClInclude Include="..\..\Source\GnTStringMap.h" />
     <ClInclude Include="..\..\Source\GnTAllocatorCollection.h" />
     <ClInclude Include="..\..\Source\GnTArray.h" />

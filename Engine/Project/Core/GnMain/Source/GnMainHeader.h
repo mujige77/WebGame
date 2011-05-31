@@ -12,6 +12,7 @@
 #include "GnVector3.h"
 #include "Gn2DTransform.h"
 #include "Gn3DTransform.h"
+#include "GnSignal.h"
 #include "GnObject.h"
 #include "GnObjectForm.h"
 #include "GnAVObject.h"

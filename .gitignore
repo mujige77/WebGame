@@ -1,0 +1,15 @@
+
+/Tools/ipch
+/Tools/Release
+*.sdf
+*.opensdf
+/Built
+/Tools/GnTools/Release
+/Tools/Log
+/SDK/Include
+/SDK/Bin
+/Tools/Debug
+/Tools/CocosTool/Log
+/Tools/CocosTool/Release
+/Tools/CocosTool/Debug
+/Tools/CocosTool/system.ini

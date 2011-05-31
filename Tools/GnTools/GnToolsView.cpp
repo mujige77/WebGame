@@ -38,7 +38,6 @@ BEGIN_MESSAGE_MAP(CGnToolsView, CView)
 	// 표준 인쇄 명령입니다.
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CGnToolsView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_WM_SIZE()
@@ -46,6 +45,9 @@ BEGIN_MESSAGE_MAP(CGnToolsView, CView)
 	ON_COMMAND(ID_RBBT_PLAY, &CGnToolsView::OnAniPlay)
 	ON_COMMAND(ID_RBBT_PAUSE, &CGnToolsView::OnAniPause)
 	ON_WM_TIMER()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CGnToolsView 생성/소멸
@@ -72,43 +74,47 @@ BOOL CGnToolsView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CGnToolsView 그리기
 
-void CGnToolsView::OnDraw(CDC* /*pDC*/)
+void CGnToolsView::OnDraw(CDC* pDC)
 {
 	CGnToolsDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
-	
+
+	float time = GnGetTicks();
 	if( GnToolManager::Singletone() )
+	{
+		GnToolManager::Singletone()->Update( time, m_hWnd );
+	}
+
+	if( GnToolManager::Singletone() )
+	{
 		GnToolManager::Singletone()->Render(m_hWnd);
+	}
+
+	if( pDC )
+	{
+		mDrawMouseRect.Draw( pDC );
+	}
+
+
+	//CDC* pdc = GetDC();
+	//HGDIOBJ hOriginal = nullptr;
+	//hOriginal = ::SelectObject( pdc, ::GetStockObject( DC_PEN ) );
+
+	//HPEN hBlackPen = ::CreatePen( PS_SOLID, 3, 0 );
+	//::SelectObject( pdc, hBlackPen );
+
+	//::Ellipse( pdc, 300, 50, 500, 250 );
+
+	//::DeleteObject( hBlackPen );
+	//::SelectObject( pdc, hOriginal );
+	//DrawLine(pDC,100,100,100,100, 50);
+	
+	//if( GnToolManager::Singletone() )
+	//	GnToolManager::Singletone()->Render(m_hWnd);
 }
 
-
-// CGnToolsView 인쇄
-
-
-void CGnToolsView::OnFilePrintPreview()
-{
-#ifndef SHARED_HANDLERS
-	AFXPrintPreview(this);
-#endif
-}
-
-BOOL CGnToolsView::OnPreparePrinting(CPrintInfo* pInfo)
-{
-	// 기본적인 준비
-	return DoPreparePrinting(pInfo);
-}
-
-void CGnToolsView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: 인쇄하기 전에 추가 초기화 작업을 추가합니다.
-}
-
-void CGnToolsView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
-{
-	// TODO: 인쇄 후 정리 작업을 추가합니다.
-}
 
 void CGnToolsView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {
@@ -123,8 +129,6 @@ void CGnToolsView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #endif
 }
 
-
-// CGnToolsView 진단
 
 #ifdef _DEBUG
 void CGnToolsView::AssertValid() const
@@ -153,7 +157,6 @@ void CGnToolsView::OnInitialUpdate()
 	CView::OnInitialUpdate();
 
 	mGnFrame = GnFrame::Create(m_hWnd);
-	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 }
 
 
@@ -162,7 +165,6 @@ void CGnToolsView::OnSize(UINT nType, int cx, int cy)
 	CView::OnSize(nType, cx, cy);
 	if( mGnFrame )
 		mGnFrame->RecreateRenderTarget(cx, cy);
-	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }
 
 
@@ -174,16 +176,6 @@ void CGnToolsView::OnSetFocus(CWnd* pOldWnd)
 
 void CGnToolsView::OnAniPlay()
 {
-	//if (AfxGetMainWnd()->IsKindOf(RUNTIME_CLASS(CMainFrame)))
-	//{
-		//GtProperties& properties = GetWindowCreater()->GetAniProperties();
-		//GnSMTextureAniCtrl* textureAni = properties.CreateSMTextureAniCtrl();
-		//if( textureAni )
-		//{
-		//	textureAni->SetLoop(true);
-		//	mGnFrame->SetTimeCtrl(GnGetTicks(), textureAni);
-		//}
-	//}
 	 SetTimer(mTimerID, 0, NULL);
 }
 
@@ -194,19 +186,77 @@ void CGnToolsView::OnAniPause()
 	KillTimer(mTimerID);
 }
 
-
 void CGnToolsView::OnTimer(UINT_PTR nIDEvent)
 {
 	CView::OnTimer(nIDEvent);
-	
-	float time = GnGetTicks();
-	if( GnToolManager::Singletone() )
-	{
-		GnToolManager::Singletone()->Update( time, m_hWnd );
-	}
+	 Invalidate(FALSE);
+	//Graphics G(pDC->m_hDC);
+	//Pen P( Color(255, 0, 0), 1.0f );
+	//P.SetDashStyle( DashStyleDot );
+	//Point pt1(100, 100);
+	//Point pt2(1000, 100);
+	//
+	//G.DrawLine(&P, pt1, pt2);
 
-	if( GnToolManager::Singletone() )
+	//pt1.X = 500;
+	//pt1.Y = 0;
+	//pt2.X = 500;
+	//pt2.Y = 200;
+	//G.DrawLine(&P, pt1, pt2);
+}
+
+void CGnToolsView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	CView::OnLButtonDown(nFlags, point);
+
+	mDrawMouseRect.SetDraw( true );
+	mDrawMouseRect.SetStartPoint( point.x, point.y );
+	mDrawMouseRect.SetEndPoint( 0, 0 );
+}
+
+void CGnToolsView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	CView::OnLButtonUp( nFlags, point );
+
+	mDrawMouseRect.SetDraw( false );	
+}
+
+
+void CGnToolsView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	CView::OnMouseMove(nFlags, point);
+	//ScreenToClient(&point);	
+	if( mDrawMouseRect.GetDraw() )
 	{
-		GnToolManager::Singletone()->Render(m_hWnd);
+		Point startPt = mDrawMouseRect.GetStartPoint();
+		Point endPt = mDrawMouseRect.GetEndPoint();
+		if( startPt.X > point.x )
+		{
+			endPt.X = startPt.X;
+			startPt.X = point.x;			
+		}
+		else
+		{
+			startPt.X = startPt.X;
+			endPt.X = point.x;
+		}
+
+		if( startPt.Y > point.y )
+		{
+			endPt.Y = startPt.Y;
+			startPt.Y = point.y;			
+		}
+		else
+		{
+			startPt.Y = startPt.Y;
+			endPt.Y = point.y;
+		}
+
+		mDrawMouseRect.SetDrawRect( Rect(startPt.X, startPt.Y
+			, abs(startPt.X - endPt.X), abs(startPt.Y - endPt.Y) ) );
 	}
 }
+

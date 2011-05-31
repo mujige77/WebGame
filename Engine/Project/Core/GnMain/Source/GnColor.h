@@ -48,7 +48,7 @@ inline GnColorA::GnColorA(float fR, float fG, float fB, float fA)
 	b = fB;
 	a = fA;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator= (float fScalar)
 {
 	r = fScalar;
@@ -57,17 +57,17 @@ inline GnColorA& GnColorA::operator= (float fScalar)
 	a = fScalar;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline bool GnColorA::operator== (const GnColorA& c) const
 {
 	return (r == c.r && g == c.g && b == c.b && a == c.a);
 }
-//---------------------------------------------------------------------------
+
 inline bool GnColorA::operator!= (const GnColorA& c) const
 {
 	return !(*this == c);
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator+ (const GnColorA& c) const
 {
 	GnColorA result = *this;
@@ -77,7 +77,7 @@ inline GnColorA GnColorA::operator+ (const GnColorA& c) const
 	result.a += c.a;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator- (const GnColorA& c) const
 {
 	GnColorA result = *this;
@@ -87,7 +87,7 @@ inline GnColorA GnColorA::operator- (const GnColorA& c) const
 	result.a -= c.a;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator* (float fScalar) const
 {
 	GnColorA result = *this;
@@ -97,7 +97,7 @@ inline GnColorA GnColorA::operator* (float fScalar) const
 	result.a *= fScalar;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator* (const GnColorA &c) const
 {
 	GnColorA result = *this;
@@ -107,7 +107,7 @@ inline GnColorA GnColorA::operator* (const GnColorA &c) const
 	result.a *= c.a;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator/ (float fScalar) const
 {
 	GnColorA result = *this;
@@ -117,7 +117,7 @@ inline GnColorA GnColorA::operator/ (float fScalar) const
 	result.a /= fScalar;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator/ (const GnColorA &c) const
 {
 	GnColorA result = *this;
@@ -127,17 +127,17 @@ inline GnColorA GnColorA::operator/ (const GnColorA &c) const
 	result.a /= c.a;
 	return result;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA GnColorA::operator- () const
 {
 	return GnColorA(-r,-g,-b,-a);
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA operator* (float fScalar, const GnColorA& c)
 {
 	return c*fScalar;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator+= (const GnColorA& c)
 {
 	r += c.r;
@@ -146,7 +146,7 @@ inline GnColorA& GnColorA::operator+= (const GnColorA& c)
 	a += c.a;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator-= (const GnColorA& c)
 {
 	r -= c.r;
@@ -155,7 +155,7 @@ inline GnColorA& GnColorA::operator-= (const GnColorA& c)
 	a -= c.a;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator*= (float fScalar)
 {
 	r *= fScalar;
@@ -164,7 +164,7 @@ inline GnColorA& GnColorA::operator*= (float fScalar)
 	a *= fScalar;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator*= (const GnColorA &c)
 {
 	r *= c.r;
@@ -173,7 +173,7 @@ inline GnColorA& GnColorA::operator*= (const GnColorA &c)
 	a *= c.a;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator/= (float fScalar)
 {
 	r /= fScalar;
@@ -182,7 +182,7 @@ inline GnColorA& GnColorA::operator/= (float fScalar)
 	a /= fScalar;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline GnColorA& GnColorA::operator/= (const GnColorA &c)
 {
 	r /= c.r;
@@ -191,7 +191,7 @@ inline GnColorA& GnColorA::operator/= (const GnColorA &c)
 	a /= c.a;
 	return *this;
 }
-//---------------------------------------------------------------------------
+
 inline void GnColorA::Clamp()
 {
 	// Clamp to [0,1]^4.  Assumes that (r,g,b,a) >= (0,0,0).  This is a
@@ -207,7 +207,7 @@ inline void GnColorA::Clamp()
 	if ( a > 1.0f )
 		a = 1.0f;
 }
-//---------------------------------------------------------------------------
+
 inline void GnColorA::Scale()
 {
 	// Scale down by maximum component (preserves the final color).
@@ -228,7 +228,7 @@ inline void GnColorA::Scale()
 	if ( a > 1.0f )
 		a = 1.0f;
 }
-//---------------------------------------------------------------------------
+
 inline guint32 GnColorA::GetRGBA() const
 {
 	return ((int)(a * 255.0f) << 24 ) | ((int)(r * 255.0f) << 16) | ((int)(g * 255.0f) << 8 ) | (int)(b * 255.0f);

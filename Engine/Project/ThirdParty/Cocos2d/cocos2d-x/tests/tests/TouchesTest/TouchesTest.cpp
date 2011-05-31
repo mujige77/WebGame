@@ -55,14 +55,17 @@ PongLayer::PongLayer()
 	CCMutableArray<CCObject *> *paddlesM = new CCMutableArray<CCObject *>(4);
 	
 	Paddle* paddle = Paddle::paddleWithTexture(paddleTexture);
+	//paddle->setAnchorPoint( CCPointMake(1.0, 1.0) );
 	paddle->setPosition( CCPointMake(160, 15) );
 	paddlesM->addObject( paddle );
 	
 	paddle = Paddle::paddleWithTexture( paddleTexture );
+	//paddle->setAnchorPoint( CCPointMake(0.1, 0.1) );
 	paddle->setPosition( CCPointMake(160, 480 - kStatusBarHeight - 15) );
 	paddlesM->addObject( paddle );
 	
 	paddle = Paddle::paddleWithTexture( paddleTexture );
+	//paddle->setAnchorPoint( CCPointMake(0.7, 0.7) );
 	paddle->setPosition( CCPointMake(160, 100) );
 	paddlesM->addObject( paddle );
 	
@@ -125,7 +128,31 @@ void PongLayer::doStep(ccTime delta)
 		resetAndScoreBallForPlayer( kHighPlayer );
     m_ball->draw();
 } 
+void PongLayer::draw()
+{
+	CCLayer::draw();
+	Paddle* paddle;
+	CCMutableArray<CCObject *>::CCMutableArrayIterator it;
+	for(it = m_paddles->begin(); it != m_paddles->end(); it++)
+	{
+		paddle = (Paddle*)(*it);
 
+		if(!paddle)
+			break;
+		CCRect paddleRect = paddle->rect();
+		paddleRect.origin.x += paddle->getPosition().x;
+		paddleRect.origin.y += paddle->getPosition().y;
+
+		glColor4f(1.0, 0.0, 1.0, 1.0);
+		glLineWidth(2);
+		CCPoint vertices2[] = {
+			CCPointMake(paddleRect.origin.x, paddleRect.origin.y)
+			, CCPointMake(paddleRect.origin.x, paddleRect.origin.y+paddleRect.size.height)
+			, CCPointMake(paddleRect.origin.x+paddleRect.size.width, paddleRect.origin.y+paddleRect.size.height)
+			, CCPointMake(paddleRect.origin.x+paddleRect.size.width, paddleRect.origin.y) };
+		ccDrawPoly( vertices2, 4, true);
+	}
+}
 void PongScene::runThisTest()
 {
     CCDirector::sharedDirector()->replaceScene(this);

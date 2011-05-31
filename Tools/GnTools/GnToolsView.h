@@ -16,11 +16,15 @@
 #pragma once
 
 #include <GnFrame.h>
+#include "GtDrawMouseRectangle.h"
+
 class CGnToolsView : public CView
 {
 private:
 	GnFramePtr mGnFrame;
 	UINT_PTR mTimerID;
+	GtDrawMouseRectangle mDrawMouseRect;
+	
 	
 protected: // serialization에서만 만들어집니다.
 	CGnToolsView();
@@ -42,11 +46,6 @@ public:
 		mGnFrame = val;
 	}
 
-protected:
-	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
-	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
-
 // 구현입니다.
 public:
 	virtual ~CGnToolsView();
@@ -59,7 +58,6 @@ protected:
 
 // 생성된 메시지 맵 함수
 protected:
-	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
@@ -71,6 +69,9 @@ public:
 	afx_msg void OnAniPlay();
 	afx_msg void OnAniPause();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // GnToolsView.cpp의 디버그 버전

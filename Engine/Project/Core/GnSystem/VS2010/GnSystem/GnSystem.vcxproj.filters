@@ -18,6 +18,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="..\..\Source\GnTSet.inl">
+      <Filter>소스 파일\STL</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\GnAllocator.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\GnPath.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnTSet.h">
+      <Filter>소스 파일\STL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

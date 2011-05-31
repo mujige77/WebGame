@@ -59,7 +59,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;GNDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;_DEBUG;_LIB;GNDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -77,7 +78,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;GNRELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;NDEBUG;_LIB;GNRELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -97,7 +99,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;GNLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;NDEBUG;_LIB;GNLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,8 +117,22 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Gg2dCollision.h" />
+    <ClInclude Include="..\..\Source\Gn2DAVData.h" />
+    <ClInclude Include="..\..\Source\Gn2DAVDataConverter.h" />
+    <ClInclude Include="..\..\Source\Gn2DTextureAni.h" />
     <ClInclude Include="..\..\Source\GnActorStreamMacro.h" />
+    <ClInclude Include="..\..\Source\GnAnimation.h" />
+    <ClInclude Include="..\..\Source\GnAnimationKey.h" />
+    <ClInclude Include="..\..\Source\GnAnimationKeyMacro.h" />
+    <ClInclude Include="..\..\Source\GnAnimationKeyManager.h" />
+    <ClInclude Include="..\..\Source\GnCocosScene.h" />
+    <ClInclude Include="..\..\Source\GnDrawPrimitives.h" />
+    <ClInclude Include="..\..\Source\GnLayerBackground.h" />
+    <ClInclude Include="..\..\Source\GnLayerMain.h" />
     <ClInclude Include="..\..\Source\GnMeshEBM.h" />
+    <ClInclude Include="..\..\Source\Gn2DSequence.h" />
+    <ClInclude Include="..\..\Source\GnSceneManager.h" />
     <ClInclude Include="..\..\Source\GnSequence.h" />
     <ClInclude Include="..\..\Source\GnMeshData.h" />
     <ClInclude Include="..\..\Source\GnDataStream.h" />
@@ -124,19 +141,34 @@
     <ClInclude Include="..\..\Source\GnMeshHeader.h" />
     <ClInclude Include="..\..\Source\GnMeshLibType.h" />
     <ClInclude Include="..\..\Source\GnMeshPCH.h" />
-    <ClInclude Include="..\..\Source\GnPlaneActor.h" />
+    <ClInclude Include="..\..\Source\Gn2DActor.h" />
     <ClInclude Include="..\..\Source\GnScreenMesh.h" />
     <ClInclude Include="..\..\Source\GnActorTool.h" />
     <ClInclude Include="..\..\Source\GnSequenceManager.h" />
-    <ClInclude Include="..\..\Source\GnSMElement.h" />
-    <ClInclude Include="..\..\Source\GnSMGroup.h" />
+    <ClInclude Include="..\..\Source\Gn2DMeshObject.h" />
+    <ClInclude Include="..\..\Source\Gn2DNode.h" />
     <ClInclude Include="..\..\Source\GnSMManager.h" />
     <ClInclude Include="..\..\Source\GnSMPostionAniCtrl.h" />
     <ClInclude Include="..\..\Source\GnSMRenderView.h" />
     <ClInclude Include="..\..\Source\GnSMTextureAniCtrl.h" />
+    <ClInclude Include="..\..\Source\GnLayer.h" />
+    <ClInclude Include="..\..\Source\GnTegIDKey.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Gg2DCollision.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DAVData.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DAVDataConverter.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DTextureAni.cpp" />
+    <ClCompile Include="..\..\Source\GnAnimation.cpp" />
+    <ClCompile Include="..\..\Source\GnAnimationKey.cpp" />
+    <ClCompile Include="..\..\Source\GnAnimationKeyManager.cpp" />
+    <ClCompile Include="..\..\Source\GnCocosScene.cpp" />
+    <ClCompile Include="..\..\Source\GnDrawPrimitives.cpp" />
+    <ClCompile Include="..\..\Source\GnLayerBackground.cpp" />
+    <ClCompile Include="..\..\Source\GnLayerMain.cpp" />
     <ClCompile Include="..\..\Source\GnMeshEBM.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DSequence.cpp" />
+    <ClCompile Include="..\..\Source\GnSceneManager.cpp" />
     <ClCompile Include="..\..\Source\GnSequence.cpp" />
     <ClCompile Include="..\..\Source\GnDataStreamLockPolicy.cpp" />
     <ClCompile Include="..\..\Source\GnMeshData.cpp" />
@@ -148,16 +180,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\Source\GnPlaneActor.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DActor.cpp" />
     <ClCompile Include="..\..\Source\GnScreenMesh.cpp" />
     <ClCompile Include="..\..\Source\GnActorTool.cpp" />
     <ClCompile Include="..\..\Source\GnSequenceManager.cpp" />
-    <ClCompile Include="..\..\Source\GnSMElement.cpp" />
-    <ClCompile Include="..\..\Source\GnSMGroup.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DMeshObject.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DNode.cpp" />
     <ClCompile Include="..\..\Source\GnSMManager.cpp" />
     <ClCompile Include="..\..\Source\GnSMPostionAniCtrl.cpp" />
     <ClCompile Include="..\..\Source\GnSMRenderView.cpp" />
     <ClCompile Include="..\..\Source\GnSMTextureAniCtrl.cpp" />
+    <ClCompile Include="..\..\Source\GnLayer.cpp" />
+    <ClCompile Include="..\..\Source\GnTegIDKey.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

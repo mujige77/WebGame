@@ -131,6 +131,7 @@ bool CCDirector::init(void)
 	// create autorelease pool
 	CCPoolManager::getInstance()->push();
 
+	mUseTools = false;
 	return true;
 }
 	
@@ -183,7 +184,8 @@ void CCDirector::setGLDefaultValues(void)
 void CCDirector::drawScene(void)
 {
 	// calculate "global" dt
-	calculateDeltaTime();
+	if( IsUseTools() == false )
+		calculateDeltaTime();
 
 	//tick before glClear: issue #533
 	if (! m_bPaused)

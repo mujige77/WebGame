@@ -3,24 +3,24 @@
 
 void GnSMRenderView::AddToPVGeometryArray(GnObjectForm* pObject)
 {
-	if( GnSMGroup* group = GnDynamicCast(GnSMGroup, pObject) )
-	{
-		if( group->GetMesh() && group->IsVisible() )
-			mCollactRenderObject.Add( group->GetMesh() );
+	//if( Gn2DNode* group = GnDynamicCast(Gn2DNode, pObject) )
+	//{
+	//	if( group->GetMesh() && group->IsVisible() )
+	//		mCollactRenderObject.Add( group->GetMesh() );
 
-		for( gtuint i = 0 ; i < group->GetChildCount() ; i++ )
-		{
-			GnSMElement* childObject = group->GetAt(i);
-			AddToPVGeometryArray(childObject);
-		}
-	}
-	else 	if( GnSMElement* element = GnDynamicCast(GnSMElement, pObject) ) 
-	{
-		if( element->GetMesh() && element->IsVisible() )
-		{
-			mCollactRenderObject.Add( element->GetMesh() );
-		}
-	}
+	//	for( gtuint i = 0 ; i < group->GetChildCount() ; i++ )
+	//	{
+	//		Gn2DMeshObject* childObject = group->GetAt(i);
+	//		AddToPVGeometryArray(childObject);
+	//	}
+	//}
+	//else 	if( Gn2DMeshObject* element = GnDynamicCast(Gn2DMeshObject, pObject) ) 
+	//{
+	//	if( element->GetMesh() && element->IsVisible() )
+	//	{
+	//		mCollactRenderObject.Add( element->GetMesh() );
+	//	}
+	//}
 }
 
 void GnSMRenderView::Update(float fTime)
@@ -31,7 +31,7 @@ void GnSMRenderView::Update(float fTime)
 		GnObjectForm* object = iter.Item();
 		if( object )
 		{
-			((GnSMElement*)object)->Update(fTime);
+			((Gn2DMeshObject*)object)->Update(fTime);
 		}
 
 		iter.Forth();

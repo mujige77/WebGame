@@ -45,7 +45,7 @@ protected:
 template <class TDataStream>
 GnDataStreamLockPolicy<TDataStream>::GnDataStreamLockPolicy() : mReadLockCount(0), mWriteLockCount(0)
 {}
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void* GnDataStreamLockPolicy<TDataStream>::LockRead(TDataStream* pkDS)
 {
@@ -56,7 +56,7 @@ void* GnDataStreamLockPolicy<TDataStream>::LockRead(TDataStream* pkDS)
 	pkDS->SetLocked(pvRetVal != 0);
 	return pvRetVal;
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void* GnDataStreamLockPolicy<TDataStream>::LockWrite(TDataStream* pkDS)
 {
@@ -67,7 +67,7 @@ void* GnDataStreamLockPolicy<TDataStream>::LockWrite(TDataStream* pkDS)
 	pkDS->SetLocked(pvRetVal != 0);
 	return pvRetVal;
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void* GnDataStreamLockPolicy<TDataStream>::LockReadWrite(TDataStream* pkDS)
 {
@@ -81,7 +81,7 @@ void* GnDataStreamLockPolicy<TDataStream>::LockReadWrite(TDataStream* pkDS)
 	pkDS->SetLocked(pvRetVal != 0);
 	return pvRetVal;
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void GnDataStreamLockPolicy<TDataStream>::UnlockRead(TDataStream* pkDS)
 {
@@ -92,7 +92,7 @@ void GnDataStreamLockPolicy<TDataStream>::UnlockRead(TDataStream* pkDS)
 		mWriteLockCount);
 	m_kLock.Unlock();
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void GnDataStreamLockPolicy<TDataStream>::UnlockWrite(TDataStream* pkDS)
 {
@@ -102,7 +102,7 @@ void GnDataStreamLockPolicy<TDataStream>::UnlockWrite(TDataStream* pkDS)
 	pkDS->UnmapBuffer(GnDataStream::LOCK_WRITE, mReadLockCount,	mWriteLockCount);
 	m_kLock.Unlock();
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void GnDataStreamLockPolicy<TDataStream>::UnlockReadWrite(TDataStream* pkDS)
 {
@@ -115,7 +115,7 @@ void GnDataStreamLockPolicy<TDataStream>::UnlockReadWrite(TDataStream* pkDS)
 		mReadLockCount, mWriteLockCount);
 	m_kLock.Unlock();
 }
-//---------------------------------------------------------------------------
+
 template <class TDataStream>
 void GnDataStreamLockPolicy<TDataStream>::Delete(TDataStream* pkDS)
 {

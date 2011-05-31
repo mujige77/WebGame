@@ -9,6 +9,9 @@ public:
 	inline GnVector2( const float * );
 	inline GnVector2( float x, float y );
 
+	void LoadStream(GnStream* pStream);
+	void SaveStream(GnStream* pStream);
+
 	// casting
 	inline operator float* ();
 	inline operator const float* () const;
@@ -62,6 +65,15 @@ inline GnVector2::GnVector2( float fx, float fy )
 	y = fy;
 }
 
+inline void GnVector2::LoadStream(GnStream* pStream)
+{
+	pStream->LoadStreams( (char*)&x, sizeof(float) *2 );
+}
+
+inline void GnVector2::SaveStream(GnStream* pStream)
+{
+	pStream->SaveStreams( (char*)&x, sizeof(float) * 2 );
+}
 
 // casting
 

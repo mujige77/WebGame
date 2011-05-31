@@ -425,6 +425,23 @@ public:
 	/** detach the cocos2d view from the view/window */
 	bool detach(void);
 
+	
+	// 툴 사용을 위해서 만든 것임
+	inline cocos2d::ccTime GetDeltaTime() {
+		return m_fDeltaTime;
+	}
+	inline void SetDeltaTime(cocos2d::ccTime val) {
+		m_fDeltaTime = val;
+	}
+	bool mUseTools;
+	inline bool IsUseTools() {
+		return mUseTools;
+	}
+	inline void SetUseTools(bool val) {
+		mUseTools = val;
+	}
+	//////////////////////////////////////////////////////////////////////////
+	
 public:
 	/** returns a shared instance of the director */
 	static CCDirector* sharedDirector(void);

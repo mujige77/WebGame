@@ -5,16 +5,16 @@
 class GNMAIN_ENTRY GnStreamHelper : public GnMemoryObject
 {	
 public:
-	typedef GnObject* (*CreateFunction)();
+	typedef GnObject* (*LoadFunction)();
 
 protected:
-	static GnTStringMap<CreateFunction>* mCreateFunctions;
-	CreateFunction mCreateFunction;
+	static GnTStringMap<LoadFunction>* mCreateFunctions;
+	LoadFunction mCreateFunction;
 
 public:
 	static void EBMStartup();
 	static void EBMShutdown();
-	static void RegisterRTTIObject(gchar* pcName, CreateFunction pFunc);
+	static void RegisterRTTIObject(gchar* pcName, LoadFunction pFunc);
 	static void UnRegisterRTTIObject(gchar* pcName);
 
 	inline GnStreamHelper() : mCreateFunction(NULL) {
@@ -62,7 +62,7 @@ public:
 		PointerTraits<T>::LoadBinary(this, val);
 	}
 	template<class T>
-	inline void SaveStream(T*& val) {
+	inline void SaveStream(T* val) {
 		PointerTraits<T*>::SaveBinary(this, val);
 	}
 	template<class T>
@@ -91,7 +91,7 @@ public:
 
 	template <class U> struct PointerTraits< U* >
 	{
-		inline static void SaveBinary(GnStream* pStream, U*& val) {
+		inline static void SaveBinary(GnStream* pStream, U* val) {
 			pStream->CheckSave( val, 
 				GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::has_trivial_copy_constructor() );
 		}
@@ -123,7 +123,7 @@ protected:
 		val->LoadStream((T::StreamType*) this);
 	}
 	template<class T>
-	inline void CheckSave(T*& val, GnT::_FalseType) {
+	inline void CheckSave(T* val, GnT::_FalseType) {
 		val->SaveStream((T::StreamType*)this);
 	}
 	template<class T>
@@ -131,7 +131,7 @@ protected:
 		LoadBinary( val );
 	}
 	template<class T>
-	inline void CheckSave(T*& val, GnT::_TrueType) {
+	inline void CheckSave(T* val, GnT::_TrueType) {
 		SaveBinary( val );
 	}
 	template<class T>
@@ -143,9 +143,9 @@ protected:
 		mpFile->SaveBinary( &val, sizeof(T) );
 	}	
 	void LoadBinary(gwchar*& val);
-	void SaveBinary(const gwchar*& val);
+	void SaveBinary(const gwchar* val);
 	void LoadBinary(gchar*& val);
-	void SaveBinary(const gchar*& val);
+	void SaveBinary(const gchar* val);
 };
 
 //GnAssert( GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::isTrue );

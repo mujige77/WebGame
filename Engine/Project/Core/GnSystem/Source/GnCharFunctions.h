@@ -29,6 +29,8 @@
 
 #define GnVssprintf vsprintf_s
 
+gchar* GnAllocStrcpy(const gchar* GNRESTRICT src);
+
 GNFORCEINLINE size_t GnStrlen(const gchar* GNRESTRICT str)
 {
 	return strlen(str);

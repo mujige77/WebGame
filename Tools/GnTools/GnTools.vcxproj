@@ -55,18 +55,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\일하자\Microsoft DirectX SDK (February 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\일하자\Microsoft DirectX SDK (February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\sdk\DXSDK(February 2010)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\sdk\DXSDK(February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\일하자\Microsoft DirectX SDK (February 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\일하자\Microsoft DirectX SDK (February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\sdk\DXSDK(February 2010)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\sdk\DXSDK(February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Log|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\일하자\Microsoft DirectX SDK (February 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\일하자\Microsoft DirectX SDK (February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\sdk\DXSDK(February 2010)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\sdk\DXSDK(February 2010)\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -226,6 +226,10 @@
     <ClInclude Include="GnMessageDefine.h" />
     <ClInclude Include="GnObjectNew.h" />
     <ClInclude Include="GtBoundedNumberPairProp.h" />
+    <ClInclude Include="GtCrossDrawLine.h" />
+    <ClInclude Include="GtDrawGDI.h" />
+    <ClInclude Include="GtDrawMouseRectangle.h" />
+    <ClInclude Include="GtDrawRect.h" />
     <ClInclude Include="GtScreenMeshPropEntity.h" />
     <ClInclude Include="GtEditorPropSheetDlg.h" />
     <ClInclude Include="GtSequenceListCtrl.h" />
@@ -281,6 +285,10 @@
     <ClCompile Include="GnControlSetting.cpp" />
     <ClCompile Include="GnObjectNew.cpp" />
     <ClCompile Include="GtBoundedNumberPairProp.cpp" />
+    <ClCompile Include="GtCrossDrawLine.cpp" />
+    <ClCompile Include="GtDrawGDI.cpp" />
+    <ClCompile Include="GtDrawMouseRectangle.cpp" />
+    <ClCompile Include="GtDrawRect.cpp" />
     <ClCompile Include="GtScreenMeshPropEntity.cpp" />
     <ClCompile Include="GtEditorPropSheetDlg.cpp" />
     <ClCompile Include="GtSequenceListCtrl.cpp" />

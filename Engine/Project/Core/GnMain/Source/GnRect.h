@@ -1,39 +1,60 @@
 #ifndef GNRECT_H
 #define GNRECT_H
 
-class GNMAIN_ENTRY GnFRect : public GnMemoryObject
+template<typename T>
+class GNMAIN_ENTRY GnRect : public GnMemoryObject
 {
-	GnDeclareDataStream;
 public:
-	float left;
-	float top;	
-	float right;
-	float bottom;
-
+	T left;
+	T top;	
+	T right;
+	T bottom;
 public:
-	GnFRect();
-	GnFRect(float l, float t, float r, float b);
-	virtual ~GnFRect(){};
+	GnRect() : left(0), top(0), right(0), bottom(0)
+	{}
+	GnRect(T l, T t, T r, T b) : left(l), top(t), right(r), bottom(b)
+	{}
 
-	inline float GetWidth(){ return right - left; };
-	inline float GetHeight(){ return bottom - top; };
+	void MoveX(T val) {
+		left += val;
+		right += val;
+	}
+	void MoveY(T val) {
+		top += val;
+		bottom += val;
+	}
+	void SetWidth(T val) {
+		T delta = val - GetWidth();
+		right += delta;
+	}
+	void SetHeight(T val) {
+		T delta = val - GetHeight();
+		bottom += delta;
+	}
+	inline T GetWidth(){
+		return right - left;
+	};
+	inline T GetHeight(){
+		return bottom - top;
+	};
 };
 
-class GNMAIN_ENTRY GnIRect : public GnMemoryObject
+class GNMAIN_ENTRY GnFRect : public GnRect<float>
 {
 	GnDeclareDataStream;
-public:
-	gint32 left;
-	gint32 top;	
-	gint32 right;
-	gint32 bottom;
-
-public:
-	GnIRect();
-	GnIRect(gint32 l, gint32 t, gint32 r, gint32 b);
-	virtual ~GnIRect(){};
-
-	inline gint32 GetWidth(){ return right - left; };
-	inline gint32 GetHeight(){ return bottom - top; };	
+	GnFRect() {
+	}
+	GnFRect(float l, float t, float r, float b) : GnRect<float>(l, t, r, b){
+	}
 };
+
+class GNMAIN_ENTRY GnIRect : public GnRect<gint32>
+{
+	GnDeclareDataStream;
+	GnIRect() {
+	}
+	GnIRect(gint32 l, gint32 t, gint32 r, gint32 b) : GnRect<gint32>(l, t, r, b){
+	}
+};
+
 #endif // GNRECT_H

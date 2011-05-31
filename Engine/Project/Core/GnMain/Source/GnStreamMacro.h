@@ -26,7 +26,6 @@ class GnStreamHelper;
 	virtual void LinkObject(GnObjectStream* pStream); \
 	virtual void RegisterSaveObject(GnObjectStream* pStream)
 		
-
 #define GnDeclareStream \
 	GnDeclareAbstractStream; \
 	static GnObject* CreateObject()

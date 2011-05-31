@@ -236,7 +236,6 @@ GnVector2 GtActorObject::GetScale()
 }
 
 void GtActorObject::ChanageScale(gint32 iX, gint32 iY)
-
 {
 	if( mpsActor == NULL )
 	{

@@ -11,6 +11,9 @@ public:
 	GnVector3( const GnVector3& );	
 	GnVector3( float x, float y, float z );
 
+	void LoadStream(GnStream* pStream);
+	void SaveStream(GnStream* pStream);
+
 	// casting
 	operator float* ();
 	operator const float* () const;
@@ -68,6 +71,15 @@ inline GnVector3::GnVector3( float fx, float fy, float fz )
 	z = fz;
 }
 
+inline void GnVector3::LoadStream(GnStream* pStream)
+{
+	pStream->LoadStreams( (char*)&x, sizeof(float) * 3 );
+}
+
+inline void GnVector3::SaveStream(GnStream* pStream)
+{
+	pStream->SaveStreams( (char*)&x, sizeof(float) * 3 );
+}
 
 // casting
 inline GnVector3::operator float* ()

@@ -47,11 +47,11 @@ public:
 	inline void SetTargetName(const gchar* val) {
 		mTargetName = val;
 	}
-	//---------------------------------------------------------------------------
+	
 	inline bool IsStreamable() const {
 		return true;
 	}
-	bool SetTargetObject(GnObjectForm* pObject);
+	virtual bool SetTargetObject(GnObjectForm* pObject);
 };
 
 

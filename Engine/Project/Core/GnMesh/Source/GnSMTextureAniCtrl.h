@@ -21,23 +21,27 @@ protected:
 	GnTObjectArray<TextureAni> mAnis;
 	gtuint mCurrentAniIndex;
 	TextureAni* mpCurrentAni;
+	GnIRect mImageRect;
 
 public:
 	GnSMTextureAniCtrl(gtuint uiNumAni = 0);
 	virtual ~GnSMTextureAniCtrl();
 	
+	virtual bool SetTargetObject(GnObjectForm* pObject);
+
 	virtual void Update(float fTime);
-	virtual void SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture, float fStartTime, float fEndTime);
-	TextureAni* GetAniInfo(gtuint uiIndex ){
+	virtual void SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture, float fStartTime, float fEndTime);	
+	virtual bool ReCreate(gtuint uiNumAni, bool bSaveAniData);	
+
+	virtual void Start(float fTime);
+	virtual void Stop();
+
+	inline TextureAni* GetAniInfo(gtuint uiIndex){
 		return &mAnis.GetAt( uiIndex );
 	}
 	inline gtuint GetAniInfoCount() {
 		return mAnis.GetSize();
 	}
-	virtual bool ReCreate(gtuint uiNumAni, bool bSaveAniData);	
-
-	virtual void Start(float fTime);
-	virtual void Stop();
 };
 
 #endif // GNSMTEXTUREANICTRL_H

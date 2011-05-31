@@ -321,5 +321,31 @@ public:
 	}
 };
 
+template
+<
+	class KeyType,
+	class DataType,
+	template<class> class DataDeallocate = GnPrimitiveMapEntityDeallocate,
+	template<class> class MapHash = GnDefaultMapHash,
+	template<class> class MapEqual = GnDefaultEqual
+>
+class GnTPrimitiveDeleteMap;
+
+template
+<
+	class KeyType,
+	class DataType,
+	template<class> class DataDeallocate,	
+	template<class> class MapHash,
+	template<class> class MapEqual
+>
+class GnTPrimitiveDeleteMap : public GnTMap<KeyType, DataType, DataDeallocate, MapHash, MapEqual>
+{
+public:
+	GnTPrimitiveDeleteMap(gtuint size = 5) : GnTMap(size)
+	{
+
+	}
+};
 #endif // #ifndef GNMAP_H
 

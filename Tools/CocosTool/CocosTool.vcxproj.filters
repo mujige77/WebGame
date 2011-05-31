@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GnTools">
+      <UniqueIdentifier>{94067b9d-5570-4990-b526-3009944de604}</UniqueIdentifier>
+      <Extensions>cpp;h</Extensions>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{40b1de14-2379-4d54-9f18-2569b6ba08d8}</UniqueIdentifier>
+      <Extensions>cpp;h</Extensions>
+    </Filter>
+    <Filter Include="Controls\Base">
+      <UniqueIdentifier>{00d2855e-92bb-4611-95fa-a580ca030f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls\PropEntity">
+      <UniqueIdentifier>{d6dc2e75-b3f0-41bf-aaef-5356c6acd407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls\PropertyGrid">
+      <UniqueIdentifier>{ceb41107-2ab8-4b89-927d-3dd786a782b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls\SequenceModify">
+      <UniqueIdentifier>{0e5e15a1-c835-4d16-905e-f11d20a2b64a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls\CreateDialog">
+      <UniqueIdentifier>{7d0cacc3-4d1b-4719-909c-ebf2fb96bfe8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="CocosTool.reg" />
+    <None Include="res\nav_large.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\nav_large_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\info.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\buttons.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\main.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ribbon.mfcribbon-ms">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\CocosTool.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\CocosToolDoc.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\CocosTool.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\TemplateListViewBar_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\TemplateListViewBar.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Animation.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\bitmap1.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Property2Button.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CocosTool.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CocosToolDoc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CocosToolView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CalendarBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Gt2DActor.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtObject.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtToolSettings.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTemplateListCtrl.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GtGLView.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtCocos2DApp.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtConvertString.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtToolHeader.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtObjectFactory.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Gt2DObject.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GcNewObjectDlg.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GtToolEBM.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtObjectNew.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTemplateDockable.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTemplateTasks.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceDockable.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTasksPane.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcToolBarDockable.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcMediateObject.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcMessageDefine.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcToolHeader.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceListCtrl.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="GcBasicPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcCollectionEntities.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcScreenMeshPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceInfoPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTextureAnimationPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridProperty.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridCtrl.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridFileProperty.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridFloatSpinProperty.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="GcFloatSpinButtonCtrl.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="Gc2DTexturePropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridNumberPair.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="GtEditorPropSheet.h">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="GtEditorPropSheetDlg.h">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="GcEditorSequenceMain.h">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="GcEditorSequenceTexture.h">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="GcEditorPropertyPage.h">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="GcVSListBox.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Gt2DSequence.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtActorTool.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GtDrawPrimitives.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Gc2DCollisionBoxPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="Gc2DRectPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GcPropertyGridTwoButtonsProperty.h">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="CategoryAnimationManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceTimeDlg.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcTabCtrl.h">
+      <Filter>Controls\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceModifyDockable.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcAnimationKeyList.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GtNumberString.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateAnimationKeyDlg.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcAnimationKeyPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="GtAniKeyHelper.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcSequenceCollisionDlg.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcCollisionList.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+    <ClInclude Include="GcCreateCollisionDlg.h">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CocosTool.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CocosToolDoc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CocosToolView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CalendarBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Gt2DActor.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtObject.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtToolSettings.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTemplateListCtrl.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GtCocos2DApp.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtGLView.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtConvertString.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtObjectFactory.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Gt2DObject.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GcNewObjectDlg.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GtToolEBM.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTemplateDockable.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTemplateTasks.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceDockable.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTasksPane.cpp">
+      <Filter>Controls\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GcToolBarDockable.cpp">
+      <Filter>Controls\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GcMediateObject.cpp">
+      <Filter>Controls\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceListCtrl.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GcBasicPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcCollectionEntities.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcScreenMeshPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceInfoPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTextureAnimationPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridCtrl.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridProperty.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridFileProperty.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridFloatSpinProperty.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="GcFloatSpinButtonCtrl.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="Gc2DTexturePropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridNumberPair.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="GtEditorPropSheet.cpp">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GtEditorPropSheetDlg.cpp">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GcEditorSequenceTexture.cpp">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GcEditorSequenceMain.cpp">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GcEditorPropertyPage.cpp">
+      <Filter>Controls\CreateDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GcVSListBox.cpp">
+      <Filter>Controls\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Gt2DSequence.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtActorTool.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GtDrawPrimitives.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Gc2DCollisionBoxPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="Gc2DRectPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GcPropertyGridTwoButtonsProperty.cpp">
+      <Filter>Controls\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="CategoryAnimationManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceTimeDlg.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcTabCtrl.cpp">
+      <Filter>Controls\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceModifyDockable.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcAnimationKeyList.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GtNumberString.cpp">
+      <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateAnimationKeyDlg.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcAnimationKeyPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
+    </ClCompile>
+    <ClCompile Include="GtAniKeyHelper.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcSequenceCollisionDlg.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcCollisionList.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GcCreateCollisionDlg.cpp">
+      <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CocosTool.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

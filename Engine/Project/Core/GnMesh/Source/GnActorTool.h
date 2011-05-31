@@ -15,14 +15,13 @@ public:
 		GnSimpleString mFileName;		
 		inline guint32 GetSequenceID() { return mSequenceID; }
 		inline void SetSequenceID(guint32 val) { mSequenceID = val; }
-		inline GnSimpleString& GetSequenceName() { return mSequenceName; }
-		inline void SetSequenceName(GnSimpleString val) { mSequenceName = val; }
-		inline GnSimpleString& GetFileName() { return mFileName; }
-		inline void SetFileName(GnSimpleString val) { mFileName = val; }
+		inline const gchar* GetSequenceName() { return mSequenceName; }
+		inline void SetSequenceName(const gchar* val) { mSequenceName = val; }
+		inline const gchar* GetFileName() { return mFileName; }
+		inline void SetFileName(const gchar* val) { mFileName = val; }
 	};
 protected:
 	GnTObjectDeleteMap<guint32, SequenceInfo*> mpSequences;
-	GnSimpleString mName;
 	GnSimpleString mGATFilePath;
 	GnSimpleString mGMFilePath;
 
@@ -30,39 +29,35 @@ public:
 	GnActorTool(){};
 	virtual ~GnActorTool(){};
 
+	void GetSequenceInfos(GnTPrimitiveArray<SequenceInfo*>& outInfo);
+	void AddSequenceInfo(guint32 uiID, const gchar* pcName, const gchar* pcFileName);
+	bool GetGAFullFileName(SequenceInfo* pSequenceInfo, gchar* pcOutPath, gtuint uiMaxSize);	
 	inline bool GetGAFullFileName(guint32 uiID, gchar* pcOutPath, gtuint uiMaxSize) {
 		SequenceInfo* sequenceInfo = NULL;
-		if( GetSequenceInfo( uiID, sequenceInfo ) )
+		if( GetSequenceInfo( uiID, sequenceInfo ) == false )
 		{
 			pcOutPath[0] = '\0';
 			return false;
 		}
 		return GetGAFullFileName( sequenceInfo, pcOutPath, uiMaxSize );
-	}
-	bool GetGAFullFileName(SequenceInfo* pSequenceInfo, gchar* pcOutPath, gtuint uiMaxSize);
-	inline GnSimpleString GetName() {
-		return mName;
-	}
-	inline void SetName(GnSimpleString val) {
-		mName = val;
-	}
-	inline GnSimpleString& GetGATFilePath() {
+	}	
+	
+	inline const gchar* GetGATFilePath() {
 		return mGATFilePath;
 	}
-	inline void SetGATFilePath(GnSimpleString& val) {
+	inline void SetGATFilePath(const gchar* val) {
 		mGATFilePath = val;
 	}	
-	inline GnSimpleString& GetGMFilePath() {
+	inline const gchar* GetGMFilePath() {
 		return mGMFilePath;
 	}
-	inline void SetGMFilePath(GnSimpleString& val) {
+	inline void SetGMFilePath(const gchar* val) {
 		mGMFilePath = val;
 	}
 
 	inline gtuint GetSequenceInfoCount() {
 		return mpSequences.Count();
-	}
-	void GetSequenceInfos(GnTPrimitiveArray<SequenceInfo*>& outInfo);
+	}	
 	
 	inline bool GetSequenceInfo(guint32 uiID, SequenceInfo*& pSequences) {
 		return mpSequences.GetAt(uiID, pSequences);

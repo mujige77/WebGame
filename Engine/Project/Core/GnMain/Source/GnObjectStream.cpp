@@ -338,7 +338,6 @@ guint32 GnObjectStream::GetStringID(const GnSimpleString& str)
 	return NULL_LINKID;
 }
 
-//---------------------------------------------------------------------------
 GnObject* GnObjectStream::GetObjectFromLinkID()
 {
 	GnAssert( mLinkIndex < mLinkIDs.GetSize() );
@@ -351,7 +350,7 @@ GnObject* GnObjectStream::GetObjectFromLinkID()
 	GnAssert( linkID < mObjectLists.GetSize() );
 	return mObjectLists.GetAt( linkID );
 }
-//---------------------------------------------------------------------------
+
 guint32 GnObjectStream::LoadMultipleLinkIDs()
 {
 	guint32 uiNum = NULL_LINKID;

@@ -12,7 +12,7 @@ bool GnGetCurrentDirectory(gchar* pcStr, gtuint uiMaxSize)
 #else
 #endif
 
-//---------------------------------------------------------------------------
+
 gsize GnPath::ConvertToAbsolute(char* pcAbsolutePath, size_t stAbsBytes,	const char* pcRelativePath, const char* pcRelativeToHere)
 {
 	//// This function takes pcRelativePath and converts it to an absolute path 

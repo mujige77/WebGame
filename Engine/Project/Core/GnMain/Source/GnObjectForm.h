@@ -19,8 +19,9 @@ public:
 	inline GnSimpleString& GetName() {
 		return mName;
 	}
-	inline void SetName(const gchar* val) { mName = val; }
-
+	inline void SetName(const gchar* val) {
+		mName = val;
+	}
 };
 
 GnSmartPointer(GnObjectForm);

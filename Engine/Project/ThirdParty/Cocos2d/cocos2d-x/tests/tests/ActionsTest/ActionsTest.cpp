@@ -967,7 +967,7 @@ void ActionRepeat::onEnter()
         );
 
     m_kathia->runAction(action1);
-    m_tamara->runAction(action2);
+    //m_tamara->runAction(action2);
 }
 
 std::string ActionRepeat::subtitle()

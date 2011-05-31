@@ -38,6 +38,28 @@ public:
 };
 
 template<typename DataType>
+class GnPrimitiveDeallocate
+{
+public:
+	inline static void Delete(DataType& data)
+	{
+		if( data )
+			GnFree( data );
+	}
+};
+
+template<typename DataType>
+class GnPrimitiveMapEntityDeallocate
+{
+public:
+	inline static void Delete(DataType& data)
+	{
+		if( data.m_data )
+			GnFree( data.m_data );
+	}
+};
+
+template<typename DataType>
 class GnObjectDeallocate
 {
 public:

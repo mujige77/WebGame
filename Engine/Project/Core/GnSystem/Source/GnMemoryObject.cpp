@@ -94,7 +94,7 @@ void* GnMemoryObject::operator new[](gsize stSizeInBytes)
 	return p;
 }
 #endif // #ifdef GN_MEMORY_DEBUGGER
-//---------------------------------------------------------------------------
+
 void GnMemoryObject::operator delete(void* pvMem, gsize stElementSize)
 {
 	if (pvMem)
@@ -102,7 +102,7 @@ void GnMemoryObject::operator delete(void* pvMem, gsize stElementSize)
 		GnMemoryManager::Instance()->Deallocate(pvMem, GN_OPER_DELETE, stElementSize);
 	}
 }
-//---------------------------------------------------------------------------
+
 void GnMemoryObject::operator delete[](void* pvMem, gsize stElementSize)
 {
 	if (pvMem)
@@ -110,4 +110,4 @@ void GnMemoryObject::operator delete[](void* pvMem, gsize stElementSize)
 		GnMemoryManager::Instance()->Deallocate(pvMem, GN_OPER_DELETE_ARRAY);
 	} 
 }
-//---------------------------------------------------------------------------
+

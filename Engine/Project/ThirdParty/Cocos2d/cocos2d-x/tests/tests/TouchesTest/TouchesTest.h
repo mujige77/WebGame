@@ -24,7 +24,7 @@ class PongLayer : public CCLayer
 public:
 	PongLayer();
 	~PongLayer();
-
+	void draw();
 	void resetAndScoreBallForPlayer(int player);
 	void doStep(ccTime delta);
 };

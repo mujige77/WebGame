@@ -1,11 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GnToolLib", "GnToolLib\GnToolLib.vcxproj", "{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GnTools", "GnTools\GnTools.vcxproj", "{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GtToolLib", "GtToolLib\GtToolLib.vcxproj", "{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CocosTool", "CocosTool\CocosTool.vcxproj", "{1794BA05-F3B5-468A-8044-C50354624A61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,24 +10,12 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Debug|Win32.Build.0 = Debug|Win32
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Log|Win32.ActiveCfg = Log|Win32
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Log|Win32.Build.0 = Log|Win32
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Release|Win32.ActiveCfg = Release|Win32
-		{E1C7A5AF-F9E3-4E12-930D-6A9AAC95E083}.Release|Win32.Build.0 = Release|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Debug|Win32.Build.0 = Debug|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Log|Win32.ActiveCfg = Log|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Log|Win32.Build.0 = Log|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Release|Win32.ActiveCfg = Release|Win32
-		{2CC51A3D-F3BE-4A19-8CA8-3956BC24F01E}.Release|Win32.Build.0 = Release|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Debug|Win32.Build.0 = Debug|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Log|Win32.ActiveCfg = Log|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Log|Win32.Build.0 = Log|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Release|Win32.ActiveCfg = Release|Win32
-		{7A4A12FD-F5D1-4001-AE22-58B4C22FC1DB}.Release|Win32.Build.0 = Release|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Debug|Win32.Build.0 = Debug|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Log|Win32.ActiveCfg = Log|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Log|Win32.Build.0 = Log|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Release|Win32.ActiveCfg = Release|Win32
+		{1794BA05-F3B5-468A-8044-C50354624A61}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
