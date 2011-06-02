@@ -113,7 +113,7 @@ void Gn2DSequence::Start(float fTime)
 	for( gtuint i = 0 ; i < mTextureAni.GetSize() ; i++)
 	{
 		Gn2DTextureAni* ani =  mTextureAni.GetAt( i );	
-		ani->Start( fTime );
+		ani->Start( mEndTime );
 	}
 }
 

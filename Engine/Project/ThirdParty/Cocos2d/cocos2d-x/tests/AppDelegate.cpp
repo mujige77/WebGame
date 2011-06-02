@@ -69,7 +69,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(&CCEGLView::sharedOpenGLView());
 
     // enable High Resource Mode(2x, such as iphone4) and maintains low resource on other devices.
-    // pDirector->enableRetinaDisplay(true);
+     pDirector->enableRetinaDisplay(true);
 
     // sets opengl landscape mode
     // tests set device orientation in RootViewController.mm

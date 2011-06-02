@@ -27,6 +27,7 @@ public:
 protected:
 	CCAnimate* mpAnimate;
 	CCSequence* mpSequence;
+	CCSize mSize;
 	
 public:
 	Gn2DTextureAni();

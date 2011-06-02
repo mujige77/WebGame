@@ -17,6 +17,7 @@ typedef CCSprite GnReal2DMesh;
 #include "Gn2DSequence.h"
 #include "Gn2DActor.h"
 
+#include "GnGameState.h"
 #include "GnAnimationKey.h"
 #include "Gg2DCollision.h"
 #include "Gn2DAVDataConverter.h"

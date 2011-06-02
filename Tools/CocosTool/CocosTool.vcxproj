@@ -185,6 +185,7 @@
     <ClInclude Include="GcCreateCollisionDlg.h" />
     <ClInclude Include="GcSequenceCollisionDlg.h" />
     <ClInclude Include="GtAniKeyHelper.h" />
+    <ClInclude Include="GtCollisionModify.h" />
     <ClInclude Include="GtNumberString.h" />
     <ClInclude Include="GcPropertyGridCtrl.h" />
     <ClInclude Include="GcPropertyGridProperty.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="GcCreateCollisionDlg.cpp" />
     <ClCompile Include="GcSequenceCollisionDlg.cpp" />
     <ClCompile Include="GtAniKeyHelper.cpp" />
+    <ClCompile Include="GtCollisionModify.cpp" />
     <ClCompile Include="GtNumberString.cpp" />
     <ClCompile Include="GcPropertyGridCtrl.cpp" />
     <ClCompile Include="GcPropertyGridProperty.cpp" />

@@ -128,6 +128,7 @@
     <ClInclude Include="..\..\Source\GnAnimationKeyManager.h" />
     <ClInclude Include="..\..\Source\GnCocosScene.h" />
     <ClInclude Include="..\..\Source\GnDrawPrimitives.h" />
+    <ClInclude Include="..\..\Source\GnGameState.h" />
     <ClInclude Include="..\..\Source\GnLayerBackground.h" />
     <ClInclude Include="..\..\Source\GnLayerMain.h" />
     <ClInclude Include="..\..\Source\GnMeshEBM.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="..\..\Source\GnAnimationKeyManager.cpp" />
     <ClCompile Include="..\..\Source\GnCocosScene.cpp" />
     <ClCompile Include="..\..\Source\GnDrawPrimitives.cpp" />
+    <ClCompile Include="..\..\Source\GnGameState.cpp" />
     <ClCompile Include="..\..\Source\GnLayerBackground.cpp" />
     <ClCompile Include="..\..\Source\GnLayerMain.cpp" />
     <ClCompile Include="..\..\Source\GnMeshEBM.cpp" />

@@ -33,6 +33,8 @@
 #define new DEBUG_NEW
 #endif
 
+const float CCocosToolView::msWidth = 480.0f;
+const float CCocosToolView::msHeight = 320.0f;
 
 // CCocosToolView
 
@@ -49,13 +51,13 @@ BEGIN_MESSAGE_MAP(CCocosToolView, CFormView)
 	ON_COMMAND(IDC_ANICURRENTTIME, &CCocosToolView::OnAnicurrenttime)
 	ON_COMMAND(IDC_ANITIMESLIDER, &CCocosToolView::OnAnitimeslider)
 	ON_COMMAND(ID_BT_LOADBACKGROUND, &CCocosToolView::OnBtLoadbackground)
-	ON_COMMAND(ID_BACKGROUND_MOVERANGE, &CCocosToolView::OnBackgroundMoverange)
+	ON_COMMAND(ID_SCALERANGE, &CCocosToolView::OnScaleRange)
 END_MESSAGE_MAP()
 
 // CCocosToolView 생성/소멸
 
 CCocosToolView::CCocosToolView() :CFormView( CCocosToolView::IDD ), mpApp( NULL )
-	, mpSpinCurrentTime(NULL), mBackgroundMoveRange(20)
+	, mpSpinCurrentTime(NULL), mpCollisionModify(NULL)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -136,7 +138,7 @@ void CCocosToolView::OnInitialUpdate()
 		mpApp = new GtCocos2DApp;
 		// Initialize instance and cocos2d.
 		GtGLView * pMainWnd = new GtGLView();
-		pMainWnd->Create(mLoactionRender.GetSafeHwnd(), 480, 320);
+		pMainWnd->Create(mLoactionRender.GetSafeHwnd(), (int)msWidth, (int)msHeight);
 
 		// initialize director
 		CCDirector *pDirector = CCDirector::sharedDirector();
@@ -148,13 +150,9 @@ void CCocosToolView::OnInitialUpdate()
 		GnSceneManager* man = GetSceneManager();
 		GetSceneManager()->GetMainGameLayer()->setColor( ccc3(0,0,255) );
 		GetSceneManager()->GetMainGameLayer()->setOpacity( 255 );
-		GetSceneManager()->GetMainGameLayer()->setContentSize( CCSizeMake(480, 320) );
-		mpDrawLayer = new GnLayerDrawPrimitives;	
-		mpDrawLayer->setColor( ccc3(0,0,255) );
-		mpDrawLayer->setOpacity( 150 );
-		mpDrawLayer->setContentSize( CCSizeMake(480, 320) );
-		mpDrawLayer->setIsVisible( false );
-		GetSceneManager()->GetMainGameLayer()->addChild( mpDrawLayer, 100, 1 );
+		GetSceneManager()->GetMainGameLayer()->setContentSize( CCSizeMake(msWidth, msHeight) );
+
+		mpCollisionModify = GtCollisionModify::Create( msWidth, msHeight );		
 
 		CMainFrame* mainFrame = (CMainFrame*)AfxGetMainWnd();
 		mCategoryAnimation.Create( mainFrame->GetRibbonBar() );
@@ -168,8 +166,7 @@ void CCocosToolView::OnInitialUpdate()
 
 void CCocosToolView::PostNcDestroy()
 {
-	mpDrawLayer->release();
-	GetSceneManager()->GetMainGameLayer()->removeChild( mpDrawLayer, true );
+	delete mpCollisionModify;
 	delete mpApp;
 	CFormView::PostNcDestroy();
 }
@@ -346,47 +343,58 @@ void CCocosToolView::OnUpdateModifyCollisionboxs(CCmdUI *pCmdUI)
 
 void CCocosToolView::OnModifyCollisionboxs()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	mModifyCollsionBoxsCheck = !mModifyCollsionBoxsCheck;
-	if( mModifyCollsionBoxsCheck )
-	{
-		mpDrawLayer->setIsVisible( true );
-	}
-	else
-	{
-		mpDrawLayer->setIsVisible( false );
-	}
 	AddCurrentActorToLayerDrawPprimitives();
 }
 
+
 void CCocosToolView::AddCurrentActorToLayerDrawPprimitives()
 {
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.	
 	if( mModifyCollsionBoxsCheck )
 	{
-		if( mpsActor )
+		if( mpsActor && mpsSequence )
 		{
-			GnLayerDrawPrimitives* node = 
-				(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
-
-			if( mpsDrawSequenceRect )
-				node->RemoveChild( mpsDrawSequenceRect );
-
-			GnDraw2DObjectRect* drawObject = GtObjectNew<GnDraw2DObjectRect>::Create();
-			drawObject->SetThickness( 3.0f );
-			drawObject->SetColor( GnColorA(1.0f, 1.0f, 0.0f, 1.0f) );
-			drawObject->SetObject( mpsActor->GetRootNode() );
-			node->AddChild( drawObject );
-			mpsDrawSequenceRect = drawObject;
-		}
+			std:string strName = GtToolSettings::GetWorkPath();
+			strName += mpsActor->GetObjectName();
+			strName += "\\";
+			strName += mpsActor->GetGATFileName();
+			mpCollisionModify->LoadBasicActor( strName.c_str() );
+			mpCollisionModify->SetBasicSequenceID( 1 );
+			mpCollisionModify->SetVisible( true, mpsActor->GetActor()->GetRootNode() );
+		}		
 	}
-	else if( mpsDrawSequenceRect )
+	else
 	{
-		GnLayerDrawPrimitives* node = 
-			(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
-		node->RemoveChild( mpsDrawSequenceRect );
-	}	
+		mpCollisionModify->SetVisible( false );
+	}
+	Invalidate( FALSE );	
+	//if( mModifyCollsionBoxsCheck )
+	//{
+	//	if( mpsActor )
+	//	{
+	//		GnLayerDrawPrimitives* node = 
+	//			(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
 
-	Invalidate( FALSE );
+	//		if( mpsDrawSequenceRect )
+	//			node->RemoveChild( mpsDrawSequenceRect );
+
+	//		GnDraw2DObjectRect* drawObject = GtObjectNew<GnDraw2DObjectRect>::Create();
+	//		drawObject->SetThickness( 3.0f );
+	//		drawObject->SetColor( GnColorA(1.0f, 1.0f, 0.0f, 1.0f) );
+	//		drawObject->SetObject( mpsActor->GetRootNode() );
+	//		node->AddChild( drawObject );
+	//		mpsDrawSequenceRect = drawObject;
+	//	}
+	//}
+	//else if( mpsDrawSequenceRect )
+	//{
+	//	GnLayerDrawPrimitives* node = 
+	//		(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
+	//	node->RemoveChild( mpsDrawSequenceRect );
+	//}	
+
+	//Invalidate( FALSE );
 }
 
 void CCocosToolView::OnBtLoadbackground()
@@ -428,7 +436,7 @@ LRESULT CCocosToolView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				case 'd':
 					{
 						CCPoint point = main->GetBackground()->getPosition();
-						point.x -= mBackgroundMoveRange;
+						point.x -= 20;
 						main->GetBackground()->setPosition( point );
 						Invalidate( FALSE );
 					}
@@ -436,7 +444,7 @@ LRESULT CCocosToolView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				case 'a':
 					{
 						CCPoint point = main->GetBackground()->getPosition();
-						point.x += mBackgroundMoveRange;
+						point.x += 20;
 						main->GetBackground()->setPosition( point );
 						Invalidate( FALSE );
 					}					
@@ -450,17 +458,32 @@ LRESULT CCocosToolView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	return CFormView::WindowProc(message, wParam, lParam);
 }
 
-
-
-void CCocosToolView::OnBackgroundMoverange()
+void CCocosToolView::OnScaleRange()
 {
+	
 	CMainFrame* mainFrame = (CMainFrame*)AfxGetMainWnd();
-	CWnd* ps =  mainFrame->GetRibbonBar()->GetDlgItem( ID_BACKGROUND_MOVERANGE );
+	CWnd* ps =  mainFrame->GetRibbonBar()->GetDlgItem( ID_SCALERANGE );
 	if( ps )
 	{
 		CMFCSpinButtonCtrl* spin = 
 			(CMFCSpinButtonCtrl*)mainFrame->GetRibbonBar()->GetNextDlgGroupItem( ps );
 		if( spin )
-			mBackgroundMoveRange = spin->GetPos();
+		{
+			if( spin->GetPos() == 0 )
+			{
+				mpCollisionModify->SetScale( 0.36f );
+				GetGameState()->SetGameScale( 0.36f );
+			}
+			else
+			{
+				mpCollisionModify->SetScale( (float)spin->GetPos() );
+				GetGameState()->SetGameScale( (float)spin->GetPos() );
+			}
+		}
+		if( mpsActor )
+		{
+			mpsActor->GetActor()->GetRootNode()->SetScale( 1.0f );
+		}
+		Invalidate( false );
 	}
 }

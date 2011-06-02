@@ -100,6 +100,11 @@ void GcSequenceModifyDockable::ChangeProperty(GcMediateObjectMessage* pMessage)
 
 void GcSequenceModifyDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 {
+	int activeTab = -1;
+	if( mTabCtrl.GetSafeHwnd() )
+	{
+		activeTab = mTabCtrl.GetActiveTab();
+	}
 	GcSequenceMessage* sequenceMessage = (GcSequenceMessage*)pMessage;
 	if( sequenceMessage->mpSequenceInfo == NULL )
 	{
@@ -124,6 +129,9 @@ void GcSequenceModifyDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 	collisionDlg->Create( GcSequenceCollisionDlg::IDD, &mTabCtrl );
 	collisionDlg->ResetData( actor, gtSequence );
 	AddTab( collisionDlg, _T("Collision") );
+
+	if( activeTab != -1 )
+		mTabCtrl.SetActiveTab( activeTab );
 }
 
 void GcSequenceModifyDockable::OnSize(UINT nType, int cx, int cy)

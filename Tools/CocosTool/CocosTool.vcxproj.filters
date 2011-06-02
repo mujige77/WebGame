@@ -317,6 +317,9 @@
     <ClInclude Include="GcCreateCollisionDlg.h">
       <Filter>Controls\SequenceModify</Filter>
     </ClInclude>
+    <ClInclude Include="GtCollisionModify.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CocosTool.cpp">
@@ -501,6 +504,9 @@
     </ClCompile>
     <ClCompile Include="GcCreateCollisionDlg.cpp">
       <Filter>Controls\SequenceModify</Filter>
+    </ClCompile>
+    <ClCompile Include="GtCollisionModify.cpp">
+      <Filter>GnTools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

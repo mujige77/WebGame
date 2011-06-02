@@ -5,7 +5,7 @@ Gn2DActor* Gn2DActor::Create(const gchar* pcActorToolFileName, GnObjectStream& s
 	, bool bLoadSequenceFile)
 {
 	GnStream toolStream;
-	if( toolStream.Load( pcActorToolFileName ) )
+	if( toolStream.Load( pcActorToolFileName ) == false )
 		return NULL;
 
 	GnActorToolPtr pTool = GnNew GnActorTool();

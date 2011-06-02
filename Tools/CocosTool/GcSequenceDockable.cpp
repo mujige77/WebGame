@@ -154,7 +154,8 @@ void GcSequenceDockable::ChangeProperty(GcMediateObjectMessage* pMessage)
 
 void GcSequenceDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 {
-	mpsCurrentObject->SetModifySequence( NULL );
+	if( mpsCurrentObject )
+		mpsCurrentObject->SetModifySequence( NULL );
 
 	mpEntities->DetachAllEntity();
 	GcSequenceMessage* objectInfo = (GcSequenceMessage*)pMessage;

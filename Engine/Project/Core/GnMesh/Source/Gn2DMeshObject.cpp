@@ -1,38 +1,40 @@
 #include "GnMeshPCH.h"
 #include "Gn2DMeshObject.h"
 
-template<class newObject>
-class GnObjectNew
-{
-public:
-	template<class V1>
-	static newObject* Create(V1 val1)
-	{
-		return new newObject( val1 );
-	}
-
-	static newObject* Create()
-	{
-		return new newObject();
-	}
-
-	static void Delete(newObject* pObject)
-	{
-		delete pObject;
-	}
-};
-
 GnImplementRTTI( Gn2DMeshObject, GnObjectForm );
-Gn2DMeshObject::Gn2DMeshObject() : mpParent(NULL)
+Gn2DMeshObject::Gn2DMeshObject() : mpParent( NULL )
 {
-	mpMesh = GnObjectNew<GnReal2DMesh>::Create();
+	mpMesh = new GnReal2DMesh;
+	mpMesh->setScale( GetGameState()->GetGameScale() );
 	SetVisible( true );
 }
 
+Gn2DMeshObject::Gn2DMeshObject(GnReal2DMesh* pMesh) : mpMesh( pMesh )
+{
+	mpMesh->setScale( GetGameState()->GetGameScale() );
+}
 Gn2DMeshObject::~Gn2DMeshObject()
 {
 	if( mpMesh )
 		mpMesh->release();
+}
+
+Gn2DMeshObject* Gn2DMeshObject::CreateFromTextureFile(const gchar* pcFilePath)
+{
+	
+	gchar textureWorkPath[GN_MAX_PATH] = { 0, };
+	GnStrcpy( textureWorkPath, GnSystem::GetWorkDirectory(), sizeof(textureWorkPath) );
+	GnStrcat( textureWorkPath, pcFilePath, sizeof(textureWorkPath) );
+	GnReal2DMesh* mesh = CCSprite::spriteWithFile( textureWorkPath ); 
+	if( mesh == NULL )
+	{
+		mesh = CCSprite::spriteWithFile( pcFilePath );
+		if( mesh == NULL )
+			return NULL;		
+	}
+	mesh->retain();
+	Gn2DMeshObject* meshObject = GnNew Gn2DMeshObject( mesh );
+	return meshObject;
 }
 
 void Gn2DMeshObject::SetMesh(GnReal2DMesh* pMesh)
@@ -55,6 +57,11 @@ void Gn2DMeshObject::AttachParent(Gn2DMeshObject* pParent)
 		mpParent->DetachChild( this );
 
 	mpParent = pParent;
+}
+
+void Gn2DMeshObject::SetScale(float val)
+{
+	mpMesh->setScale( val * GetGameState()->GetGameScale() );
 }
 
 void Gn2DMeshObject::Update(float fTime)

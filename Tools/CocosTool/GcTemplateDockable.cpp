@@ -39,7 +39,8 @@ int GcTemplateDockable::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	mToolBar.CleanUpLockedImages();	
 	mToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_TEMPLATELISTVIEWTOOLBAR_HC : IDR_TEMPLATELISTVIEWTOOLBAR, 0, 0, TRUE);	
 	mToolBar.SetPaneStyle(mToolBar.GetPaneStyle() | CBRS_TOOLTIPS | CBRS_FLYBY);
-	mToolBar.SetPaneStyle(mToolBar.GetPaneStyle() & ~(CBRS_GRIPPER | CBRS_SIZE_DYNAMIC | CBRS_BORDER_TOP | CBRS_BORDER_BOTTOM | CBRS_BORDER_LEFT | CBRS_BORDER_RIGHT));
+	mToolBar.SetPaneStyle(mToolBar.GetPaneStyle() & ~(CBRS_GRIPPER | CBRS_SIZE_DYNAMIC 
+| CBRS_BORDER_TOP | CBRS_BORDER_BOTTOM | CBRS_BORDER_LEFT | CBRS_BORDER_RIGHT));
 	mToolBar.SetOwner(this);
 
 	
@@ -181,6 +182,7 @@ void GcTemplateDockable::AddItem(CString itemName, gint8 iActortype, bool bSelec
 {
 	int index = mListCtrl.GetItemCount();
 	mListCtrl.InsertItem( index, itemName );
+	//mListCtrl.SetItemData(index, )
 	if( bSelected )
 	{
 		mListCtrl.SetItemState( index, LVIS_SELECTED | LVIS_FOCUSED | LVIS_ACTIVATING
@@ -281,65 +283,14 @@ void GcTemplateDockable::SelectItem(int iIndex)
 	{
 		GnVerify( object->CreateData() );
 	}
+	
+	object->GetRootNode()->SetScale( 1.0f );
 	object->GetRootNode()->GetMesh()->setPosition( ccp( 0, 0) );
 	GnLayer* state = GetSceneManager()->GetMainGameLayer();
 	state->AddChild( object->GetRootNode(), 102 );
-
-	//GnActorTool* actorTool = object->GetActorTool();
-	//GnTPrimitiveArray<GnActorTool::SequenceInfo*> infos;
-	//actorTool->GetSequenceInfos( infos );
-	//if( infos.GetSize() )
-	//{
-	//	GnActorTool::SequenceInfo* info = infos.GetAt( 0 );
-	//	object->GetActor()->SetTargetAnimation( info->GetSequenceID() );
-	//}
 
 	GcObjectMessage info;
 	info.mpObject = object;
 	info.mpSender = this;
 	SendMediateMessage( GTMG_SELECTOBJECT, &info );
-
-
-
-	//CCSize s = CCDirector::sharedDirector()->getWinSize();
- //   
- //   CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("F:\\¶±¿­\\Å¸Á¶_M\\02 °È±â\\1.png");
-	//CCTexture2D *texture1 = CCTextureCache::sharedTextureCache()->addImage("F:\\¶±¿­\\Å¸Á¶_M\\02 °È±â\\2.png");
-	//CCTexture2D *texture2 = CCTextureCache::sharedTextureCache()->addImage("F:\\¶±¿­\\Å¸Á¶_M\\02 °È±â\\3.png");
-	//CCTexture2D *texture3 = CCTextureCache::sharedTextureCache()->addImage("F:\\¶±¿­\\Å¸Á¶_M\\02 °È±â\\4.png");
- //   
- //   // manually add frames to the frame cache
- //   CCSpriteFrame *frame0 = CCSpriteFrame::frameWithTexture(texture,
-	//	CCRectMake(0,0, texture->getContentSize().width, texture->getContentSize().height ));
-	//CCSpriteFrame *frame1 = CCSpriteFrame::frameWithTexture(texture1,
-	//	CCRectMake(0,0, texture1->getContentSize().width, texture1->getContentSize().height ));
-	//CCSpriteFrame *frame2 = CCSpriteFrame::frameWithTexture(texture2,
-	//	CCRectMake(0,0, texture2->getContentSize().width, texture2->getContentSize().height ));
-	//CCSpriteFrame *frame3 = CCSpriteFrame::frameWithTexture(texture3,
-	//	CCRectMake(0,0, texture3->getContentSize().width, texture3->getContentSize().height ));
- //   //
- //   // Animation using Sprite BatchNode
- //   //
- //   CCSprite* sprite = new CCSprite;//CCSprite::spriteWithSpriteFrame(frame0);
- //   sprite->setPosition( ccp( s.width/2-80, s.height/2) );
- //   state->addChild(sprite);
- //           
- //   CCMutableArray<CCSpriteFrame*> *animFrames = new CCMutableArray<CCSpriteFrame*>(4);
- //   animFrames->addObject(frame0);
- //   animFrames->addObject(frame1);
- //   animFrames->addObject(frame2);
- //   animFrames->addObject(frame3);
- //           
- //   CCAnimation *animation = CCAnimation::animationWithFrames(animFrames, 0.2f);
- //   CCAnimate *animate = CCAnimate::actionWithAnimation(animation, false);
- //   CCActionInterval* seq = (CCActionInterval*)(CCSequence::actions( animate,/*
- //                      CCFlipX::actionWithFlipX(true),
- //                      animate->copy()->autorelease(),
- //                      CCFlipX::actionWithFlipX(false),*/
- //                      NULL) );
-	//CCAction*  action2 = CCRepeatForever::actionWithAction(seq);
-	////sprite->setAnchorPoint( CCPointMake(1,1) );
- //   sprite->runAction( action2 );
-	////sprite->runAction( CCMoveTo::actionWithDuration(1, CCPointMake(100, 100) ) );
- //   animFrames->release();    // win32 : memory leak    2010-0415
 }

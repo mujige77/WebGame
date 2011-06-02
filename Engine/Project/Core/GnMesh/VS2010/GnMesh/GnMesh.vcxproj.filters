@@ -140,6 +140,9 @@
     <ClInclude Include="..\..\Source\GnSceneManager.h">
       <Filter>소스 파일\Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\GnGameState.h">
+      <Filter>소스 파일\2DEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\GnMeshPCH.cpp">
@@ -237,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\GnSceneManager.cpp">
       <Filter>소스 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnGameState.cpp">
+      <Filter>소스 파일\2DEngine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

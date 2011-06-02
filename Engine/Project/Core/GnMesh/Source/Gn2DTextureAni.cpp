@@ -86,15 +86,17 @@ bool Gn2DTextureAni::CreateData()
 	for( gtuint i = 0 ; i < mInfos.GetSize() ; i++ )
 	{
 		TextureAniInfo* info = (TextureAniInfo*)(AniInfo*)mInfos.GetAt( i );
+
+		gchar textureWorkPath[GN_MAX_PATH] = { 0, };
+		GnStrcpy( textureWorkPath, GnSystem::GetWorkDirectory(), sizeof(textureWorkPath) );
+		GnStrcat( textureWorkPath, info->GetTextureName(), sizeof(textureWorkPath) );
 		CCTexture2D* texture = CCTextureCache::sharedTextureCache()->addImage(
-			info->GetTextureName() );
+			textureWorkPath );
+
 		if( texture == NULL )
 		{
-			gchar textureWorkPath[GN_MAX_PATH] = { 0, };
-			GnStrcpy( textureWorkPath, GnSystem::GetWorkDirectory(), sizeof(textureWorkPath) );
-			GnStrcat( textureWorkPath, info->GetTextureName(), sizeof(textureWorkPath) );
 			texture = CCTextureCache::sharedTextureCache()->addImage(
-				textureWorkPath );
+				info->GetTextureName() );
 		}
 		if( texture )
 		{
@@ -143,10 +145,11 @@ void Gn2DTextureAni::Start(float fTime)
 	}	
 	
 	GnAssert( mpAnimate );
-	mpAnimate->getAnimation()->setDelay( mAniSpeed );
+	mpAnimate->setDuration( fTime );
 
 	GnReal2DMesh* mesh = mpTarget->GetMesh();
 	mesh->runAction( mpAnimate );
+	//mesh->setScale( 0.5f );
 }
 
 void Gn2DTextureAni::Stop()

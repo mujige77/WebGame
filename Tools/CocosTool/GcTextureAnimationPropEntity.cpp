@@ -179,6 +179,7 @@ void GcTextureAnimationPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedG
 				aniInfo->SetEndTime( GetEndTime() );
 				sequenceEndTime += GetEndTime();
 			}
+			mpAni->SetAniSpeed( GetEndTime() );
 			mpActor->GetModifySequence()->GetSequence()->SetEndTime( sequenceEndTime );
 			SendMediateMessage( GTMG_CHAGESEQUENCEANITIME, NULL );
 

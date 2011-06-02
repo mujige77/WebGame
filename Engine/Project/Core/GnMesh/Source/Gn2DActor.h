@@ -16,9 +16,10 @@ protected:
 
 public:
 	Gn2DActor();
-	Gn2DActor* Create(const gchar* pcActorToolFileName, GnObjectStream& stream
+	static Gn2DActor* Create(const gchar* pcActorToolFileName, GnObjectStream& stream
 		, bool bLoadSequenceFile = true);
-	Gn2DActor* Create(GnActorTool* pActorTool, GnObjectStream& stream, bool bLoadSequenceFile = true);
+	static Gn2DActor* Create(GnActorTool* pActorTool, GnObjectStream& stream
+		, bool bLoadSequenceFile = true);
 
 	virtual ~Gn2DActor();
 	void Update(float fDeltaTime);

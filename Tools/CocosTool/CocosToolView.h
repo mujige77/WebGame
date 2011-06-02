@@ -19,8 +19,12 @@
 #include "GcMediateObject.h"
 #include "afxwin.h"
 #include "CategoryAnimationManager.h"
+#include "GtCollisionModify.h"
+
 class CCocosToolView : public CFormView, GcMediateObject
 {
+	const static float msWidth;
+	const static float msHeight;
 	BOOL PreTranslateMessage(MSG* pMsg)
 	{
 		if(pMsg->message == WM_CHAR)
@@ -43,7 +47,7 @@ private:
 	GtCocos2DApp* mpApp;
 	Gt2DActorPtr mpsActor;
 	Gt2DSequencePtr mpsSequence;
-	GnDrawPrimitivesPtr mpsDrawSequenceRect;
+	GtCollisionModify* mpCollisionModify;
 	CString mStrCurrentTime;
 	float mfCurrentTime;
 	float mBforeTime;
@@ -52,9 +56,7 @@ private:
 	float mfTick;
 	float mfLastTick;
 	CategoryAnimationManager mCategoryAnimation;
-	GnLayerDrawPrimitives* mpDrawLayer;
 	CMFCSpinButtonCtrl* mpSpinCurrentTime;
-	int	mBackgroundMoveRange;
 	UINT_PTR mTimerID;
 
 protected:
@@ -108,7 +110,7 @@ public:
 	afx_msg void OnAnitimeslider();
 	afx_msg void OnBtLoadbackground();
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
-	afx_msg void OnBackgroundMoverange();
+	afx_msg void OnScaleRange();
 };
 
 #ifndef _DEBUG  // CocosToolView.cpp의 디버그 버전
