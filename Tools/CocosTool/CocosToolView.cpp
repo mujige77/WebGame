@@ -194,6 +194,8 @@ void CCocosToolView::ReceiveMediateMessage(gtuint messageIndex
 			{
 				Gt2DSequence* sequence;
 				mpsActor->GetGtSequence( sequenceMessage->mpSequenceInfo->GetSequenceID(), sequence );
+				if( sequence == NULL || sequence->GetSequence() == NULL )
+					return;
 				mpsSequence = sequence;
 				sequence->GetSequence()->SetLoop( TRUE );
 

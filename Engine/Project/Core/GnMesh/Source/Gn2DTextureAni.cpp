@@ -132,6 +132,7 @@ void Gn2DTextureAni::RemoveData()
 		}
 		mpAnimate->release();
 	}
+	mpAnimate = NULL;
 	SetCreateData( false );
 }
 

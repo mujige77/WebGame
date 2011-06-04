@@ -252,7 +252,7 @@ LRESULT GcEditorSequenceTexture::OnPropertyChanged(WPARAM wparam, LPARAM lparam)
 				GnAnimation::AniInfo* info = mpsCurrentAni->GetAniInfo( mTextureListBox.GetSelItem() );				
 				if( info )
 				{
-					info->SetStartTime( mpTextureAnimationPropEntity.GetStartTime() );
+					//info->SetStartTime( mpTextureAnimationPropEntity.GetStartTime() );
 				}
 			}
 		}
@@ -264,7 +264,7 @@ LRESULT GcEditorSequenceTexture::OnPropertyChanged(WPARAM wparam, LPARAM lparam)
 				GnAnimation::AniInfo* info = mpsCurrentAni->GetAniInfo( mTextureListBox.GetSelItem() );				
 				if( info )
 				{
-					info->SetEndTime( mpTextureAnimationPropEntity.GetEndTime() );
+					//info->SetEndTime( mpTextureAnimationPropEntity.GetEndTime() );
 				}
 			}
 		}
@@ -400,8 +400,8 @@ void GcEditorSequenceTexture::SelectChangeTextureItem(int uiIndex)
 	GtConvertString str = textureAniInfo->GetTextureName();
 	mpTextureAnimationPropEntity.SetIndex( uiIndex );
 	mpTextureAnimationPropEntity.SetTextureFilePath( str.c_str() );
-	mpTextureAnimationPropEntity.SetStartTime( textureAniInfo->GetStartTime() );
-	mpTextureAnimationPropEntity.SetEndTime( textureAniInfo->GetEndTime() );
+	//mpTextureAnimationPropEntity.SetStartTime( textureAniInfo->GetStartTime() );
+	//mpTextureAnimationPropEntity.SetEndTime( textureAniInfo->GetEndTime() );
 	//mPropList.SetCurSel( mpTextureAnimationPropEntity.GetTextureNumberProperty() );
 	//mPropList.SetCurSel( mpTextureAnimationPropEntity.GetTextureGridFileProperty() );
 }

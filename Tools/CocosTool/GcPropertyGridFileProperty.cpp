@@ -56,9 +56,10 @@ void GcPropertyGridFileProperty::OnClickButton(CPoint /*point*/)
 			SetFilePathName( dlg.GetPathName() );
 		}
 	}
-
+	
 	if (bUpdate)
 	{
+		mUpdateEvent.EmitSignal( this );
 		if (m_pWndInPlace != NULL)
 		{
 			m_pWndInPlace->SetWindowText(strPath);
@@ -86,9 +87,19 @@ void GcPropertyGridFileProperty::SetFilePathName(const CString &strFileName)
 		mFullFilePath = strFileName;
 		return;
 	}
-	GtConvertString fullFilePath = GnSystem::GetWorkDirectory();
-	fullFilePath += strFileName;
-	mFullFilePath = fullFilePath.c_str();
+
+	
+	if( strFileName.Find( _T( ":" ) ) == -1 )
+	{
+		GtConvertString fullFilePath = GnSystem::GetWorkDirectory();
+		fullFilePath += strFileName;
+		mFullFilePath = fullFilePath.c_str();
+	}
+	else
+	{
+		mFullFilePath = strFileName;
+	}
+	
 	m_strDescr = mUserDescr + _T( "\n" ) + mFullFilePath;		
 
 	gtchar filePath[GN_MAX_PATH] = { 0, };

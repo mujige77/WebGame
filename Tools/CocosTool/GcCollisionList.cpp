@@ -17,7 +17,7 @@ GcCollisionList::~GcCollisionList(void)
 void GcCollisionList::ResetData(Gt2DSequence* pSequence)
 {
 	mpSequence = pSequence;
-	if( pSequence == NULL )
+	if( pSequence == NULL || pSequence->GetSequence() == NULL )
 	{
 		mpAVData = NULL;
 		RemoveAllItem();

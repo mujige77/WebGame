@@ -60,7 +60,7 @@ bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 			copyFilePath += fileName;
 			if( GnPath::CheckSamePathA( aniInfo->GetTextureName(), copyFilePath.c_str() ) == false )
 			{
-				BOOL ret = CopyFileA( aniInfo->GetTextureName(), copyFilePath.c_str(), true );
+				BOOL ret = CopyFileA( aniInfo->GetTextureName(), copyFilePath.c_str(), false );
 				ret = TRUE;
 			}
 			std::string filePath = folderName;

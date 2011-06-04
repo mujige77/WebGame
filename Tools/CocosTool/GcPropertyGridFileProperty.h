@@ -20,7 +20,7 @@ public:
 		, LPCTSTR lpszDefExt = NULL, DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR,
 		LPCTSTR lpszFilter = NULL, LPCTSTR lpszDescr = NULL, DWORD_PTR dwData = 0);
 	virtual ~GcPropertyGridFileProperty(void);
-	void SetFilePathName( const CString &strFileName );
+	void SetFilePathName(const CString &strFileName);
 	
 
 	inline CString GetFullFilePath() {

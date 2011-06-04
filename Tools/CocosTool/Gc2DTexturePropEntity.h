@@ -20,8 +20,18 @@ class Gc2DTexturePropEntity : public GcPropertyEntity
 		MSG_ENDTIME,
 	};
 
+	struct ThisEntity : public EntityData
+	{
+		gtuint mAniInfoIndex;
+		long mTextureAniIndex;
+		Gn2DTextureAni::TextureAniInfo* mpAniInfo;
+	};
+
 protected:
+	Gt2DActor* mpActor;
 	guint32 mTextureAniIndex;
+	GnMemberSlot1<Gc2DTexturePropEntity, GcPropertyGridProperty*> mUpdateEventSlot;
+
 public:
 	Gc2DTexturePropEntity(void);
 	virtual  ~Gc2DTexturePropEntity(void);
@@ -39,7 +49,8 @@ public:
 	virtual bool Init();
 
 	virtual void SetClearValues();
-	virtual void ApplyObjectData(CMFCPropertyGridProperty* pChangeProp, GtObject* pCurrentObject);
+	virtual void UpdateEvent(GcPropertyGridProperty* pChangeProp);
+	virtual bool ParseToEntity(EntityData* pEntityData);
 
 	inline guint32 GetTextureAniIndex() {
 		return mTextureAniIndex;

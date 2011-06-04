@@ -74,13 +74,13 @@ bool GcTextureAnimationPropEntity::ParseToEntity(EntityData* pObject)
 		AddChild( textureProp );
 		Gn2DTextureAni::TextureAniInfo* aniInfo = (Gn2DTextureAni::TextureAniInfo*)mpAni->GetAniInfo( i );
 		
-		textureProp->SetIndex( i );
-		GtConvertString fileName = aniInfo->GetTextureName();
-		textureProp->SetTextureFilePath( fileName.c_str() );
-		textureProp->SetStartTime( aniInfo->GetStartTime() );
-		textureProp->SetEndTime( aniInfo->GetEndTime() );
-		textureProp->SetTextureAniIndex( thisEntityData->mIndex );
-		textureProp->GetProperty()->Expand( false );
+		Gc2DTexturePropEntity::ThisEntity textureEntity;
+		textureEntity.mpObject = mpActor;
+		textureEntity.mAniInfoIndex = i;
+		textureEntity.mTextureAniIndex = thisEntityData->mIndex;
+		textureEntity.mpAniInfo = aniInfo;
+
+		textureProp->ParseToEntity( &textureEntity );
 		if( i == 0 )
 		{
 			GetAniIndexProperty()->SetValue( thisEntityData->mIndex );

@@ -16,6 +16,7 @@ Gc2DTexturePropEntity::~Gc2DTexturePropEntity(void)
 
 bool Gc2DTexturePropEntity::Init()
 {
+	mUpdateEventSlot.Initialize( this, &Gc2DTexturePropEntity::UpdateEvent );
 	GcPropertyGridProperty* pGroup = NULL;
 	pGroup = new GcPropertyGridProperty(_T("텍스쳐 애니"));
 	mpProperty = pGroup;
@@ -31,6 +32,7 @@ bool Gc2DTexturePropEntity::Init()
 		TRUE, _T(""), true, _T("IMG"), OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR,
 		gsTextureFileFilter, _T("애니메이션 파일 경로를 표시 합니다.") );
 	proup->SetData( MSG_TEXTUREPATH );
+	proup->SubscribeToUpdateEvent( &mUpdateEventSlot );
 	mpProperty->AddSubItem( proup );
 
 	GcPropertyGridProperty* spinProp = NULL;
@@ -38,12 +40,14 @@ bool Gc2DTexturePropEntity::Init()
 		_T("애니메이션 인덱스를 정합니다."));
 	spinProp->SetData( MSG_STARTTIME );
 	spinProp->EnableFloatSpinControl(TRUE, 0, INT_MAX);
+	spinProp->Show( false );
 	mpProperty->AddSubItem(spinProp);
 
 	spinProp = new GcPropertyGridProperty(_T("종료 시간"), (_variant_t) 0.0f,
 		_T("애니메이션 인덱스를 정합니다."));
 	spinProp->EnableFloatSpinControl(TRUE, 0, INT_MAX);
 	spinProp->SetData( MSG_ENDTIME );
+	spinProp->Show( false );
 	mpProperty->AddSubItem(spinProp);
 
 	mpProperty->Expand();
@@ -82,7 +86,7 @@ void Gc2DTexturePropEntity::SetEndTime(float fTime)
 
 int Gc2DTexturePropEntity::GetIndex()
 {
-	COleVariant val =  GetTextureGridFileProperty()->GetValue();
+	COleVariant val =  GetTextureNumberProperty()->GetValue();
 	return val.intVal;
 }
 
@@ -110,17 +114,30 @@ float Gc2DTexturePropEntity::GetEndTime()
 	return val.fltVal;
 }
 
-void Gc2DTexturePropEntity::ApplyObjectData(CMFCPropertyGridProperty* pChangeProp
-	, GtObject* pCurrentObject)
+bool Gc2DTexturePropEntity::ParseToEntity(EntityData* pEntityData)
+{
+	ThisEntity* thisEntity = (ThisEntity*)pEntityData;
+	mpActor = (Gt2DActor*)(GtObject*)thisEntity->mpObject;
+	SetIndex( thisEntity->mAniInfoIndex );
+	SetTextureAniIndex( thisEntity->mTextureAniIndex );
+
+	Gn2DTextureAni::TextureAniInfo* aniInfo = thisEntity->mpAniInfo;
+	GtConvertString fileName = aniInfo->GetTextureName();
+	SetTextureFilePath( fileName.c_str() );
+	SetStartTime( aniInfo->GetStartTime() );
+	SetEndTime( aniInfo->GetEndTime() );
+	return true;
+}
+
+void Gc2DTexturePropEntity::UpdateEvent(GcPropertyGridProperty* pChangeProp)
 {
 	for( int i = 0 ; i < mpProperty->GetSubItemsCount() ; i++ )
 	{
 		CMFCPropertyGridProperty* prop = mpProperty->GetSubItem( i );
 		if( prop == pChangeProp )
 		{
-			Gt2DActor* actor = (Gt2DActor*)pCurrentObject;
-			GnAssert( actor->GetType() == Gt2DActor::OBJECT_TYPE );
-			Gt2DSequence* sequence = actor->GetModifySequence();
+			GnAssert( mpActor->GetType() == Gt2DActor::OBJECT_TYPE );
+			Gt2DSequence* sequence = mpActor->GetModifySequence();
 			if( sequence == NULL )
 				return;
 
@@ -130,8 +147,9 @@ void Gc2DTexturePropEntity::ApplyObjectData(CMFCPropertyGridProperty* pChangePro
 				{
 					GtConvertString str = GetTextureFileName().GetString();					
 					sequence->ChangeTextureFile( GetTextureAniIndex(), GetIndex(), str.GetAciiString() );
-					actor->GetActor()->StopAnimation();
-					actor->GetActor()->SetTargetAnimation( sequence->GetSequence()->GetID() );
+					mpActor->GetActor()->StopAnimation();
+					mpActor->GetActor()->SetTargetAnimation( sequence->GetSequence()->GetID() );
+					SendMediateMessage( GTMG_REDRAW, NULL );
 				}
 				break;
 			case MSG_STARTTIME:

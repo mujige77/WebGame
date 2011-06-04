@@ -21,8 +21,12 @@ void GcAnimationKeyList::ResetData(Gt2DSequence* pSequence)
 	mpsSequence = pSequence;
 	if( pSequence == NULL )
 		return;
-
+	if( pSequence->GetSequence() == NULL )
+		return;
+		
 	mpAniKeyManager = pSequence->GetSequence()->GetAnimationKeyManager();
+	if( mpAniKeyManager == NULL )
+		return;
 	GnTPrimitiveArray<GnAnimationKeyManager::AniKey>* aniKeys = mpAniKeyManager->GetAnimationKeys();
 	for( gtuint i = 0 ; i < aniKeys->GetSize() ; i++ )
 	{
