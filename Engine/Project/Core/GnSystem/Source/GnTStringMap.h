@@ -41,14 +41,17 @@ template
 >
 class GnTStringMap : public GnTMap<const gchar*, DataType, DataDeallocate, MapHash, MapEqual>
 {
+	typedef typename GnTMap<const gchar*, DataType, DataDeallocate, MapHash, MapEqual>::Entry stringEntry;
 protected:
 	bool mCopy;
+	
 public:
-	GnTStringMap(gtuint size = 30, bool bCopy = true) : GnTMap(size), mCopy(bCopy)
+	GnTStringMap(gtuint size = 30, bool bCopy = true) : GnTMap<const gchar*, DataType, DataDeallocate
+		, MapHash, MapEqual>(size), mCopy(bCopy)
 	{
 
 	}
-	virtual void SetValue(Entry& item, const char* key, DataType val)
+	virtual void SetValue(stringEntry& item, const char* key, DataType val)
 	{
 		if (mCopy)
 		{
@@ -63,7 +66,7 @@ public:
 		item.m_data = val;
 	}
 
-	virtual void ClearValue(Entry& item)
+	virtual void ClearValue(stringEntry& item)
 	{
 		if (mCopy)
 			GnFree((gchar*)item.m_key);

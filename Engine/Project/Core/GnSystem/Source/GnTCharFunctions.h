@@ -1,8 +1,11 @@
 #include <wchar.h>
-#include <string.h>
+#include <string>
 #include <stdio.h>
 #include "GnWCharFunctions.h"
 #include "GnCharFunctions.h"
+
+#ifndef GNTCHARFUNCTIONS_H
+#define GNTCHARFUNCTIONS_H
 
 #ifdef _UNICODE
 #define  GNUNICODE
@@ -16,6 +19,7 @@
 
 
 #ifdef GNUNICODE
+
 typedef wchar_t gtchar;
 typedef std::wstring gtstring;
 
@@ -29,9 +33,9 @@ typedef std::wstring gtstring;
 #define GnTStrstr GnWStrstr
 
 #define GnTvssprintf vswprintf_s
+#define GnTPrintf wprintf
 
 #else // #ifdef GNUNICODE
-
 
 typedef char gtchar;
 typedef std::string gtstring;
@@ -45,38 +49,14 @@ typedef std::string gtstring;
 #define GnTStricmp GnStricmp
 #define GnTStrstr GnStrstr
 
+#ifdef WIN32
 #define GnTvssprintf vsprintf_s
+#else
+#define GnTvssprintf vsprintf
+#endif // WINRE
 
+#define GnTPrintf printf
 
 #endif // #ifdef GNUNICODE
 
-
-//#ifdef GNUNICODE
-
-//#define GnTstrlen wcslen
-//#define GnTstrcpy wcscpy
-//#define GnTvssprintf vswprintf
-//#define GnTsprintf swprintf
-//#define GnTaccess _waccess
-//#define GnTfopen _wfopen
-//#define GnTfgets fgetws
-//#define GnTvfprintf vfwprintf
-//#define GnTfsscanf fwscanf
-//#define GnTsscanf swscanf
-
-//#else // #ifdef GNUNICODE
-
-//#define GnTstrlen strlen
-//#define GnTstrcpy strcpy_s
-//#define GnStrncpy strncpy_s
-//#define GnTsprintf sprintf_s
-//#define GnTvssprintf vsprintf_s
-//#define GnTsprintf sprintf_s
-//#define GnTaccess _access
-//#define GnTfopen fopen_s
-//#define GnTfgets fgets
-//#define GnTvfprintf vfprintf_s
-//#define GnTfsscanf fscanf_s
-//#define GnTsscanf  sscanf_s
-
-//#endif // #ifdef GNUNICODE
+#endif // GNTCHARFUNCTIONS_H

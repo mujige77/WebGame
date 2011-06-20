@@ -25,7 +25,7 @@ bool AppDelegate::initInstance()
         // The HelloWorld is designed as HVGA.
         CCEGLView * pMainWnd = new CCEGLView();
         CC_BREAK_IF(! pMainWnd
-            || ! pMainWnd->Create(TEXT("cocos2d: Hello World"), 320, 480));
+            || ! pMainWnd->Create(TEXT("cocos2d: Hello World"), 480, 320));
 
 #endif  // CC_PLATFORM_WIN32
         
@@ -37,7 +37,9 @@ bool AppDelegate::initInstance()
         
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-        // Android doesn't need to do anything.
+		// OpenGLView initialized in HelloWorld/android/jni/helloworld/main.cpp
+		// the default setting is to create a fullscreen view
+		// if you want to use auto-scale, please enable view->create(320,480) in main.cpp
 
 #endif  // CC_PLATFORM_ANDROID
 
@@ -46,7 +48,7 @@ bool AppDelegate::initInstance()
         // Initialize OpenGLView instance, that release by CCDirector when application terminate.
         // The HelloWorld is designed as HVGA.
         CCEGLView* pMainWnd = new CCEGLView(this);
-        CC_BREAK_IF(! pMainWnd || ! pMainWnd->Create(320,480));
+        CC_BREAK_IF(! pMainWnd || ! pMainWnd->Create(320,480, WM_WINDOW_ROTATE_MODE_CW));
 
 #ifndef _TRANZDA_VM_  
         // on wophone emulator, we copy resources files to Work7/NEWPLUS/TDA_DATA/Data/ folder instead of zip file
@@ -55,6 +57,10 @@ bool AppDelegate::initInstance()
 
 #endif  // CC_PLATFORM_WOPHONE
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_AIRPLAY)
+		// MaxAksenov said it's NOT a very elegant solution. I agree, haha
+		CCDirector::sharedDirector()->setDeviceOrientation(kCCDeviceOrientationLandscapeLeft);
+#endif
         bRet = true;
     } while (0);
     return bRet;
@@ -69,11 +75,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     // enable High Resource Mode(2x, such as iphone4) and maintains low resource on other devices.
 //     pDirector->enableRetinaDisplay(true);
 
-	// sets opengl landscape mode
-	pDirector->setDeviceOrientation(kCCDeviceOrientationLandscapeLeft);
-
 	// turn on display FPS
 	pDirector->setDisplayFPS(true);
+
+	// pDirector->setDeviceOrientation(kCCDeviceOrientationLandscapeLeft);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);

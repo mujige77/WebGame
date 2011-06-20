@@ -12,7 +12,8 @@ void GnSequence::SetTargetObject(GnObjectForm* pObject)
 		if( failed == false )
 		{
 			GnLogA( "Warning : Failed sequence targeting = %s",
-				pkControl->GetTargetName().Exists() ? pkControl->GetTargetName() : "NULL Controller TargetName");
+				pkControl->GetTargetName().Exists() ? pkControl->GetTargetName().GetHandle()
+				   : "NULL Controller TargetName" );
 		}
 		pkControl = pkControl->GetNext();
 	}

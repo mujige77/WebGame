@@ -5,6 +5,7 @@
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
 AppDelegate::AppDelegate()
 {
@@ -13,6 +14,7 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
+    SimpleAudioEngine::end();
 }
 
 bool AppDelegate::initInstance()
@@ -56,6 +58,10 @@ bool AppDelegate::initInstance()
 #endif
 
 #endif
+	
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_AIRPLAY)
+		CCDirector::sharedDirector()->setDeviceOrientation(CCDeviceOrientationLandscapeLeft);
+#endif
 
         bRet = true;
     } while (0);
@@ -69,7 +75,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(&CCEGLView::sharedOpenGLView());
 
     // enable High Resource Mode(2x, such as iphone4) and maintains low resource on other devices.
-     pDirector->enableRetinaDisplay(true);
+    // pDirector->enableRetinaDisplay(true);
 
     // sets opengl landscape mode
     // tests set device orientation in RootViewController.mm
@@ -95,10 +101,12 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
     CCDirector::sharedDirector()->pause();
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();   
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->resume();
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();   
 }

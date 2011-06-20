@@ -39,17 +39,19 @@
 #include "GnMemoryDefine.h"
 #include "GnMemoryObject.h"
 #include "GnBitwiseoperation.h"
+#include "GnSimpleString.h"
+#include "GnSimpleTString.h"
 #include "GnSmartObject.h"
 #include "GnTOther.h"
 #include "GnTypeTraits.h"
 #include "GnList.h"
 #include "GnTArray.h"
 #include "GnTMap.h"
+#include "GnTStringMap.h"
 #include "GnTSet.h"
 #include "GnLog.h"
-#include "GnSimpleString.h"
-#include "GnSimpleTString.h"
 #include "GnPath.h"
+#include "GnSingletonManager.h"
 
 namespace GnSystem
 {

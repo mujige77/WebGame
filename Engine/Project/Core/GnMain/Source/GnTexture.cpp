@@ -20,7 +20,7 @@ gchar* GnTexture::GetTextureWorkPath()
 	return msTextureWorkPath;
 }
 
-void GnTexture::SetTextureWorkPath(gchar* val)
+void GnTexture::SetTextureWorkPath(const gchar* val)
 {
 	GnStrcpy( msTextureWorkPath, val, sizeof(msTextureWorkPath) );
 }

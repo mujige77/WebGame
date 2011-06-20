@@ -1,0 +1,270 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21D7FC8813A19F1C00CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FC8713A19F1C00CE0D46 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		21D7FC8413A19F1C00CE0D46 /* libGnMesh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnMesh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D7FC8713A19F1C00CE0D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		21D7FC8B13A19F1C00CE0D46 /* GnMesh-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnMesh-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21D7FC8113A19F1C00CE0D46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FC8813A19F1C00CE0D46 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21D7FC7913A19F1C00CE0D46 = {
+			isa = PBXGroup;
+			children = (
+				21D7FC8913A19F1C00CE0D46 /* GnMesh */,
+				21D7FC8613A19F1C00CE0D46 /* Frameworks */,
+				21D7FC8513A19F1C00CE0D46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21D7FC8513A19F1C00CE0D46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FC8413A19F1C00CE0D46 /* libGnMesh.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21D7FC8613A19F1C00CE0D46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FC8713A19F1C00CE0D46 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21D7FC8913A19F1C00CE0D46 /* GnMesh */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FC8A13A19F1C00CE0D46 /* Supporting Files */,
+			);
+			path = GnMesh;
+			sourceTree = "<group>";
+		};
+		21D7FC8A13A19F1C00CE0D46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FC8B13A19F1C00CE0D46 /* GnMesh-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		21D7FC8213A19F1C00CE0D46 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		21D7FC8313A19F1C00CE0D46 /* GnMesh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D7FC8E13A19F1C00CE0D46 /* Build configuration list for PBXNativeTarget "GnMesh" */;
+			buildPhases = (
+				21D7FC8013A19F1C00CE0D46 /* Sources */,
+				21D7FC8113A19F1C00CE0D46 /* Frameworks */,
+				21D7FC8213A19F1C00CE0D46 /* Headers */,
+				21D7FC9113A19FF700CE0D46 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GnMesh;
+			productName = GnMesh;
+			productReference = 21D7FC8413A19F1C00CE0D46 /* libGnMesh.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21D7FC7B13A19F1C00CE0D46 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 21D7FC7E13A19F1C00CE0D46 /* Build configuration list for PBXProject "GnMesh" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21D7FC7913A19F1C00CE0D46;
+			productRefGroup = 21D7FC8513A19F1C00CE0D46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21D7FC8313A19F1C00CE0D46 /* GnMesh */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21D7FC9113A19FF700CE0D46 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21D7FC8013A19F1C00CE0D46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		21D7FC8C13A19F1C00CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		21D7FC8D13A19F1C00CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21D7FC8F13A19F1C00CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		21D7FC9013A19F1C00CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		21D7FC9B13A1A0EF00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Log;
+		};
+		21D7FC9C13A1A0EF00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Log;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21D7FC7E13A19F1C00CE0D46 /* Build configuration list for PBXProject "GnMesh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FC8C13A19F1C00CE0D46 /* Debug */,
+				21D7FC8D13A19F1C00CE0D46 /* Release */,
+				21D7FC9B13A1A0EF00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D7FC8E13A19F1C00CE0D46 /* Build configuration list for PBXNativeTarget "GnMesh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FC8F13A19F1C00CE0D46 /* Debug */,
+				21D7FC9013A19F1C00CE0D46 /* Release */,
+				21D7FC9C13A1A0EF00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21D7FC7B13A19F1C00CE0D46 /* Project object */;
+}

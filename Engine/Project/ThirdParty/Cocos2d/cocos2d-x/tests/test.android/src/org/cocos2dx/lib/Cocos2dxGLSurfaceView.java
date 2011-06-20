@@ -2,6 +2,7 @@ package org.cocos2dx.lib;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
+import android.os.Build.VERSION;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -23,10 +24,16 @@ class Cocos2dxInputConnection extends BaseInputConnection {
 	}
 	
     private Cocos2dxGLSurfaceView 	mView;
+    private String mLastCommit;
     
     Cocos2dxInputConnection(Cocos2dxGLSurfaceView view) {
     	super(view, false);
     	mView = view;
+    	mLastCommit = "";
+    	LogD("SDK Version(" + VERSION.SDK_INT + "):\n    "
+    			+ "Release: " + VERSION.RELEASE + "\n    "
+    			+ "Incremental: " + VERSION.INCREMENTAL + "\n    "
+    			+ "CodeName: " + VERSION.CODENAME);
     }
 
 	@Override
@@ -34,6 +41,7 @@ class Cocos2dxInputConnection extends BaseInputConnection {
 		super.commitText(text, newCursorPosition);
 		if (null != mView) {
 			final String insertText = text.toString();
+			mLastCommit = insertText;
 			mView.insertText(insertText);
 			LogD("commitText: " + insertText);
 		}
@@ -52,6 +60,7 @@ class Cocos2dxInputConnection extends BaseInputConnection {
 		LogD("performEditorAction: " + editorAction);
 		if (null != mView) {
 			final String insertText = "\n";
+			mLastCommit = insertText;
 			mView.insertText(insertText);
 		}
 		return true;
@@ -72,6 +81,20 @@ class Cocos2dxInputConnection extends BaseInputConnection {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public boolean finishComposingText() {
+		LogD("finishComposingText");
+		mLastCommit = "";
+		return super.finishComposingText();
+	}
+
+
+	@Override
+	public CharSequence getTextBeforeCursor(int n, int flags) {
+		LogD("getTextBeforeCursor");
+		return mLastCommit;
 	}
 }
 
@@ -137,8 +160,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
         if (imm == null) {
         	return;
         }
-        boolean ret = imm.showSoftInput(mainView, 0);
-        Log.d("openIMEKeboard", (ret)? "true" : "false");
+        imm.showSoftInput(mainView, 0);
     }
     
     public static void closeIMEKeyboard() {
@@ -151,34 +173,22 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
         }
         imm.hideSoftInputFromWindow(mainView.getWindowToken(), 0);
     }
-	
-    @Override 
-    public boolean onCheckIsTextEditor() {
-    	if (null == mainView)
-    	{
-    		return false;
-    	}
-        return true;
-    }
     
     private Cocos2dxInputConnection ic;
     @Override 
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        if (onCheckIsTextEditor()) {
+    	outAttrs.inputType = EditorInfo.TYPE_CLASS_TEXT;
+        outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI;
+        outAttrs.initialSelStart = -1;
+        outAttrs.initialSelEnd = -1;
+        outAttrs.initialCapsMode = 1;
 
-            outAttrs.inputType = EditorInfo.TYPE_CLASS_TEXT;
-            outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI; //IME_ACTION_DONE
-            outAttrs.initialSelStart = -1;
-            outAttrs.initialSelEnd = -1;
-            outAttrs.initialCapsMode = 1;
-
-        	if (null == ic)
-        	{
-        		ic = new Cocos2dxInputConnection(this);
-        	}
-            return ic;
-        }
-        return null;
+    	if (null == ic)
+    	{
+    		ic = new Cocos2dxInputConnection(this);
+    	}
+    	
+        return ic;
     }
 
     public void insertText(final String text) {

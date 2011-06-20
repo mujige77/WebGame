@@ -116,11 +116,11 @@ typedef gulong gtulong;
 #define GWCHAR_MAX	0xffff
 
 #ifndef _CHAR_UNSIGNED
-#define GCHAR_MIN    SCHAR_MIN   /* mimimum char value */
-#define GCHAR_MAX    SCHAR_MAX   /* maximum char value */
+#define GCHAR_MIN    GSCHAR_MIN   /* mimimum char value */
+#define GCHAR_MAX    GSCHAR_MAX   /* maximum char value */
 #else
-#define GCHAR_MIN      0
-#define GCHAR_MAX    UCHAR_MAX
+#define GCHAR_MIN    GSCHAR_MIN
+#define GCHAR_MAX    GSCHAR_MAX
 #endif  /* _CHAR_UNSIGNED */
 
 #define GMB_LEN_MAX    5             /* max. # bytes in multibyte char */
@@ -133,6 +133,9 @@ typedef gulong gtulong;
 #define GLONG_MIN    (-2147483647L - 1) /* minimum (signed) long value */
 #define GLONG_MAX      2147483647L   /* maximum (signed) long value */
 #define GULONG_MAX     0xffffffffUL  /* maximum unsigned long value */
+
+#ifdef WIN32
+
 #define GLLONG_MAX     9223372036854775807i64       /* maximum signed long long int value */
 #define GLLONG_MIN   (-9223372036854775807i64 - 1)  /* minimum signed long long int value */
 #define GULLONG_MAX    0xffffffffffffffffui64       /* maximum unsigned long long int value */
@@ -153,6 +156,31 @@ typedef gulong gtulong;
 #define GINT64_MAX      9223372036854775807i64 /* maximum signed 64 bit value */
 #define GUINT64_MAX     0xffffffffffffffffui64 /* maximum unsigned 64 bit value */
 
+#else // WIN32
+
+#define GLLONG_MIN   INT64_MIN  /* minimum signed long long int value */
+#define GLLONG_MAX   INT64_MAX       /* maximum signed long long int value */
+#define GULLONG_MAX  UINT64_MAX       /* maximum unsigned long long int value */
+
+#define GINT8_MIN     INT8_MIN    /* minimum signed 8 bit value */
+#define GINT8_MAX     INT8_MAX         /* maximum signed 8 bit value */
+#define GUINT8_MAX    UINT8_MAX       /* maximum unsigned 8 bit value */
+
+#define GINT16_MIN    INT16_MIN /* minimum signed 16 bit value */
+#define GINT16_MAX    INT16_MAX      /* maximum signed 16 bit value */
+#define GUINT16_MAX   UINT16_MAX    /* maximum unsigned 16 bit value */
+
+#define GINT32_MIN    INT32_MIN /* minimum signed 32 bit value */
+#define GINT32_MAX    INT32_MAX /* maximum signed 32 bit value */
+#define GUINT32_MAX   UINT32_MAX /* maximum unsigned 32 bit value */
+
+#define GINT64_MIN    INT64_MIN /* minimum signed 64 bit value */
+#define GINT64_MAX    INT64_MAX /* maximum signed 64 bit value */
+#define GUINT64_MAX   UINT64_MAX /* maximum unsigned 64 bit value */
+
+#endif // WIN32
+
+
 #if     _INTEGRAL_MAX_BITS >= 128
 /* minimum signed 128 bit value */
 #define _I128_MIN   (-170141183460469231731687303715884105727i128 - 1)
@@ -172,40 +200,39 @@ typedef HINSTANCE GnInstance;
 
 GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicIncrement(gint32& i32Value)
 {
-	return InterlockedIncrement((LONG*)&i32Value);
+	return InterlockedIncrement((glong*)&i32Value);
 }
 GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicDecrement(gint32& i32Value)
 {
-	return InterlockedDecrement((LONG*)&i32Value);
+	return InterlockedDecrement((glong*)&i32Value);
 }
 GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicIncrement(guint32& ui32Value)
 {
-	return InterlockedIncrement((LONG*)&ui32Value);
+	return InterlockedIncrement((glong*)&ui32Value);
 }
 GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicDecrement(guint32& ui32Value)
 {
-	return InterlockedDecrement((LONG*)&ui32Value);
+	return InterlockedDecrement((glong*)&ui32Value);
 }
 
 #else // WIN32
 
-GNSYSTEM_ENTRY GNFORCEINLINE gint32 NiAtomicIncrement(gint32& i32Value)
+static GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicIncrement(gint32& i32Value)
 {
-	return __sync_fetch_and_add((LONG*)&i32Value, 1);
+	return __sync_fetch_and_add((glong*)&i32Value, 1);
 }
-GNSYSTEM_ENTRY GNFORCEINLINE gint32 NiAtomicDecrement(gint32& i32Value)
+static GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicDecrement(gint32& i32Value)
 {
-	return __sync_fetch_and_sub ((LONG*)&i32Value, 1);
+	return __sync_fetch_and_sub ((glong*)&i32Value, 1);
 }
-GNSYSTEM_ENTRY GNFORCEINLINE guint32 NiAtomicIncrement(guint32& ui32Value)
+static GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicIncrement(guint32& ui32Value)
 {
-	return __sync_fetch_and_add((LONG*)&ui32Value);
+	return __sync_fetch_and_add((gulong*)&ui32Value, 1);
 }
-GNSYSTEM_ENTRY GNFORCEINLINE guint32 NiAtomicDecrement(guint32& ui32Value)
+static GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicDecrement(guint32& ui32Value)
 {
-	return __sync_fetch_and_sub((LONG*)&ui32Value);
+	return __sync_fetch_and_sub((gulong*)&ui32Value, 1);
 }
-
 #endif // WIN32
 
 

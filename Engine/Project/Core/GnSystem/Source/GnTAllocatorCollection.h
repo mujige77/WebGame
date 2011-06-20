@@ -19,7 +19,7 @@ public:
 	{GnDelete [] pArray;}; 
 };
 
-template <class T> class GnTExternalNewInterface 
+template <class T> class GnTExternalNewInterface : public GnMemoryObject
 {
 public:
 	static T* Allocate(unsigned int uiNumElements)

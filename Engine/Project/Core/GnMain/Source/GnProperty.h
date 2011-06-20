@@ -15,7 +15,7 @@ public:
 	{
 		TEXTURE_PROPERTY,
 		PROPERTY_MAX,
-	};
+	}; 
 
 public:
 	GnProperty();

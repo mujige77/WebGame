@@ -1,6 +1,7 @@
 #ifndef GNSTREAM_H
 #define GNSTREAM_H
-#include <GnTStringMap.h>
+#include "GnTStringMap.h"
+#include "GnTypeTraits.h"
 
 class GNMAIN_ENTRY GnStreamHelper : public GnMemoryObject
 {	
@@ -14,13 +15,13 @@ protected:
 public:
 	static void EBMStartup();
 	static void EBMShutdown();
-	static void RegisterRTTIObject(gchar* pcName, LoadFunction pFunc);
-	static void UnRegisterRTTIObject(gchar* pcName);
+	static void RegisterRTTIObject(const gchar* pcName, LoadFunction pFunc);
+	static void UnRegisterRTTIObject(const gchar* pcName);
 
 	inline GnStreamHelper() : mCreateFunction(NULL) {
 	}
 
-	void SetRTTICreateFunction(gchar* pcName);
+	void SetRTTICreateFunction(const gchar* pcName);
 
 	inline GnObject* CreateObject()
 	{
@@ -78,26 +79,30 @@ public:
 	template <class U> struct PointerTraits
 	{
 		inline static void SaveBinary(GnStream* pStream, U& val) {
-			GnAssert( GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::TestMax( (GnT::_TypeTraits<U>::UnqualifiedType)val ) ); 
-			pStream->CheckSave( val, 
-				GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::has_trivial_copy_constructor() );
+			typedef typename GnT::_TypeTraits<U>::UnqualifiedType UnqualifiedType;
+			typedef typename GnT::TypeTraits< UnqualifiedType >::has_trivial_copy_constructor constructor;
+			GnAssert( GnT::TypeTraits< UnqualifiedType >::TestMax( (UnqualifiedType&)val ) );
+			pStream->CheckSave( val, constructor() );
 		}
 		inline static void LoadBinary(GnStream* pStream, U& val) {
-			GnAssert( GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::TestMax( (GnT::_TypeTraits<U>::UnqualifiedType)val ) );
-			pStream->CheckLoad( val,
-				GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::has_trivial_copy_constructor() );
+			typedef typename GnT::_TypeTraits<U>::UnqualifiedType UnqualifiedType;
+			typedef typename GnT::TypeTraits< UnqualifiedType >::has_trivial_copy_constructor constructor;			
+			pStream->CheckLoad( val, constructor() );
+			GnAssert( GnT::TypeTraits< UnqualifiedType >::TestMax( (UnqualifiedType&)val ) );
 		}
 	};
 
 	template <class U> struct PointerTraits< U* >
 	{
 		inline static void SaveBinary(GnStream* pStream, U* val) {
-			pStream->CheckSave( val, 
-				GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::has_trivial_copy_constructor() );
+			typedef typename GnT::_TypeTraits<U>::UnqualifiedType UnqualifiedType;
+			typedef typename GnT::TypeTraits< UnqualifiedType >::has_trivial_copy_constructor constructor;
+			pStream->CheckSave( val, constructor() );
 		}
 		inline static void LoadBinary(GnStream*  pStream, U*& val) {
-			pStream->CheckLoad( val,
-				GnT::TypeTraits< GnT::_TypeTraits<U>::UnqualifiedType >::has_trivial_copy_constructor() );
+			typedef typename GnT::_TypeTraits<U>::UnqualifiedType UnqualifiedType;
+			typedef typename GnT::TypeTraits< UnqualifiedType >::has_trivial_copy_constructor constructor;
+			pStream->CheckLoad( val, constructor() );
 		}
 	};
 
@@ -120,11 +125,11 @@ public:
 protected:
 	template<class T>
 	inline void CheckLoad(T*& val, GnT::_FalseType) {
-		val->LoadStream((T::StreamType*) this);
+		val->LoadStream( this );
 	}
 	template<class T>
 	inline void CheckSave(T* val, GnT::_FalseType) {
-		val->SaveStream((T::StreamType*)this);
+		val->SaveStream( this );
 	}
 	template<class T>
 	inline void CheckLoad(T*& val, GnT::_TrueType) {

@@ -1,7 +1,7 @@
 #include "GnMeshPCH.h"
 #include "Gn2DAVDataConverter.h"
 
-GnVector2 GetMaxSize(Gn2DTextureAni* pAni)
+static GnVector2 GetMaxSize(Gn2DTextureAni* pAni)
 {
 	CCAnimate* animate = pAni->GetAnimate();
 	GnAssert( animate );
@@ -18,17 +18,10 @@ GnVector2 GetMaxSize(Gn2DTextureAni* pAni)
 	return max;
 }
 
-GnVector2 GetMaxSize(GnVector2 size1, GnVector2 size2)
+static GnVector2 GetMaxSize(GnVector2 size1, GnVector2 size2)
 {
 	GnVector2 max;
 	max.x = GnMax( size1.x, size2.x );
 	max.y = GnMax( size1.y, size2.y );
 	return max;
-}
-
-GnIRect ConvertGnRectToCocosRect(GnIRect srcRect, CCSize baseSize)
-{
-	srcRect.top = (int)baseSize.height - srcRect.top;
-	srcRect.bottom = (int)baseSize.height - srcRect.bottom;
-	return srcRect;
 }
