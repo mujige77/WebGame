@@ -64,18 +64,9 @@ void GnDraw2DObjectRect::Draw()
 	GnColorA tempColor = mColor;
 	mColor = GnColorA( 0, 0, 0, 1 );
 	CCPoint pos = mpObject->GetMesh()->getPosition();
-	GnFRect gnMeshRect( pos.x, pos.y, meshSize.width, meshSize.height );
+	//GnFRect gnMeshRect( 0, 0, meshSize.width, meshSize.height );
+	GnFRect gnMeshRect( pos.x, pos.y, pos.x + meshSize.width, pos.y + meshSize.height );
 	DrawRect( gnMeshRect );	
-	
-	
-	if( IsDrawAnchorPoint() )
-	{
-		mColor = GnColorA( 0, 255, 255, 1 );
-		GnVector2 anchorPoint = avData->GetAnchorPoint();
-		anchorPoint.x *= meshSize.width;
-		anchorPoint.y *= meshSize.height;
-		DrawPoint( anchorPoint );
-	}
 	
 	for( gtuint i = 0 ; i < avData->GetCollisionCount() ; i++ )
 	{
@@ -84,7 +75,7 @@ void GnDraw2DObjectRect::Draw()
 			GnColorA( 255, 255, 0, 1 ),
 			GnColorA( 255, 0, 0, 1 )
 		};		
-		Gn2DAVData::CollisionRect& drawRect = avData->GetCollisionRect( i );
+		Gn2DAVData::CollisionRect drawRect = avData->GetCollisionRect( i );
 		mColor = color[drawRect.mType];
 		if( IsConvertCocosRect() )
 		{
@@ -107,8 +98,24 @@ void GnDraw2DObjectRect::Draw()
 					, CCSizeMake((float)drawRect.mRect.right, (float)drawRect.mRect.bottom) );
 			}
 		}
+		//drawRect.mRect.MoveX( mpObject->GetPosition().x );
+		//drawRect.mRect.MoveY( mpObject->GetPosition().y );
 		DrawRect( drawRect.mRect );
 	}
+
+	if( IsDrawAnchorPoint() )
+	{
+		mColor = GnColorA( 0, 255, 255, 1 );
+		GnVector2 anchorPoint = avData->GetAnchorPoint();
+		anchorPoint += mpObject->GetPosition();
+		//anchorPoint.x *= meshSize.width;
+		//anchorPoint.y *= meshSize.height;
+		float temp = mThickness;
+		mThickness = 5;
+		DrawPoint( anchorPoint );
+		mThickness = temp;
+	}
+
 	mColor = tempColor;
 }
 

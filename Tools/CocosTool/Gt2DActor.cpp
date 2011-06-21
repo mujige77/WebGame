@@ -16,7 +16,7 @@ bool Gt2DActor::SaveData(const gchar* pcBasePath)
 	gchar sequenceBasePath[GN_MAX_PATH] = {0,};
 	GnStrcpy( sequenceBasePath, GtToolSettings::GetWorkPath(), sizeof(sequenceBasePath) );
 	GnStrcat( sequenceBasePath, GetObjectName(), sizeof(sequenceBasePath) );
-	GnStrcat( sequenceBasePath, "\\", sizeof(sequenceBasePath) );
+	GnStrcat( sequenceBasePath, "/", sizeof(sequenceBasePath) );
 
 	GtToolSettings::CreateDirectoryInWorkDirectory( GetObjectName() );
 

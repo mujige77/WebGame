@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "GtToolSettings.h"
 
-char GtToolSettings::mWorkPath[GN_MAX_PATH] = {"..\\Data\\"};
+char GtToolSettings::mWorkPath[GN_MAX_PATH] = {"../Data/"};
 gchar GtToolSettings::mBackgroundFile[GN_MAX_PATH]  = { 0, };
 
 
@@ -60,7 +60,7 @@ void GtToolSettings::MakeSaveFilePath(const gchar* pcFileName, const gchar* pcFo
 	if( pcFolder )
 	{
 		GnStrcat( outPath, pcFolder, outSize );	
-		GnStrcat( outPath, "\\", outSize );
+		GnStrcat( outPath, "/", outSize );
 	}
 	GnStrcat( outPath, pcFileName, outSize );	
 	gsize length = GnStrlen( outPath );

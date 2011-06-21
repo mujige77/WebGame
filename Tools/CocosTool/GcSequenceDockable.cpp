@@ -242,7 +242,7 @@ void GcSequenceDockable::OnBtNewtemplate()
 		}
 		Gn2DAVData* avData = GtObjectNew<Gn2DAVData>::Create();
 		
-		avData->AddCollisionRect( 0, GnIRect( 0, 0, (int)max.x, (int)max.y ) );
+		avData->AddCollisionRect( 0, GnFRect( 0, 0, (int)max.x, (int)max.y ) );
 		gnSequence->SetAVData( avData );
 
 		mpsCurrentObject->GetActor()->ChangeSequence( sequence->GetSequence()->GetID()

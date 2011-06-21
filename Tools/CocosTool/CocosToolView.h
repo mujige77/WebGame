@@ -111,6 +111,7 @@ public:
 	afx_msg void OnBtLoadbackground();
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	afx_msg void OnScaleRange();
+	afx_msg void OnFlipx();
 };
 
 #ifndef _DEBUG  // CocosToolView.cpp의 디버그 버전

@@ -17,11 +17,11 @@ GtCollisionModify::~GtCollisionModify(void)
 GtCollisionModify* GtCollisionModify::Create(float fWidth, float fHeight)
 {
 	GnLayerDrawPrimitives* drawLayer = new GnLayerDrawPrimitives;	
-	drawLayer->setColor( ccc3(0,0,255) );
-	drawLayer->setOpacity( 150 );
+	drawLayer->setColor( ccc3(0,0,0) );
+	drawLayer->setOpacity( 0 );
 	drawLayer->setContentSize( CCSizeMake(fWidth, fHeight) );
 	drawLayer->setIsVisible( false );
-	GetSceneManager()->GetMainGameLayer()->addChild( drawLayer, 100, 1 );
+	GetSceneManager()->GetMainGameLayer()->addChild( drawLayer, 200, 1 );
 
 	GtCollisionModify* thisVal = new GtCollisionModify;
 	thisVal->mpDrawLayer = drawLayer;
@@ -101,7 +101,7 @@ void GtCollisionModify::SetVisible(bool val, Gn2DMeshObject* pMesh)
 			mpDrawLayer->RemoveChild( mpsDrawSequenceRect );
 
 		GnDraw2DObjectRect* drawObject = GtObjectNew<GnDraw2DObjectRect>::Create();
-		drawObject->SetThickness( 3.0f );
+		drawObject->SetThickness( 2.0f );
 		drawObject->SetColor( GnColorA(1.0f, 1.0f, 0.0f, 1.0f) );
 		drawObject->SetObject( pMesh );
 		mpDrawLayer->AddChild( drawObject );

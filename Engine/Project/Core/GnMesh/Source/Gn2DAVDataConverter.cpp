@@ -26,9 +26,9 @@ GnVector2 GetMaxSize(GnVector2 size1, GnVector2 size2)
 	return max;
 }
 
-GnIRect ConvertGnRectToCocosRect(GnIRect srcRect, CCSize baseSize)
+GnFRect ConvertGnRectToCocosRect(GnFRect srcRect, CCSize baseSize)
 {
-	srcRect.top = (int)baseSize.height - srcRect.top;
-	srcRect.bottom = (int)baseSize.height - srcRect.bottom;
+	srcRect.top = baseSize.height - srcRect.top;
+	srcRect.bottom = baseSize.height - srcRect.bottom;
 	return srcRect;
 }

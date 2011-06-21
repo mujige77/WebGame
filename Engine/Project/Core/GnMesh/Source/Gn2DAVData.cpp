@@ -22,13 +22,24 @@ void Gn2DAVData::LoadStream(GnObjectStream* pStream)
 	if( size )
 	{
 		mCollisionRects.SetSize( size );
+		mOriginalCollisionRects.SetSize( size );
 		for( gtuint i = 0 ; i < mCollisionRects.GetAllocatedSize() ; i++ )
 		{
 			CollisionRect rect;
 			pStream->LoadStream( rect.mType );
-			rect.mRect.LoadStream( pStream );
+			if( pStream->GetFileVersion() == GnStream::GetVersion( 1, 0, 0, 0 ) )
+			{
+				GnIRect iRect;
+				iRect.LoadStream( pStream );
+				rect.mRect = GnFRect( (float)iRect.left, (float)iRect.top, (float)iRect.right, (float)iRect.bottom );
+			}
+			else
+			{
+				rect.mRect.LoadStream( pStream );
+			}
 
 			mCollisionRects.SetAt( i, rect );
+			mOriginalCollisionRects.SetAt( i, rect );
 		}
 	}	
 }
@@ -56,4 +67,39 @@ void Gn2DAVData::SaveStream(GnObjectStream* pStream)
 void Gn2DAVData::RegisterSaveObject(GnObjectStream* pStream)
 {
 	GnObject::RegisterSaveObject( pStream );
+}
+
+void Gn2DAVData::Move(GnVector2& movePoint)
+{
+	for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
+	{
+		CollisionRect rect = mOriginalCollisionRects.GetAt( i );
+		rect.mRect.MoveX( movePoint.x );
+		rect.mRect.MoveY( movePoint.y );
+		mCollisionRects.SetAt( i, rect );
+	}
+}
+
+void Gn2DAVData::FlipX(bool bFlip, float postionX)
+{
+	if( bFlip )
+	{
+		for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
+		{
+			CollisionRect rect = mOriginalCollisionRects.GetAt( i );
+			rect.mRect = GnFRect( postionX - rect.mRect.left + GetAnchorPoint().x, rect.mRect.top
+				, postionX - rect.mRect.right + GetAnchorPoint().x, rect.mRect.bottom );
+			mCollisionRects.SetAt( i, rect );
+		}
+	}
+	else
+	{
+		for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
+		{
+			CollisionRect rect = mOriginalCollisionRects.GetAt( i );
+			rect.mRect = GnFRect( rect.mRect.right + postionX, rect.mRect.top
+				, rect.mRect.left + postionX, rect.mRect.bottom );
+			mCollisionRects.SetAt( i, rect );
+		}
+	}
 }

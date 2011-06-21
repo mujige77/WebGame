@@ -52,6 +52,7 @@ BEGIN_MESSAGE_MAP(CCocosToolView, CFormView)
 	ON_COMMAND(IDC_ANITIMESLIDER, &CCocosToolView::OnAnitimeslider)
 	ON_COMMAND(ID_BT_LOADBACKGROUND, &CCocosToolView::OnBtLoadbackground)
 	ON_COMMAND(ID_SCALERANGE, &CCocosToolView::OnScaleRange)
+	ON_COMMAND(ID_BT_FLIPX, &CCocosToolView::OnFlipx)
 END_MESSAGE_MAP()
 
 // CCocosToolView »ý¼º/¼Ò¸ê
@@ -359,7 +360,7 @@ void CCocosToolView::AddCurrentActorToLayerDrawPprimitives()
 		{
 			std:string strName = GtToolSettings::GetWorkPath();
 			strName += mpsActor->GetObjectName();
-			strName += "\\";
+			strName += "/";
 			strName += mpsActor->GetGATFileName();
 			mpCollisionModify->LoadBasicActor( strName.c_str() );
 			mpCollisionModify->SetBasicSequenceID( 1 );
@@ -487,5 +488,26 @@ void CCocosToolView::OnScaleRange()
 			mpsActor->GetActor()->GetRootNode()->SetScale( 1.0f );
 		}
 		Invalidate( false );
+	}
+}
+
+
+void CCocosToolView::OnFlipx()
+{
+	if( mpsActor )
+	{
+		Gn2DMeshObject* mesh = mpsActor->GetRootNode();
+		if( mesh )
+		{
+			static int i= 1;
+			mesh->SetFlipX( !mesh->GetMesh()->isFlipX() );
+			//if( mesh->GetMesh()->isFlipX() )
+			//{
+			//	mesh->SetPosition( mesh->GetPosition() - mesh->GetAVData()->GetAnchorPoint() );
+			//}
+			//else
+			//	mesh->SetPosition( mesh->GetPosition() + mesh->GetAVData()->GetAnchorPoint() );
+			Invalidate( false );
+		}
 	}
 }

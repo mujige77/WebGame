@@ -64,7 +64,7 @@ bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 				ret = TRUE;
 			}
 			std::string filePath = folderName;
-			filePath += "\\";
+			filePath += "/";
 			filePath += fileName;
 			aniInfo->SetTextureName( filePath.c_str() );
 		}

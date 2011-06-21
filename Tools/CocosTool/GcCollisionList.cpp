@@ -41,7 +41,7 @@ void GcCollisionList::CreateNewItem()
 	int type = addDlg.GetSelectedCollisionType();
 	if( mpAVData )
 	{		
-		mpAVData->AddCollisionRect( type, GnIRect(100, 100, 150, 150) );
+		mpAVData->AddCollisionRect( type, GnFRect(100, 100, 150, 150) );
 		AddItem( GetMakeName( GetCount(), type ), type );
 	}
 	mpSequence->SetModifed( true );

@@ -16,23 +16,26 @@ public:
 	{
 	public:
 		CollisionRect(){};
-		CollisionRect(gint32 type, GnIRect rect)
+		CollisionRect(gint32 type, GnFRect rect)
 		{
 			mType = type;
 			mRect = rect;
 		}
 	public:
 		gint32 mType;
-		GnIRect mRect;
+		GnFRect mRect;
 	};
 
 protected:
 	GnVector2 mAnchorPoint;
 	GnTObjectArray<CollisionRect> mCollisionRects;
+	GnTObjectArray<CollisionRect> mOriginalCollisionRects;
 	
 public:
 	Gn2DAVData();
 	virtual ~Gn2DAVData(){};
+	void Move(GnVector2& movePoint);
+	void FlipX(bool bFlip, float postionX);
 
 	inline GnVector2& GetAnchorPoint() {
 		return mAnchorPoint;
@@ -43,11 +46,11 @@ public:
 	inline gtuint GetCollisionCount() {
 		return mCollisionRects.GetSize();
 	}
-	inline void AddCollisionRect(gint32 uiID, GnIRect& val)
+	inline void AddCollisionRect(gint32 uiID, GnFRect& val)
 	{
 		mCollisionRects.Add( CollisionRect( uiID, val ) );
 	}
-	inline void SetCollisionRect(gtuint uiIndex, gint32 uiID, GnIRect& val)
+	inline void SetCollisionRect(gtuint uiIndex, gint32 uiID, GnFRect& val)
 	{
 		mCollisionRects.SetAt( uiIndex, CollisionRect( uiID, val ) );
 	}

@@ -47,7 +47,8 @@ void Gn2DMeshObject::SetAVData(Gn2DAVData* val)
 	mpsAVData = val;
 	if( mpMesh && val )
 	{
-		mpMesh->setAnchorPoint( CCPointMake( val->GetAnchorPoint().x, val->GetAnchorPoint().y ) );
+		//SetPosition( val->GetAnchorPoint() );
+		//mpMesh->setAnchorPoint( CCPointMake( val->GetAnchorPoint().x, val->GetAnchorPoint().y ) );
 	}
 }
 
@@ -62,6 +63,56 @@ void Gn2DMeshObject::AttachParent(Gn2DMeshObject* pParent)
 void Gn2DMeshObject::SetScale(float val)
 {
 	mpMesh->setScale( val * GetGameState()->GetGameScale() );
+}
+
+void Gn2DMeshObject::SetPosition(GnVector2 val)
+{
+	SetOriginalPosition( val );
+	if( GetAVData() )
+	{
+		if( mpMesh->isFlipX() )
+		{
+			val = GetOriginalPosition() - GetAVData()->GetAnchorPoint();
+			mpMesh->setPosition( CCPointMake(val.x, val.y) );
+		}
+		else
+		{			
+			mpMesh->setPosition( CCPointMake(val.x, val.y) );
+		}
+		//GetAVData()->Move( GetOriginalPosition() );
+	}
+	else
+	{
+		mpMesh->setPosition( CCPointMake(val.x, val.y) );
+	}
+}
+
+void Gn2DMeshObject::SetFlipX(bool val)
+{
+	mpMesh->setFlipX( val );
+	SetPosition( GetOriginalPosition() );
+	if( GetAVData() )
+	{
+		if( mpMesh->isFlipX() )
+		{
+			GetAVData()->FlipX( mpMesh->isFlipX(), GetOriginalPosition().x );
+		}
+		else
+		{			
+			GetAVData()->FlipX( mpMesh->isFlipX(), GetOriginalPosition().x );
+		}
+	}	
+	//if( mpsAVData )
+	//{
+	//	if( mpMesh->isFlipX() )
+	//	{
+	//		mpMesh->setPosition( GetOriginalPosition() - GetAVData()->GetAnchorPoint() );
+	//	}
+	//	else
+	//	{
+	//		mpMesh->setPosition( GetOriginalPosition() + GetAVData()->GetAnchorPoint() );
+	//	}
+	//}
 }
 
 void Gn2DMeshObject::Update(float fTime)

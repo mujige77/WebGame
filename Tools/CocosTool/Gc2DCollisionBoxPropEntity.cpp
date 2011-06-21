@@ -27,17 +27,21 @@ bool Gc2DCollisionBoxPropEntity::Init()
 	std::auto_ptr<CMFCPropertyGridProperty> apSize( new GcPropertyGridNumberPair( _T("AnchorPoint")
 		, 0, GINT_MAX, 0, GINT_MAX, 0, TRUE ) );
 	apSize->AllowEdit( false );
-	pProp = new GtBoundedNumberSubProp( _T("Position X"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
+	//pProp = new GtBoundedNumberSubProp( _T("Position X"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
+	pProp = new GtBoundedNumberSubProp( _T("Position X"), (COleVariant)0l, GINT_MIN, GINT_MAX
 		, _T("AnchorPoint Position x") );
 	mpUseGridProperty[PROP_ANCHORPOINTX] = pProp;
-	pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
+	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
+	pProp->EnableSpinControl( TRUE, GINT_MIN, GINT_MAX );
 	pProp->SetData( MSG_ANCHORPOINTX );
 	pProp->SubscribeToUpdateEvent( &mUpdateEventSlot );
 	apSize->AddSubItem( pProp );
-	pProp = new GtBoundedNumberSubProp( _T("Position Y"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
+	//pProp = new GtBoundedNumberSubProp( _T("Position Y"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
+	pProp = new GtBoundedNumberSubProp( _T("Position Y"), (COleVariant)0l, GINT_MIN, GINT_MAX
 		, _T("AnchorPoint Position y") );
 	mpUseGridProperty[PROP_ANCHORPOINTY] = pProp;
-	pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
+	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
+	pProp->EnableSpinControl( TRUE, GINT_MIN, GINT_MAX );
 	pProp->SetData( MSG_ANCHORPOINTY );
 	pProp->SubscribeToUpdateEvent( &mUpdateEventSlot );
 	apSize->AddSubItem( pProp );
@@ -98,8 +102,8 @@ bool Gc2DCollisionBoxPropEntity::ParseToEntity(EntityData* pData)
 	if( avData == NULL )
 		return false;
 	
-	GetAnchorPointXProp()->SetValue( (COleVariant)(float)avData->GetAnchorPoint().x );
-	GetAnchorPointYProp()->SetValue( (COleVariant)(float)avData->GetAnchorPoint().y );
+	GetAnchorPointXProp()->SetValue( (COleVariant)(long)avData->GetAnchorPoint().x );
+	GetAnchorPointYProp()->SetValue( (COleVariant)(long)avData->GetAnchorPoint().y );
 
 	if( mNumEditCollisionRect >= (int)avData->GetCollisionCount() )
 		return false;
@@ -146,7 +150,8 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 	case MSG_ANCHORPOINTX:
 		{
 			GnVector2 point = avData->GetAnchorPoint();
-			point.x = GetFloatValue( GetAnchorPointXProp()->GetValue() );
+			//point.x = GetFloatValue( GetAnchorPointXProp()->GetValue() );
+			point.x = (float)GetIntValue( GetAnchorPointXProp()->GetValue() );
 			avData->SetAnchorPoint( point );
 			mp2DActor->GetActor()->StopAnimation();
 			mp2DActor->GetActor()->SetTargetAnimation(  mpSequenceObject->GetSequence()->GetID() );
@@ -155,7 +160,8 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 	case MSG_ANCHORPOINTY:
 		{
 			GnVector2 point = avData->GetAnchorPoint();
-			point.y = GetFloatValue( GetAnchorPointYProp()->GetValue() );
+			//point.y = GetFloatValue( GetAnchorPointYProp()->GetValue() );
+			point.y = (float)GetIntValue( GetAnchorPointYProp()->GetValue() );
 			avData->SetAnchorPoint( point );
 			mp2DActor->GetActor()->StopAnimation();
 			mp2DActor->GetActor()->SetTargetAnimation(  mpSequenceObject->GetSequence()->GetID() );

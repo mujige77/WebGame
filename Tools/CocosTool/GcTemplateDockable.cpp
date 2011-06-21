@@ -285,7 +285,9 @@ void GcTemplateDockable::SelectItem(int iIndex)
 	}
 	
 	object->GetRootNode()->SetScale( 1.0f );
-	object->GetRootNode()->GetMesh()->setPosition( ccp( 0, 0) );
+	object->GetRootNode()->GetMesh()->setAnchorPoint( CCPointMake(0,0) );
+	object->GetRootNode()->SetPosition( GnVector2(200, 100) );
+	//object->GetRootNode()->GetMesh()->setFlipX( true );
 	GnLayer* state = GetSceneManager()->GetMainGameLayer();
 	state->AddChild( object->GetRootNode(), 102 );
 

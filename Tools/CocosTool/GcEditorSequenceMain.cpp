@@ -112,7 +112,7 @@ void GcEditorSequenceMain::SetFileName()
 
 	GtConvertString strFolderName = mpObject->GetObjectName();
 	GtConvertString strName = strFolderName;
-	strName += _T( "\\" );
+	strName += _T( "/" );
 	strName += tempName.GetString();	
 	mpSequence->SetFileName( strName.GetAciiString() );
 }
