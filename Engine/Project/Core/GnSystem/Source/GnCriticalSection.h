@@ -20,6 +20,8 @@ protected:
 	CRITICAL_SECTION m_kCriticalSection;
 #elif defined (_PS3)
 	pthread_mutex_t m_kCriticalSection;
+#else
+	pthread_mutex_t m_kCriticalSection;
 #endif // #if defined(WIN32) || defined(_XENON)
 
 #if defined (GNDEBUG)
@@ -42,7 +44,7 @@ GNFORCEINLINE GnCriticalSection::GnCriticalSection()
 #if defined(WIN32) || defined(_XENON)
 	InitializeCriticalSection(&m_kCriticalSection);
 #else
-	pthread_mutex_init(&m_kCriticalSection);
+	pthread_mutex_init(&m_kCriticalSection, NULL);
 #endif
 
 #endif // #if !defined(NI_MULTITHREADED)
@@ -55,7 +57,7 @@ GNFORCEINLINE GnCriticalSection::~GnCriticalSection()
 	#if defined(WIN32) || defined(_XENON)
 		DeleteCriticalSection(&m_kCriticalSection);
 	#else // defined(WIN32) || defined(_XENON)
-		pthread_mutex_destroy(m_kCriticalSection);
+		pthread_mutex_destroy(&m_kCriticalSection);
 	#endif // defined(WIN32) || defined(_XENON)
 
 #endif // #if !defined(NI_MULTITHREADED)

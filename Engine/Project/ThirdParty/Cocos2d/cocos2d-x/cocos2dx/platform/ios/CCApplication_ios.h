@@ -65,7 +65,7 @@ public:
          @brief	Callback by CCDirector for limit FPS.
          @interval       The time, which expressed in second in second, between current frame and next. 
          */
-        void setAnimationInterval(double interval);
+		void setAnimationInterval(double interval);
         
         typedef enum
         {
@@ -94,7 +94,7 @@ public:
         /**
          @brief	Run the message loop.
          */
-        int run();
+		int run();
         
         /**
          @brief	Get current applicaiton instance.

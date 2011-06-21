@@ -315,7 +315,7 @@ template
 class GnTObjectDeleteMap : public GnTMap<KeyType, DataType, DataDeallocate, MapHash, MapEqual>
 {
 public:
-	GnTObjectDeleteMap(gtuint size = 5) : GnTMap(size)
+	GnTObjectDeleteMap(gtuint size = 5) : GnTMap<KeyType, DataType, DataDeallocate, MapHash, MapEqual>(size)
 	{
 
 	}
@@ -342,7 +342,7 @@ template
 class GnTPrimitiveDeleteMap : public GnTMap<KeyType, DataType, DataDeallocate, MapHash, MapEqual>
 {
 public:
-	GnTPrimitiveDeleteMap(gtuint size = 5) : GnTMap(size)
+	GnTPrimitiveDeleteMap(gtuint size = 5) : GnTMap<KeyType, DataType, DataDeallocate, MapHash, MapEqual>(size)
 	{
 
 	}

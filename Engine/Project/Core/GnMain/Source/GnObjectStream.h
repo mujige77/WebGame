@@ -5,16 +5,13 @@
 
 class GnObjectStream : public GnStream
 {
-public:
-	static const guint32 NULL_LINKID = UINT32_MAX - 1;
-
 protected:
-	GnTPrimitiveArray<GnObject*> mRootLevelObjects; // save, load 사용
-	GnTPrimitiveArray<GnObject*> mObjectLists; // save, load 사용
-	GnTObjectArray<GnSimpleString> mFixedStrings; // save, load 사용
-	GnTPrimitiveArray<guint32> mLinkIDs;	// load 사용
-	GnTPrimitiveArray<guint32> mMultiLinkIDBlocks;	// load 사용
-	GnTMap<const GnObject*, guint32> mRegObjects; // save 사용
+	GnTPrimitiveArray<GnObject*> mRootLevelObjects; // used save, load
+	GnTPrimitiveArray<GnObject*> mObjectLists; // used save, load
+	GnTObjectArray<GnSimpleString> mFixedStrings; // used save, load
+	GnTPrimitiveArray<guint32> mLinkIDs;	// used load
+	GnTPrimitiveArray<guint32> mMultiLinkIDBlocks;	// used load
+	GnTMap<const GnObject*, guint32> mRegObjects; // used save
 	gtuint mLinkIndex;
 	gtuint mLinkBlockIndex;
 
@@ -25,15 +22,15 @@ public:
 	virtual bool Load(const gchar* pcFilePath);
 	virtual bool Save(const gchar* pcFilePath);
 
-	// 저장할 테이터를 모으고 데이터에 아이디를 지정 하기 위한 mRegObjects에 오브젝트와 함께 linkID도 저장
-	bool RegisterSaveObject(GnObject* pObject); // Save사용
-	bool RegisterFixedString(GnSimpleString& str); // Save사용
+	// \277\u02d9\277\302\253\u201c \u2248\u25ca\277\303\u2248\325\u220f\266 \u220f\uf8ff\277\u220f\u221e\314 \265\u2022\277\303\u2248\325\370\260 \346\u2206\277\303\265\uf8ff\u220f\266 \241\u02c6\241\247 \253\u0153\261\u201a \277\337\253\u2014 mRegObjects\370\260 \370\277\u222b\315\241\337\u2206\306\370\325 \253\u2018\u2264\u2264 linkID\265\265 \277\u02d9\277\302
+	bool RegisterSaveObject(GnObject* pObject); // Save
+	bool RegisterFixedString(GnSimpleString& str); // Save\252\301\370\316
 	guint32 GetStringID(const GnSimpleString& str);
-	void SaveFixedString(const GnSimpleString& str); // Save 사용
+	void SaveFixedString(const GnSimpleString& str); // Save \252\301\370\316
 	void LoadFixedString(GnSimpleString& str);
 
-	GnObject* GetObjectFromLinkID(); // Load용
-	guint32 LoadMultipleLinkIDs(); // Load용
+	GnObject* GetObjectFromLinkID(); // Load\370\316
+	guint32 LoadMultipleLinkIDs(); // Load\370\316
 	guint32 GetLinkID(const GnObject* pObject);
 
 	inline gtuint GetObjectCount() {
@@ -83,4 +80,4 @@ protected:
 	void ResetLoadDatas();
 };
 
-#endif // GNMODELSTREAM_H
+#endif // GNMODELSTREAM_H\037\037\036

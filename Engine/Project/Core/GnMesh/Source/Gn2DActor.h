@@ -5,15 +5,15 @@
 
 class GNMESH_ENTRY Gn2DActor : public GnSmartObject
 {
-	const static guint32 NULL_ANI = GINT32_MAX;
-protected:
+protected:	
 	guint32 mTargetID;
 	guint32 mCurrentID;
 	Gn2DSequence* mpCurrentSequence;
 	GnTObjectDeleteMap<guint32, Gn2DSequence*> mpSequences;
 	Gn2DMeshObjectPtr mpsRootNode;
 	GnActorToolPtr mpsActorTool;
-
+	static const guint32 NULL_ANI = GUINT32_MAX;	
+	
 public:
 	Gn2DActor();
 	static Gn2DActor* Create(const gchar* pcActorToolFileName, GnObjectStream& stream

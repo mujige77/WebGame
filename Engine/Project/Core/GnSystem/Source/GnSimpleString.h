@@ -6,7 +6,7 @@ class GNSYSTEM_ENTRY GnSimpleString : public GnMemoryObject
 {
 public:
 	GnSimpleString();
-	GnSimpleString(gchar* pStr);
+	GnSimpleString(const gchar* pStr);
 	GnSimpleString(GnSimpleString& str);
 	~GnSimpleString()
 	{
@@ -44,7 +44,7 @@ inline GnSimpleString::GnSimpleString() : mpHandle(NULL)
 {
 }
 
-inline GnSimpleString::GnSimpleString(gchar* pStr) : mpHandle(NULL)
+inline GnSimpleString::GnSimpleString(const gchar* pStr) : mpHandle(NULL)
 {
 	*this = pStr;
 }

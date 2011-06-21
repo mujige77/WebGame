@@ -1,6 +1,7 @@
 #include "GnMainPCH.h"
 #include "GnObjectStream.h"
 
+static const guint32 NULL_LINKID = GUINT32_MAX - 1;
 
 GnObjectStream::GnObjectStream() : mLinkIndex(0), mLinkBlockIndex(0)
 {
@@ -144,7 +145,7 @@ void GnObjectStream::SaveRTTI()
 		SaveStream( tempSaveRTTI[i] );
 	}
 
-	// RTTI 번호만 저장하고 그번호를 토대로 로딩시 오브젝트를 생성한다.
+	// RTTI \u03c0\257\273\243\u220f\u220f \277\u02d9\277\302\253\u0153\u221e\314 \261\u25ca\u03c0\257\273\243\u220f\266 \u2248\u2030\245\316\u2211\u0152 \u2211\u0152\265\u02d8\u03a9\u221a \370\277\u222b\315\241\337\u2206\306\u220f\266 \252\u02dd\272\u222b\253\u2014\245\u0178.
 	for( gtuint i = 0 ; i < mObjectLists.GetSize() ; i++ )
 	{
 		gushort numRTTI = 0;
@@ -171,7 +172,7 @@ void GnObjectStream::LoadFixedStrings()
 		guint16 len = 0;
 		LoadStream( len );
 		LoadStreams( fixedStr, len );
-		fixedStr[len] = '\0';
+		fixedStr[len] = '\\0';
 		mFixedStrings.Add( GnSimpleString(fixedStr) );
 	}
 
@@ -289,7 +290,7 @@ void GnObjectStream::LoadRTTiString(gchar* pcStr)
 	gushort len = 0;
 	mpFile->LoadBinary(&len, sizeof(gushort));
 	mpFile->LoadBinary(pcStr, len);
-	pcStr[len] = '\0';
+	//pcStr[len] = '\\0';
 }
 
 guint32 GnObjectStream::GetLinkID(const GnObject* pObject)
@@ -318,7 +319,10 @@ void GnObjectStream::LoadFixedString(GnSimpleString& str)
 void GnObjectStream::SaveFixedString(const GnSimpleString& str)
 {
 	if( !str.Exists() )
-		SaveStream( NULL_LINKID );
+	{
+		guint32 linkID = NULL_LINKID;
+		SaveStream( linkID );
+	}
 
 	guint32 linkID = GetStringID( str );
 	GnAssert( linkID != NULL_LINKID );

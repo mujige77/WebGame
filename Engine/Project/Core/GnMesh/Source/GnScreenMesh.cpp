@@ -133,10 +133,10 @@ void GnScreenMesh::SetColor(GnColorA& changeColor)
 	if( UseColor() == false )
 		return;
 
-	DWORD* color = (DWORD*)LockColorStream( GnDataStream::LOCK_WRITE );
+	glong* color = (glong*)LockColorStream( GnDataStream::LOCK_WRITE );
 	for ( gtuint i = 0 ; i < mNumVertex ; i++ )
 	{		
-		color[i] = ((DWORD)((((255)&0xff)<<24)|(((255)&0xff)<<16)|(((0)&0xff)<<8)|((0)&0xff)));
+		color[i] = ((glong)((((255)&0xff)<<24)|(((255)&0xff)<<16)|(((0)&0xff)<<8)|((0)&0xff)));
 		color[i] = changeColor.GetRGBA();
 	}
 	UnlockColorStream( GnDataStream::LOCK_WRITE );

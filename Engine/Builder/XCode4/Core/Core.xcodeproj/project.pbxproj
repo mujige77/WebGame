@@ -1,0 +1,1476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2161AA3D13A9E32F002CE952 /* GnSingletonManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2161AA3C13A9E32F002CE952 /* GnSingletonManager.h */; };
+		2161AA3F13A9E49A002CE952 /* GnSingletonManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA3E13A9E49A002CE952 /* GnSingletonManager.cpp */; };
+		21C957DB13AADCBC00978181 /* GnTSimpleArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C957DA13AADCBC00978181 /* GnTSimpleArray.h */; };
+		21C957E313AB2BFD00978181 /* GnPathUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C957E213AB2BFD00978181 /* GnPathUtil.h */; };
+		21D56B1013A9F294004893C2 /* GFileLIst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2161AA3813A9D77D002CE952 /* GFileLIst.h */; };
+		21D56B1113A9F29C004893C2 /* GFileList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA3A13A9D79F002CE952 /* GFileList.cpp */; };
+		21D7FDE213A1F9F500CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */; };
+		21D7FDEE13A1FA0800CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */; };
+		21D7FDFA13A1FA1500CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */; };
+		21D7FE3513A1FB2500CE0D46 /* GnAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0413A1FB2500CE0D46 /* GnAllocator.h */; };
+		21D7FE3613A1FB2500CE0D46 /* GnCharFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE0513A1FB2500CE0D46 /* GnCharFunctions.cpp */; };
+		21D7FE3713A1FB2500CE0D46 /* GnCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0613A1FB2500CE0D46 /* GnCharFunctions.h */; };
+		21D7FE3813A1FB2500CE0D46 /* GnCriticalSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0713A1FB2500CE0D46 /* GnCriticalSection.h */; };
+		21D7FE3913A1FB2500CE0D46 /* GnDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE0813A1FB2500CE0D46 /* GnDebug.cpp */; };
+		21D7FE3A13A1FB2500CE0D46 /* GnDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0913A1FB2500CE0D46 /* GnDebug.h */; };
+		21D7FE3B13A1FB2500CE0D46 /* GnDebugAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE0A13A1FB2500CE0D46 /* GnDebugAllocator.cpp */; };
+		21D7FE3C13A1FB2500CE0D46 /* GnDebugAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0B13A1FB2500CE0D46 /* GnDebugAllocator.h */; };
+		21D7FE3D13A1FB2500CE0D46 /* GnFrameSkip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE0C13A1FB2500CE0D46 /* GnFrameSkip.cpp */; };
+		21D7FE3E13A1FB2500CE0D46 /* GnFrameSkip.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0D13A1FB2500CE0D46 /* GnFrameSkip.h */; };
+		21D7FE3F13A1FB2500CE0D46 /* GnList.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE0E13A1FB2500CE0D46 /* GnList.h */; };
+		21D7FE4013A1FB2500CE0D46 /* GnLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE0F13A1FB2500CE0D46 /* GnLog.cpp */; };
+		21D7FE4113A1FB2500CE0D46 /* GnLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1013A1FB2500CE0D46 /* GnLog.h */; };
+		21D7FE4213A1FB2500CE0D46 /* GnMemoryDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1113A1FB2500CE0D46 /* GnMemoryDefine.cpp */; };
+		21D7FE4313A1FB2500CE0D46 /* GnMemoryDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1213A1FB2500CE0D46 /* GnMemoryDefine.h */; };
+		21D7FE4413A1FB2500CE0D46 /* GnMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1313A1FB2500CE0D46 /* GnMemoryManager.cpp */; };
+		21D7FE4513A1FB2500CE0D46 /* GnMemoryManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1413A1FB2500CE0D46 /* GnMemoryManager.h */; };
+		21D7FE4613A1FB2500CE0D46 /* GnMemoryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1513A1FB2500CE0D46 /* GnMemoryObject.cpp */; };
+		21D7FE4713A1FB2500CE0D46 /* GnMemoryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1613A1FB2500CE0D46 /* GnMemoryObject.h */; };
+		21D7FE4813A1FB2500CE0D46 /* GnPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1713A1FB2500CE0D46 /* GnPath.cpp */; };
+		21D7FE4913A1FB2500CE0D46 /* GnPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1813A1FB2500CE0D46 /* GnPath.h */; };
+		21D7FE4A13A1FB2500CE0D46 /* GnSimpleString.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1913A1FB2500CE0D46 /* GnSimpleString.h */; };
+		21D7FE4B13A1FB2500CE0D46 /* GnSimpleTString.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1A13A1FB2500CE0D46 /* GnSimpleTString.h */; };
+		21D7FE4C13A1FB2500CE0D46 /* GnSmartObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1B13A1FB2500CE0D46 /* GnSmartObject.h */; };
+		21D7FE4D13A1FB2500CE0D46 /* GnStandardAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1C13A1FB2500CE0D46 /* GnStandardAllocator.cpp */; };
+		21D7FE4E13A1FB2500CE0D46 /* GnStandardAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1D13A1FB2500CE0D46 /* GnStandardAllocator.h */; };
+		21D7FE4F13A1FB2500CE0D46 /* GnSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE1E13A1FB2500CE0D46 /* GnSystem.cpp */; };
+		21D7FE5013A1FB2500CE0D46 /* GnSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE1F13A1FB2500CE0D46 /* GnSystem.h */; };
+		21D7FE5113A1FB2500CE0D46 /* GnSystemDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2013A1FB2500CE0D46 /* GnSystemDefine.h */; };
+		21D7FE5213A1FB2500CE0D46 /* GnSystemEBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE2113A1FB2500CE0D46 /* GnSystemEBM.cpp */; };
+		21D7FE5313A1FB2500CE0D46 /* GnSystemEBM.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2213A1FB2500CE0D46 /* GnSystemEBM.h */; };
+		21D7FE5413A1FB2500CE0D46 /* GnSystemLibType.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2313A1FB2500CE0D46 /* GnSystemLibType.h */; };
+		21D7FE5513A1FB2500CE0D46 /* GnSystemPCH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE2413A1FB2500CE0D46 /* GnSystemPCH.cpp */; };
+		21D7FE5613A1FB2500CE0D46 /* GnSystemPCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2513A1FB2500CE0D46 /* GnSystemPCH.h */; };
+		21D7FE5713A1FB2500CE0D46 /* GnTAllocatorCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2613A1FB2500CE0D46 /* GnTAllocatorCollection.h */; };
+		21D7FE5813A1FB2500CE0D46 /* GnTArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2713A1FB2500CE0D46 /* GnTArray.h */; };
+		21D7FE5913A1FB2500CE0D46 /* GnTCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2813A1FB2500CE0D46 /* GnTCharFunctions.h */; };
+		21D7FE5A13A1FB2500CE0D46 /* GnTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE2913A1FB2500CE0D46 /* GnTimer.cpp */; };
+		21D7FE5B13A1FB2500CE0D46 /* GnTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2A13A1FB2500CE0D46 /* GnTimer.h */; };
+		21D7FE5C13A1FB2500CE0D46 /* GnTMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2B13A1FB2500CE0D46 /* GnTMap.h */; };
+		21D7FE5D13A1FB2500CE0D46 /* GnTOther.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2C13A1FB2500CE0D46 /* GnTOther.h */; };
+		21D7FE5E13A1FB2500CE0D46 /* GnTSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2D13A1FB2500CE0D46 /* GnTSet.h */; };
+		21D7FE5F13A1FB2500CE0D46 /* GnTStringMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE2F13A1FB2500CE0D46 /* GnTStringMap.h */; };
+		21D7FE6013A1FB2500CE0D46 /* GnTypeList.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE3013A1FB2500CE0D46 /* GnTypeList.h */; };
+		21D7FE6113A1FB2500CE0D46 /* GnTypeManip.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE3113A1FB2500CE0D46 /* GnTypeManip.h */; };
+		21D7FE6213A1FB2500CE0D46 /* GnTypeTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE3213A1FB2500CE0D46 /* GnTypeTraits.h */; };
+		21D7FE6313A1FB2500CE0D46 /* GnWCharFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE3313A1FB2500CE0D46 /* GnWCharFunctions.cpp */; };
+		21D7FE6413A1FB2500CE0D46 /* GnWCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE3413A1FB2500CE0D46 /* GnWCharFunctions.h */; };
+		21D7FEAD13A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE6613A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp */; };
+		21D7FEAE13A1FB3A00CE0D46 /* Gn2DBackBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE6713A1FB3A00CE0D46 /* Gn2DBackBuffer.h */; };
+		21D7FEAF13A1FB3A00CE0D46 /* Gn2DTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE6813A1FB3A00CE0D46 /* Gn2DTransform.cpp */; };
+		21D7FEB013A1FB3A00CE0D46 /* Gn2DTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE6913A1FB3A00CE0D46 /* Gn2DTransform.h */; };
+		21D7FEB113A1FB3A00CE0D46 /* Gn3DTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE6A13A1FB3A00CE0D46 /* Gn3DTransform.cpp */; };
+		21D7FEB213A1FB3A00CE0D46 /* Gn3DTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE6B13A1FB3A00CE0D46 /* Gn3DTransform.h */; };
+		21D7FEB313A1FB3A00CE0D46 /* GnAVObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE6C13A1FB3A00CE0D46 /* GnAVObject.cpp */; };
+		21D7FEB413A1FB3A00CE0D46 /* GnAVObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE6D13A1FB3A00CE0D46 /* GnAVObject.h */; };
+		21D7FEB513A1FB3A00CE0D46 /* GnCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE6E13A1FB3A00CE0D46 /* GnCamera.cpp */; };
+		21D7FEB613A1FB3A00CE0D46 /* GnCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE6F13A1FB3A00CE0D46 /* GnCamera.h */; };
+		21D7FEB713A1FB3A00CE0D46 /* GnColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7013A1FB3A00CE0D46 /* GnColor.h */; };
+		21D7FEB813A1FB3A00CE0D46 /* GnFactoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7113A1FB3A00CE0D46 /* GnFactoryManager.cpp */; };
+		21D7FEB913A1FB3A00CE0D46 /* GnFactoryManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7213A1FB3A00CE0D46 /* GnFactoryManager.h */; };
+		21D7FEBA13A1FB3A00CE0D46 /* GnFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7313A1FB3A00CE0D46 /* GnFile.cpp */; };
+		21D7FEBB13A1FB3A00CE0D46 /* GnFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7413A1FB3A00CE0D46 /* GnFile.h */; };
+		21D7FEBC13A1FB3A00CE0D46 /* GnFileMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7513A1FB3A00CE0D46 /* GnFileMacro.h */; };
+		21D7FEBD13A1FB3A00CE0D46 /* GnListManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7613A1FB3A00CE0D46 /* GnListManager.h */; };
+		21D7FEBE13A1FB3A00CE0D46 /* GnMainEBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7713A1FB3A00CE0D46 /* GnMainEBM.cpp */; };
+		21D7FEBF13A1FB3A00CE0D46 /* GnMainEBM.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7813A1FB3A00CE0D46 /* GnMainEBM.h */; };
+		21D7FEC013A1FB3A00CE0D46 /* GnMainHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7913A1FB3A00CE0D46 /* GnMainHeader.h */; };
+		21D7FEC113A1FB3A00CE0D46 /* GnMainLibType.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7A13A1FB3A00CE0D46 /* GnMainLibType.h */; };
+		21D7FEC213A1FB3A00CE0D46 /* GnMainPCH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7B13A1FB3A00CE0D46 /* GnMainPCH.cpp */; };
+		21D7FEC313A1FB3A00CE0D46 /* GnMainPCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7C13A1FB3A00CE0D46 /* GnMainPCH.h */; };
+		21D7FEC413A1FB3A00CE0D46 /* GnNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7D13A1FB3A00CE0D46 /* GnNode.cpp */; };
+		21D7FEC513A1FB3A00CE0D46 /* GnNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE7E13A1FB3A00CE0D46 /* GnNode.h */; };
+		21D7FEC613A1FB3A00CE0D46 /* GnObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE7F13A1FB3A00CE0D46 /* GnObject.cpp */; };
+		21D7FEC713A1FB3A00CE0D46 /* GnObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8013A1FB3A00CE0D46 /* GnObject.h */; };
+		21D7FEC813A1FB3A00CE0D46 /* GnObjectForm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8113A1FB3A00CE0D46 /* GnObjectForm.cpp */; };
+		21D7FEC913A1FB3A00CE0D46 /* GnObjectForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8213A1FB3A00CE0D46 /* GnObjectForm.h */; };
+		21D7FECA13A1FB3A00CE0D46 /* GnObjectStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8313A1FB3A00CE0D46 /* GnObjectStream.cpp */; };
+		21D7FECB13A1FB3A00CE0D46 /* GnObjectStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8413A1FB3A00CE0D46 /* GnObjectStream.h */; };
+		21D7FECC13A1FB3A00CE0D46 /* GnProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8513A1FB3A00CE0D46 /* GnProperty.cpp */; };
+		21D7FECD13A1FB3A00CE0D46 /* GnProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8613A1FB3A00CE0D46 /* GnProperty.h */; };
+		21D7FECE13A1FB3A00CE0D46 /* GnRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8713A1FB3A00CE0D46 /* GnRect.cpp */; };
+		21D7FECF13A1FB3A00CE0D46 /* GnRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8813A1FB3A00CE0D46 /* GnRect.h */; };
+		21D7FED013A1FB3A00CE0D46 /* GnRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8913A1FB3A00CE0D46 /* GnRenderer.cpp */; };
+		21D7FED113A1FB3A00CE0D46 /* GnRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8A13A1FB3A00CE0D46 /* GnRenderer.h */; };
+		21D7FED213A1FB3A00CE0D46 /* GnRenderFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8B13A1FB3A00CE0D46 /* GnRenderFrame.cpp */; };
+		21D7FED313A1FB3A00CE0D46 /* GnRenderFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8C13A1FB3A00CE0D46 /* GnRenderFrame.h */; };
+		21D7FED413A1FB3A00CE0D46 /* GnRenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8D13A1FB3A00CE0D46 /* GnRenderObject.cpp */; };
+		21D7FED513A1FB3A00CE0D46 /* GnRenderObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE8E13A1FB3A00CE0D46 /* GnRenderObject.h */; };
+		21D7FED613A1FB3A00CE0D46 /* GnRenderObjectArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE8F13A1FB3A00CE0D46 /* GnRenderObjectArray.cpp */; };
+		21D7FED713A1FB3A00CE0D46 /* GnRenderObjectArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9013A1FB3A00CE0D46 /* GnRenderObjectArray.h */; };
+		21D7FED813A1FB3A00CE0D46 /* GnRenderTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9113A1FB3A00CE0D46 /* GnRenderTarget.cpp */; };
+		21D7FED913A1FB3A00CE0D46 /* GnRenderTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9213A1FB3A00CE0D46 /* GnRenderTarget.h */; };
+		21D7FEDA13A1FB3A00CE0D46 /* GnRenderView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9313A1FB3A00CE0D46 /* GnRenderView.cpp */; };
+		21D7FEDB13A1FB3A00CE0D46 /* GnRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9413A1FB3A00CE0D46 /* GnRenderView.h */; };
+		21D7FEDC13A1FB3A00CE0D46 /* GnRenderViewSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9513A1FB3A00CE0D46 /* GnRenderViewSet.cpp */; };
+		21D7FEDD13A1FB3A00CE0D46 /* GnRenderViewSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9613A1FB3A00CE0D46 /* GnRenderViewSet.h */; };
+		21D7FEDE13A1FB3A00CE0D46 /* GnRTTI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9713A1FB3A00CE0D46 /* GnRTTI.cpp */; };
+		21D7FEDF13A1FB3A00CE0D46 /* GnRTTI.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9813A1FB3A00CE0D46 /* GnRTTI.h */; };
+		21D7FEE013A1FB3A00CE0D46 /* GnSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9913A1FB3A00CE0D46 /* GnSignal.h */; };
+		21D7FEE113A1FB3A00CE0D46 /* GnSignalSlot.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9A13A1FB3A00CE0D46 /* GnSignalSlot.h */; };
+		21D7FEE213A1FB3A00CE0D46 /* GnSignalSlotMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9B13A1FB3A00CE0D46 /* GnSignalSlotMacros.h */; };
+		21D7FEE313A1FB3A00CE0D46 /* GnStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9C13A1FB3A00CE0D46 /* GnStream.cpp */; };
+		21D7FEE413A1FB3A00CE0D46 /* GnStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9D13A1FB3A00CE0D46 /* GnStream.h */; };
+		21D7FEE513A1FB3A00CE0D46 /* GnStreamMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FE9E13A1FB3A00CE0D46 /* GnStreamMacro.h */; };
+		21D7FEE613A1FB3A00CE0D46 /* GnTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FE9F13A1FB3A00CE0D46 /* GnTexture.cpp */; };
+		21D7FEE713A1FB3A00CE0D46 /* GnTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEA013A1FB3A00CE0D46 /* GnTexture.h */; };
+		21D7FEE813A1FB3A00CE0D46 /* GnTextureMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEA113A1FB3A00CE0D46 /* GnTextureMap.cpp */; };
+		21D7FEE913A1FB3A00CE0D46 /* GnTextureMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEA213A1FB3A00CE0D46 /* GnTextureMap.h */; };
+		21D7FEEA13A1FB3A00CE0D46 /* GnTextureObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEA313A1FB3A00CE0D46 /* GnTextureObject.cpp */; };
+		21D7FEEB13A1FB3A00CE0D46 /* GnTextureObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEA413A1FB3A00CE0D46 /* GnTextureObject.h */; };
+		21D7FEEC13A1FB3A00CE0D46 /* GnTextureProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEA513A1FB3A00CE0D46 /* GnTextureProperty.cpp */; };
+		21D7FEED13A1FB3A00CE0D46 /* GnTextureProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEA613A1FB3A00CE0D46 /* GnTextureProperty.h */; };
+		21D7FEEE13A1FB3A00CE0D46 /* GnTimeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEA713A1FB3A00CE0D46 /* GnTimeController.cpp */; };
+		21D7FEEF13A1FB3A00CE0D46 /* GnTimeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEA813A1FB3A00CE0D46 /* GnTimeController.h */; };
+		21D7FEF013A1FB3A00CE0D46 /* GnTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEA913A1FB3A00CE0D46 /* GnTransform.cpp */; };
+		21D7FEF113A1FB3A00CE0D46 /* GnTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEAA13A1FB3A00CE0D46 /* GnTransform.h */; };
+		21D7FEF213A1FB3A00CE0D46 /* GnVector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEAB13A1FB3A00CE0D46 /* GnVector2.h */; };
+		21D7FEF313A1FB3A00CE0D46 /* GnVector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEAC13A1FB3A00CE0D46 /* GnVector3.h */; };
+		21D7FF3F13A1FB4900CE0D46 /* Gg2DCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEF513A1FB4900CE0D46 /* Gg2DCollision.cpp */; };
+		21D7FF4013A1FB4900CE0D46 /* Gg2DCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEF613A1FB4900CE0D46 /* Gg2DCollision.h */; };
+		21D7FF4113A1FB4900CE0D46 /* Gn2DActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEF713A1FB4900CE0D46 /* Gn2DActor.cpp */; };
+		21D7FF4213A1FB4900CE0D46 /* Gn2DActor.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEF813A1FB4900CE0D46 /* Gn2DActor.h */; };
+		21D7FF4313A1FB4900CE0D46 /* Gn2DAVData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEF913A1FB4900CE0D46 /* Gn2DAVData.cpp */; };
+		21D7FF4413A1FB4900CE0D46 /* Gn2DAVData.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEFA13A1FB4900CE0D46 /* Gn2DAVData.h */; };
+		21D7FF4513A1FB4900CE0D46 /* Gn2DAVDataConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEFB13A1FB4900CE0D46 /* Gn2DAVDataConverter.cpp */; };
+		21D7FF4613A1FB4900CE0D46 /* Gn2DAVDataConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEFC13A1FB4900CE0D46 /* Gn2DAVDataConverter.h */; };
+		21D7FF4713A1FB4900CE0D46 /* Gn2DMeshObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEFD13A1FB4900CE0D46 /* Gn2DMeshObject.cpp */; };
+		21D7FF4813A1FB4900CE0D46 /* Gn2DMeshObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FEFE13A1FB4900CE0D46 /* Gn2DMeshObject.h */; };
+		21D7FF4913A1FB4900CE0D46 /* Gn2DNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FEFF13A1FB4900CE0D46 /* Gn2DNode.cpp */; };
+		21D7FF4A13A1FB4900CE0D46 /* Gn2DNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0013A1FB4900CE0D46 /* Gn2DNode.h */; };
+		21D7FF4B13A1FB4900CE0D46 /* Gn2DSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0113A1FB4900CE0D46 /* Gn2DSequence.cpp */; };
+		21D7FF4C13A1FB4900CE0D46 /* Gn2DSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0213A1FB4900CE0D46 /* Gn2DSequence.h */; };
+		21D7FF4D13A1FB4900CE0D46 /* Gn2DTextureAni.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0313A1FB4900CE0D46 /* Gn2DTextureAni.cpp */; };
+		21D7FF4E13A1FB4900CE0D46 /* Gn2DTextureAni.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0413A1FB4900CE0D46 /* Gn2DTextureAni.h */; };
+		21D7FF4F13A1FB4900CE0D46 /* GnActorStreamMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0513A1FB4900CE0D46 /* GnActorStreamMacro.h */; };
+		21D7FF5013A1FB4900CE0D46 /* GnActorTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0613A1FB4900CE0D46 /* GnActorTool.cpp */; };
+		21D7FF5113A1FB4900CE0D46 /* GnActorTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0713A1FB4900CE0D46 /* GnActorTool.h */; };
+		21D7FF5213A1FB4900CE0D46 /* GnAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0813A1FB4900CE0D46 /* GnAnimation.cpp */; };
+		21D7FF5313A1FB4900CE0D46 /* GnAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0913A1FB4900CE0D46 /* GnAnimation.h */; };
+		21D7FF5413A1FB4900CE0D46 /* GnAnimationKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0A13A1FB4900CE0D46 /* GnAnimationKey.cpp */; };
+		21D7FF5513A1FB4900CE0D46 /* GnAnimationKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0B13A1FB4900CE0D46 /* GnAnimationKey.h */; };
+		21D7FF5613A1FB4900CE0D46 /* GnAnimationKeyMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0C13A1FB4900CE0D46 /* GnAnimationKeyMacro.h */; };
+		21D7FF5713A1FB4900CE0D46 /* GnAnimationKeyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0D13A1FB4900CE0D46 /* GnAnimationKeyManager.cpp */; };
+		21D7FF5813A1FB4900CE0D46 /* GnAnimationKeyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF0E13A1FB4900CE0D46 /* GnAnimationKeyManager.h */; };
+		21D7FF5913A1FB4900CE0D46 /* GnCocosScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF0F13A1FB4900CE0D46 /* GnCocosScene.cpp */; };
+		21D7FF5A13A1FB4900CE0D46 /* GnCocosScene.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1013A1FB4900CE0D46 /* GnCocosScene.h */; };
+		21D7FF5B13A1FB4900CE0D46 /* GnDataStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1113A1FB4900CE0D46 /* GnDataStream.cpp */; };
+		21D7FF5C13A1FB4900CE0D46 /* GnDataStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1213A1FB4900CE0D46 /* GnDataStream.h */; };
+		21D7FF5D13A1FB4900CE0D46 /* GnDataStreamLockPolicy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1313A1FB4900CE0D46 /* GnDataStreamLockPolicy.cpp */; };
+		21D7FF5E13A1FB4900CE0D46 /* GnDataStreamLockPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1413A1FB4900CE0D46 /* GnDataStreamLockPolicy.h */; };
+		21D7FF5F13A1FB4900CE0D46 /* GnDrawPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1513A1FB4900CE0D46 /* GnDrawPrimitives.cpp */; };
+		21D7FF6013A1FB4900CE0D46 /* GnDrawPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1613A1FB4900CE0D46 /* GnDrawPrimitives.h */; };
+		21D7FF6113A1FB4900CE0D46 /* GnGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1713A1FB4900CE0D46 /* GnGameState.cpp */; };
+		21D7FF6213A1FB4900CE0D46 /* GnGameState.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1813A1FB4900CE0D46 /* GnGameState.h */; };
+		21D7FF6313A1FB4900CE0D46 /* GnLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1913A1FB4900CE0D46 /* GnLayer.cpp */; };
+		21D7FF6413A1FB4900CE0D46 /* GnLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1A13A1FB4900CE0D46 /* GnLayer.h */; };
+		21D7FF6513A1FB4900CE0D46 /* GnLayerBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1B13A1FB4900CE0D46 /* GnLayerBackground.cpp */; };
+		21D7FF6613A1FB4900CE0D46 /* GnLayerBackground.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1C13A1FB4900CE0D46 /* GnLayerBackground.h */; };
+		21D7FF6713A1FB4900CE0D46 /* GnLayerMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF1D13A1FB4900CE0D46 /* GnLayerMain.cpp */; };
+		21D7FF6813A1FB4900CE0D46 /* GnLayerMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF1E13A1FB4900CE0D46 /* GnLayerMain.h */; };
+		21D7FF6B13A1FB4900CE0D46 /* GnMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2113A1FB4900CE0D46 /* GnMesh.cpp */; };
+		21D7FF6C13A1FB4900CE0D46 /* GnMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2213A1FB4900CE0D46 /* GnMesh.h */; };
+		21D7FF6D13A1FB4900CE0D46 /* GnMeshData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2313A1FB4900CE0D46 /* GnMeshData.cpp */; };
+		21D7FF6E13A1FB4900CE0D46 /* GnMeshData.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2413A1FB4900CE0D46 /* GnMeshData.h */; };
+		21D7FF6F13A1FB4900CE0D46 /* GnMeshEBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2513A1FB4900CE0D46 /* GnMeshEBM.cpp */; };
+		21D7FF7013A1FB4900CE0D46 /* GnMeshEBM.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2613A1FB4900CE0D46 /* GnMeshEBM.h */; };
+		21D7FF7113A1FB4900CE0D46 /* GnMeshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2713A1FB4900CE0D46 /* GnMeshHeader.h */; };
+		21D7FF7213A1FB4900CE0D46 /* GnMeshLibType.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2813A1FB4900CE0D46 /* GnMeshLibType.h */; };
+		21D7FF7313A1FB4900CE0D46 /* GnMeshPCH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2913A1FB4900CE0D46 /* GnMeshPCH.cpp */; };
+		21D7FF7413A1FB4900CE0D46 /* GnMeshPCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2A13A1FB4900CE0D46 /* GnMeshPCH.h */; };
+		21D7FF7513A1FB4900CE0D46 /* GnSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2B13A1FB4900CE0D46 /* GnSceneManager.cpp */; };
+		21D7FF7613A1FB4900CE0D46 /* GnSceneManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2C13A1FB4900CE0D46 /* GnSceneManager.h */; };
+		21D7FF7713A1FB4900CE0D46 /* GnScreenMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2D13A1FB4900CE0D46 /* GnScreenMesh.cpp */; };
+		21D7FF7813A1FB4900CE0D46 /* GnScreenMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF2E13A1FB4900CE0D46 /* GnScreenMesh.h */; };
+		21D7FF7913A1FB4900CE0D46 /* GnSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF2F13A1FB4900CE0D46 /* GnSequence.cpp */; };
+		21D7FF7A13A1FB4900CE0D46 /* GnSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3013A1FB4900CE0D46 /* GnSequence.h */; };
+		21D7FF7B13A1FB4900CE0D46 /* GnSequenceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3113A1FB4900CE0D46 /* GnSequenceManager.cpp */; };
+		21D7FF7C13A1FB4900CE0D46 /* GnSequenceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3213A1FB4900CE0D46 /* GnSequenceManager.h */; };
+		21D7FF7D13A1FB4900CE0D46 /* GnSMCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3313A1FB4900CE0D46 /* GnSMCollision.cpp */; };
+		21D7FF7E13A1FB4900CE0D46 /* GnSMCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3413A1FB4900CE0D46 /* GnSMCollision.h */; };
+		21D7FF7F13A1FB4900CE0D46 /* GnSMManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3513A1FB4900CE0D46 /* GnSMManager.cpp */; };
+		21D7FF8013A1FB4900CE0D46 /* GnSMManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3613A1FB4900CE0D46 /* GnSMManager.h */; };
+		21D7FF8113A1FB4900CE0D46 /* GnSMPostionAniCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3713A1FB4900CE0D46 /* GnSMPostionAniCtrl.cpp */; };
+		21D7FF8213A1FB4900CE0D46 /* GnSMPostionAniCtrl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3813A1FB4900CE0D46 /* GnSMPostionAniCtrl.h */; };
+		21D7FF8313A1FB4900CE0D46 /* GnSMRenderView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3913A1FB4900CE0D46 /* GnSMRenderView.cpp */; };
+		21D7FF8413A1FB4900CE0D46 /* GnSMRenderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3A13A1FB4900CE0D46 /* GnSMRenderView.h */; };
+		21D7FF8513A1FB4900CE0D46 /* GnSMTextureAniCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3B13A1FB4900CE0D46 /* GnSMTextureAniCtrl.cpp */; };
+		21D7FF8613A1FB4900CE0D46 /* GnSMTextureAniCtrl.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3C13A1FB4900CE0D46 /* GnSMTextureAniCtrl.h */; };
+		21D7FF8713A1FB4900CE0D46 /* GnTegIDKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FF3D13A1FB4900CE0D46 /* GnTegIDKey.cpp */; };
+		21D7FF8813A1FB4900CE0D46 /* GnTegIDKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF3E13A1FB4900CE0D46 /* GnTegIDKey.h */; };
+		21D7FF9813A2044000CE0D46 /* GnMesh-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FF9713A2044000CE0D46 /* GnMesh-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		21D56B1213A9F2DC004893C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21D7FDC713A1F8BA00CE0D46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D7FDE013A1F9F500CE0D46;
+			remoteInfo = GnSystem;
+		};
+		21D56B1413A9F2E0004893C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21D7FDC713A1F8BA00CE0D46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D7FDE013A1F9F500CE0D46;
+			remoteInfo = GnSystem;
+		};
+		21D56B1613A9F2E0004893C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21D7FDC713A1F8BA00CE0D46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D7FDEC13A1FA0800CE0D46;
+			remoteInfo = GnMain;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2161AA3813A9D77D002CE952 /* GFileLIst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GFileLIst.h; path = ../../../../Project/Core/GnMesh/Source/GFileLIst.h; sourceTree = "<group>"; };
+		2161AA3A13A9D79F002CE952 /* GFileList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GFileList.cpp; path = ../../../../Project/Core/GnMesh/Source/GFileList.cpp; sourceTree = "<group>"; };
+		2161AA3C13A9E32F002CE952 /* GnSingletonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSingletonManager.h; sourceTree = "<group>"; };
+		2161AA3E13A9E49A002CE952 /* GnSingletonManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSingletonManager.cpp; sourceTree = "<group>"; };
+		21C957DA13AADCBC00978181 /* GnTSimpleArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTSimpleArray.h; sourceTree = "<group>"; };
+		21C957E113AB29F600978181 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
+		21C957E213AB2BFD00978181 /* GnPathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnPathUtil.h; sourceTree = "<group>"; };
+		21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		21D7FDE113A1F9F500CE0D46 /* libGnSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D7FDE513A1F9F500CE0D46 /* GnSystem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnSystem-Prefix.pch"; sourceTree = "<group>"; };
+		21D7FDED13A1FA0800CE0D46 /* libGnMain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnMain.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D7FDF113A1FA0800CE0D46 /* GnMain-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnMain-Prefix.pch"; sourceTree = "<group>"; };
+		21D7FDF913A1FA1500CE0D46 /* libGnMesh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnMesh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D7FE0313A1FB2500CE0D46 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/GnBitwiseoperation.h; sourceTree = "<group>"; };
+		21D7FE0413A1FB2500CE0D46 /* GnAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAllocator.h; sourceTree = "<group>"; };
+		21D7FE0513A1FB2500CE0D46 /* GnCharFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnCharFunctions.cpp; sourceTree = "<group>"; };
+		21D7FE0613A1FB2500CE0D46 /* GnCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnCharFunctions.h; sourceTree = "<group>"; };
+		21D7FE0713A1FB2500CE0D46 /* GnCriticalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnCriticalSection.h; sourceTree = "<group>"; };
+		21D7FE0813A1FB2500CE0D46 /* GnDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDebug.cpp; sourceTree = "<group>"; };
+		21D7FE0913A1FB2500CE0D46 /* GnDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDebug.h; sourceTree = "<group>"; };
+		21D7FE0A13A1FB2500CE0D46 /* GnDebugAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDebugAllocator.cpp; sourceTree = "<group>"; };
+		21D7FE0B13A1FB2500CE0D46 /* GnDebugAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDebugAllocator.h; sourceTree = "<group>"; };
+		21D7FE0C13A1FB2500CE0D46 /* GnFrameSkip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnFrameSkip.cpp; sourceTree = "<group>"; };
+		21D7FE0D13A1FB2500CE0D46 /* GnFrameSkip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnFrameSkip.h; sourceTree = "<group>"; };
+		21D7FE0E13A1FB2500CE0D46 /* GnList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnList.h; sourceTree = "<group>"; };
+		21D7FE0F13A1FB2500CE0D46 /* GnLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnLog.cpp; sourceTree = "<group>"; };
+		21D7FE1013A1FB2500CE0D46 /* GnLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnLog.h; sourceTree = "<group>"; };
+		21D7FE1113A1FB2500CE0D46 /* GnMemoryDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryDefine.cpp; sourceTree = "<group>"; };
+		21D7FE1213A1FB2500CE0D46 /* GnMemoryDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryDefine.h; sourceTree = "<group>"; };
+		21D7FE1313A1FB2500CE0D46 /* GnMemoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryManager.cpp; sourceTree = "<group>"; };
+		21D7FE1413A1FB2500CE0D46 /* GnMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryManager.h; sourceTree = "<group>"; };
+		21D7FE1513A1FB2500CE0D46 /* GnMemoryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryObject.cpp; sourceTree = "<group>"; };
+		21D7FE1613A1FB2500CE0D46 /* GnMemoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryObject.h; sourceTree = "<group>"; };
+		21D7FE1713A1FB2500CE0D46 /* GnPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnPath.cpp; sourceTree = "<group>"; };
+		21D7FE1813A1FB2500CE0D46 /* GnPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnPath.h; sourceTree = "<group>"; };
+		21D7FE1913A1FB2500CE0D46 /* GnSimpleString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSimpleString.h; sourceTree = "<group>"; };
+		21D7FE1A13A1FB2500CE0D46 /* GnSimpleTString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSimpleTString.h; sourceTree = "<group>"; };
+		21D7FE1B13A1FB2500CE0D46 /* GnSmartObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSmartObject.h; sourceTree = "<group>"; };
+		21D7FE1C13A1FB2500CE0D46 /* GnStandardAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 2147484706; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GnStandardAllocator.cpp; sourceTree = "<group>"; };
+		21D7FE1D13A1FB2500CE0D46 /* GnStandardAllocator.h */ = {isa = PBXFileReference; fileEncoding = 2147484706; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = GnStandardAllocator.h; sourceTree = "<group>"; };
+		21D7FE1E13A1FB2500CE0D46 /* GnSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystem.cpp; sourceTree = "<group>"; };
+		21D7FE1F13A1FB2500CE0D46 /* GnSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystem.h; sourceTree = "<group>"; };
+		21D7FE2013A1FB2500CE0D46 /* GnSystemDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemDefine.h; sourceTree = "<group>"; };
+		21D7FE2113A1FB2500CE0D46 /* GnSystemEBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystemEBM.cpp; sourceTree = "<group>"; };
+		21D7FE2213A1FB2500CE0D46 /* GnSystemEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemEBM.h; sourceTree = "<group>"; };
+		21D7FE2313A1FB2500CE0D46 /* GnSystemLibType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemLibType.h; sourceTree = "<group>"; };
+		21D7FE2413A1FB2500CE0D46 /* GnSystemPCH.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystemPCH.cpp; sourceTree = "<group>"; };
+		21D7FE2513A1FB2500CE0D46 /* GnSystemPCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemPCH.h; sourceTree = "<group>"; };
+		21D7FE2613A1FB2500CE0D46 /* GnTAllocatorCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTAllocatorCollection.h; sourceTree = "<group>"; };
+		21D7FE2713A1FB2500CE0D46 /* GnTArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTArray.h; sourceTree = "<group>"; };
+		21D7FE2813A1FB2500CE0D46 /* GnTCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTCharFunctions.h; sourceTree = "<group>"; };
+		21D7FE2913A1FB2500CE0D46 /* GnTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTimer.cpp; sourceTree = "<group>"; };
+		21D7FE2A13A1FB2500CE0D46 /* GnTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTimer.h; sourceTree = "<group>"; };
+		21D7FE2B13A1FB2500CE0D46 /* GnTMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTMap.h; sourceTree = "<group>"; };
+		21D7FE2C13A1FB2500CE0D46 /* GnTOther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTOther.h; sourceTree = "<group>"; };
+		21D7FE2D13A1FB2500CE0D46 /* GnTSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTSet.h; sourceTree = "<group>"; };
+		21D7FE2E13A1FB2500CE0D46 /* GnTSet.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GnTSet.inl; sourceTree = "<group>"; };
+		21D7FE2F13A1FB2500CE0D46 /* GnTStringMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTStringMap.h; sourceTree = "<group>"; };
+		21D7FE3013A1FB2500CE0D46 /* GnTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTypeList.h; sourceTree = "<group>"; };
+		21D7FE3113A1FB2500CE0D46 /* GnTypeManip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTypeManip.h; sourceTree = "<group>"; };
+		21D7FE3213A1FB2500CE0D46 /* GnTypeTraits.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GnTypeTraits.h; sourceTree = "<group>"; };
+		21D7FE3313A1FB2500CE0D46 /* GnWCharFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnWCharFunctions.cpp; sourceTree = "<group>"; };
+		21D7FE3413A1FB2500CE0D46 /* GnWCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnWCharFunctions.h; sourceTree = "<group>"; };
+		21D7FE6613A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DBackBuffer.cpp; sourceTree = "<group>"; };
+		21D7FE6713A1FB3A00CE0D46 /* Gn2DBackBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DBackBuffer.h; sourceTree = "<group>"; };
+		21D7FE6813A1FB3A00CE0D46 /* Gn2DTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DTransform.cpp; sourceTree = "<group>"; };
+		21D7FE6913A1FB3A00CE0D46 /* Gn2DTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DTransform.h; sourceTree = "<group>"; };
+		21D7FE6A13A1FB3A00CE0D46 /* Gn3DTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn3DTransform.cpp; sourceTree = "<group>"; };
+		21D7FE6B13A1FB3A00CE0D46 /* Gn3DTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn3DTransform.h; sourceTree = "<group>"; };
+		21D7FE6C13A1FB3A00CE0D46 /* GnAVObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnAVObject.cpp; sourceTree = "<group>"; };
+		21D7FE6D13A1FB3A00CE0D46 /* GnAVObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAVObject.h; sourceTree = "<group>"; };
+		21D7FE6E13A1FB3A00CE0D46 /* GnCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnCamera.cpp; sourceTree = "<group>"; };
+		21D7FE6F13A1FB3A00CE0D46 /* GnCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnCamera.h; sourceTree = "<group>"; };
+		21D7FE7013A1FB3A00CE0D46 /* GnColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnColor.h; sourceTree = "<group>"; };
+		21D7FE7113A1FB3A00CE0D46 /* GnFactoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnFactoryManager.cpp; sourceTree = "<group>"; };
+		21D7FE7213A1FB3A00CE0D46 /* GnFactoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnFactoryManager.h; sourceTree = "<group>"; };
+		21D7FE7313A1FB3A00CE0D46 /* GnFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnFile.cpp; sourceTree = "<group>"; };
+		21D7FE7413A1FB3A00CE0D46 /* GnFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnFile.h; sourceTree = "<group>"; };
+		21D7FE7513A1FB3A00CE0D46 /* GnFileMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnFileMacro.h; sourceTree = "<group>"; };
+		21D7FE7613A1FB3A00CE0D46 /* GnListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnListManager.h; sourceTree = "<group>"; };
+		21D7FE7713A1FB3A00CE0D46 /* GnMainEBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMainEBM.cpp; sourceTree = "<group>"; };
+		21D7FE7813A1FB3A00CE0D46 /* GnMainEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMainEBM.h; sourceTree = "<group>"; };
+		21D7FE7913A1FB3A00CE0D46 /* GnMainHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMainHeader.h; sourceTree = "<group>"; };
+		21D7FE7A13A1FB3A00CE0D46 /* GnMainLibType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMainLibType.h; sourceTree = "<group>"; };
+		21D7FE7B13A1FB3A00CE0D46 /* GnMainPCH.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMainPCH.cpp; sourceTree = "<group>"; };
+		21D7FE7C13A1FB3A00CE0D46 /* GnMainPCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMainPCH.h; sourceTree = "<group>"; };
+		21D7FE7D13A1FB3A00CE0D46 /* GnNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnNode.cpp; sourceTree = "<group>"; };
+		21D7FE7E13A1FB3A00CE0D46 /* GnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnNode.h; sourceTree = "<group>"; };
+		21D7FE7F13A1FB3A00CE0D46 /* GnObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnObject.cpp; sourceTree = "<group>"; };
+		21D7FE8013A1FB3A00CE0D46 /* GnObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnObject.h; sourceTree = "<group>"; };
+		21D7FE8113A1FB3A00CE0D46 /* GnObjectForm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnObjectForm.cpp; sourceTree = "<group>"; };
+		21D7FE8213A1FB3A00CE0D46 /* GnObjectForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnObjectForm.h; sourceTree = "<group>"; };
+		21D7FE8313A1FB3A00CE0D46 /* GnObjectStream.cpp */ = {isa = PBXFileReference; fileEncoding = 7; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GnObjectStream.cpp; sourceTree = "<group>"; };
+		21D7FE8413A1FB3A00CE0D46 /* GnObjectStream.h */ = {isa = PBXFileReference; fileEncoding = 7; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = GnObjectStream.h; sourceTree = "<group>"; };
+		21D7FE8513A1FB3A00CE0D46 /* GnProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnProperty.cpp; sourceTree = "<group>"; };
+		21D7FE8613A1FB3A00CE0D46 /* GnProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnProperty.h; sourceTree = "<group>"; };
+		21D7FE8713A1FB3A00CE0D46 /* GnRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRect.cpp; sourceTree = "<group>"; };
+		21D7FE8813A1FB3A00CE0D46 /* GnRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRect.h; sourceTree = "<group>"; };
+		21D7FE8913A1FB3A00CE0D46 /* GnRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderer.cpp; sourceTree = "<group>"; };
+		21D7FE8A13A1FB3A00CE0D46 /* GnRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderer.h; sourceTree = "<group>"; };
+		21D7FE8B13A1FB3A00CE0D46 /* GnRenderFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderFrame.cpp; sourceTree = "<group>"; };
+		21D7FE8C13A1FB3A00CE0D46 /* GnRenderFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderFrame.h; sourceTree = "<group>"; };
+		21D7FE8D13A1FB3A00CE0D46 /* GnRenderObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderObject.cpp; sourceTree = "<group>"; };
+		21D7FE8E13A1FB3A00CE0D46 /* GnRenderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderObject.h; sourceTree = "<group>"; };
+		21D7FE8F13A1FB3A00CE0D46 /* GnRenderObjectArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderObjectArray.cpp; sourceTree = "<group>"; };
+		21D7FE9013A1FB3A00CE0D46 /* GnRenderObjectArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderObjectArray.h; sourceTree = "<group>"; };
+		21D7FE9113A1FB3A00CE0D46 /* GnRenderTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderTarget.cpp; sourceTree = "<group>"; };
+		21D7FE9213A1FB3A00CE0D46 /* GnRenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderTarget.h; sourceTree = "<group>"; };
+		21D7FE9313A1FB3A00CE0D46 /* GnRenderView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderView.cpp; sourceTree = "<group>"; };
+		21D7FE9413A1FB3A00CE0D46 /* GnRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderView.h; sourceTree = "<group>"; };
+		21D7FE9513A1FB3A00CE0D46 /* GnRenderViewSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRenderViewSet.cpp; sourceTree = "<group>"; };
+		21D7FE9613A1FB3A00CE0D46 /* GnRenderViewSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRenderViewSet.h; sourceTree = "<group>"; };
+		21D7FE9713A1FB3A00CE0D46 /* GnRTTI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnRTTI.cpp; sourceTree = "<group>"; };
+		21D7FE9813A1FB3A00CE0D46 /* GnRTTI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnRTTI.h; sourceTree = "<group>"; };
+		21D7FE9913A1FB3A00CE0D46 /* GnSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSignal.h; sourceTree = "<group>"; };
+		21D7FE9A13A1FB3A00CE0D46 /* GnSignalSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSignalSlot.h; sourceTree = "<group>"; };
+		21D7FE9B13A1FB3A00CE0D46 /* GnSignalSlotMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSignalSlotMacros.h; sourceTree = "<group>"; };
+		21D7FE9C13A1FB3A00CE0D46 /* GnStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnStream.cpp; sourceTree = "<group>"; };
+		21D7FE9D13A1FB3A00CE0D46 /* GnStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnStream.h; sourceTree = "<group>"; };
+		21D7FE9E13A1FB3A00CE0D46 /* GnStreamMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnStreamMacro.h; sourceTree = "<group>"; };
+		21D7FE9F13A1FB3A00CE0D46 /* GnTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTexture.cpp; sourceTree = "<group>"; };
+		21D7FEA013A1FB3A00CE0D46 /* GnTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTexture.h; sourceTree = "<group>"; };
+		21D7FEA113A1FB3A00CE0D46 /* GnTextureMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTextureMap.cpp; sourceTree = "<group>"; };
+		21D7FEA213A1FB3A00CE0D46 /* GnTextureMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTextureMap.h; sourceTree = "<group>"; };
+		21D7FEA313A1FB3A00CE0D46 /* GnTextureObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTextureObject.cpp; sourceTree = "<group>"; };
+		21D7FEA413A1FB3A00CE0D46 /* GnTextureObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTextureObject.h; sourceTree = "<group>"; };
+		21D7FEA513A1FB3A00CE0D46 /* GnTextureProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTextureProperty.cpp; sourceTree = "<group>"; };
+		21D7FEA613A1FB3A00CE0D46 /* GnTextureProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTextureProperty.h; sourceTree = "<group>"; };
+		21D7FEA713A1FB3A00CE0D46 /* GnTimeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTimeController.cpp; sourceTree = "<group>"; };
+		21D7FEA813A1FB3A00CE0D46 /* GnTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTimeController.h; sourceTree = "<group>"; };
+		21D7FEA913A1FB3A00CE0D46 /* GnTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTransform.cpp; sourceTree = "<group>"; };
+		21D7FEAA13A1FB3A00CE0D46 /* GnTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTransform.h; sourceTree = "<group>"; };
+		21D7FEAB13A1FB3A00CE0D46 /* GnVector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnVector2.h; sourceTree = "<group>"; };
+		21D7FEAC13A1FB3A00CE0D46 /* GnVector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnVector3.h; sourceTree = "<group>"; };
+		21D7FEF513A1FB4900CE0D46 /* Gg2DCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gg2DCollision.cpp; sourceTree = "<group>"; };
+		21D7FEF613A1FB4900CE0D46 /* Gg2DCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gg2DCollision.h; sourceTree = "<group>"; };
+		21D7FEF713A1FB4900CE0D46 /* Gn2DActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DActor.cpp; sourceTree = "<group>"; };
+		21D7FEF813A1FB4900CE0D46 /* Gn2DActor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DActor.h; sourceTree = "<group>"; };
+		21D7FEF913A1FB4900CE0D46 /* Gn2DAVData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DAVData.cpp; sourceTree = "<group>"; };
+		21D7FEFA13A1FB4900CE0D46 /* Gn2DAVData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DAVData.h; sourceTree = "<group>"; };
+		21D7FEFB13A1FB4900CE0D46 /* Gn2DAVDataConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DAVDataConverter.cpp; sourceTree = "<group>"; };
+		21D7FEFC13A1FB4900CE0D46 /* Gn2DAVDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DAVDataConverter.h; sourceTree = "<group>"; };
+		21D7FEFD13A1FB4900CE0D46 /* Gn2DMeshObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DMeshObject.cpp; sourceTree = "<group>"; };
+		21D7FEFE13A1FB4900CE0D46 /* Gn2DMeshObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DMeshObject.h; sourceTree = "<group>"; };
+		21D7FEFF13A1FB4900CE0D46 /* Gn2DNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DNode.cpp; sourceTree = "<group>"; };
+		21D7FF0013A1FB4900CE0D46 /* Gn2DNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DNode.h; sourceTree = "<group>"; };
+		21D7FF0113A1FB4900CE0D46 /* Gn2DSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DSequence.cpp; sourceTree = "<group>"; };
+		21D7FF0213A1FB4900CE0D46 /* Gn2DSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DSequence.h; sourceTree = "<group>"; };
+		21D7FF0313A1FB4900CE0D46 /* Gn2DTextureAni.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DTextureAni.cpp; sourceTree = "<group>"; };
+		21D7FF0413A1FB4900CE0D46 /* Gn2DTextureAni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DTextureAni.h; sourceTree = "<group>"; };
+		21D7FF0513A1FB4900CE0D46 /* GnActorStreamMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnActorStreamMacro.h; sourceTree = "<group>"; };
+		21D7FF0613A1FB4900CE0D46 /* GnActorTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnActorTool.cpp; sourceTree = "<group>"; };
+		21D7FF0713A1FB4900CE0D46 /* GnActorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnActorTool.h; sourceTree = "<group>"; };
+		21D7FF0813A1FB4900CE0D46 /* GnAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnAnimation.cpp; sourceTree = "<group>"; };
+		21D7FF0913A1FB4900CE0D46 /* GnAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAnimation.h; sourceTree = "<group>"; };
+		21D7FF0A13A1FB4900CE0D46 /* GnAnimationKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnAnimationKey.cpp; sourceTree = "<group>"; };
+		21D7FF0B13A1FB4900CE0D46 /* GnAnimationKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAnimationKey.h; sourceTree = "<group>"; };
+		21D7FF0C13A1FB4900CE0D46 /* GnAnimationKeyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAnimationKeyMacro.h; sourceTree = "<group>"; };
+		21D7FF0D13A1FB4900CE0D46 /* GnAnimationKeyManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnAnimationKeyManager.cpp; sourceTree = "<group>"; };
+		21D7FF0E13A1FB4900CE0D46 /* GnAnimationKeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAnimationKeyManager.h; sourceTree = "<group>"; };
+		21D7FF0F13A1FB4900CE0D46 /* GnCocosScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnCocosScene.cpp; path = ../../../../Project/Core/GnMesh/Source/GnCocosScene.cpp; sourceTree = "<group>"; };
+		21D7FF1013A1FB4900CE0D46 /* GnCocosScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnCocosScene.h; path = ../../../../Project/Core/GnMesh/Source/GnCocosScene.h; sourceTree = "<group>"; };
+		21D7FF1113A1FB4900CE0D46 /* GnDataStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDataStream.cpp; sourceTree = "<group>"; };
+		21D7FF1213A1FB4900CE0D46 /* GnDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDataStream.h; sourceTree = "<group>"; };
+		21D7FF1313A1FB4900CE0D46 /* GnDataStreamLockPolicy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDataStreamLockPolicy.cpp; sourceTree = "<group>"; };
+		21D7FF1413A1FB4900CE0D46 /* GnDataStreamLockPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDataStreamLockPolicy.h; sourceTree = "<group>"; };
+		21D7FF1513A1FB4900CE0D46 /* GnDrawPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDrawPrimitives.cpp; sourceTree = "<group>"; };
+		21D7FF1613A1FB4900CE0D46 /* GnDrawPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDrawPrimitives.h; sourceTree = "<group>"; };
+		21D7FF1713A1FB4900CE0D46 /* GnGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnGameState.cpp; sourceTree = "<group>"; };
+		21D7FF1813A1FB4900CE0D46 /* GnGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnGameState.h; sourceTree = "<group>"; };
+		21D7FF1913A1FB4900CE0D46 /* GnLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnLayer.cpp; path = ../../../../Project/Core/GnMesh/Source/GnLayer.cpp; sourceTree = "<group>"; };
+		21D7FF1A13A1FB4900CE0D46 /* GnLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnLayer.h; path = ../../../../Project/Core/GnMesh/Source/GnLayer.h; sourceTree = "<group>"; };
+		21D7FF1B13A1FB4900CE0D46 /* GnLayerBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnLayerBackground.cpp; path = ../../../../Project/Core/GnMesh/Source/GnLayerBackground.cpp; sourceTree = "<group>"; };
+		21D7FF1C13A1FB4900CE0D46 /* GnLayerBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnLayerBackground.h; path = ../../../../Project/Core/GnMesh/Source/GnLayerBackground.h; sourceTree = "<group>"; };
+		21D7FF1D13A1FB4900CE0D46 /* GnLayerMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnLayerMain.cpp; path = ../../../../Project/Core/GnMesh/Source/GnLayerMain.cpp; sourceTree = "<group>"; };
+		21D7FF1E13A1FB4900CE0D46 /* GnLayerMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnLayerMain.h; path = ../../../../Project/Core/GnMesh/Source/GnLayerMain.h; sourceTree = "<group>"; };
+		21D7FF2113A1FB4900CE0D46 /* GnMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMesh.cpp; sourceTree = "<group>"; };
+		21D7FF2213A1FB4900CE0D46 /* GnMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMesh.h; sourceTree = "<group>"; };
+		21D7FF2313A1FB4900CE0D46 /* GnMeshData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMeshData.cpp; sourceTree = "<group>"; };
+		21D7FF2413A1FB4900CE0D46 /* GnMeshData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMeshData.h; sourceTree = "<group>"; };
+		21D7FF2513A1FB4900CE0D46 /* GnMeshEBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMeshEBM.cpp; sourceTree = "<group>"; };
+		21D7FF2613A1FB4900CE0D46 /* GnMeshEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMeshEBM.h; sourceTree = "<group>"; };
+		21D7FF2713A1FB4900CE0D46 /* GnMeshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMeshHeader.h; sourceTree = "<group>"; };
+		21D7FF2813A1FB4900CE0D46 /* GnMeshLibType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMeshLibType.h; sourceTree = "<group>"; };
+		21D7FF2913A1FB4900CE0D46 /* GnMeshPCH.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMeshPCH.cpp; sourceTree = "<group>"; };
+		21D7FF2A13A1FB4900CE0D46 /* GnMeshPCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMeshPCH.h; sourceTree = "<group>"; };
+		21D7FF2B13A1FB4900CE0D46 /* GnSceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSceneManager.cpp; sourceTree = "<group>"; };
+		21D7FF2C13A1FB4900CE0D46 /* GnSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSceneManager.h; sourceTree = "<group>"; };
+		21D7FF2D13A1FB4900CE0D46 /* GnScreenMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnScreenMesh.cpp; sourceTree = "<group>"; };
+		21D7FF2E13A1FB4900CE0D46 /* GnScreenMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnScreenMesh.h; sourceTree = "<group>"; };
+		21D7FF2F13A1FB4900CE0D46 /* GnSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSequence.cpp; sourceTree = "<group>"; };
+		21D7FF3013A1FB4900CE0D46 /* GnSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSequence.h; sourceTree = "<group>"; };
+		21D7FF3113A1FB4900CE0D46 /* GnSequenceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSequenceManager.cpp; sourceTree = "<group>"; };
+		21D7FF3213A1FB4900CE0D46 /* GnSequenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSequenceManager.h; sourceTree = "<group>"; };
+		21D7FF3313A1FB4900CE0D46 /* GnSMCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSMCollision.cpp; sourceTree = "<group>"; };
+		21D7FF3413A1FB4900CE0D46 /* GnSMCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSMCollision.h; sourceTree = "<group>"; };
+		21D7FF3513A1FB4900CE0D46 /* GnSMManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSMManager.cpp; sourceTree = "<group>"; };
+		21D7FF3613A1FB4900CE0D46 /* GnSMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSMManager.h; sourceTree = "<group>"; };
+		21D7FF3713A1FB4900CE0D46 /* GnSMPostionAniCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSMPostionAniCtrl.cpp; sourceTree = "<group>"; };
+		21D7FF3813A1FB4900CE0D46 /* GnSMPostionAniCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSMPostionAniCtrl.h; sourceTree = "<group>"; };
+		21D7FF3913A1FB4900CE0D46 /* GnSMRenderView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSMRenderView.cpp; sourceTree = "<group>"; };
+		21D7FF3A13A1FB4900CE0D46 /* GnSMRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSMRenderView.h; sourceTree = "<group>"; };
+		21D7FF3B13A1FB4900CE0D46 /* GnSMTextureAniCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSMTextureAniCtrl.cpp; sourceTree = "<group>"; };
+		21D7FF3C13A1FB4900CE0D46 /* GnSMTextureAniCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSMTextureAniCtrl.h; sourceTree = "<group>"; };
+		21D7FF3D13A1FB4900CE0D46 /* GnTegIDKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTegIDKey.cpp; sourceTree = "<group>"; };
+		21D7FF3E13A1FB4900CE0D46 /* GnTegIDKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTegIDKey.h; sourceTree = "<group>"; };
+		21D7FF9713A2044000CE0D46 /* GnMesh-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GnMesh-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21D7FDDE13A1F9F500CE0D46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FDE213A1F9F500CE0D46 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDEA13A1FA0800CE0D46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FDEE13A1FA0800CE0D46 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDF613A1FA1500CE0D46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FDFA13A1FA1500CE0D46 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2161AA3613A9D698002CE952 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				2161AA3A13A9D79F002CE952 /* GFileList.cpp */,
+				2161AA3813A9D77D002CE952 /* GFileLIst.h */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		21C89C4E13A5E82100507155 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FF0F13A1FB4900CE0D46 /* GnCocosScene.cpp */,
+				21D7FF1013A1FB4900CE0D46 /* GnCocosScene.h */,
+				21D7FF1913A1FB4900CE0D46 /* GnLayer.cpp */,
+				21D7FF1A13A1FB4900CE0D46 /* GnLayer.h */,
+				21D7FF1B13A1FB4900CE0D46 /* GnLayerBackground.cpp */,
+				21D7FF1C13A1FB4900CE0D46 /* GnLayerBackground.h */,
+				21D7FF1D13A1FB4900CE0D46 /* GnLayerMain.cpp */,
+				21D7FF1E13A1FB4900CE0D46 /* GnLayerMain.h */,
+			);
+			name = Layer;
+			sourceTree = "<group>";
+		};
+		21C957E413AB2C0F00978181 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				21C957E113AB29F600978181 /* ios */,
+				21C957E213AB2BFD00978181 /* GnPathUtil.h */,
+			);
+			name = Platform;
+			sourceTree = "<group>";
+		};
+		21D7FDC513A1F8BA00CE0D46 = {
+			isa = PBXGroup;
+			children = (
+				21D7FDE313A1F9F500CE0D46 /* GnSystem */,
+				21D7FDEF13A1FA0800CE0D46 /* GnMain */,
+				21D7FDFB13A1FA1500CE0D46 /* GnMesh */,
+				21D7FDD213A1F8BA00CE0D46 /* Frameworks */,
+				21D7FDD113A1F8BA00CE0D46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21D7FDD113A1F8BA00CE0D46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FDE113A1F9F500CE0D46 /* libGnSystem.a */,
+				21D7FDED13A1FA0800CE0D46 /* libGnMain.a */,
+				21D7FDF913A1FA1500CE0D46 /* libGnMesh.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21D7FDD213A1F8BA00CE0D46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21D7FDE313A1F9F500CE0D46 /* GnSystem */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FE0113A1FB2500CE0D46 /* Source */,
+				21D7FDE413A1F9F500CE0D46 /* Supporting Files */,
+			);
+			path = GnSystem;
+			sourceTree = "<group>";
+		};
+		21D7FDE413A1F9F500CE0D46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FDE513A1F9F500CE0D46 /* GnSystem-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21D7FDEF13A1FA0800CE0D46 /* GnMain */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FE6513A1FB3A00CE0D46 /* Source */,
+				21D7FDF013A1FA0800CE0D46 /* Supporting Files */,
+			);
+			path = GnMain;
+			sourceTree = "<group>";
+		};
+		21D7FDF013A1FA0800CE0D46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FDF113A1FA0800CE0D46 /* GnMain-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21D7FDFB13A1FA1500CE0D46 /* GnMesh */ = {
+			isa = PBXGroup;
+			children = (
+				21C89C4E13A5E82100507155 /* Layer */,
+				2161AA3613A9D698002CE952 /* Game */,
+				21D7FEF413A1FB4900CE0D46 /* Source */,
+				21D7FDFC13A1FA1500CE0D46 /* Supporting Files */,
+			);
+			path = GnMesh;
+			sourceTree = "<group>";
+		};
+		21D7FDFC13A1FA1500CE0D46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FF9713A2044000CE0D46 /* GnMesh-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		21D7FE0113A1FB2500CE0D46 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FE0213A1FB2500CE0D46 /* GnBitwiseoperation.h */,
+				21D7FE0413A1FB2500CE0D46 /* GnAllocator.h */,
+				21D7FE0513A1FB2500CE0D46 /* GnCharFunctions.cpp */,
+				21D7FE0613A1FB2500CE0D46 /* GnCharFunctions.h */,
+				21D7FE0713A1FB2500CE0D46 /* GnCriticalSection.h */,
+				21D7FE0813A1FB2500CE0D46 /* GnDebug.cpp */,
+				21D7FE0913A1FB2500CE0D46 /* GnDebug.h */,
+				21D7FE0A13A1FB2500CE0D46 /* GnDebugAllocator.cpp */,
+				21D7FE0B13A1FB2500CE0D46 /* GnDebugAllocator.h */,
+				21D7FE0C13A1FB2500CE0D46 /* GnFrameSkip.cpp */,
+				21D7FE0D13A1FB2500CE0D46 /* GnFrameSkip.h */,
+				21D7FE0E13A1FB2500CE0D46 /* GnList.h */,
+				21D7FE0F13A1FB2500CE0D46 /* GnLog.cpp */,
+				21D7FE1013A1FB2500CE0D46 /* GnLog.h */,
+				21D7FE1113A1FB2500CE0D46 /* GnMemoryDefine.cpp */,
+				21D7FE1213A1FB2500CE0D46 /* GnMemoryDefine.h */,
+				21D7FE1313A1FB2500CE0D46 /* GnMemoryManager.cpp */,
+				21D7FE1413A1FB2500CE0D46 /* GnMemoryManager.h */,
+				21D7FE1513A1FB2500CE0D46 /* GnMemoryObject.cpp */,
+				21D7FE1613A1FB2500CE0D46 /* GnMemoryObject.h */,
+				21D7FE1713A1FB2500CE0D46 /* GnPath.cpp */,
+				21D7FE1813A1FB2500CE0D46 /* GnPath.h */,
+				2161AA3E13A9E49A002CE952 /* GnSingletonManager.cpp */,
+				2161AA3C13A9E32F002CE952 /* GnSingletonManager.h */,
+				21D7FE1913A1FB2500CE0D46 /* GnSimpleString.h */,
+				21D7FE1A13A1FB2500CE0D46 /* GnSimpleTString.h */,
+				21D7FE1B13A1FB2500CE0D46 /* GnSmartObject.h */,
+				21D7FE1C13A1FB2500CE0D46 /* GnStandardAllocator.cpp */,
+				21D7FE1D13A1FB2500CE0D46 /* GnStandardAllocator.h */,
+				21D7FE1E13A1FB2500CE0D46 /* GnSystem.cpp */,
+				21D7FE1F13A1FB2500CE0D46 /* GnSystem.h */,
+				21D7FE2013A1FB2500CE0D46 /* GnSystemDefine.h */,
+				21D7FE2113A1FB2500CE0D46 /* GnSystemEBM.cpp */,
+				21D7FE2213A1FB2500CE0D46 /* GnSystemEBM.h */,
+				21D7FE2313A1FB2500CE0D46 /* GnSystemLibType.h */,
+				21D7FE2413A1FB2500CE0D46 /* GnSystemPCH.cpp */,
+				21D7FE2513A1FB2500CE0D46 /* GnSystemPCH.h */,
+				21D7FE2613A1FB2500CE0D46 /* GnTAllocatorCollection.h */,
+				21D7FE2713A1FB2500CE0D46 /* GnTArray.h */,
+				21C957DA13AADCBC00978181 /* GnTSimpleArray.h */,
+				21D7FE2813A1FB2500CE0D46 /* GnTCharFunctions.h */,
+				21D7FE2913A1FB2500CE0D46 /* GnTimer.cpp */,
+				21D7FE2A13A1FB2500CE0D46 /* GnTimer.h */,
+				21D7FE2B13A1FB2500CE0D46 /* GnTMap.h */,
+				21D7FE2C13A1FB2500CE0D46 /* GnTOther.h */,
+				21D7FE2D13A1FB2500CE0D46 /* GnTSet.h */,
+				21D7FE2E13A1FB2500CE0D46 /* GnTSet.inl */,
+				21D7FE2F13A1FB2500CE0D46 /* GnTStringMap.h */,
+				21D7FE3013A1FB2500CE0D46 /* GnTypeList.h */,
+				21D7FE3113A1FB2500CE0D46 /* GnTypeManip.h */,
+				21D7FE3213A1FB2500CE0D46 /* GnTypeTraits.h */,
+				21D7FE3313A1FB2500CE0D46 /* GnWCharFunctions.cpp */,
+				21D7FE3413A1FB2500CE0D46 /* GnWCharFunctions.h */,
+			);
+			name = Source;
+			path = ../../../../Project/Core/GnSystem/Source;
+			sourceTree = "<group>";
+		};
+		21D7FE6513A1FB3A00CE0D46 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				21D7FE6613A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp */,
+				21D7FE6713A1FB3A00CE0D46 /* Gn2DBackBuffer.h */,
+				21D7FE6813A1FB3A00CE0D46 /* Gn2DTransform.cpp */,
+				21D7FE6913A1FB3A00CE0D46 /* Gn2DTransform.h */,
+				21D7FE6A13A1FB3A00CE0D46 /* Gn3DTransform.cpp */,
+				21D7FE6B13A1FB3A00CE0D46 /* Gn3DTransform.h */,
+				21D7FE6C13A1FB3A00CE0D46 /* GnAVObject.cpp */,
+				21D7FE6D13A1FB3A00CE0D46 /* GnAVObject.h */,
+				21D7FE6E13A1FB3A00CE0D46 /* GnCamera.cpp */,
+				21D7FE6F13A1FB3A00CE0D46 /* GnCamera.h */,
+				21D7FE7013A1FB3A00CE0D46 /* GnColor.h */,
+				21D7FE7113A1FB3A00CE0D46 /* GnFactoryManager.cpp */,
+				21D7FE7213A1FB3A00CE0D46 /* GnFactoryManager.h */,
+				21D7FE7313A1FB3A00CE0D46 /* GnFile.cpp */,
+				21D7FE7413A1FB3A00CE0D46 /* GnFile.h */,
+				21D7FE7513A1FB3A00CE0D46 /* GnFileMacro.h */,
+				21D7FE7613A1FB3A00CE0D46 /* GnListManager.h */,
+				21D7FE7713A1FB3A00CE0D46 /* GnMainEBM.cpp */,
+				21D7FE7813A1FB3A00CE0D46 /* GnMainEBM.h */,
+				21D7FE7913A1FB3A00CE0D46 /* GnMainHeader.h */,
+				21D7FE7A13A1FB3A00CE0D46 /* GnMainLibType.h */,
+				21D7FE7B13A1FB3A00CE0D46 /* GnMainPCH.cpp */,
+				21D7FE7C13A1FB3A00CE0D46 /* GnMainPCH.h */,
+				21D7FE7D13A1FB3A00CE0D46 /* GnNode.cpp */,
+				21D7FE7E13A1FB3A00CE0D46 /* GnNode.h */,
+				21D7FE7F13A1FB3A00CE0D46 /* GnObject.cpp */,
+				21D7FE8013A1FB3A00CE0D46 /* GnObject.h */,
+				21D7FE8113A1FB3A00CE0D46 /* GnObjectForm.cpp */,
+				21D7FE8213A1FB3A00CE0D46 /* GnObjectForm.h */,
+				21D7FE8313A1FB3A00CE0D46 /* GnObjectStream.cpp */,
+				21D7FE8413A1FB3A00CE0D46 /* GnObjectStream.h */,
+				21D7FE8513A1FB3A00CE0D46 /* GnProperty.cpp */,
+				21D7FE8613A1FB3A00CE0D46 /* GnProperty.h */,
+				21D7FE8713A1FB3A00CE0D46 /* GnRect.cpp */,
+				21D7FE8813A1FB3A00CE0D46 /* GnRect.h */,
+				21D7FE8913A1FB3A00CE0D46 /* GnRenderer.cpp */,
+				21D7FE8A13A1FB3A00CE0D46 /* GnRenderer.h */,
+				21D7FE8B13A1FB3A00CE0D46 /* GnRenderFrame.cpp */,
+				21D7FE8C13A1FB3A00CE0D46 /* GnRenderFrame.h */,
+				21D7FE8D13A1FB3A00CE0D46 /* GnRenderObject.cpp */,
+				21D7FE8E13A1FB3A00CE0D46 /* GnRenderObject.h */,
+				21D7FE8F13A1FB3A00CE0D46 /* GnRenderObjectArray.cpp */,
+				21D7FE9013A1FB3A00CE0D46 /* GnRenderObjectArray.h */,
+				21D7FE9113A1FB3A00CE0D46 /* GnRenderTarget.cpp */,
+				21D7FE9213A1FB3A00CE0D46 /* GnRenderTarget.h */,
+				21D7FE9313A1FB3A00CE0D46 /* GnRenderView.cpp */,
+				21D7FE9413A1FB3A00CE0D46 /* GnRenderView.h */,
+				21D7FE9513A1FB3A00CE0D46 /* GnRenderViewSet.cpp */,
+				21D7FE9613A1FB3A00CE0D46 /* GnRenderViewSet.h */,
+				21D7FE9713A1FB3A00CE0D46 /* GnRTTI.cpp */,
+				21D7FE9813A1FB3A00CE0D46 /* GnRTTI.h */,
+				21D7FE9913A1FB3A00CE0D46 /* GnSignal.h */,
+				21D7FE9A13A1FB3A00CE0D46 /* GnSignalSlot.h */,
+				21D7FE9B13A1FB3A00CE0D46 /* GnSignalSlotMacros.h */,
+				21D7FE9C13A1FB3A00CE0D46 /* GnStream.cpp */,
+				21D7FE9D13A1FB3A00CE0D46 /* GnStream.h */,
+				21D7FE9E13A1FB3A00CE0D46 /* GnStreamMacro.h */,
+				21D7FE9F13A1FB3A00CE0D46 /* GnTexture.cpp */,
+				21D7FEA013A1FB3A00CE0D46 /* GnTexture.h */,
+				21D7FEA113A1FB3A00CE0D46 /* GnTextureMap.cpp */,
+				21D7FEA213A1FB3A00CE0D46 /* GnTextureMap.h */,
+				21D7FEA313A1FB3A00CE0D46 /* GnTextureObject.cpp */,
+				21D7FEA413A1FB3A00CE0D46 /* GnTextureObject.h */,
+				21D7FEA513A1FB3A00CE0D46 /* GnTextureProperty.cpp */,
+				21D7FEA613A1FB3A00CE0D46 /* GnTextureProperty.h */,
+				21D7FEA713A1FB3A00CE0D46 /* GnTimeController.cpp */,
+				21D7FEA813A1FB3A00CE0D46 /* GnTimeController.h */,
+				21D7FEA913A1FB3A00CE0D46 /* GnTransform.cpp */,
+				21D7FEAA13A1FB3A00CE0D46 /* GnTransform.h */,
+				21D7FEAB13A1FB3A00CE0D46 /* GnVector2.h */,
+				21D7FEAC13A1FB3A00CE0D46 /* GnVector3.h */,
+			);
+			name = Source;
+			path = ../../../../Project/Core/GnMain/Source;
+			sourceTree = "<group>";
+		};
+		21D7FEF413A1FB4900CE0D46 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				21C957E413AB2C0F00978181 /* Platform */,
+				21D7FF1713A1FB4900CE0D46 /* GnGameState.cpp */,
+				21D7FF1813A1FB4900CE0D46 /* GnGameState.h */,
+				21D7FEF513A1FB4900CE0D46 /* Gg2DCollision.cpp */,
+				21D7FEF613A1FB4900CE0D46 /* Gg2DCollision.h */,
+				21D7FEF713A1FB4900CE0D46 /* Gn2DActor.cpp */,
+				21D7FEF813A1FB4900CE0D46 /* Gn2DActor.h */,
+				21D7FEF913A1FB4900CE0D46 /* Gn2DAVData.cpp */,
+				21D7FEFA13A1FB4900CE0D46 /* Gn2DAVData.h */,
+				21D7FEFB13A1FB4900CE0D46 /* Gn2DAVDataConverter.cpp */,
+				21D7FEFC13A1FB4900CE0D46 /* Gn2DAVDataConverter.h */,
+				21D7FEFD13A1FB4900CE0D46 /* Gn2DMeshObject.cpp */,
+				21D7FEFE13A1FB4900CE0D46 /* Gn2DMeshObject.h */,
+				21D7FEFF13A1FB4900CE0D46 /* Gn2DNode.cpp */,
+				21D7FF0013A1FB4900CE0D46 /* Gn2DNode.h */,
+				21D7FF0113A1FB4900CE0D46 /* Gn2DSequence.cpp */,
+				21D7FF0213A1FB4900CE0D46 /* Gn2DSequence.h */,
+				21D7FF0313A1FB4900CE0D46 /* Gn2DTextureAni.cpp */,
+				21D7FF0413A1FB4900CE0D46 /* Gn2DTextureAni.h */,
+				21D7FF0513A1FB4900CE0D46 /* GnActorStreamMacro.h */,
+				21D7FF0613A1FB4900CE0D46 /* GnActorTool.cpp */,
+				21D7FF0713A1FB4900CE0D46 /* GnActorTool.h */,
+				21D7FF0813A1FB4900CE0D46 /* GnAnimation.cpp */,
+				21D7FF0913A1FB4900CE0D46 /* GnAnimation.h */,
+				21D7FF0A13A1FB4900CE0D46 /* GnAnimationKey.cpp */,
+				21D7FF0B13A1FB4900CE0D46 /* GnAnimationKey.h */,
+				21D7FF0C13A1FB4900CE0D46 /* GnAnimationKeyMacro.h */,
+				21D7FF0D13A1FB4900CE0D46 /* GnAnimationKeyManager.cpp */,
+				21D7FF0E13A1FB4900CE0D46 /* GnAnimationKeyManager.h */,
+				21D7FF1113A1FB4900CE0D46 /* GnDataStream.cpp */,
+				21D7FF1213A1FB4900CE0D46 /* GnDataStream.h */,
+				21D7FF1313A1FB4900CE0D46 /* GnDataStreamLockPolicy.cpp */,
+				21D7FF1413A1FB4900CE0D46 /* GnDataStreamLockPolicy.h */,
+				21D7FF1513A1FB4900CE0D46 /* GnDrawPrimitives.cpp */,
+				21D7FF1613A1FB4900CE0D46 /* GnDrawPrimitives.h */,
+				21D7FF2113A1FB4900CE0D46 /* GnMesh.cpp */,
+				21D7FF2213A1FB4900CE0D46 /* GnMesh.h */,
+				21D7FF2313A1FB4900CE0D46 /* GnMeshData.cpp */,
+				21D7FF2413A1FB4900CE0D46 /* GnMeshData.h */,
+				21D7FF2513A1FB4900CE0D46 /* GnMeshEBM.cpp */,
+				21D7FF2613A1FB4900CE0D46 /* GnMeshEBM.h */,
+				21D7FF2713A1FB4900CE0D46 /* GnMeshHeader.h */,
+				21D7FF2813A1FB4900CE0D46 /* GnMeshLibType.h */,
+				21D7FF2913A1FB4900CE0D46 /* GnMeshPCH.cpp */,
+				21D7FF2A13A1FB4900CE0D46 /* GnMeshPCH.h */,
+				21D7FF2B13A1FB4900CE0D46 /* GnSceneManager.cpp */,
+				21D7FF2C13A1FB4900CE0D46 /* GnSceneManager.h */,
+				21D7FF2D13A1FB4900CE0D46 /* GnScreenMesh.cpp */,
+				21D7FF2E13A1FB4900CE0D46 /* GnScreenMesh.h */,
+				21D7FF2F13A1FB4900CE0D46 /* GnSequence.cpp */,
+				21D7FF3013A1FB4900CE0D46 /* GnSequence.h */,
+				21D7FF3113A1FB4900CE0D46 /* GnSequenceManager.cpp */,
+				21D7FF3213A1FB4900CE0D46 /* GnSequenceManager.h */,
+				21D7FF3313A1FB4900CE0D46 /* GnSMCollision.cpp */,
+				21D7FF3413A1FB4900CE0D46 /* GnSMCollision.h */,
+				21D7FF3513A1FB4900CE0D46 /* GnSMManager.cpp */,
+				21D7FF3613A1FB4900CE0D46 /* GnSMManager.h */,
+				21D7FF3713A1FB4900CE0D46 /* GnSMPostionAniCtrl.cpp */,
+				21D7FF3813A1FB4900CE0D46 /* GnSMPostionAniCtrl.h */,
+				21D7FF3913A1FB4900CE0D46 /* GnSMRenderView.cpp */,
+				21D7FF3A13A1FB4900CE0D46 /* GnSMRenderView.h */,
+				21D7FF3B13A1FB4900CE0D46 /* GnSMTextureAniCtrl.cpp */,
+				21D7FF3C13A1FB4900CE0D46 /* GnSMTextureAniCtrl.h */,
+				21D7FF3D13A1FB4900CE0D46 /* GnTegIDKey.cpp */,
+				21D7FF3E13A1FB4900CE0D46 /* GnTegIDKey.h */,
+			);
+			name = Source;
+			path = ../../../../Project/Core/GnMesh/Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		21D7FDDF13A1F9F500CE0D46 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FE3513A1FB2500CE0D46 /* GnAllocator.h in Headers */,
+				21D7FE3713A1FB2500CE0D46 /* GnCharFunctions.h in Headers */,
+				21D7FE3813A1FB2500CE0D46 /* GnCriticalSection.h in Headers */,
+				21D7FE3A13A1FB2500CE0D46 /* GnDebug.h in Headers */,
+				21D7FE3C13A1FB2500CE0D46 /* GnDebugAllocator.h in Headers */,
+				21D7FE3E13A1FB2500CE0D46 /* GnFrameSkip.h in Headers */,
+				21D7FE3F13A1FB2500CE0D46 /* GnList.h in Headers */,
+				21D7FE4113A1FB2500CE0D46 /* GnLog.h in Headers */,
+				21D7FE4313A1FB2500CE0D46 /* GnMemoryDefine.h in Headers */,
+				21D7FE4513A1FB2500CE0D46 /* GnMemoryManager.h in Headers */,
+				21D7FE4713A1FB2500CE0D46 /* GnMemoryObject.h in Headers */,
+				21D7FE4913A1FB2500CE0D46 /* GnPath.h in Headers */,
+				21D7FE4A13A1FB2500CE0D46 /* GnSimpleString.h in Headers */,
+				21D7FE4B13A1FB2500CE0D46 /* GnSimpleTString.h in Headers */,
+				21D7FE4C13A1FB2500CE0D46 /* GnSmartObject.h in Headers */,
+				21D7FE4E13A1FB2500CE0D46 /* GnStandardAllocator.h in Headers */,
+				21D7FE5013A1FB2500CE0D46 /* GnSystem.h in Headers */,
+				21D7FE5113A1FB2500CE0D46 /* GnSystemDefine.h in Headers */,
+				21D7FE5313A1FB2500CE0D46 /* GnSystemEBM.h in Headers */,
+				21D7FE5413A1FB2500CE0D46 /* GnSystemLibType.h in Headers */,
+				21D7FE5613A1FB2500CE0D46 /* GnSystemPCH.h in Headers */,
+				21D7FE5713A1FB2500CE0D46 /* GnTAllocatorCollection.h in Headers */,
+				21D7FE5813A1FB2500CE0D46 /* GnTArray.h in Headers */,
+				21D7FE5913A1FB2500CE0D46 /* GnTCharFunctions.h in Headers */,
+				21D7FE5B13A1FB2500CE0D46 /* GnTimer.h in Headers */,
+				21D7FE5C13A1FB2500CE0D46 /* GnTMap.h in Headers */,
+				21D7FE5D13A1FB2500CE0D46 /* GnTOther.h in Headers */,
+				21D7FE5E13A1FB2500CE0D46 /* GnTSet.h in Headers */,
+				21D7FE5F13A1FB2500CE0D46 /* GnTStringMap.h in Headers */,
+				21D7FE6013A1FB2500CE0D46 /* GnTypeList.h in Headers */,
+				21D7FE6113A1FB2500CE0D46 /* GnTypeManip.h in Headers */,
+				21D7FE6213A1FB2500CE0D46 /* GnTypeTraits.h in Headers */,
+				21D7FE6413A1FB2500CE0D46 /* GnWCharFunctions.h in Headers */,
+				21D7FF9813A2044000CE0D46 /* GnMesh-Prefix.pch in Headers */,
+				2161AA3D13A9E32F002CE952 /* GnSingletonManager.h in Headers */,
+				21C957DB13AADCBC00978181 /* GnTSimpleArray.h in Headers */,
+				21C957E313AB2BFD00978181 /* GnPathUtil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDEB13A1FA0800CE0D46 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FEAE13A1FB3A00CE0D46 /* Gn2DBackBuffer.h in Headers */,
+				21D7FEB013A1FB3A00CE0D46 /* Gn2DTransform.h in Headers */,
+				21D7FEB213A1FB3A00CE0D46 /* Gn3DTransform.h in Headers */,
+				21D7FEB413A1FB3A00CE0D46 /* GnAVObject.h in Headers */,
+				21D7FEB613A1FB3A00CE0D46 /* GnCamera.h in Headers */,
+				21D7FEB713A1FB3A00CE0D46 /* GnColor.h in Headers */,
+				21D7FEB913A1FB3A00CE0D46 /* GnFactoryManager.h in Headers */,
+				21D7FEBB13A1FB3A00CE0D46 /* GnFile.h in Headers */,
+				21D7FEBC13A1FB3A00CE0D46 /* GnFileMacro.h in Headers */,
+				21D7FEBD13A1FB3A00CE0D46 /* GnListManager.h in Headers */,
+				21D7FEBF13A1FB3A00CE0D46 /* GnMainEBM.h in Headers */,
+				21D7FEC013A1FB3A00CE0D46 /* GnMainHeader.h in Headers */,
+				21D7FEC113A1FB3A00CE0D46 /* GnMainLibType.h in Headers */,
+				21D7FEC313A1FB3A00CE0D46 /* GnMainPCH.h in Headers */,
+				21D7FEC513A1FB3A00CE0D46 /* GnNode.h in Headers */,
+				21D7FEC713A1FB3A00CE0D46 /* GnObject.h in Headers */,
+				21D7FEC913A1FB3A00CE0D46 /* GnObjectForm.h in Headers */,
+				21D7FECB13A1FB3A00CE0D46 /* GnObjectStream.h in Headers */,
+				21D7FECD13A1FB3A00CE0D46 /* GnProperty.h in Headers */,
+				21D7FECF13A1FB3A00CE0D46 /* GnRect.h in Headers */,
+				21D7FED113A1FB3A00CE0D46 /* GnRenderer.h in Headers */,
+				21D7FED313A1FB3A00CE0D46 /* GnRenderFrame.h in Headers */,
+				21D7FED513A1FB3A00CE0D46 /* GnRenderObject.h in Headers */,
+				21D7FED713A1FB3A00CE0D46 /* GnRenderObjectArray.h in Headers */,
+				21D7FED913A1FB3A00CE0D46 /* GnRenderTarget.h in Headers */,
+				21D7FEDB13A1FB3A00CE0D46 /* GnRenderView.h in Headers */,
+				21D7FEDD13A1FB3A00CE0D46 /* GnRenderViewSet.h in Headers */,
+				21D7FEDF13A1FB3A00CE0D46 /* GnRTTI.h in Headers */,
+				21D7FEE013A1FB3A00CE0D46 /* GnSignal.h in Headers */,
+				21D7FEE113A1FB3A00CE0D46 /* GnSignalSlot.h in Headers */,
+				21D7FEE213A1FB3A00CE0D46 /* GnSignalSlotMacros.h in Headers */,
+				21D7FEE413A1FB3A00CE0D46 /* GnStream.h in Headers */,
+				21D7FEE513A1FB3A00CE0D46 /* GnStreamMacro.h in Headers */,
+				21D7FEE713A1FB3A00CE0D46 /* GnTexture.h in Headers */,
+				21D7FEE913A1FB3A00CE0D46 /* GnTextureMap.h in Headers */,
+				21D7FEEB13A1FB3A00CE0D46 /* GnTextureObject.h in Headers */,
+				21D7FEED13A1FB3A00CE0D46 /* GnTextureProperty.h in Headers */,
+				21D7FEEF13A1FB3A00CE0D46 /* GnTimeController.h in Headers */,
+				21D7FEF113A1FB3A00CE0D46 /* GnTransform.h in Headers */,
+				21D7FEF213A1FB3A00CE0D46 /* GnVector2.h in Headers */,
+				21D7FEF313A1FB3A00CE0D46 /* GnVector3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDF713A1FA1500CE0D46 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D56B1013A9F294004893C2 /* GFileLIst.h in Headers */,
+				21D7FF4013A1FB4900CE0D46 /* Gg2DCollision.h in Headers */,
+				21D7FF4213A1FB4900CE0D46 /* Gn2DActor.h in Headers */,
+				21D7FF4413A1FB4900CE0D46 /* Gn2DAVData.h in Headers */,
+				21D7FF4613A1FB4900CE0D46 /* Gn2DAVDataConverter.h in Headers */,
+				21D7FF4813A1FB4900CE0D46 /* Gn2DMeshObject.h in Headers */,
+				21D7FF4A13A1FB4900CE0D46 /* Gn2DNode.h in Headers */,
+				21D7FF4C13A1FB4900CE0D46 /* Gn2DSequence.h in Headers */,
+				21D7FF4E13A1FB4900CE0D46 /* Gn2DTextureAni.h in Headers */,
+				21D7FF4F13A1FB4900CE0D46 /* GnActorStreamMacro.h in Headers */,
+				21D7FF5113A1FB4900CE0D46 /* GnActorTool.h in Headers */,
+				21D7FF5313A1FB4900CE0D46 /* GnAnimation.h in Headers */,
+				21D7FF5513A1FB4900CE0D46 /* GnAnimationKey.h in Headers */,
+				21D7FF5613A1FB4900CE0D46 /* GnAnimationKeyMacro.h in Headers */,
+				21D7FF5813A1FB4900CE0D46 /* GnAnimationKeyManager.h in Headers */,
+				21D7FF5A13A1FB4900CE0D46 /* GnCocosScene.h in Headers */,
+				21D7FF5C13A1FB4900CE0D46 /* GnDataStream.h in Headers */,
+				21D7FF5E13A1FB4900CE0D46 /* GnDataStreamLockPolicy.h in Headers */,
+				21D7FF6013A1FB4900CE0D46 /* GnDrawPrimitives.h in Headers */,
+				21D7FF6213A1FB4900CE0D46 /* GnGameState.h in Headers */,
+				21D7FF6413A1FB4900CE0D46 /* GnLayer.h in Headers */,
+				21D7FF6613A1FB4900CE0D46 /* GnLayerBackground.h in Headers */,
+				21D7FF6813A1FB4900CE0D46 /* GnLayerMain.h in Headers */,
+				21D7FF6C13A1FB4900CE0D46 /* GnMesh.h in Headers */,
+				21D7FF6E13A1FB4900CE0D46 /* GnMeshData.h in Headers */,
+				21D7FF7013A1FB4900CE0D46 /* GnMeshEBM.h in Headers */,
+				21D7FF7113A1FB4900CE0D46 /* GnMeshHeader.h in Headers */,
+				21D7FF7213A1FB4900CE0D46 /* GnMeshLibType.h in Headers */,
+				21D7FF7413A1FB4900CE0D46 /* GnMeshPCH.h in Headers */,
+				21D7FF7613A1FB4900CE0D46 /* GnSceneManager.h in Headers */,
+				21D7FF7813A1FB4900CE0D46 /* GnScreenMesh.h in Headers */,
+				21D7FF7A13A1FB4900CE0D46 /* GnSequence.h in Headers */,
+				21D7FF7C13A1FB4900CE0D46 /* GnSequenceManager.h in Headers */,
+				21D7FF7E13A1FB4900CE0D46 /* GnSMCollision.h in Headers */,
+				21D7FF8013A1FB4900CE0D46 /* GnSMManager.h in Headers */,
+				21D7FF8213A1FB4900CE0D46 /* GnSMPostionAniCtrl.h in Headers */,
+				21D7FF8413A1FB4900CE0D46 /* GnSMRenderView.h in Headers */,
+				21D7FF8613A1FB4900CE0D46 /* GnSMTextureAniCtrl.h in Headers */,
+				21D7FF8813A1FB4900CE0D46 /* GnTegIDKey.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		21D7FDE013A1F9F500CE0D46 /* GnSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D7FDE613A1F9F500CE0D46 /* Build configuration list for PBXNativeTarget "GnSystem" */;
+			buildPhases = (
+				21D7FDDD13A1F9F500CE0D46 /* Sources */,
+				21D7FDDE13A1F9F500CE0D46 /* Frameworks */,
+				21D7FDDF13A1F9F500CE0D46 /* Headers */,
+				21D7FF8D13A1FD0D00CE0D46 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GnSystem;
+			productName = GnSystem;
+			productReference = 21D7FDE113A1F9F500CE0D46 /* libGnSystem.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		21D7FDEC13A1FA0800CE0D46 /* GnMain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D7FDF213A1FA0800CE0D46 /* Build configuration list for PBXNativeTarget "GnMain" */;
+			buildPhases = (
+				21D7FDE913A1FA0800CE0D46 /* Sources */,
+				21D7FDEA13A1FA0800CE0D46 /* Frameworks */,
+				21D7FDEB13A1FA0800CE0D46 /* Headers */,
+				21D7FF8E13A1FD2100CE0D46 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21D56B1313A9F2DC004893C2 /* PBXTargetDependency */,
+			);
+			name = GnMain;
+			productName = GnMain;
+			productReference = 21D7FDED13A1FA0800CE0D46 /* libGnMain.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		21D7FDF813A1FA1500CE0D46 /* GnMesh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D7FDFE13A1FA1500CE0D46 /* Build configuration list for PBXNativeTarget "GnMesh" */;
+			buildPhases = (
+				21D7FDF513A1FA1500CE0D46 /* Sources */,
+				21D7FDF613A1FA1500CE0D46 /* Frameworks */,
+				21D7FDF713A1FA1500CE0D46 /* Headers */,
+				21CDBAB213A4A46200BEF1DA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21D56B1513A9F2E0004893C2 /* PBXTargetDependency */,
+				21D56B1713A9F2E0004893C2 /* PBXTargetDependency */,
+			);
+			name = GnMesh;
+			productName = GnMesh;
+			productReference = 21D7FDF913A1FA1500CE0D46 /* libGnMesh.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21D7FDC713A1F8BA00CE0D46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
+			buildConfigurationList = 21D7FDCA13A1F8BA00CE0D46 /* Build configuration list for PBXProject "Core" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 21D7FDC513A1F8BA00CE0D46;
+			productRefGroup = 21D7FDD113A1F8BA00CE0D46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21D7FDE013A1F9F500CE0D46 /* GnSystem */,
+				21D7FDEC13A1FA0800CE0D46 /* GnMain */,
+				21D7FDF813A1FA1500CE0D46 /* GnMesh */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21CDBAB213A4A46200BEF1DA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export EXPORT_PLATFORM_NAME=\"$PLATFORM_NAME\"\n/bin/sh ../CopyHeader.sh";
+		};
+		21D7FF8D13A1FD0D00CE0D46 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ../CopyHeader.sh";
+		};
+		21D7FF8E13A1FD2100CE0D46 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ../CopyHeader.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21D7FDDD13A1F9F500CE0D46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FE3613A1FB2500CE0D46 /* GnCharFunctions.cpp in Sources */,
+				21D7FE3913A1FB2500CE0D46 /* GnDebug.cpp in Sources */,
+				21D7FE3B13A1FB2500CE0D46 /* GnDebugAllocator.cpp in Sources */,
+				21D7FE3D13A1FB2500CE0D46 /* GnFrameSkip.cpp in Sources */,
+				21D7FE4013A1FB2500CE0D46 /* GnLog.cpp in Sources */,
+				21D7FE4213A1FB2500CE0D46 /* GnMemoryDefine.cpp in Sources */,
+				21D7FE4413A1FB2500CE0D46 /* GnMemoryManager.cpp in Sources */,
+				21D7FE4613A1FB2500CE0D46 /* GnMemoryObject.cpp in Sources */,
+				21D7FE4813A1FB2500CE0D46 /* GnPath.cpp in Sources */,
+				21D7FE4D13A1FB2500CE0D46 /* GnStandardAllocator.cpp in Sources */,
+				21D7FE4F13A1FB2500CE0D46 /* GnSystem.cpp in Sources */,
+				21D7FE5213A1FB2500CE0D46 /* GnSystemEBM.cpp in Sources */,
+				21D7FE5513A1FB2500CE0D46 /* GnSystemPCH.cpp in Sources */,
+				21D7FE5A13A1FB2500CE0D46 /* GnTimer.cpp in Sources */,
+				21D7FE6313A1FB2500CE0D46 /* GnWCharFunctions.cpp in Sources */,
+				2161AA3F13A9E49A002CE952 /* GnSingletonManager.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDE913A1FA0800CE0D46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D7FEAD13A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp in Sources */,
+				21D7FEAF13A1FB3A00CE0D46 /* Gn2DTransform.cpp in Sources */,
+				21D7FEB113A1FB3A00CE0D46 /* Gn3DTransform.cpp in Sources */,
+				21D7FEB313A1FB3A00CE0D46 /* GnAVObject.cpp in Sources */,
+				21D7FEB513A1FB3A00CE0D46 /* GnCamera.cpp in Sources */,
+				21D7FEB813A1FB3A00CE0D46 /* GnFactoryManager.cpp in Sources */,
+				21D7FEBA13A1FB3A00CE0D46 /* GnFile.cpp in Sources */,
+				21D7FEBE13A1FB3A00CE0D46 /* GnMainEBM.cpp in Sources */,
+				21D7FEC213A1FB3A00CE0D46 /* GnMainPCH.cpp in Sources */,
+				21D7FEC413A1FB3A00CE0D46 /* GnNode.cpp in Sources */,
+				21D7FEC613A1FB3A00CE0D46 /* GnObject.cpp in Sources */,
+				21D7FEC813A1FB3A00CE0D46 /* GnObjectForm.cpp in Sources */,
+				21D7FECA13A1FB3A00CE0D46 /* GnObjectStream.cpp in Sources */,
+				21D7FECC13A1FB3A00CE0D46 /* GnProperty.cpp in Sources */,
+				21D7FECE13A1FB3A00CE0D46 /* GnRect.cpp in Sources */,
+				21D7FED013A1FB3A00CE0D46 /* GnRenderer.cpp in Sources */,
+				21D7FED213A1FB3A00CE0D46 /* GnRenderFrame.cpp in Sources */,
+				21D7FED413A1FB3A00CE0D46 /* GnRenderObject.cpp in Sources */,
+				21D7FED613A1FB3A00CE0D46 /* GnRenderObjectArray.cpp in Sources */,
+				21D7FED813A1FB3A00CE0D46 /* GnRenderTarget.cpp in Sources */,
+				21D7FEDA13A1FB3A00CE0D46 /* GnRenderView.cpp in Sources */,
+				21D7FEDC13A1FB3A00CE0D46 /* GnRenderViewSet.cpp in Sources */,
+				21D7FEDE13A1FB3A00CE0D46 /* GnRTTI.cpp in Sources */,
+				21D7FEE313A1FB3A00CE0D46 /* GnStream.cpp in Sources */,
+				21D7FEE613A1FB3A00CE0D46 /* GnTexture.cpp in Sources */,
+				21D7FEE813A1FB3A00CE0D46 /* GnTextureMap.cpp in Sources */,
+				21D7FEEA13A1FB3A00CE0D46 /* GnTextureObject.cpp in Sources */,
+				21D7FEEC13A1FB3A00CE0D46 /* GnTextureProperty.cpp in Sources */,
+				21D7FEEE13A1FB3A00CE0D46 /* GnTimeController.cpp in Sources */,
+				21D7FEF013A1FB3A00CE0D46 /* GnTransform.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D7FDF513A1FA1500CE0D46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D56B1113A9F29C004893C2 /* GFileList.cpp in Sources */,
+				21D7FF3F13A1FB4900CE0D46 /* Gg2DCollision.cpp in Sources */,
+				21D7FF4113A1FB4900CE0D46 /* Gn2DActor.cpp in Sources */,
+				21D7FF4313A1FB4900CE0D46 /* Gn2DAVData.cpp in Sources */,
+				21D7FF4513A1FB4900CE0D46 /* Gn2DAVDataConverter.cpp in Sources */,
+				21D7FF4713A1FB4900CE0D46 /* Gn2DMeshObject.cpp in Sources */,
+				21D7FF4913A1FB4900CE0D46 /* Gn2DNode.cpp in Sources */,
+				21D7FF4B13A1FB4900CE0D46 /* Gn2DSequence.cpp in Sources */,
+				21D7FF4D13A1FB4900CE0D46 /* Gn2DTextureAni.cpp in Sources */,
+				21D7FF5013A1FB4900CE0D46 /* GnActorTool.cpp in Sources */,
+				21D7FF5213A1FB4900CE0D46 /* GnAnimation.cpp in Sources */,
+				21D7FF5413A1FB4900CE0D46 /* GnAnimationKey.cpp in Sources */,
+				21D7FF5713A1FB4900CE0D46 /* GnAnimationKeyManager.cpp in Sources */,
+				21D7FF5913A1FB4900CE0D46 /* GnCocosScene.cpp in Sources */,
+				21D7FF5B13A1FB4900CE0D46 /* GnDataStream.cpp in Sources */,
+				21D7FF5D13A1FB4900CE0D46 /* GnDataStreamLockPolicy.cpp in Sources */,
+				21D7FF5F13A1FB4900CE0D46 /* GnDrawPrimitives.cpp in Sources */,
+				21D7FF6113A1FB4900CE0D46 /* GnGameState.cpp in Sources */,
+				21D7FF6313A1FB4900CE0D46 /* GnLayer.cpp in Sources */,
+				21D7FF6513A1FB4900CE0D46 /* GnLayerBackground.cpp in Sources */,
+				21D7FF6713A1FB4900CE0D46 /* GnLayerMain.cpp in Sources */,
+				21D7FF6B13A1FB4900CE0D46 /* GnMesh.cpp in Sources */,
+				21D7FF6D13A1FB4900CE0D46 /* GnMeshData.cpp in Sources */,
+				21D7FF6F13A1FB4900CE0D46 /* GnMeshEBM.cpp in Sources */,
+				21D7FF7313A1FB4900CE0D46 /* GnMeshPCH.cpp in Sources */,
+				21D7FF7513A1FB4900CE0D46 /* GnSceneManager.cpp in Sources */,
+				21D7FF7713A1FB4900CE0D46 /* GnScreenMesh.cpp in Sources */,
+				21D7FF7913A1FB4900CE0D46 /* GnSequence.cpp in Sources */,
+				21D7FF7B13A1FB4900CE0D46 /* GnSequenceManager.cpp in Sources */,
+				21D7FF7D13A1FB4900CE0D46 /* GnSMCollision.cpp in Sources */,
+				21D7FF7F13A1FB4900CE0D46 /* GnSMManager.cpp in Sources */,
+				21D7FF8113A1FB4900CE0D46 /* GnSMPostionAniCtrl.cpp in Sources */,
+				21D7FF8313A1FB4900CE0D46 /* GnSMRenderView.cpp in Sources */,
+				21D7FF8513A1FB4900CE0D46 /* GnSMTextureAniCtrl.cpp in Sources */,
+				21D7FF8713A1FB4900CE0D46 /* GnTegIDKey.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		21D56B1313A9F2DC004893C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D7FDE013A1F9F500CE0D46 /* GnSystem */;
+			targetProxy = 21D56B1213A9F2DC004893C2 /* PBXContainerItemProxy */;
+		};
+		21D56B1513A9F2E0004893C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D7FDE013A1F9F500CE0D46 /* GnSystem */;
+			targetProxy = 21D56B1413A9F2E0004893C2 /* PBXContainerItemProxy */;
+		};
+		21D56B1713A9F2E0004893C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D7FDEC13A1FA0800CE0D46 /* GnMain */;
+			targetProxy = 21D56B1613A9F2E0004893C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		21D7FE0213A1FB2500CE0D46 /* GnBitwiseoperation.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21D7FE0313A1FB2500CE0D46 /* en */,
+			);
+			name = GnBitwiseoperation.h;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21D7FDD813A1F8BA00CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		21D7FDD913A1F8BA00CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21D7FDE713A1F9F500CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnSystem.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					GNDEBUG,
+				);
+				HEADER_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		21D7FDE813A1F9F500CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnSystem.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNRELEASE;
+				HEADER_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		21D7FDF313A1FA0800CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMain.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMain/GnMain-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					GNDEBUG,
+				);
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		21D7FDF413A1FA0800CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMain.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMain/GnMain-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNRELEASE;
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		21D7FDFF13A1FA1500CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					GNDEBUG,
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../../SDK/include/cocos2d-x/cocos2dx",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/platform",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/include",
+					../../../../SDK/include,
+					../../Source,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		21D7FE0013A1FA1500CE0D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNRELEASE;
+				HEADER_SEARCH_PATHS = (
+					"../../../../SDK/include/cocos2d-x/cocos2dx",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/platform",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/include",
+					../../../../SDK/include,
+					../../Source,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		21D7FF8913A1FB7A00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Log;
+		};
+		21D7FF8A13A1FB7A00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnSystem.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNLOG;
+				HEADER_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Log;
+		};
+		21D7FF8B13A1FB7A00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMain.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMain/GnMain-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNLOG;
+				HEADER_SEARCH_PATHS = ../../../../SDK/include;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Log;
+		};
+		21D7FF8C13A1FB7A00CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/GnMesh.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = GNLOG;
+				HEADER_SEARCH_PATHS = (
+					"../../../../SDK/include/cocos2d-x/cocos2dx",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/platform",
+					"../../../../SDK/include/cocos2d-x/cocos2dx/include",
+					../../../../SDK/include,
+					../../Source,
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Log;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21D7FDCA13A1F8BA00CE0D46 /* Build configuration list for PBXProject "Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FDD813A1F8BA00CE0D46 /* Debug */,
+				21D7FDD913A1F8BA00CE0D46 /* Release */,
+				21D7FF8913A1FB7A00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D7FDE613A1F9F500CE0D46 /* Build configuration list for PBXNativeTarget "GnSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FDE713A1F9F500CE0D46 /* Debug */,
+				21D7FDE813A1F9F500CE0D46 /* Release */,
+				21D7FF8A13A1FB7A00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D7FDF213A1FA0800CE0D46 /* Build configuration list for PBXNativeTarget "GnMain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FDF313A1FA0800CE0D46 /* Debug */,
+				21D7FDF413A1FA0800CE0D46 /* Release */,
+				21D7FF8B13A1FB7A00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D7FDFE13A1FA1500CE0D46 /* Build configuration list for PBXNativeTarget "GnMesh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D7FDFF13A1FA1500CE0D46 /* Debug */,
+				21D7FE0013A1FA1500CE0D46 /* Release */,
+				21D7FF8C13A1FB7A00CE0D46 /* Log */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21D7FDC713A1F8BA00CE0D46 /* Project object */;
+}

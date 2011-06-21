@@ -27,16 +27,21 @@
 //
 //GNFORCEINLINE const gchar* GnStrstr(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2);
 
+#ifdef WIN32
 #define GnVssprintf vsprintf_s
+#else // WIN32
+#define GnVssprintf vsprintf
+#endif // WIN32
+
 
 gchar* GnAllocStrcpy(const gchar* GNRESTRICT src);
 
-GNFORCEINLINE size_t GnStrlen(const gchar* GNRESTRICT str)
+static GNFORCEINLINE size_t GnStrlen(const gchar* GNRESTRICT str)
 {
 	return strlen(str);
 }
 
-GNFORCEINLINE gchar* GnStrcpy(gchar* GNRESTRICT dest, const gchar* GNRESTRICT src, size_t destSize)
+static GNFORCEINLINE gchar* GnStrcpy(gchar* GNRESTRICT dest, const gchar* GNRESTRICT src, size_t destSize)
 {
 #ifdef __GNUC__
 	return strcpy(dest, src);
@@ -47,7 +52,7 @@ GNFORCEINLINE gchar* GnStrcpy(gchar* GNRESTRICT dest, const gchar* GNRESTRICT sr
 
 }
 
-GNFORCEINLINE gchar* GnStrncpy(gchar* GNRESTRICT dest, const gchar*  src, size_t strLength, size_t destSize)
+static GNFORCEINLINE gchar* GnStrncpy(gchar* GNRESTRICT dest, const gchar*  src, size_t strLength, size_t destSize)
 {
 #ifdef __GNUC__
 	return strncpy(dest, src, strLength);
@@ -57,7 +62,7 @@ GNFORCEINLINE gchar* GnStrncpy(gchar* GNRESTRICT dest, const gchar*  src, size_t
 #endif // #ifdef __GNUC__
 }
 
-GNFORCEINLINE const gchar* GnStrcat(gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2, gsize destSize)
+static GNFORCEINLINE const gchar* GnStrcat(gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2, gsize destSize)
 {
 #ifdef __GNUC__
 	return strcat(pStr1, pStr2);
@@ -67,7 +72,7 @@ GNFORCEINLINE const gchar* GnStrcat(gchar* GNRESTRICT pStr1, const gchar* GNREST
 #endif // #ifdef __GNUC__
 }
 
-GNFORCEINLINE gint GnSprintf(gchar* GNRESTRICT buffer, gsize bufferSize, const gchar* GNRESTRICT format, ...)
+static GNFORCEINLINE gint GnSprintf(gchar* GNRESTRICT buffer, gsize bufferSize, const gchar* GNRESTRICT format, ...)
 {
 	va_list args;
 	va_start( args, format );
@@ -80,7 +85,7 @@ GNFORCEINLINE gint GnSprintf(gchar* GNRESTRICT buffer, gsize bufferSize, const g
 	return ret;
 }
 
-GNFORCEINLINE gchar* GnStrtok(gchar* GNRESTRICT pcString, const gchar* GNRESTRICT pcDelimit,
+static GNFORCEINLINE gchar* GnStrtok(gchar* GNRESTRICT pcString, const gchar* GNRESTRICT pcDelimit,
 	gchar** GNRESTRICT ppcContext)
 {
 #if _MSC_VER >= 1400
@@ -90,22 +95,22 @@ GNFORCEINLINE gchar* GnStrtok(gchar* GNRESTRICT pcString, const gchar* GNRESTRIC
 #endif // #if _MSC_VER >= 1400
 }
 
-GNFORCEINLINE gint GnStrcmp(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
+static GNFORCEINLINE gint GnStrcmp(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
 {
 	return strcmp(pStr1, pStr2);
 }
 
-GNFORCEINLINE gint GnStricmp(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
+static GNFORCEINLINE gint GnStricmp(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
 {
 #ifdef WIN32
 	return _stricmp(pStr1, pStr2);
 #else
-	return stricmp(pStr1, pStr2);
+	return strcasecmp(pStr1, pStr2);
 #endif // WIN32
 
 }
 
-GNFORCEINLINE const gchar* GnStrstr(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
+static GNFORCEINLINE const gchar* GnStrstr(const gchar* GNRESTRICT pStr1, const gchar* GNRESTRICT pStr2)
 {
 	return strstr(pStr1, pStr2);
 }

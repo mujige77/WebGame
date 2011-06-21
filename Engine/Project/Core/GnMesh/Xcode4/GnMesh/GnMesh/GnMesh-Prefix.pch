@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'GnMesh' target in the 'GnMesh' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif

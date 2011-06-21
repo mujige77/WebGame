@@ -1,3 +1,6 @@
+#ifndef GNDEBUG_H
+#define GNDEBUG_H
+
 #ifdef WIN32
     #include <cassert>
 #else // #ifdef WIN32
@@ -16,3 +19,4 @@
 #define GnVerify 
 #endif
 
+#endif // GNDEBUG_H

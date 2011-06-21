@@ -2,7 +2,7 @@
 #include "GnFile.h"
 
 GnFile::GnFile(FILE* pOpenedFile, eOpenMode eMode, gtuint uiBufferSize) : mpFile(pOpenedFile),
-	mBufferAllocSize(uiBufferSize)
+	mMode(eMode), mBufferAllocSize(uiBufferSize)
 {
 	mpBuffer = GnAlloc(gchar, uiBufferSize);
 }
@@ -21,10 +21,10 @@ GnFile* GnFile::GetFile(const gchar* strFileName, eOpenMode eMode, gtuint uiBuff
 	{
 		"rb",
 		"wb",
-		"ab"/*,
-		"r",
-		"w",
-		"a"*/
+		"ab",
+		"r+",
+		"w+",
+		"a+"
 	};
 	FILE* file = NULL;
 #ifdef WIN32
@@ -37,4 +37,9 @@ GnFile* GnFile::GetFile(const gchar* strFileName, eOpenMode eMode, gtuint uiBuff
 
 	GnFile* gnfile = GnNew GnFile( file, eMode, uiBufferSize );
 	return gnfile;
+}
+
+void GnFile::Destory()
+{
+	GnDelete this;
 }

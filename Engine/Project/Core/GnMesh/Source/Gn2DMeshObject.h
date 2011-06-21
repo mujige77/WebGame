@@ -1,6 +1,5 @@
 #ifndef GNSMELEMENT_H
 #define GNSMELEMENT_H
-#include "Gn2DAVObject.h"
 
 GnSmartPointer(Gn2DMeshObject);
 class GNMESH_ENTRY Gn2DMeshObject : public GnObjectForm

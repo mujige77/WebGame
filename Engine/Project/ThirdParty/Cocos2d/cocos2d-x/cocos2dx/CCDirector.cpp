@@ -63,21 +63,35 @@ namespace  cocos2d
 {
 
 // singleton stuff
-static CCDisplayLinkDirector s_sharedDirector;
+static CCDirector* s_sharedDirector = NULL;
+
 static bool s_bFirstRun = true;
 
 #define kDefaultFPS		60  // 60 frames per second
 extern const char* cocos2dVersion(void);
 
+void CCDirector::createDirector(CCDirector* pDirector)
+{
+	s_sharedDirector = pDirector;
+	if( s_sharedDirector == NULL )
+		s_sharedDirector = new CCDisplayLinkDirector();
+}
+void CCDirector::destoryDirector()
+{
+	if( s_sharedDirector )
+		delete s_sharedDirector;
+}
 CCDirector* CCDirector::sharedDirector(void)
 {
 	if (s_bFirstRun)
 	{
-		s_sharedDirector.init();
+		if( s_sharedDirector == NULL )
+			createDirector();
+		s_sharedDirector->init();
         s_bFirstRun = false;
 	}
 
-	return &s_sharedDirector;
+	return s_sharedDirector;
 }
 
 bool CCDirector::init(void)
@@ -131,7 +145,6 @@ bool CCDirector::init(void)
 	// create autorelease pool
 	CCPoolManager::getInstance()->push();
 
-	mUseTools = false;
 	return true;
 }
 	
@@ -183,9 +196,9 @@ void CCDirector::setGLDefaultValues(void)
 // Draw the SCene
 void CCDirector::drawScene(void)
 {
+	// used Good N-Gine
 	// calculate "global" dt
-	if( IsUseTools() == false )
-		calculateDeltaTime();
+	//calculateDeltaTime();
 
 	//tick before glClear: issue #533
 	if (! m_bPaused)
@@ -308,7 +321,10 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 	{
 	case kCCDirectorProjection2D:
 // 		glViewport((GLsizei)0, (GLsizei)0, (GLsizei)size.width, (GLsizei)size.height);
-        CCDirector::sharedDirector()->getOpenGLView()->setViewPortInPoints(0, 0, size.width, size.height);
+        if (m_pobOpenGLView) 
+        {
+            m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
+        }
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		ccglOrtho(0, size.width, 0, size.height, -1024 * CC_CONTENT_SCALE_FACTOR(), 
@@ -319,7 +335,10 @@ void CCDirector::setProjection(ccDirectorProjection kProjection)
 
 	case kCCDirectorProjection3D:
 // 		glViewport(0, 0, (GLsizei)size.width, (GLsizei)size.height);
-        CCDirector::sharedDirector()->getOpenGLView()->setViewPortInPoints(0, 0, size.width, size.height);
+        if (m_pobOpenGLView) 
+        {
+            m_pobOpenGLView->setViewPortInPoints(0, 0, size.width, size.height);
+        }
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		gluPerspective(60, (GLfloat)size.width/size.height, 0.5f, 1500.0f);

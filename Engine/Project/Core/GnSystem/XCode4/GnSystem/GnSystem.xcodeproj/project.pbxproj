@@ -7,239 +7,279 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		360CDABE1324681500B141C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360CDABD1324681500B141C3 /* Foundation.framework */; };
-		367662DB1324BEAE003930F8 /* GnFrameSkip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 367662D91324BEAE003930F8 /* GnFrameSkip.cpp */; };
-		367662DC1324BEAE003930F8 /* GnFrameSkip.h in Headers */ = {isa = PBXBuildFile; fileRef = 367662DA1324BEAE003930F8 /* GnFrameSkip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C8D1324684800D29A9C /* GnAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C6B1324684800D29A9C /* GnAllocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C8E1324684800D29A9C /* GnBitwiseoperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C6C1324684800D29A9C /* GnBitwiseoperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C8F1324684800D29A9C /* GnCharFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C6D1324684800D29A9C /* GnCharFunctions.c */; };
-		36BF2C901324684800D29A9C /* GnCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C6E1324684800D29A9C /* GnCharFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C911324684800D29A9C /* GnDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C6F1324684800D29A9C /* GnDebug.cpp */; };
-		36BF2C921324684800D29A9C /* GnDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C701324684800D29A9C /* GnDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C931324684800D29A9C /* GnDebugAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C711324684800D29A9C /* GnDebugAllocator.cpp */; };
-		36BF2C941324684800D29A9C /* GnDebugAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C721324684800D29A9C /* GnDebugAllocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C951324684800D29A9C /* GnMemoryDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C731324684800D29A9C /* GnMemoryDefine.cpp */; };
-		36BF2C961324684800D29A9C /* GnMemoryDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C741324684800D29A9C /* GnMemoryDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C971324684800D29A9C /* GnMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C751324684800D29A9C /* GnMemoryManager.cpp */; };
-		36BF2C981324684800D29A9C /* GnMemoryManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C761324684800D29A9C /* GnMemoryManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C991324684800D29A9C /* GnMemoryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C771324684800D29A9C /* GnMemoryObject.cpp */; };
-		36BF2C9A1324684800D29A9C /* GnMemoryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C781324684800D29A9C /* GnMemoryObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C9B1324684800D29A9C /* GnSmartPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C791324684800D29A9C /* GnSmartPointer.cpp */; };
-		36BF2C9C1324684800D29A9C /* GnSmartPointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C7A1324684800D29A9C /* GnSmartPointer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C9D1324684800D29A9C /* GnStandardAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C7B1324684800D29A9C /* GnStandardAllocator.cpp */; };
-		36BF2C9E1324684800D29A9C /* GnStandardAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C7C1324684800D29A9C /* GnStandardAllocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2C9F1324684800D29A9C /* GnSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C7D1324684800D29A9C /* GnSystem.cpp */; };
-		36BF2CA01324684800D29A9C /* GnSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C7E1324684800D29A9C /* GnSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA21324684800D29A9C /* GnSystemDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C801324684800D29A9C /* GnSystemDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA31324684800D29A9C /* GnSystemLibType.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C811324684800D29A9C /* GnSystemLibType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA41324684800D29A9C /* GnSystemPCH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C821324684800D29A9C /* GnSystemPCH.cpp */; };
-		36BF2CA51324684800D29A9C /* GnSystemPCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C831324684800D29A9C /* GnSystemPCH.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA61324684800D29A9C /* GnTCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C841324684800D29A9C /* GnTCharFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA71324684800D29A9C /* GnTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C851324684800D29A9C /* GnTimer.cpp */; };
-		36BF2CA81324684800D29A9C /* GnTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C861324684800D29A9C /* GnTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CA91324684800D29A9C /* GnTOther.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C871324684800D29A9C /* GnTOther.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CAA1324684800D29A9C /* GnTypeList.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C881324684800D29A9C /* GnTypeList.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CAB1324684800D29A9C /* GnTypeManip.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C891324684800D29A9C /* GnTypeManip.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CAC1324684800D29A9C /* GnTypeTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C8A1324684800D29A9C /* GnTypeTraits.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36BF2CAD1324684800D29A9C /* GnWCharFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36BF2C8B1324684800D29A9C /* GnWCharFunctions.cpp */; };
-		36BF2CAE1324684800D29A9C /* GnWCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 36BF2C8C1324684800D29A9C /* GnWCharFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21D7FC5813A19E6900CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FC5713A19E6900CE0D46 /* Foundation.framework */; };
+		21D7FCD213A1C7AA00CE0D46 /* GnAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCA113A1C7AA00CE0D46 /* GnAllocator.h */; };
+		21D7FCD313A1C7AA00CE0D46 /* GnCharFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCA213A1C7AA00CE0D46 /* GnCharFunctions.cpp */; };
+		21D7FCD413A1C7AA00CE0D46 /* GnCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCA313A1C7AA00CE0D46 /* GnCharFunctions.h */; };
+		21D7FCD513A1C7AA00CE0D46 /* GnCriticalSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCA413A1C7AA00CE0D46 /* GnCriticalSection.h */; };
+		21D7FCD613A1C7AA00CE0D46 /* GnDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCA513A1C7AA00CE0D46 /* GnDebug.cpp */; };
+		21D7FCD713A1C7AA00CE0D46 /* GnDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCA613A1C7AA00CE0D46 /* GnDebug.h */; };
+		21D7FCD813A1C7AA00CE0D46 /* GnDebugAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCA713A1C7AA00CE0D46 /* GnDebugAllocator.cpp */; };
+		21D7FCD913A1C7AA00CE0D46 /* GnDebugAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCA813A1C7AA00CE0D46 /* GnDebugAllocator.h */; };
+		21D7FCDA13A1C7AA00CE0D46 /* GnFrameSkip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCA913A1C7AA00CE0D46 /* GnFrameSkip.cpp */; };
+		21D7FCDB13A1C7AA00CE0D46 /* GnFrameSkip.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCAA13A1C7AA00CE0D46 /* GnFrameSkip.h */; };
+		21D7FCDC13A1C7AA00CE0D46 /* GnList.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCAB13A1C7AA00CE0D46 /* GnList.h */; };
+		21D7FCDD13A1C7AB00CE0D46 /* GnLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCAC13A1C7AA00CE0D46 /* GnLog.cpp */; };
+		21D7FCDE13A1C7AB00CE0D46 /* GnLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCAD13A1C7AA00CE0D46 /* GnLog.h */; };
+		21D7FCDF13A1C7AB00CE0D46 /* GnMemoryDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCAE13A1C7AA00CE0D46 /* GnMemoryDefine.cpp */; };
+		21D7FCE013A1C7AB00CE0D46 /* GnMemoryDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCAF13A1C7AA00CE0D46 /* GnMemoryDefine.h */; };
+		21D7FCE113A1C7AB00CE0D46 /* GnMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCB013A1C7AA00CE0D46 /* GnMemoryManager.cpp */; };
+		21D7FCE213A1C7AB00CE0D46 /* GnMemoryManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB113A1C7AA00CE0D46 /* GnMemoryManager.h */; };
+		21D7FCE313A1C7AB00CE0D46 /* GnMemoryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCB213A1C7AA00CE0D46 /* GnMemoryObject.cpp */; };
+		21D7FCE413A1C7AB00CE0D46 /* GnMemoryObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB313A1C7AA00CE0D46 /* GnMemoryObject.h */; };
+		21D7FCE513A1C7AB00CE0D46 /* GnPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCB413A1C7AA00CE0D46 /* GnPath.cpp */; };
+		21D7FCE613A1C7AB00CE0D46 /* GnPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB513A1C7AA00CE0D46 /* GnPath.h */; };
+		21D7FCE713A1C7AB00CE0D46 /* GnSimpleString.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB613A1C7AA00CE0D46 /* GnSimpleString.h */; };
+		21D7FCE813A1C7AB00CE0D46 /* GnSimpleTString.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB713A1C7AA00CE0D46 /* GnSimpleTString.h */; };
+		21D7FCE913A1C7AB00CE0D46 /* GnSmartObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCB813A1C7AA00CE0D46 /* GnSmartObject.h */; };
+		21D7FCEA13A1C7AB00CE0D46 /* GnStandardAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCB913A1C7AA00CE0D46 /* GnStandardAllocator.cpp */; };
+		21D7FCEB13A1C7AB00CE0D46 /* GnStandardAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCBA13A1C7AA00CE0D46 /* GnStandardAllocator.h */; };
+		21D7FCEC13A1C7AB00CE0D46 /* GnSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCBB13A1C7AA00CE0D46 /* GnSystem.cpp */; };
+		21D7FCED13A1C7AB00CE0D46 /* GnSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCBC13A1C7AA00CE0D46 /* GnSystem.h */; };
+		21D7FCEE13A1C7AB00CE0D46 /* GnSystemDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCBD13A1C7AA00CE0D46 /* GnSystemDefine.h */; };
+		21D7FCEF13A1C7AB00CE0D46 /* GnSystemEBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCBE13A1C7AA00CE0D46 /* GnSystemEBM.cpp */; };
+		21D7FCF013A1C7AB00CE0D46 /* GnSystemEBM.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCBF13A1C7AA00CE0D46 /* GnSystemEBM.h */; };
+		21D7FCF113A1C7AB00CE0D46 /* GnSystemLibType.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC013A1C7AA00CE0D46 /* GnSystemLibType.h */; };
+		21D7FCF213A1C7AB00CE0D46 /* GnSystemPCH.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCC113A1C7AA00CE0D46 /* GnSystemPCH.cpp */; };
+		21D7FCF313A1C7AB00CE0D46 /* GnSystemPCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC213A1C7AA00CE0D46 /* GnSystemPCH.h */; };
+		21D7FCF413A1C7AB00CE0D46 /* GnTAllocatorCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC313A1C7AA00CE0D46 /* GnTAllocatorCollection.h */; };
+		21D7FCF513A1C7AB00CE0D46 /* GnTArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC413A1C7AA00CE0D46 /* GnTArray.h */; };
+		21D7FCF613A1C7AB00CE0D46 /* GnTCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC513A1C7AA00CE0D46 /* GnTCharFunctions.h */; };
+		21D7FCF713A1C7AB00CE0D46 /* GnTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCC613A1C7AA00CE0D46 /* GnTimer.cpp */; };
+		21D7FCF813A1C7AB00CE0D46 /* GnTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC713A1C7AA00CE0D46 /* GnTimer.h */; };
+		21D7FCF913A1C7AB00CE0D46 /* GnTMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC813A1C7AA00CE0D46 /* GnTMap.h */; };
+		21D7FCFA13A1C7AB00CE0D46 /* GnTOther.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCC913A1C7AA00CE0D46 /* GnTOther.h */; };
+		21D7FCFB13A1C7AB00CE0D46 /* GnTSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCCA13A1C7AA00CE0D46 /* GnTSet.h */; };
+		21D7FCFC13A1C7AB00CE0D46 /* GnTStringMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCCC13A1C7AA00CE0D46 /* GnTStringMap.h */; };
+		21D7FCFD13A1C7AB00CE0D46 /* GnTypeList.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCCD13A1C7AA00CE0D46 /* GnTypeList.h */; };
+		21D7FCFE13A1C7AB00CE0D46 /* GnTypeManip.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCCE13A1C7AA00CE0D46 /* GnTypeManip.h */; };
+		21D7FCFF13A1C7AB00CE0D46 /* GnTypeTraits.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCCF13A1C7AA00CE0D46 /* GnTypeTraits.h */; };
+		21D7FD0013A1C7AB00CE0D46 /* GnWCharFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D7FCD013A1C7AA00CE0D46 /* GnWCharFunctions.cpp */; };
+		21D7FD0113A1C7AB00CE0D46 /* GnWCharFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D7FCD113A1C7AA00CE0D46 /* GnWCharFunctions.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		360CDABA1324681500B141C3 /* libGnSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		360CDABD1324681500B141C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		360CDAC11324681500B141C3 /* GnSystem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnSystem-Prefix.pch"; sourceTree = "<group>"; };
-		367662D91324BEAE003930F8 /* GnFrameSkip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnFrameSkip.cpp; path = ../../../Source/GnFrameSkip.cpp; sourceTree = "<group>"; };
-		367662DA1324BEAE003930F8 /* GnFrameSkip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnFrameSkip.h; path = ../../../Source/GnFrameSkip.h; sourceTree = "<group>"; };
-		36BF2C6B1324684800D29A9C /* GnAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnAllocator.h; path = ../../../Source/GnAllocator.h; sourceTree = "<group>"; };
-		36BF2C6C1324684800D29A9C /* GnBitwiseoperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnBitwiseoperation.h; path = ../../../Source/GnBitwiseoperation.h; sourceTree = "<group>"; };
-		36BF2C6D1324684800D29A9C /* GnCharFunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GnCharFunctions.c; path = ../../../Source/GnCharFunctions.c; sourceTree = "<group>"; };
-		36BF2C6E1324684800D29A9C /* GnCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnCharFunctions.h; path = ../../../Source/GnCharFunctions.h; sourceTree = "<group>"; };
-		36BF2C6F1324684800D29A9C /* GnDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnDebug.cpp; path = ../../../Source/GnDebug.cpp; sourceTree = "<group>"; };
-		36BF2C701324684800D29A9C /* GnDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnDebug.h; path = ../../../Source/GnDebug.h; sourceTree = "<group>"; };
-		36BF2C711324684800D29A9C /* GnDebugAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnDebugAllocator.cpp; path = ../../../Source/GnDebugAllocator.cpp; sourceTree = "<group>"; };
-		36BF2C721324684800D29A9C /* GnDebugAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnDebugAllocator.h; path = ../../../Source/GnDebugAllocator.h; sourceTree = "<group>"; };
-		36BF2C731324684800D29A9C /* GnMemoryDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnMemoryDefine.cpp; path = ../../../Source/GnMemoryDefine.cpp; sourceTree = "<group>"; };
-		36BF2C741324684800D29A9C /* GnMemoryDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnMemoryDefine.h; path = ../../../Source/GnMemoryDefine.h; sourceTree = "<group>"; };
-		36BF2C751324684800D29A9C /* GnMemoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnMemoryManager.cpp; path = ../../../Source/GnMemoryManager.cpp; sourceTree = "<group>"; };
-		36BF2C761324684800D29A9C /* GnMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnMemoryManager.h; path = ../../../Source/GnMemoryManager.h; sourceTree = "<group>"; };
-		36BF2C771324684800D29A9C /* GnMemoryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnMemoryObject.cpp; path = ../../../Source/GnMemoryObject.cpp; sourceTree = "<group>"; };
-		36BF2C781324684800D29A9C /* GnMemoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnMemoryObject.h; path = ../../../Source/GnMemoryObject.h; sourceTree = "<group>"; };
-		36BF2C791324684800D29A9C /* GnSmartPointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnSmartPointer.cpp; path = ../../../Source/GnSmartPointer.cpp; sourceTree = "<group>"; };
-		36BF2C7A1324684800D29A9C /* GnSmartPointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnSmartPointer.h; path = ../../../Source/GnSmartPointer.h; sourceTree = "<group>"; };
-		36BF2C7B1324684800D29A9C /* GnStandardAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnStandardAllocator.cpp; path = ../../../Source/GnStandardAllocator.cpp; sourceTree = "<group>"; };
-		36BF2C7C1324684800D29A9C /* GnStandardAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnStandardAllocator.h; path = ../../../Source/GnStandardAllocator.h; sourceTree = "<group>"; };
-		36BF2C7D1324684800D29A9C /* GnSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnSystem.cpp; path = ../../../Source/GnSystem.cpp; sourceTree = "<group>"; };
-		36BF2C7E1324684800D29A9C /* GnSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnSystem.h; path = ../../../Source/GnSystem.h; sourceTree = "<group>"; };
-		36BF2C801324684800D29A9C /* GnSystemDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnSystemDefine.h; path = ../../../Source/GnSystemDefine.h; sourceTree = "<group>"; };
-		36BF2C811324684800D29A9C /* GnSystemLibType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnSystemLibType.h; path = ../../../Source/GnSystemLibType.h; sourceTree = "<group>"; };
-		36BF2C821324684800D29A9C /* GnSystemPCH.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnSystemPCH.cpp; path = ../../../Source/GnSystemPCH.cpp; sourceTree = "<group>"; };
-		36BF2C831324684800D29A9C /* GnSystemPCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnSystemPCH.h; path = ../../../Source/GnSystemPCH.h; sourceTree = "<group>"; };
-		36BF2C841324684800D29A9C /* GnTCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTCharFunctions.h; path = ../../../Source/GnTCharFunctions.h; sourceTree = "<group>"; };
-		36BF2C851324684800D29A9C /* GnTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnTimer.cpp; path = ../../../Source/GnTimer.cpp; sourceTree = "<group>"; };
-		36BF2C861324684800D29A9C /* GnTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTimer.h; path = ../../../Source/GnTimer.h; sourceTree = "<group>"; };
-		36BF2C871324684800D29A9C /* GnTOther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTOther.h; path = ../../../Source/GnTOther.h; sourceTree = "<group>"; };
-		36BF2C881324684800D29A9C /* GnTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTypeList.h; path = ../../../Source/GnTypeList.h; sourceTree = "<group>"; };
-		36BF2C891324684800D29A9C /* GnTypeManip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTypeManip.h; path = ../../../Source/GnTypeManip.h; sourceTree = "<group>"; };
-		36BF2C8A1324684800D29A9C /* GnTypeTraits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnTypeTraits.h; path = ../../../Source/GnTypeTraits.h; sourceTree = "<group>"; };
-		36BF2C8B1324684800D29A9C /* GnWCharFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GnWCharFunctions.cpp; path = ../../../Source/GnWCharFunctions.cpp; sourceTree = "<group>"; };
-		36BF2C8C1324684800D29A9C /* GnWCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnWCharFunctions.h; path = ../../../Source/GnWCharFunctions.h; sourceTree = "<group>"; };
+		21D7FC5413A19E6900CE0D46 /* libGnSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D7FC5713A19E6900CE0D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		21D7FC5B13A19E6900CE0D46 /* GnSystem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnSystem-Prefix.pch"; sourceTree = "<group>"; };
+		21D7FCA013A1C7AA00CE0D46 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/GnBitwiseoperation.h; sourceTree = "<group>"; };
+		21D7FCA113A1C7AA00CE0D46 /* GnAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnAllocator.h; sourceTree = "<group>"; };
+		21D7FCA213A1C7AA00CE0D46 /* GnCharFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnCharFunctions.cpp; sourceTree = "<group>"; };
+		21D7FCA313A1C7AA00CE0D46 /* GnCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnCharFunctions.h; sourceTree = "<group>"; };
+		21D7FCA413A1C7AA00CE0D46 /* GnCriticalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnCriticalSection.h; sourceTree = "<group>"; };
+		21D7FCA513A1C7AA00CE0D46 /* GnDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDebug.cpp; sourceTree = "<group>"; };
+		21D7FCA613A1C7AA00CE0D46 /* GnDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDebug.h; sourceTree = "<group>"; };
+		21D7FCA713A1C7AA00CE0D46 /* GnDebugAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnDebugAllocator.cpp; sourceTree = "<group>"; };
+		21D7FCA813A1C7AA00CE0D46 /* GnDebugAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnDebugAllocator.h; sourceTree = "<group>"; };
+		21D7FCA913A1C7AA00CE0D46 /* GnFrameSkip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnFrameSkip.cpp; sourceTree = "<group>"; };
+		21D7FCAA13A1C7AA00CE0D46 /* GnFrameSkip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnFrameSkip.h; sourceTree = "<group>"; };
+		21D7FCAB13A1C7AA00CE0D46 /* GnList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnList.h; sourceTree = "<group>"; };
+		21D7FCAC13A1C7AA00CE0D46 /* GnLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnLog.cpp; sourceTree = "<group>"; };
+		21D7FCAD13A1C7AA00CE0D46 /* GnLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnLog.h; sourceTree = "<group>"; };
+		21D7FCAE13A1C7AA00CE0D46 /* GnMemoryDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryDefine.cpp; sourceTree = "<group>"; };
+		21D7FCAF13A1C7AA00CE0D46 /* GnMemoryDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryDefine.h; sourceTree = "<group>"; };
+		21D7FCB013A1C7AA00CE0D46 /* GnMemoryManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryManager.cpp; sourceTree = "<group>"; };
+		21D7FCB113A1C7AA00CE0D46 /* GnMemoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryManager.h; sourceTree = "<group>"; };
+		21D7FCB213A1C7AA00CE0D46 /* GnMemoryObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnMemoryObject.cpp; sourceTree = "<group>"; };
+		21D7FCB313A1C7AA00CE0D46 /* GnMemoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnMemoryObject.h; sourceTree = "<group>"; };
+		21D7FCB413A1C7AA00CE0D46 /* GnPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnPath.cpp; sourceTree = "<group>"; };
+		21D7FCB513A1C7AA00CE0D46 /* GnPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnPath.h; sourceTree = "<group>"; };
+		21D7FCB613A1C7AA00CE0D46 /* GnSimpleString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSimpleString.h; sourceTree = "<group>"; };
+		21D7FCB713A1C7AA00CE0D46 /* GnSimpleTString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSimpleTString.h; sourceTree = "<group>"; };
+		21D7FCB813A1C7AA00CE0D46 /* GnSmartObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSmartObject.h; sourceTree = "<group>"; };
+		21D7FCB913A1C7AA00CE0D46 /* GnStandardAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnStandardAllocator.cpp; sourceTree = "<group>"; };
+		21D7FCBA13A1C7AA00CE0D46 /* GnStandardAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnStandardAllocator.h; sourceTree = "<group>"; };
+		21D7FCBB13A1C7AA00CE0D46 /* GnSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystem.cpp; sourceTree = "<group>"; };
+		21D7FCBC13A1C7AA00CE0D46 /* GnSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystem.h; sourceTree = "<group>"; };
+		21D7FCBD13A1C7AA00CE0D46 /* GnSystemDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemDefine.h; sourceTree = "<group>"; };
+		21D7FCBE13A1C7AA00CE0D46 /* GnSystemEBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystemEBM.cpp; sourceTree = "<group>"; };
+		21D7FCBF13A1C7AA00CE0D46 /* GnSystemEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemEBM.h; sourceTree = "<group>"; };
+		21D7FCC013A1C7AA00CE0D46 /* GnSystemLibType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemLibType.h; sourceTree = "<group>"; };
+		21D7FCC113A1C7AA00CE0D46 /* GnSystemPCH.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnSystemPCH.cpp; sourceTree = "<group>"; };
+		21D7FCC213A1C7AA00CE0D46 /* GnSystemPCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnSystemPCH.h; sourceTree = "<group>"; };
+		21D7FCC313A1C7AA00CE0D46 /* GnTAllocatorCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTAllocatorCollection.h; sourceTree = "<group>"; };
+		21D7FCC413A1C7AA00CE0D46 /* GnTArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTArray.h; sourceTree = "<group>"; };
+		21D7FCC513A1C7AA00CE0D46 /* GnTCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTCharFunctions.h; sourceTree = "<group>"; };
+		21D7FCC613A1C7AA00CE0D46 /* GnTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnTimer.cpp; sourceTree = "<group>"; };
+		21D7FCC713A1C7AA00CE0D46 /* GnTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTimer.h; sourceTree = "<group>"; };
+		21D7FCC813A1C7AA00CE0D46 /* GnTMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTMap.h; sourceTree = "<group>"; };
+		21D7FCC913A1C7AA00CE0D46 /* GnTOther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTOther.h; sourceTree = "<group>"; };
+		21D7FCCA13A1C7AA00CE0D46 /* GnTSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTSet.h; sourceTree = "<group>"; };
+		21D7FCCB13A1C7AA00CE0D46 /* GnTSet.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GnTSet.inl; sourceTree = "<group>"; };
+		21D7FCCC13A1C7AA00CE0D46 /* GnTStringMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTStringMap.h; sourceTree = "<group>"; };
+		21D7FCCD13A1C7AA00CE0D46 /* GnTypeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTypeList.h; sourceTree = "<group>"; };
+		21D7FCCE13A1C7AA00CE0D46 /* GnTypeManip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTypeManip.h; sourceTree = "<group>"; };
+		21D7FCCF13A1C7AA00CE0D46 /* GnTypeTraits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTypeTraits.h; sourceTree = "<group>"; };
+		21D7FCD013A1C7AA00CE0D46 /* GnWCharFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnWCharFunctions.cpp; sourceTree = "<group>"; };
+		21D7FCD113A1C7AA00CE0D46 /* GnWCharFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnWCharFunctions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		360CDAB71324681500B141C3 /* Frameworks */ = {
+		21D7FC5113A19E6900CE0D46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				360CDABE1324681500B141C3 /* Foundation.framework in Frameworks */,
+				21D7FC5813A19E6900CE0D46 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		360CDAAF1324681500B141C3 = {
+		21D7FC4913A19E6800CE0D46 = {
 			isa = PBXGroup;
 			children = (
-				360CDABF1324681500B141C3 /* GnSystem */,
-				360CDABC1324681500B141C3 /* Frameworks */,
-				360CDABB1324681500B141C3 /* Products */,
+				21D7FC5913A19E6900CE0D46 /* GnSystem */,
+				21D7FC5613A19E6900CE0D46 /* Frameworks */,
+				21D7FC5513A19E6900CE0D46 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		360CDABB1324681500B141C3 /* Products */ = {
+		21D7FC5513A19E6900CE0D46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				360CDABA1324681500B141C3 /* libGnSystem.a */,
+				21D7FC5413A19E6900CE0D46 /* libGnSystem.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		360CDABC1324681500B141C3 /* Frameworks */ = {
+		21D7FC5613A19E6900CE0D46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				360CDABD1324681500B141C3 /* Foundation.framework */,
+				21D7FC5713A19E6900CE0D46 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		360CDABF1324681500B141C3 /* GnSystem */ = {
+		21D7FC5913A19E6900CE0D46 /* GnSystem */ = {
 			isa = PBXGroup;
 			children = (
-				360CDAC01324681500B141C3 /* Supporting Files */,
-				367814671324884C009DA117 /* String */,
-				36781465132482DC009DA117 /* Template */,
-				36BF2C6B1324684800D29A9C /* GnAllocator.h */,
-				36BF2C6C1324684800D29A9C /* GnBitwiseoperation.h */,
-				36BF2C6F1324684800D29A9C /* GnDebug.cpp */,
-				36BF2C701324684800D29A9C /* GnDebug.h */,
-				36BF2C711324684800D29A9C /* GnDebugAllocator.cpp */,
-				36BF2C721324684800D29A9C /* GnDebugAllocator.h */,
-				36BF2C731324684800D29A9C /* GnMemoryDefine.cpp */,
-				36BF2C741324684800D29A9C /* GnMemoryDefine.h */,
-				36BF2C751324684800D29A9C /* GnMemoryManager.cpp */,
-				36BF2C761324684800D29A9C /* GnMemoryManager.h */,
-				36BF2C771324684800D29A9C /* GnMemoryObject.cpp */,
-				36BF2C781324684800D29A9C /* GnMemoryObject.h */,
-				36BF2C7B1324684800D29A9C /* GnStandardAllocator.cpp */,
-				36BF2C7C1324684800D29A9C /* GnStandardAllocator.h */,
-				36BF2C7D1324684800D29A9C /* GnSystem.cpp */,
-				36BF2C7E1324684800D29A9C /* GnSystem.h */,
-				36BF2C801324684800D29A9C /* GnSystemDefine.h */,
-				36BF2C811324684800D29A9C /* GnSystemLibType.h */,
-				36BF2C821324684800D29A9C /* GnSystemPCH.cpp */,
-				36BF2C831324684800D29A9C /* GnSystemPCH.h */,
-				36BF2C851324684800D29A9C /* GnTimer.cpp */,
-				36BF2C861324684800D29A9C /* GnTimer.h */,
-				367662D91324BEAE003930F8 /* GnFrameSkip.cpp */,
-				367662DA1324BEAE003930F8 /* GnFrameSkip.h */,
+				21D7FC9E13A1C7AA00CE0D46 /* Source */,
+				21D7FC5A13A19E6900CE0D46 /* Supporting Files */,
 			);
 			path = GnSystem;
 			sourceTree = "<group>";
 		};
-		360CDAC01324681500B141C3 /* Supporting Files */ = {
+		21D7FC5A13A19E6900CE0D46 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				360CDAC11324681500B141C3 /* GnSystem-Prefix.pch */,
+				21D7FC5B13A19E6900CE0D46 /* GnSystem-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		36781465132482DC009DA117 /* Template */ = {
+		21D7FC9E13A1C7AA00CE0D46 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				36BF2C791324684800D29A9C /* GnSmartPointer.cpp */,
-				36BF2C7A1324684800D29A9C /* GnSmartPointer.h */,
-				36781466132482EA009DA117 /* Helper */,
+				21D7FC9F13A1C7AA00CE0D46 /* GnBitwiseoperation.h */,
+				21D7FCA113A1C7AA00CE0D46 /* GnAllocator.h */,
+				21D7FCA213A1C7AA00CE0D46 /* GnCharFunctions.cpp */,
+				21D7FCA313A1C7AA00CE0D46 /* GnCharFunctions.h */,
+				21D7FCA413A1C7AA00CE0D46 /* GnCriticalSection.h */,
+				21D7FCA513A1C7AA00CE0D46 /* GnDebug.cpp */,
+				21D7FCA613A1C7AA00CE0D46 /* GnDebug.h */,
+				21D7FCA713A1C7AA00CE0D46 /* GnDebugAllocator.cpp */,
+				21D7FCA813A1C7AA00CE0D46 /* GnDebugAllocator.h */,
+				21D7FCA913A1C7AA00CE0D46 /* GnFrameSkip.cpp */,
+				21D7FCAA13A1C7AA00CE0D46 /* GnFrameSkip.h */,
+				21D7FCAB13A1C7AA00CE0D46 /* GnList.h */,
+				21D7FCAC13A1C7AA00CE0D46 /* GnLog.cpp */,
+				21D7FCAD13A1C7AA00CE0D46 /* GnLog.h */,
+				21D7FCAE13A1C7AA00CE0D46 /* GnMemoryDefine.cpp */,
+				21D7FCAF13A1C7AA00CE0D46 /* GnMemoryDefine.h */,
+				21D7FCB013A1C7AA00CE0D46 /* GnMemoryManager.cpp */,
+				21D7FCB113A1C7AA00CE0D46 /* GnMemoryManager.h */,
+				21D7FCB213A1C7AA00CE0D46 /* GnMemoryObject.cpp */,
+				21D7FCB313A1C7AA00CE0D46 /* GnMemoryObject.h */,
+				21D7FCB413A1C7AA00CE0D46 /* GnPath.cpp */,
+				21D7FCB513A1C7AA00CE0D46 /* GnPath.h */,
+				21D7FCB613A1C7AA00CE0D46 /* GnSimpleString.h */,
+				21D7FCB713A1C7AA00CE0D46 /* GnSimpleTString.h */,
+				21D7FCB813A1C7AA00CE0D46 /* GnSmartObject.h */,
+				21D7FCB913A1C7AA00CE0D46 /* GnStandardAllocator.cpp */,
+				21D7FCBA13A1C7AA00CE0D46 /* GnStandardAllocator.h */,
+				21D7FCBB13A1C7AA00CE0D46 /* GnSystem.cpp */,
+				21D7FCBC13A1C7AA00CE0D46 /* GnSystem.h */,
+				21D7FCBD13A1C7AA00CE0D46 /* GnSystemDefine.h */,
+				21D7FCBE13A1C7AA00CE0D46 /* GnSystemEBM.cpp */,
+				21D7FCBF13A1C7AA00CE0D46 /* GnSystemEBM.h */,
+				21D7FCC013A1C7AA00CE0D46 /* GnSystemLibType.h */,
+				21D7FCC113A1C7AA00CE0D46 /* GnSystemPCH.cpp */,
+				21D7FCC213A1C7AA00CE0D46 /* GnSystemPCH.h */,
+				21D7FCC313A1C7AA00CE0D46 /* GnTAllocatorCollection.h */,
+				21D7FCC413A1C7AA00CE0D46 /* GnTArray.h */,
+				21D7FCC513A1C7AA00CE0D46 /* GnTCharFunctions.h */,
+				21D7FCC613A1C7AA00CE0D46 /* GnTimer.cpp */,
+				21D7FCC713A1C7AA00CE0D46 /* GnTimer.h */,
+				21D7FCC813A1C7AA00CE0D46 /* GnTMap.h */,
+				21D7FCC913A1C7AA00CE0D46 /* GnTOther.h */,
+				21D7FCCA13A1C7AA00CE0D46 /* GnTSet.h */,
+				21D7FCCB13A1C7AA00CE0D46 /* GnTSet.inl */,
+				21D7FCCC13A1C7AA00CE0D46 /* GnTStringMap.h */,
+				21D7FCCD13A1C7AA00CE0D46 /* GnTypeList.h */,
+				21D7FCCE13A1C7AA00CE0D46 /* GnTypeManip.h */,
+				21D7FCCF13A1C7AA00CE0D46 /* GnTypeTraits.h */,
+				21D7FCD013A1C7AA00CE0D46 /* GnWCharFunctions.cpp */,
+				21D7FCD113A1C7AA00CE0D46 /* GnWCharFunctions.h */,
 			);
-			name = Template;
-			sourceTree = "<group>";
-		};
-		36781466132482EA009DA117 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				36BF2C871324684800D29A9C /* GnTOther.h */,
-				36BF2C881324684800D29A9C /* GnTypeList.h */,
-				36BF2C891324684800D29A9C /* GnTypeManip.h */,
-				36BF2C8A1324684800D29A9C /* GnTypeTraits.h */,
-			);
-			name = Helper;
-			sourceTree = "<group>";
-		};
-		367814671324884C009DA117 /* String */ = {
-			isa = PBXGroup;
-			children = (
-				36BF2C841324684800D29A9C /* GnTCharFunctions.h */,
-				36BF2C8B1324684800D29A9C /* GnWCharFunctions.cpp */,
-				36BF2C8C1324684800D29A9C /* GnWCharFunctions.h */,
-				36BF2C6D1324684800D29A9C /* GnCharFunctions.c */,
-				36BF2C6E1324684800D29A9C /* GnCharFunctions.h */,
-			);
-			name = String;
+			name = Source;
+			path = ../../../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		360CDAB81324681500B141C3 /* Headers */ = {
+		21D7FC5213A19E6900CE0D46 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36BF2C8D1324684800D29A9C /* GnAllocator.h in Headers */,
-				36BF2C8E1324684800D29A9C /* GnBitwiseoperation.h in Headers */,
-				36BF2C901324684800D29A9C /* GnCharFunctions.h in Headers */,
-				36BF2C921324684800D29A9C /* GnDebug.h in Headers */,
-				36BF2C941324684800D29A9C /* GnDebugAllocator.h in Headers */,
-				36BF2C961324684800D29A9C /* GnMemoryDefine.h in Headers */,
-				36BF2C981324684800D29A9C /* GnMemoryManager.h in Headers */,
-				36BF2C9A1324684800D29A9C /* GnMemoryObject.h in Headers */,
-				36BF2C9C1324684800D29A9C /* GnSmartPointer.h in Headers */,
-				36BF2C9E1324684800D29A9C /* GnStandardAllocator.h in Headers */,
-				36BF2CA01324684800D29A9C /* GnSystem.h in Headers */,
-				36BF2CA21324684800D29A9C /* GnSystemDefine.h in Headers */,
-				36BF2CA31324684800D29A9C /* GnSystemLibType.h in Headers */,
-				36BF2CA51324684800D29A9C /* GnSystemPCH.h in Headers */,
-				36BF2CA61324684800D29A9C /* GnTCharFunctions.h in Headers */,
-				36BF2CA81324684800D29A9C /* GnTimer.h in Headers */,
-				36BF2CA91324684800D29A9C /* GnTOther.h in Headers */,
-				36BF2CAA1324684800D29A9C /* GnTypeList.h in Headers */,
-				36BF2CAB1324684800D29A9C /* GnTypeManip.h in Headers */,
-				36BF2CAC1324684800D29A9C /* GnTypeTraits.h in Headers */,
-				36BF2CAE1324684800D29A9C /* GnWCharFunctions.h in Headers */,
-				367662DC1324BEAE003930F8 /* GnFrameSkip.h in Headers */,
+				21D7FCD213A1C7AA00CE0D46 /* GnAllocator.h in Headers */,
+				21D7FCD413A1C7AA00CE0D46 /* GnCharFunctions.h in Headers */,
+				21D7FCD513A1C7AA00CE0D46 /* GnCriticalSection.h in Headers */,
+				21D7FCD713A1C7AA00CE0D46 /* GnDebug.h in Headers */,
+				21D7FCD913A1C7AA00CE0D46 /* GnDebugAllocator.h in Headers */,
+				21D7FCDB13A1C7AA00CE0D46 /* GnFrameSkip.h in Headers */,
+				21D7FCDC13A1C7AA00CE0D46 /* GnList.h in Headers */,
+				21D7FCDE13A1C7AB00CE0D46 /* GnLog.h in Headers */,
+				21D7FCE013A1C7AB00CE0D46 /* GnMemoryDefine.h in Headers */,
+				21D7FCE213A1C7AB00CE0D46 /* GnMemoryManager.h in Headers */,
+				21D7FCE413A1C7AB00CE0D46 /* GnMemoryObject.h in Headers */,
+				21D7FCE613A1C7AB00CE0D46 /* GnPath.h in Headers */,
+				21D7FCE713A1C7AB00CE0D46 /* GnSimpleString.h in Headers */,
+				21D7FCE813A1C7AB00CE0D46 /* GnSimpleTString.h in Headers */,
+				21D7FCE913A1C7AB00CE0D46 /* GnSmartObject.h in Headers */,
+				21D7FCEB13A1C7AB00CE0D46 /* GnStandardAllocator.h in Headers */,
+				21D7FCED13A1C7AB00CE0D46 /* GnSystem.h in Headers */,
+				21D7FCEE13A1C7AB00CE0D46 /* GnSystemDefine.h in Headers */,
+				21D7FCF013A1C7AB00CE0D46 /* GnSystemEBM.h in Headers */,
+				21D7FCF113A1C7AB00CE0D46 /* GnSystemLibType.h in Headers */,
+				21D7FCF313A1C7AB00CE0D46 /* GnSystemPCH.h in Headers */,
+				21D7FCF413A1C7AB00CE0D46 /* GnTAllocatorCollection.h in Headers */,
+				21D7FCF513A1C7AB00CE0D46 /* GnTArray.h in Headers */,
+				21D7FCF613A1C7AB00CE0D46 /* GnTCharFunctions.h in Headers */,
+				21D7FCF813A1C7AB00CE0D46 /* GnTimer.h in Headers */,
+				21D7FCF913A1C7AB00CE0D46 /* GnTMap.h in Headers */,
+				21D7FCFA13A1C7AB00CE0D46 /* GnTOther.h in Headers */,
+				21D7FCFB13A1C7AB00CE0D46 /* GnTSet.h in Headers */,
+				21D7FCFC13A1C7AB00CE0D46 /* GnTStringMap.h in Headers */,
+				21D7FCFD13A1C7AB00CE0D46 /* GnTypeList.h in Headers */,
+				21D7FCFE13A1C7AB00CE0D46 /* GnTypeManip.h in Headers */,
+				21D7FCFF13A1C7AB00CE0D46 /* GnTypeTraits.h in Headers */,
+				21D7FD0113A1C7AB00CE0D46 /* GnWCharFunctions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		360CDAB91324681500B141C3 /* GnSystem */ = {
+		21D7FC5313A19E6900CE0D46 /* GnSystem */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 360CDAC41324681500B141C3 /* Build configuration list for PBXNativeTarget "GnSystem" */;
+			buildConfigurationList = 21D7FC5E13A19E6900CE0D46 /* Build configuration list for PBXNativeTarget "GnSystem" */;
 			buildPhases = (
-				360CDAB61324681500B141C3 /* Sources */,
-				360CDAB71324681500B141C3 /* Frameworks */,
-				360CDAB81324681500B141C3 /* Headers */,
+				21D7FC5013A19E6900CE0D46 /* Sources */,
+				21D7FC5113A19E6900CE0D46 /* Frameworks */,
+				21D7FC5213A19E6900CE0D46 /* Headers */,
+				21D7FC9213A19FFF00CE0D46 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -247,184 +287,210 @@
 			);
 			name = GnSystem;
 			productName = GnSystem;
-			productReference = 360CDABA1324681500B141C3 /* libGnSystem.a */;
+			productReference = 21D7FC5413A19E6900CE0D46 /* libGnSystem.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		360CDAB11324681500B141C3 /* Project object */ = {
+		21D7FC4B13A19E6800CE0D46 /* Project object */ = {
 			isa = PBXProject;
-			attributes = {
-				ORGANIZATIONNAME = N/A;
-			};
-			buildConfigurationList = 360CDAB41324681500B141C3 /* Build configuration list for PBXProject "GnSystem" */;
+			buildConfigurationList = 21D7FC4E13A19E6800CE0D46 /* Build configuration list for PBXProject "GnSystem" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 360CDAAF1324681500B141C3;
-			productRefGroup = 360CDABB1324681500B141C3 /* Products */;
+			mainGroup = 21D7FC4913A19E6800CE0D46;
+			productRefGroup = 21D7FC5513A19E6900CE0D46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				360CDAB91324681500B141C3 /* GnSystem */,
+				21D7FC5313A19E6900CE0D46 /* GnSystem */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21D7FC9213A19FFF00CE0D46 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SDK_FOLDER=\"../../../../../../SDK\"\n/bin/sh ../../../../../Builder/XCode4/CopyHeader.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		360CDAB61324681500B141C3 /* Sources */ = {
+		21D7FC5013A19E6900CE0D46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36BF2C8F1324684800D29A9C /* GnCharFunctions.c in Sources */,
-				36BF2C911324684800D29A9C /* GnDebug.cpp in Sources */,
-				36BF2C931324684800D29A9C /* GnDebugAllocator.cpp in Sources */,
-				36BF2C951324684800D29A9C /* GnMemoryDefine.cpp in Sources */,
-				36BF2C971324684800D29A9C /* GnMemoryManager.cpp in Sources */,
-				36BF2C991324684800D29A9C /* GnMemoryObject.cpp in Sources */,
-				36BF2C9B1324684800D29A9C /* GnSmartPointer.cpp in Sources */,
-				36BF2C9D1324684800D29A9C /* GnStandardAllocator.cpp in Sources */,
-				36BF2C9F1324684800D29A9C /* GnSystem.cpp in Sources */,
-				36BF2CA41324684800D29A9C /* GnSystemPCH.cpp in Sources */,
-				36BF2CA71324684800D29A9C /* GnTimer.cpp in Sources */,
-				36BF2CAD1324684800D29A9C /* GnWCharFunctions.cpp in Sources */,
-				367662DB1324BEAE003930F8 /* GnFrameSkip.cpp in Sources */,
+				21D7FCD313A1C7AA00CE0D46 /* GnCharFunctions.cpp in Sources */,
+				21D7FCD613A1C7AA00CE0D46 /* GnDebug.cpp in Sources */,
+				21D7FCD813A1C7AA00CE0D46 /* GnDebugAllocator.cpp in Sources */,
+				21D7FCDA13A1C7AA00CE0D46 /* GnFrameSkip.cpp in Sources */,
+				21D7FCDD13A1C7AB00CE0D46 /* GnLog.cpp in Sources */,
+				21D7FCDF13A1C7AB00CE0D46 /* GnMemoryDefine.cpp in Sources */,
+				21D7FCE113A1C7AB00CE0D46 /* GnMemoryManager.cpp in Sources */,
+				21D7FCE313A1C7AB00CE0D46 /* GnMemoryObject.cpp in Sources */,
+				21D7FCE513A1C7AB00CE0D46 /* GnPath.cpp in Sources */,
+				21D7FCEA13A1C7AB00CE0D46 /* GnStandardAllocator.cpp in Sources */,
+				21D7FCEC13A1C7AB00CE0D46 /* GnSystem.cpp in Sources */,
+				21D7FCEF13A1C7AB00CE0D46 /* GnSystemEBM.cpp in Sources */,
+				21D7FCF213A1C7AB00CE0D46 /* GnSystemPCH.cpp in Sources */,
+				21D7FCF713A1C7AB00CE0D46 /* GnTimer.cpp in Sources */,
+				21D7FD0013A1C7AB00CE0D46 /* GnWCharFunctions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		21D7FC9F13A1C7AA00CE0D46 /* GnBitwiseoperation.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21D7FCA013A1C7AA00CE0D46 /* en */,
+			);
+			name = GnBitwiseoperation.h;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		360CDAC21324681500B141C3 /* Debug */ = {
+		21D7FC5C13A19E6900CE0D46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
-				SYMROOT = /Users/dduk/Documents/iPhone/Built;
 			};
 			name = Debug;
 		};
-		360CDAC31324681500B141C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = iphoneos;
-				SYMROOT = /Users/dduk/Documents/iPhone/Built;
-			};
-			name = Release;
-		};
-		360CDAC51324681500B141C3 /* Debug */ = {
+		21D7FC5D13A19E6900CE0D46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21D7FC5F13A19E6900CE0D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				DSTROOT = /tmp/GnSystem.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+				GCC_PREPROCESSOR_DEFINITIONS = (
 					GNDEBUG,
-					DEBUG,
+					"DEBUG=1",
+					"$(inherited)",
 				);
-				New_Setting = "";
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = ../../include;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = ../../include;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		360CDAC61324681500B141C3 /* Release */ = {
+		21D7FC6013A19E6900CE0D46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/GnSystem.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = GNRELEASE;
-				New_Setting = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "GNRELEASE=1";
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = ../../include;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = ../../include;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		36BF2CB0132468D400D29A9C /* LOG */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
-				SDKROOT = iphoneos;
-				SYMROOT = /Users/dduk/Documents/iPhone/Built;
-			};
-			name = LOG;
-		};
-		36BF2CB1132468D400D29A9C /* LOG */ = {
+		21D7FC9313A1A0C600CE0D46 /* Log */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Log;
+		};
+		21D7FC9413A1A0C600CE0D46 /* Log */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				DSTROOT = /tmp/GnSystem.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnSystem/GnSystem-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = GNLOG;
-				New_Setting = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "GNLOG=1";
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = ../../include;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = ../../include;
+				SKIP_INSTALL = YES;
 			};
-			name = LOG;
+			name = Log;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		360CDAB41324681500B141C3 /* Build configuration list for PBXProject "GnSystem" */ = {
+		21D7FC4E13A19E6800CE0D46 /* Build configuration list for PBXProject "GnSystem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				360CDAC21324681500B141C3 /* Debug */,
-				360CDAC31324681500B141C3 /* Release */,
-				36BF2CB0132468D400D29A9C /* LOG */,
+				21D7FC5C13A19E6900CE0D46 /* Debug */,
+				21D7FC5D13A19E6900CE0D46 /* Release */,
+				21D7FC9313A1A0C600CE0D46 /* Log */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		360CDAC41324681500B141C3 /* Build configuration list for PBXNativeTarget "GnSystem" */ = {
+		21D7FC5E13A19E6900CE0D46 /* Build configuration list for PBXNativeTarget "GnSystem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				360CDAC51324681500B141C3 /* Debug */,
-				360CDAC61324681500B141C3 /* Release */,
-				36BF2CB1132468D400D29A9C /* LOG */,
+				21D7FC5F13A19E6900CE0D46 /* Debug */,
+				21D7FC6013A19E6900CE0D46 /* Release */,
+				21D7FC9413A1A0C600CE0D46 /* Log */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 360CDAB11324681500B141C3 /* Project object */;
+	rootObject = 21D7FC4B13A19E6800CE0D46 /* Project object */;
 }

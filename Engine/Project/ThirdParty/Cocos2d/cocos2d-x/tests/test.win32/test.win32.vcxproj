@@ -73,11 +73,6 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>copy_res.bat "$(OutDir)"
-$(SolutionDir)win32_copy_header.bat
-$(SolutionDir)win32_copy_Debuglib.bat</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -103,13 +98,9 @@ $(SolutionDir)win32_copy_Debuglib.bat</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <PostBuildEvent>
-      <Command>copy_res.bat "$(OutDir)"
-$(SolutionDir)win32_copy_header.bat
-$(SolutionDir)win32_copy_Releaselib.bat</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\tests\ChipmunkTest\Tank.cpp" />
     <ClCompile Include="..\tests\UserDefaultTest\UserDefaultTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\AppDelegate.cpp" />

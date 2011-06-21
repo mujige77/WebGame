@@ -75,8 +75,7 @@ void GnMemoryManager::Deallocate(void* pvMem,
 {
 	GnAssert(mAllocator);
     
-	mAllocator->Deallocate(pvMem, eEventType, stSizeinBytes);
-    
+	mAllocator->Deallocate(pvMem, eEventType, stSizeinBytes);    
 }
 
 bool GnMemoryManager::TrackAllocate(const void* const pvMem, gsize stSizeInBytes
@@ -100,7 +99,7 @@ bool GnMemoryManager::TrackDeallocate(const void* const pvMem, GnMemoryEventType
 	return mAllocator->TrackDeallocate(pvMem, eEventType);
 #else
 	return false;
-#endif	
+#endif
 	
 }
 

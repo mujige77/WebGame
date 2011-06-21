@@ -2129,7 +2129,7 @@ SpriteAnimationSplit::SpriteAnimationSplit()
     //
     // Animation using Sprite BatchNode
     //
-    CCSprite* sprite = new CCSprite;//CCSprite::spriteWithSpriteFrame(frame0);
+    CCSprite* sprite = CCSprite::spriteWithSpriteFrame(frame0);
     sprite->setPosition( ccp( s.width/2-80, s.height/2) );
     addChild(sprite);
             
@@ -2149,11 +2149,8 @@ SpriteAnimationSplit::SpriteAnimationSplit()
                        CCFlipX::actionWithFlipX(false),
                        NULL) );
     
-	//sprite->setAnchorPoint( CCPointMake(1,1) );
-    sprite->runAction( seq );
-	//sprite->runAction( CCMoveTo::actionWithDuration(1, CCPointMake(100, 100) ) );
+    sprite->runAction(CCRepeatForever::actionWithAction( seq ) );
     animFrames->release();    // win32 : memory leak    2010-0415
-	//sprite->stopAllActions();
 }
 
 void SpriteAnimationSplit::onExit()

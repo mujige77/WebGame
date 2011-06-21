@@ -2,6 +2,12 @@
 #include "GnMemoryDefine.h"
 #include "GnMemoryManager.h"
 
+//void GnMeomeyAssert(const char* pcCondition,const gchar* pcFile
+//					, int iLine, const gchar* pcFunction)
+//{
+//	GnLogA("%s:%d (%s) %s -- GnMemAssert failed.\n", pcFile, iLine, pcFunction, pcCondition);
+//}
+
 #ifdef GN_MEMORY_DEBUGGER
 void* _GnMalloc(gsize stSizeInBytes, const char* pcSourceFile,int iSourceLine,
 	const char* pcFunction)
@@ -30,7 +36,6 @@ void* _GnAlignedMalloc(gsize stSizeInBytes, gsize stAlignment)
 {
 	if (stSizeInBytes == 0)
 		stSizeInBytes = 1;
-
 	return GnMemoryManager::Instance()->Allocate(stSizeInBytes, stAlignment,
 		GN_MALLOC, false
 #ifdef GN_MEMORY_DEBUGGER
@@ -133,16 +138,3 @@ int  GnVerifyAddress(const void* pvMemory)
 	return (int)GnMemoryManager::Instance()->VerifyAddress(pvMemory);
 }
 #endif
-
-void GnMeomeyAssert(const char* pcCondition, /*GnAllocUnit* pkUnit, */
-					 const char* pcFile, int iLine, const char* pcFunction)
-{
-	//GnAssert(msGnAssertFunc);
-	//GnDebug::msGnAssertFunc(pcCondition, pcFile, pcFunction, iLine);
-	//NILOG("%s:%d (%s) %s -- GnMemAssert failed.\n", pcFile, iLine, pcFunction, pcCondition);
-	//if (pkUnit)
-	//{
-	//	GnAssert(GnMemTracker::Get());
-	//	GnMemTracker::Get()->LogAllocUnit(pkUnit, NIMESSAGE_GENERAL_0);
-	//}
-}

@@ -69,8 +69,8 @@ void DrawPrimitivesTest::draw()
 	/*glColor4ub(255, 0, 255, 255);*/
 	glColor4f(1.0, 0.0, 1.0, 1.0);
 	glLineWidth(2);
-	CCPoint vertices2[] = { CCPointMake(30,130), CCPointMake(30,230), CCPointMake(50,230), CCPointMake(50,130) };
-	ccDrawPoly( vertices2, 4, true);
+	CCPoint vertices2[] = { CCPointMake(30,130), CCPointMake(30,230), CCPointMake(50,200) };
+	ccDrawPoly( vertices2, 3, true);
 	
 	// draw quad bezier path
 	ccDrawQuadBezier(CCPointMake(0,s.height), CCPointMake(s.width/2,s.height/2), CCPointMake(s.width,s.height), 50);

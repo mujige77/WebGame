@@ -1,5 +1,11 @@
+#ifdef WIN32
 #include <GnSystem.h>
 #include <GnMemoryObject.h>
+#else // WIN32
+#include "GnSystem.h"
+#include "GnMemoryObject.h"
+#endif // WIN32
+
 #include "GnMainLibType.h"
 #include "GnRTTI.h"
 #include "GnFile.h"

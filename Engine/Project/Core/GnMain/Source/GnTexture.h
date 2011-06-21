@@ -21,7 +21,7 @@ public:
 
 public:
 	static gchar* GetTextureWorkPath();	
-	static void SetTextureWorkPath(gchar* val);
+	static void SetTextureWorkPath(const gchar* val);
 
 	inline bool CreateTexture(GnTextureMap::eMapType mapType, const gchar* pcPathName) {	
 		mFileName = pcPathName;

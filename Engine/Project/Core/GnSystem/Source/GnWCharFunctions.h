@@ -25,14 +25,19 @@
 //
 //GNFORCEINLINE const gwchar* GnWStrstr(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2);
 
+#ifdef WIN32
 #define GnWVssprintf vswprintf_s
+#else // WIN32
+#define GnWVssprintf vswprintf
+#endif // WIN32
 
-GNSYSTEM_ENTRY GNFORCEINLINE gsize GnWStrlen(const gwchar* GNRESTRICT str)
+
+static GNSYSTEM_ENTRY GNFORCEINLINE gsize GnWStrlen(const gwchar* GNRESTRICT str)
 {
 	return wcslen(str);
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrcpy(gwchar* GNRESTRICT dest, const gwchar* GNRESTRICT src, size_t destSize)
+static GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrcpy(gwchar* GNRESTRICT dest, const gwchar* GNRESTRICT src, size_t destSize)
 {
 #ifdef __GNUC__
 	return wcscpy(dest, src);
@@ -42,7 +47,7 @@ GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrcpy(gwchar* GNRESTRICT dest, const gw
 #endif
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrncpy(gwchar* GNRESTRICT dest, const gwchar* GNRESTRICT src, size_t strLength
+static GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrncpy(gwchar* GNRESTRICT dest, const gwchar* GNRESTRICT src, size_t strLength
 	, size_t destSize)
 {
 #ifdef __GNUC__
@@ -53,18 +58,18 @@ GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrncpy(gwchar* GNRESTRICT dest, const g
 #endif
 
 }
-GNFORCEINLINE const gwchar* GnWStrcat(gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2, gsize destSize)
+
+static GNFORCEINLINE const gwchar* GnWStrcat(gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2, gsize destSize)
 {
 #ifdef __GNUC__
 	return wcscat(pStr1, pStr2);
 #else // #ifdef __GNUC__
 	errno_t error = wcscat_s(pStr1, destSize, pStr2);
-	return pStr1;
+	return pStr1∫;
 #endif // #ifdef __GNUC__
 }
 
-
-GNSYSTEM_ENTRY GNFORCEINLINE gint GnWSprintf(gwchar* GNRESTRICT buffer, gsize bufferSize, const gwchar* GNRESTRICT format
+static GNSYSTEM_ENTRY GNFORCEINLINE gint GnWSprintf(gwchar* GNRESTRICT buffer, gsize bufferSize, const gwchar* GNRESTRICT format
 	, ...)
 {
 #ifdef __GNUC__
@@ -79,7 +84,7 @@ GNSYSTEM_ENTRY GNFORCEINLINE gint GnWSprintf(gwchar* GNRESTRICT buffer, gsize bu
 	return ret; 
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrtok(gwchar* GNRESTRICT pcString, const gwchar* GNRESTRICT pcDelimit
+static GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrtok(gwchar* GNRESTRICT pcString, const gwchar* GNRESTRICT pcDelimit
 	, gwchar** GNRESTRICT ppcContext)
 {
 #ifdef __GNUC__
@@ -89,21 +94,21 @@ GNSYSTEM_ENTRY GNFORCEINLINE gwchar* GnWStrtok(gwchar* GNRESTRICT pcString, cons
 #endif
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE gint GnWStrcmp(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
+static GNSYSTEM_ENTRY GNFORCEINLINE gint GnWStrcmp(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
 {
 	return wcscmp(pStr1, pStr2);
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE gint GnWStricmp(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
+static GNSYSTEM_ENTRY GNFORCEINLINE gint GnWStricmp(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
 {
 #ifdef WIN32
 	return _wcsicmp(pStr1, pStr2);
-#else
-	return wcsicmp(pStr1, pStr2);
+#else	
+	return wcscasecmp(pStr1, pStr2);
 #endif
 }
 
-GNSYSTEM_ENTRY GNFORCEINLINE const gwchar* GnWStrstr(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
+static GNSYSTEM_ENTRY GNFORCEINLINE const gwchar* GnWStrstr(const gwchar* GNRESTRICT pStr1, const gwchar* GNRESTRICT pStr2)
 {
 	return wcsstr(pStr1, pStr2);
 }

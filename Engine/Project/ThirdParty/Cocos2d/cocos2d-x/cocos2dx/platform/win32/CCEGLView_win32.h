@@ -76,6 +76,8 @@ public:
 
 protected:
 
+private:
+
     bool                m_bCaptured;
 	bool				m_bOrientationReverted;
 	bool				m_bOrientationInitVertical;

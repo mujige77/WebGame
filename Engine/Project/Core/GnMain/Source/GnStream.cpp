@@ -41,13 +41,17 @@ bool GnStream::Load(const gchar* pcFilePath)
 {
 	mpFile = GnFile::GetFile(pcFilePath, GnFile::READ_BIANRY);
 	if( mpFile == NULL )
+	{
+		GnLog( GnText("Failed File Load = %s" ),
+			  pcFilePath );
 		return false;
+	}
 
 	LoadStream( mFileVersion );
 	return true;
 }
 
-void GnStreamHelper::RegisterRTTIObject(gchar* pcName, LoadFunction pFunc)
+void GnStreamHelper::RegisterRTTIObject(const gchar* pcName, LoadFunction pFunc)
 {
 #ifdef GNDEBUG
 	LoadFunction existsFunc = NULL;
@@ -57,12 +61,12 @@ void GnStreamHelper::RegisterRTTIObject(gchar* pcName, LoadFunction pFunc)
 	mCreateFunctions->Insert( pcName, pFunc );
 }
 
-void GnStreamHelper::UnRegisterRTTIObject(gchar* pcName)
+void GnStreamHelper::UnRegisterRTTIObject(const gchar* pcName)
 {
 	mCreateFunctions->Remove(pcName);
 }
 
-void GnStreamHelper::SetRTTICreateFunction(gchar* pcName)
+void GnStreamHelper::SetRTTICreateFunction(const gchar* pcName)
 {
 	mCreateFunctions->GetAt(pcName, mCreateFunction);
 	GnAssert(mCreateFunction);

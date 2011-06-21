@@ -1,6 +1,8 @@
 #include "GnMeshPCH.h"
 #include "Gn2DActor.h"
 
+//const gint32 Gn2DActor::NULL_ANI = GINT32_MAX;
+
 Gn2DActor* Gn2DActor::Create(const gchar* pcActorToolFileName, GnObjectStream& stream
 	, bool bLoadSequenceFile)
 {
@@ -54,6 +56,7 @@ void Gn2DActor::Update(float fDeltaTime)
 
 			mpCurrentSequence = sequence;			
 			mpCurrentSequence->Start( fDeltaTime );			
+			
 		}
 	}
 

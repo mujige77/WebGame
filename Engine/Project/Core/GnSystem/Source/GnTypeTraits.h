@@ -1,3 +1,5 @@
+#ifndef GNTYPETRAITS_H
+#define GNTYPETRAITS_H
 //#include "GnList.h"
 //template<> struct __TypeTraits<bool> : __type_traits_aux<1> {};
 //template<> struct __TypeTraits<char> : __type_traits_aux<1> {};
@@ -116,14 +118,13 @@ namespace GnT
 	};
 
 	template <typename T>
-	class _TypeTraits
+	struct _TypeTraits
 	{
-	public:
 		typedef typename UnConst<T>::Result 
 			NonConstType;
 		typedef typename UnVolatile<T>::Result 
 			NonVolatileType;
-		typedef typename UnVolatile<typename UnConst<T>::Result>::Result 
+		typedef typename UnVolatile<NonConstType>::Result 
 			UnqualifiedType;
 		typedef typename PointerTraits<UnqualifiedType>::PointeeType 
 			PointeeType;
@@ -162,7 +163,7 @@ namespace GnT
 		enum { isTrue = _TrueType::isTrue };
 	};
 
-	template<class T> struct TypeTraits : public TypeTraitsAux<0>
+	template<typename T> struct TypeTraits : public TypeTraitsAux<0>
 	{
 		inline static bool TestMax(T&) {
 			return true;
@@ -230,7 +231,7 @@ namespace GnT
 			return false;
 		}
 	};
-	template<> struct TypeTraits<guint> : TypeTraitsAux<1>
+	template<> struct TypeTraits<guint> : public TypeTraitsAux<1>
 	{
 		inline static bool TestMax(guint& val) {
 			if( GUINT_MAX > val )
@@ -318,3 +319,4 @@ namespace GnT
 	//	}
 	//};
 }
+#endif // GNTYPETRAITS_H

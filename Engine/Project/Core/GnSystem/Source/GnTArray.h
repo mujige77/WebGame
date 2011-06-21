@@ -11,7 +11,7 @@
 
 
 template< class TAlloc, class DataType >
-class GNSYSTEM_ENTRY GnTArray : public GnMemoryObject
+class GNSYSTEM_ENTRY GnTArray
 {
 
 protected:
@@ -211,57 +211,6 @@ public:
 		mpArray = newarray;
 	}
 
-	//───────────────────────────────────────────
-	// Description	:	배열에 담긴 모든 것을 하나의 파일에 저장하는 함수
-	// Arguments	:	pFileName = 배열을 기록할 파일 이름
-	// Retrun Value :	성공시 return true, 실패시 return false
-	bool WriteFile( const char* pFileName )
-	{
-		File* pOutfile = 0;
-		gtuint WrittenIn = 0;
-
-		pOutfile = fopen( pFileName, "wb" );	// 파일을 연다		
-
-		if( pOutfile == 0 ) // 파일열기 실패시 리턴
-			return false;
-
-		// 배열 전체를 기록한다 fwrite는 디스크에 기록한 항목들의 개수를 돌려준다
-		// 그것을 InWritten에 저장해둔다
-		WrittenIn = fwrite( mpArray, sizeof( DataType ), mAllocatedSize, pOutfile );
-		fclose( pOutfile )	// 파일을 닫는다
-
-			// 배열 전체가 제대로 기록되었는지 점검한다.
-			if( WrittenIn != mAllocatedSize )
-				return false;
-
-		return true;
-	}
-
-
-	//───────────────────────────────────────────
-	// Description	:	기록되어 있는 배열을 다시 읽어오는 함수
-	// Arguments	:	읽어들일 파일이름
-	// Return Value	:	성공시 true, 실패시 false
-	bool ReadFile( const char* pFileName )
-	{
-		FILE*	pInfile = 0;
-		gtuint		read = 0;
-
-		pInfile = fopen( pFileName, "rb" );	//파일을 연다
-
-		if( pInfile == 0 )
-			return false;
-
-		// 현재 배열의 크기에 맞게 파일내의 항목들을 읽어온다.
-		read = fread( mpArray, sizeof( DataType ), mAllocatedSize, pInfile );
-		fclose( pInfile );
-
-		if( read != mAllocatedSize ) // 현재 읽은 파일의 항목의 크기가 현재 배열의 크기와 같지 않다면
-			return false;	// 펄스를 리턴
-
-		return true;
-	}
-
 
 	//───────────────────────────────────────────
 	// Description	:	배열의 사이즈를 확인한다.
@@ -299,7 +248,8 @@ template<class T>
 class GnTObjectArray : public GnTArray<GnTNewInterface<T>, T>
 {
 public:
-	GnTObjectArray(gtuint uiSize =  0, gushort usGrowBy = 5) : GnTArray(uiSize, usGrowBy)
+	GnTObjectArray(gtuint uiSize =  0, gushort usGrowBy = 5) 
+        : GnTArray<GnTNewInterface<T>, T>(uiSize, usGrowBy)
 	{}
 };
 
@@ -307,7 +257,8 @@ template<class T>
 class GnTPrimitiveArray : public GnTArray<GnTMallocInterface<T>, T>
 {
 public:
-	GnTPrimitiveArray(gtuint uiSize =  0, gushort usGrowBy = 5) : GnTArray(uiSize, usGrowBy)
+	GnTPrimitiveArray(gtuint uiSize =  0, gushort usGrowBy = 5)
+        : GnTArray<GnTMallocInterface<T>, T>(uiSize, usGrowBy)
 	{}
 };
 
