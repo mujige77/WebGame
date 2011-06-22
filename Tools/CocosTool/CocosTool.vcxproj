@@ -171,12 +171,14 @@
     <None Include="res\writesmall.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActorMacro.h" />
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="CategoryAnimationManager.h" />
     <ClInclude Include="CocosTool.h" />
     <ClInclude Include="CocosToolDoc.h" />
     <ClInclude Include="CocosToolView.h" />
     <ClInclude Include="CreateAnimationKeyDlg.h" />
+    <ClInclude Include="Gc2DAnchorPropEntity.h" />
     <ClInclude Include="Gc2DCollisionBoxPropEntity.h" />
     <ClInclude Include="Gc2DRectPropEntity.h" />
     <ClInclude Include="GcAnimationKeyList.h" />
@@ -247,6 +249,7 @@
     <ClCompile Include="CocosToolDoc.cpp" />
     <ClCompile Include="CocosToolView.cpp" />
     <ClCompile Include="CreateAnimationKeyDlg.cpp" />
+    <ClCompile Include="Gc2DAnchorPropEntity.cpp" />
     <ClCompile Include="Gc2DCollisionBoxPropEntity.cpp" />
     <ClCompile Include="Gc2DRectPropEntity.cpp" />
     <ClCompile Include="GcAnimationKeyList.cpp" />

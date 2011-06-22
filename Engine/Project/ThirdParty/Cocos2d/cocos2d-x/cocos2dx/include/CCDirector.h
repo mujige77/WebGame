@@ -208,6 +208,9 @@ public:
 	virtual ~CCDirector(void);
 	CCDirector(void) {}
 
+	inline void setDeltaTime(float fDelta) {
+		m_fDeltaTime = fDelta;
+	}
 	// attribute
 
 	/** Get current running Scene. Director can only run one Scene at the time */

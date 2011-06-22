@@ -322,6 +322,7 @@ BOOL CMainFrame::DestroyWindow()
 	// 마지막으로 루프 안시켜 주면 뻑남
 	CCDirector::sharedDirector()->end();
 	CCDirector::sharedDirector()->mainLoop();
+	CCDirector::destoryDirector();	
 	return true;
 }
 

@@ -106,6 +106,7 @@
     <ClInclude Include="..\..\Source\GnAllocator.h" />
     <ClInclude Include="..\..\Source\GnPath.h" />
     <ClInclude Include="..\..\Source\GnSimpleTString.h" />
+    <ClInclude Include="..\..\Source\GnSingletonManager.h" />
     <ClInclude Include="..\..\Source\GnTSet.h" />
     <ClInclude Include="..\..\Source\GnTStringMap.h" />
     <ClInclude Include="..\..\Source\GnTAllocatorCollection.h" />
@@ -148,6 +149,7 @@
     <ClCompile Include="..\..\Source\GnMemoryManager.cpp" />
     <ClCompile Include="..\..\Source\GnMemoryObject.cpp" />
     <ClCompile Include="..\..\Source\GnPath.cpp" />
+    <ClCompile Include="..\..\Source\GnSingletonManager.cpp" />
     <ClCompile Include="..\..\Source\GnStandardAllocator.cpp" />
     <ClCompile Include="..\..\Source\GnSystem.cpp" />
     <ClCompile Include="..\..\Source\GnSystemEBM.cpp" />

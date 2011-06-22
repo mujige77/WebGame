@@ -17,7 +17,7 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>xcopy /D /F  /I /R ..\..\SDK\Bin\$(Configuration)\*.dll "$(OutDir)"</Command>
+      <Command>xcopy /D /F /I /R /Y ..\..\SDK\Bin\$(Configuration)\*.dll "$(OutDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />

@@ -6,6 +6,7 @@
 #include "afxcmn.h"
 #include "afxwin.h"
 #include "Gc2DCollisionBoxPropEntity.h"
+#include "Gc2DAnchorPropEntity.h"
 
 // GcSequenceCollisionDlg 대화 상자입니다.
 
@@ -17,8 +18,9 @@ protected:
 	GcCollisionList mCollisionList;
 	CStatic mCollisionPropLocaton;
 	GcPropertyGridCtrl mCollisionProp;
+	GcPropertyGridCtrl mAnchorProp;
 	Gc2DCollisionBoxPropEntity mCollisionPropEntity;
-
+	Gc2DAnchorPropEntity	mAnchorPropEntity;
 	Gt2DActor* mpActor;
 	Gt2DSequence* mpSequence;
 	
@@ -36,4 +38,8 @@ protected:
 	virtual BOOL OnInitDialog();
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 	virtual void ReceiveMediateMessage(gtuint messageIndex, GcMediateObjectMessage* pMessage);
+public:
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+protected:
+	CStatic mAnchorLocation;
 };

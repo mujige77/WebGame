@@ -42,8 +42,7 @@ bool GnStream::Load(const gchar* pcFilePath)
 	mpFile = GnFile::GetFile(pcFilePath, GnFile::READ_BIANRY);
 	if( mpFile == NULL )
 	{
-		GnLog( GnText("Failed File Load = %s" ),
-			  pcFilePath );
+		GnLogA( "Failed File Load = %s", pcFilePath );
 		return false;
 	}
 

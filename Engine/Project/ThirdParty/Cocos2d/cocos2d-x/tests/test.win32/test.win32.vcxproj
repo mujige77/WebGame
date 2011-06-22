@@ -73,6 +73,13 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)win32_copy_Debuglib.bat
+</Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>$(SolutionDir)win32_copy_header.bat</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -98,6 +105,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)win32_copy_Releaselib.bat</Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>$(SolutionDir)win32_copy_header.bat</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\tests\ChipmunkTest\Tank.cpp" />

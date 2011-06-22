@@ -1,11 +1,3 @@
-//
-//  GnPathUtil.h
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 17..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __Core__GnPathUtil__
 #define __Core__GnPathUtil__
 

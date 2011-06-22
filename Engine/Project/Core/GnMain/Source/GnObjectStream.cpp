@@ -172,7 +172,7 @@ void GnObjectStream::LoadFixedStrings()
 		guint16 len = 0;
 		LoadStream( len );
 		LoadStreams( fixedStr, len );
-		fixedStr[len] = '\\0';
+		fixedStr[len] = 0;
 		mFixedStrings.Add( GnSimpleString(fixedStr) );
 	}
 

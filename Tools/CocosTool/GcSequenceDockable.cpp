@@ -113,9 +113,12 @@ void GcSequenceDockable::AdjustLayout()
 	int cyDlg =  rectDlg.Size().cy;	
 
 	m_wndPropList.SetDescriptionRows(5);	
-	mToolBar.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), cyTlb, SWP_NOACTIVATE | SWP_NOZORDER);
-	mSequenceListCtrl.SetWindowPos(NULL, rectClient.left, rectClient.top + cyTlb , rectClient.Width(), cyDlg, SWP_NOACTIVATE|  SWP_NOZORDER);	
-	m_wndPropList.SetWindowPos(NULL, rectClient.left, rectClient.top + cyTlb + cyDlg, rectClient.Width(), rectClient.Height() -(cyTlb+cyDlg), SWP_NOACTIVATE | SWP_NOZORDER);
+	mToolBar.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), cyTlb
+		, SWP_NOACTIVATE | SWP_NOZORDER);
+	mSequenceListCtrl.SetWindowPos(NULL, rectClient.left, rectClient.top + cyTlb , rectClient.Width(), cyDlg
+		, SWP_NOACTIVATE|  SWP_NOZORDER);	
+	m_wndPropList.SetWindowPos(NULL, rectClient.left, rectClient.top + cyTlb + cyDlg, rectClient.Width()
+		, rectClient.Height() -(cyTlb+cyDlg), SWP_NOACTIVATE | SWP_NOZORDER);
 }
 
 void GcSequenceDockable::ReceiveMediateMessage(gtuint messageIndex
@@ -242,7 +245,7 @@ void GcSequenceDockable::OnBtNewtemplate()
 		}
 		Gn2DAVData* avData = GtObjectNew<Gn2DAVData>::Create();
 		
-		avData->AddCollisionRect( 0, GnFRect( 0, 0, (int)max.x, (int)max.y ) );
+		avData->AddCollisionRect( 0, GnFRect( 0, 0, max.x, max.y ) );
 		gnSequence->SetAVData( avData );
 
 		mpsCurrentObject->GetActor()->ChangeSequence( sequence->GetSequence()->GetID()

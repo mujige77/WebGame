@@ -320,6 +320,12 @@
     <ClInclude Include="GtCollisionModify.h">
       <Filter>GnTools</Filter>
     </ClInclude>
+    <ClInclude Include="Gc2DAnchorPropEntity.h">
+      <Filter>Controls\PropEntity</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorMacro.h">
+      <Filter>GnTools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CocosTool.cpp">
@@ -507,6 +513,9 @@
     </ClCompile>
     <ClCompile Include="GtCollisionModify.cpp">
       <Filter>GnTools</Filter>
+    </ClCompile>
+    <ClCompile Include="Gc2DAnchorPropEntity.cpp">
+      <Filter>Controls\PropEntity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

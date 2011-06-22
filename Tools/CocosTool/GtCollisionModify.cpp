@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "GtCollisionModify.h"
 #include "GnLayer.h"
-
+#include "ActorMacro.h"
 
 GtCollisionModify::GtCollisionModify(void)
 {
@@ -88,6 +88,8 @@ void GtCollisionModify::SetBasicSequenceID(guint32 uiID)
 	mpsBasicMeshObject->SetAVData( sequence->GetAVData() );
 	mpsBasicMeshObject->GetMesh()->setOpacity( 255 );
 	mpsBasicMeshObject->GetMesh()->setColor( ccc3( 0, 255 , 255 ) );
+	mpsBasicMeshObject->GetMesh()->setAnchorPoint( CCPointMake(0,0) );
+	mpsBasicMeshObject->SetPosition( ActorBasePosition );
 }
 
 void GtCollisionModify::SetVisible(bool val, Gn2DMeshObject* pMesh)

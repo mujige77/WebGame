@@ -1,3 +1,4 @@
+
 #ifndef GNWCHARFUNCTIONS_H
 #define GNWCHARFUNCTIONS_H
 
@@ -65,7 +66,7 @@ static GNFORCEINLINE const gwchar* GnWStrcat(gwchar* GNRESTRICT pStr1, const gwc
 	return wcscat(pStr1, pStr2);
 #else // #ifdef __GNUC__
 	errno_t error = wcscat_s(pStr1, destSize, pStr2);
-	return pStr1∫;
+	return pStr1;
 #endif // #ifdef __GNUC__
 }
 

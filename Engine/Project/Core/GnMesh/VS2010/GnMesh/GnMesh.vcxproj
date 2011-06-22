@@ -117,6 +117,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\GFileLIst.h" />
     <ClInclude Include="..\..\Source\Gg2dCollision.h" />
     <ClInclude Include="..\..\Source\Gn2DAVData.h" />
     <ClInclude Include="..\..\Source\Gn2DAVDataConverter.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="..\..\Source\GnTegIDKey.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\GFileList.cpp" />
     <ClCompile Include="..\..\Source\Gg2DCollision.cpp" />
     <ClCompile Include="..\..\Source\Gn2DAVData.cpp" />
     <ClCompile Include="..\..\Source\Gn2DAVDataConverter.cpp" />

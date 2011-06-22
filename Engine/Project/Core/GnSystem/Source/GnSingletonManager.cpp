@@ -1,11 +1,3 @@
-//
-//  GnSingletonManager.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 16..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #include "GnSystemPCH.h"
 #include "GnSingletonManager.h"
 
@@ -15,10 +7,13 @@ GnSingletonManager::GnCreateFuncArray<GnSingletonManager::CreateSingletonFunc>*
 
 void GnSingletonManager::EBMStartup()
 {
-	for ( gtuint i = 0 ; i < mCreateFuncs->GetSize(); i++ )
+	if( mCreateFuncs )
 	{
-		GnMemoryObject *pObject = mCreateFuncs->GetAt( i )();
-		AddSingletonObject( pObject );
+		for ( gtuint i = 0 ; i < mCreateFuncs->GetSize(); i++ )
+		{
+			GnMemoryObject *pObject = mCreateFuncs->GetAt( i )();
+			AddSingletonObject( pObject );
+		}
 	}
 }
 
@@ -28,6 +23,8 @@ void GnSingletonManager::EBMShutdown()
 	{
 		GnDelete mSingletonObjects.GetAt( i );
 	}
+	if( mCreateFuncs )
+		delete mCreateFuncs;
 }
 
 void GnSingletonManager::AddSingletonObject(GnMemoryObject* pObject)

@@ -63,7 +63,7 @@ void GnDraw2DObjectRect::Draw()
 
 	GnColorA tempColor = mColor;
 	mColor = GnColorA( 0, 0, 0, 1 );
-	CCPoint pos = mpObject->GetMesh()->getPosition();
+	GnVector2 pos = mpObject->GetOriginalPosition();
 	//GnFRect gnMeshRect( 0, 0, meshSize.width, meshSize.height );
 	GnFRect gnMeshRect( pos.x, pos.y, pos.x + meshSize.width, pos.y + meshSize.height );
 	DrawRect( gnMeshRect );	
@@ -105,14 +105,20 @@ void GnDraw2DObjectRect::Draw()
 
 	if( IsDrawAnchorPoint() )
 	{
-		mColor = GnColorA( 0, 255, 255, 1 );
-		GnVector2 anchorPoint = avData->GetAnchorPoint();
-		anchorPoint += mpObject->GetPosition();
-		//anchorPoint.x *= meshSize.width;
-		//anchorPoint.y *= meshSize.height;
 		float temp = mThickness;
 		mThickness = 5;
-		DrawPoint( anchorPoint );
+
+		mColor = GnColorA( 0, 255, 255, 1 );
+		GnVector2 point = avData->GetImageCenter();
+		point += mpObject->GetPosition();
+		DrawPoint( point );
+
+		mColor = GnColorA( 0, 0, 255, 1 );
+		point = avData->GetAnchorPoint();
+		point.x *= meshSize.width;
+		point.y *= meshSize.height;
+		DrawPoint( point );
+
 		mThickness = temp;
 	}
 

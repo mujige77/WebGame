@@ -38,6 +38,8 @@ bool Gt2DActor::SaveData(const gchar* pcBasePath)
 		GnTObjectDeleteMap<guint32, Gt2DSequencePtr>::Entry& entity = iter.Item();		
 		if( entity.m_data->IsModifed() )
 		{
+			entity.m_data->GetSequence()->GetAVData()->Move( GnVector2(0.0f, 0.0f)  );
+			entity.m_data->GetSequence()->GetAVData()->FlipX( false, 0.0f );
 			entity.m_data->SaveData( GetObjectName(), sequenceBasePath );
 		}
 		mpGtSequences.GetNextIter( iter );

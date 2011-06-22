@@ -50,9 +50,7 @@ void GcCollisionList::CreateNewItem()
 
 BOOL GcCollisionList::RemoveItem(int iIndex)
 {
-	GnTObjectArray<Gn2DAVData::CollisionRect>* rects = mpAVData->GetCollisionRects();;
-	rects->RemoveAtAndFillAll( iIndex );
-
+	mpAVData->RemoveAtAndFillAllCollisionRect( (gtuint)iIndex );
 	if( GcVSListBox::RemoveItem( iIndex ) == false )
 			return FALSE;
 

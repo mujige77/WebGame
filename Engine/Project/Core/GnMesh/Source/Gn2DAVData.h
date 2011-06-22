@@ -27,6 +27,7 @@ public:
 	};
 
 protected:
+	GnVector2 mImageCenter;
 	GnVector2 mAnchorPoint;
 	GnTObjectArray<CollisionRect> mCollisionRects;
 	GnTObjectArray<CollisionRect> mOriginalCollisionRects;
@@ -37,6 +38,12 @@ public:
 	void Move(GnVector2& movePoint);
 	void FlipX(bool bFlip, float postionX);
 
+	inline GnVector2& GetImageCenter() {
+		return mImageCenter;
+	}
+	inline void SetImageCenter(GnVector2& val) {
+		mImageCenter = val;
+	}
 	inline GnVector2& GetAnchorPoint() {
 		return mAnchorPoint;
 	}
@@ -47,15 +54,26 @@ public:
 		return mCollisionRects.GetSize();
 	}
 	inline void AddCollisionRect(gint32 uiID, GnFRect& val)
-	{
-		mCollisionRects.Add( CollisionRect( uiID, val ) );
+	{ 
+		CollisionRect rect( uiID, val );
+		mCollisionRects.Add( rect );
+		mOriginalCollisionRects.Add( rect );
 	}
 	inline void SetCollisionRect(gtuint uiIndex, gint32 uiID, GnFRect& val)
 	{
-		mCollisionRects.SetAt( uiIndex, CollisionRect( uiID, val ) );
+		CollisionRect rect( uiID, val );
+		SetCollisionRect( uiIndex, rect );
+	}
+	inline void SetCollisionRect(gtuint uiIndex, CollisionRect& rect)
+	{
+		mCollisionRects.SetAt( uiIndex, rect );
+		mOriginalCollisionRects.SetAt( uiIndex, rect );
 	}
 	inline CollisionRect& GetCollisionRect(gtuint uiIndex) {
 		return mCollisionRects.GetAt( uiIndex );
+	}
+	inline CollisionRect& GetOriginalCollisionRect(gtuint uiIndex) {
+		return mOriginalCollisionRects.GetAt( uiIndex );
 	}
 	inline void RemoveAllCollisionRect() {
 		mCollisionRects.RemoveAll();
@@ -69,9 +87,11 @@ public:
 	}
 
 	// 툴 때문에 만든 것임
-public:
-	inline GnTObjectArray<CollisionRect>* GetCollisionRects() {
-		return &mCollisionRects;
+public:	
+	inline void RemoveAtAndFillAllCollisionRect(gtuint uiIndex)
+	{
+		mCollisionRects.RemoveAtAndFillAll( uiIndex );
+		mOriginalCollisionRects.RemoveAtAndFillAll( uiIndex );
 	}
 
 	//inline GnIRect GetAttackRect() {

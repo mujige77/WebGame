@@ -3,7 +3,7 @@
 
 GnImplementRTTI( Gn2DAVData, GnObject );
 
-Gn2DAVData::Gn2DAVData() : mAnchorPoint(0.0f, 0.0f)
+Gn2DAVData::Gn2DAVData() : mAnchorPoint(0.0f, 0.0f), mImageCenter(0.0f, 0.0f)
 {
 	SetMeshStream( true );
 	//SetExistCollision( false );
@@ -16,7 +16,10 @@ void Gn2DAVData::LoadStream(GnObjectStream* pStream)
 {
 	GnObject::LoadStream( pStream );
 
+	if( pStream->GetFileVersion() != GnStream::GetVersion( 1, 0, 0, 0 ) )
+		mImageCenter.LoadStream( pStream );
 	mAnchorPoint.LoadStream( pStream );
+
 	guint32 size = 0;
 	pStream->LoadStream( size );
 	if( size )
@@ -38,8 +41,7 @@ void Gn2DAVData::LoadStream(GnObjectStream* pStream)
 				rect.mRect.LoadStream( pStream );
 			}
 
-			mCollisionRects.SetAt( i, rect );
-			mOriginalCollisionRects.SetAt( i, rect );
+			SetCollisionRect( i, rect );
 		}
 	}	
 }
@@ -53,7 +55,9 @@ void Gn2DAVData::SaveStream(GnObjectStream* pStream)
 {
 	GnObject::SaveStream( pStream );
 
+	mImageCenter.SaveStream( pStream );
 	mAnchorPoint.SaveStream( pStream );
+	
 	guint32 size = mCollisionRects.GetSize();
 	pStream->SaveStream( size );
 	for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
@@ -83,12 +87,15 @@ void Gn2DAVData::Move(GnVector2& movePoint)
 void Gn2DAVData::FlipX(bool bFlip, float postionX)
 {
 	if( bFlip )
-	{
+	{	
 		for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
 		{
+			CollisionRect& baseRect =  mOriginalCollisionRects.GetAt( 0 );
+			CollisionRect& currentRect =  mCollisionRects.GetAt( i );
 			CollisionRect rect = mOriginalCollisionRects.GetAt( i );
-			rect.mRect = GnFRect( postionX - rect.mRect.left + GetAnchorPoint().x, rect.mRect.top
-				, postionX - rect.mRect.right + GetAnchorPoint().x, rect.mRect.bottom );
+			float rectAnchor =  baseRect.mRect.left + baseRect.mRect.right;
+			rect.mRect = GnFRect( postionX - rect.mRect.left + rectAnchor, currentRect.mRect.top
+				, postionX - rect.mRect.right + rectAnchor, currentRect.mRect.bottom );
 			mCollisionRects.SetAt( i, rect );
 		}
 	}
@@ -96,9 +103,10 @@ void Gn2DAVData::FlipX(bool bFlip, float postionX)
 	{
 		for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
 		{
+			CollisionRect& currentRect =  mCollisionRects.GetAt( i );
 			CollisionRect rect = mOriginalCollisionRects.GetAt( i );
-			rect.mRect = GnFRect( rect.mRect.right + postionX, rect.mRect.top
-				, rect.mRect.left + postionX, rect.mRect.bottom );
+			rect.mRect = GnFRect( rect.mRect.left + postionX, currentRect.mRect.top
+				, rect.mRect.right + postionX, currentRect.mRect.bottom );
 			mCollisionRects.SetAt( i, rect );
 		}
 	}

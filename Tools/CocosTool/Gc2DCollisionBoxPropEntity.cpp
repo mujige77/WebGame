@@ -20,36 +20,10 @@ bool Gc2DCollisionBoxPropEntity::Init()
 	mUpdateEventSlot.Initialize( this, &Gc2DCollisionBoxPropEntity::UpdateEvent );
 
 	GcPropertyGridProperty* pGroup = NULL;
-	pGroup = new GcPropertyGridProperty(_T("Anchor Point info"));
+	pGroup = new GcPropertyGridProperty(_T("Collision Box info"));
 	mpProperty = pGroup;
 
 	GcPropertyGridProperty* pProp = NULL;
-	std::auto_ptr<CMFCPropertyGridProperty> apSize( new GcPropertyGridNumberPair( _T("AnchorPoint")
-		, 0, GINT_MAX, 0, GINT_MAX, 0, TRUE ) );
-	apSize->AllowEdit( false );
-	//pProp = new GtBoundedNumberSubProp( _T("Position X"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
-	pProp = new GtBoundedNumberSubProp( _T("Position X"), (COleVariant)0l, GINT_MIN, GINT_MAX
-		, _T("AnchorPoint Position x") );
-	mpUseGridProperty[PROP_ANCHORPOINTX] = pProp;
-	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
-	pProp->EnableSpinControl( TRUE, GINT_MIN, GINT_MAX );
-	pProp->SetData( MSG_ANCHORPOINTX );
-	pProp->SubscribeToUpdateEvent( &mUpdateEventSlot );
-	apSize->AddSubItem( pProp );
-	//pProp = new GtBoundedNumberSubProp( _T("Position Y"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
-	pProp = new GtBoundedNumberSubProp( _T("Position Y"), (COleVariant)0l, GINT_MIN, GINT_MAX
-		, _T("AnchorPoint Position y") );
-	mpUseGridProperty[PROP_ANCHORPOINTY] = pProp;
-	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
-	pProp->EnableSpinControl( TRUE, GINT_MIN, GINT_MAX );
-	pProp->SetData( MSG_ANCHORPOINTY );
-	pProp->SubscribeToUpdateEvent( &mUpdateEventSlot );
-	apSize->AddSubItem( pProp );
-	pGroup->AddSubItem( apSize.release() );	
-
-	pGroup = new GcPropertyGridProperty(_T("Collision Box info"));
-	mpProperty2 = pGroup;
-
 	std::auto_ptr<GcPropertyGridNumberPair> apSize2( new GcPropertyGridNumberPair(
 		_T("Collision box Postion"), GINT_MIN, GINT_MAX, GINT_MIN, GINT_MAX, 0, TRUE) );
 	apSize2->AllowEdit( false );
@@ -102,24 +76,15 @@ bool Gc2DCollisionBoxPropEntity::ParseToEntity(EntityData* pData)
 	if( avData == NULL )
 		return false;
 	
-	GetAnchorPointXProp()->SetValue( (COleVariant)(long)avData->GetAnchorPoint().x );
-	GetAnchorPointYProp()->SetValue( (COleVariant)(long)avData->GetAnchorPoint().y );
-
 	if( mNumEditCollisionRect >= (int)avData->GetCollisionCount() )
 		return false;
 
-	Gn2DAVData::CollisionRect rect = avData->GetCollisionRect( mNumEditCollisionRect );
+	Gn2DAVData::CollisionRect rect = avData->GetOriginalCollisionRect( mNumEditCollisionRect );
 	GnAssert( rect.mType < Gg2DCollision::COLLISION_MAX );
 	ParseCollisionRect(mNumEditCollisionRect, rect);
 	
 
 	return true;
-}
-
-void Gc2DCollisionBoxPropEntity::ApplyObjectData(CMFCPropertyGridProperty* pChangeProp
-	, EntityData* pData)
-{
-
 }
 
 void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGridProperty)
@@ -147,35 +112,15 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 	//		GnAssert( mNumEditCollisionRect >= 0 );
 	//	}
 	//	break;
-	case MSG_ANCHORPOINTX:
-		{
-			GnVector2 point = avData->GetAnchorPoint();
-			//point.x = GetFloatValue( GetAnchorPointXProp()->GetValue() );
-			point.x = (float)GetIntValue( GetAnchorPointXProp()->GetValue() );
-			avData->SetAnchorPoint( point );
-			mp2DActor->GetActor()->StopAnimation();
-			mp2DActor->GetActor()->SetTargetAnimation(  mpSequenceObject->GetSequence()->GetID() );
-		}
-		break;
-	case MSG_ANCHORPOINTY:
-		{
-			GnVector2 point = avData->GetAnchorPoint();
-			//point.y = GetFloatValue( GetAnchorPointYProp()->GetValue() );
-			point.y = (float)GetIntValue( GetAnchorPointYProp()->GetValue() );
-			avData->SetAnchorPoint( point );
-			mp2DActor->GetActor()->StopAnimation();
-			mp2DActor->GetActor()->SetTargetAnimation(  mpSequenceObject->GetSequence()->GetID() );
-		}
-		break;
 	case MSG_RECTPOSITIONX:
 		{
 			if( mNumEditCollisionRect < 0 )
 				return;
 			
 			int val = GetIntValue( GetCollisionPostionXProp()->GetValue() );
-			Gn2DAVData::CollisionRect& rect = avData->GetCollisionRect( (gtuint)mNumEditCollisionRect );
+			Gn2DAVData::CollisionRect& rect = avData->GetOriginalCollisionRect( (gtuint)mNumEditCollisionRect );
 			rect.mRect.MoveX( val - rect.mRect.left );
-			avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
+			//avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
 		}
 		break;
 	case MSG_RECTPOSITIONY:
@@ -184,9 +129,9 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 				return;
 
 			int val = GetIntValue( GetCollisionPostionYProp()->GetValue() );
-			Gn2DAVData::CollisionRect& rect = avData->GetCollisionRect( (gtuint)mNumEditCollisionRect );
+			Gn2DAVData::CollisionRect& rect = avData->GetOriginalCollisionRect( (gtuint)mNumEditCollisionRect );
 			rect.mRect.MoveY( val - rect.mRect.top );
-			avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
+			//avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
 		}
 		break;
 	case MSG_RECTWIDTH:
@@ -195,9 +140,9 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 				return;
 
 			int val = GetIntValue( GetCollisionSizeWidthProp()->GetValue() );
-			Gn2DAVData::CollisionRect& rect = avData->GetCollisionRect( (gtuint)mNumEditCollisionRect );
-			rect.mRect.SetWidth( val );
-			avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
+			Gn2DAVData::CollisionRect& rect = avData->GetOriginalCollisionRect( (gtuint)mNumEditCollisionRect );
+			rect.mRect.SetWidth( (float)val );
+			//avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
 		}
 		break;
 	case MSG_RECTHEIGHT:
@@ -206,15 +151,15 @@ void Gc2DCollisionBoxPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGri
 				return;
 
 			int val = GetIntValue( GetCollisionSizeHeightProp()->GetValue() );
-			Gn2DAVData::CollisionRect& rect = avData->GetCollisionRect( (gtuint)mNumEditCollisionRect );
-			rect.mRect.SetHeight( val );
-			avData->SetCollisionRect( (gtuint)mNumEditCollisionRect, rect.mType, rect.mRect );
+			Gn2DAVData::CollisionRect& rect = avData->GetOriginalCollisionRect( (gtuint)mNumEditCollisionRect );
+			rect.mRect.SetHeight( (float)val );
 		}
 		break;
 	default:
 		return;
 	}	
-	
+	mp2DActor->GetActor()->GetRootNode()->SetPosition( 
+		mp2DActor->GetActor()->GetRootNode()->GetPosition() );
 	SendMediateMessage( GTMG_REDRAW, NULL );
 	mpSequenceObject->SetModifed( true );
 }

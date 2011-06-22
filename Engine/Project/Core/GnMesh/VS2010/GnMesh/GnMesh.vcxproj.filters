@@ -143,6 +143,9 @@
     <ClInclude Include="..\..\Source\GnGameState.h">
       <Filter>소스 파일\2DEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\GFileLIst.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\GnMeshPCH.cpp">
@@ -243,6 +246,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\GnGameState.cpp">
       <Filter>소스 파일\2DEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GFileList.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

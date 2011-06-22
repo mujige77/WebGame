@@ -1,11 +1,3 @@
-//
-//  GnSingletoneManager.h
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 16..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __Core__GnSingletoneManager__
 #define __Core__GnSingletoneManager__
 #include "GnMemoryManager.h"
@@ -13,6 +5,7 @@
 
 class GNSYSTEM_ENTRY GnSingletonManager 
 {
+private:
 	template<class T>
 	class GnCreateFuncArray : public GnTArray<GnTExternalNewInterface<T>, T>
 	{
@@ -24,7 +17,7 @@ class GNSYSTEM_ENTRY GnSingletonManager
 public:
 	typedef GnMemoryObject* (*CreateSingletonFunc)();
 	
-private:
+public:
 	template<class T>
 	class CreateObject : public GnMemoryObject
 	{

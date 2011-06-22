@@ -157,7 +157,6 @@ void CCocosToolView::OnInitialUpdate()
 
 		CMainFrame* mainFrame = (CMainFrame*)AfxGetMainWnd();
 		mCategoryAnimation.Create( mainFrame->GetRibbonBar() );
-		CCDirector::sharedDirector()->SetUseTools( true );
 		CCFileUtils::setIsPopupNotify(false );
 
 		Loadbackground( GtToolSettings::GetBackgroundFilePath() );
@@ -167,6 +166,7 @@ void CCocosToolView::OnInitialUpdate()
 
 void CCocosToolView::PostNcDestroy()
 {
+	//delete CCDirector::sharedDirector()->getOpenGLView();
 	delete mpCollisionModify;
 	delete mpApp;
 	CFormView::PostNcDestroy();
@@ -228,7 +228,7 @@ void CCocosToolView::OnDraw(CDC* /*pDC*/)
 	if( mpsActor )
 		mpsActor->GetActor()->Update( GetCurrentTime() - mBforeTime );
 
-	CCDirector::sharedDirector()->SetDeltaTime( GetCurrentTime() - mBforeTime );
+	CCDirector::sharedDirector()->setDeltaTime( GetCurrentTime() - mBforeTime );
 	CCDirector::sharedDirector()->mainLoop();
 	mBforeTime = GetCurrentTime();
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
@@ -358,7 +358,7 @@ void CCocosToolView::AddCurrentActorToLayerDrawPprimitives()
 	{
 		if( mpsActor && mpsSequence )
 		{
-			std:string strName = GtToolSettings::GetWorkPath();
+			std::string strName = GtToolSettings::GetWorkPath();
 			strName += mpsActor->GetObjectName();
 			strName += "/";
 			strName += mpsActor->GetGATFileName();

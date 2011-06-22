@@ -47,8 +47,9 @@ void Gn2DMeshObject::SetAVData(Gn2DAVData* val)
 	mpsAVData = val;
 	if( mpMesh && val )
 	{
-		//SetPosition( val->GetAnchorPoint() );
-		//mpMesh->setAnchorPoint( CCPointMake( val->GetAnchorPoint().x, val->GetAnchorPoint().y ) );
+		mpMesh->setAnchorPoint( CCPointMake( val->GetAnchorPoint().x, val->GetAnchorPoint().y ) );
+		SetPosition( GetPosition() );
+		SetFlipX( mpMesh->isFlipX() );
 	}
 }
 
@@ -72,14 +73,14 @@ void Gn2DMeshObject::SetPosition(GnVector2 val)
 	{
 		if( mpMesh->isFlipX() )
 		{
-			val = GetOriginalPosition() - GetAVData()->GetAnchorPoint();
+			val = GetOriginalPosition() - GetAVData()->GetImageCenter();
 			mpMesh->setPosition( CCPointMake(val.x, val.y) );
 		}
 		else
 		{			
 			mpMesh->setPosition( CCPointMake(val.x, val.y) );
 		}
-		//GetAVData()->Move( GetOriginalPosition() );
+		GetAVData()->Move( GetOriginalPosition() );
 	}
 	else
 	{
@@ -93,13 +94,13 @@ void Gn2DMeshObject::SetFlipX(bool val)
 	SetPosition( GetOriginalPosition() );
 	if( GetAVData() )
 	{
-		if( mpMesh->isFlipX() )
+		if( val )
 		{
-			GetAVData()->FlipX( mpMesh->isFlipX(), GetOriginalPosition().x );
+			GetAVData()->FlipX( val, GetOriginalPosition().x );
 		}
 		else
 		{			
-			GetAVData()->FlipX( mpMesh->isFlipX(), GetOriginalPosition().x );
+			GetAVData()->FlipX( val, GetOriginalPosition().x );
 		}
 	}	
 	//if( mpsAVData )

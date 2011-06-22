@@ -120,6 +120,7 @@ bool CCDirector::init(void)
 	m_nFrames = 0;
 	m_pszFPS = new char[10];
 	m_pLastUpdate = new struct cc_timeval();
+	m_pFPSLabel = NULL;
 
 	// paused ?
 	m_bPaused = false;
