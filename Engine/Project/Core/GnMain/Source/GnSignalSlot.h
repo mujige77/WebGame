@@ -461,8 +461,8 @@ template <typename ClassType, typename Arg1Type, typename Arg2Type> inline
 	void GnMemberSlot2<ClassType, Arg1Type, Arg2Type>::Initialize(ClassType* pkInstance
 	, void (ClassType::*pfnCallback)(Arg1Type, Arg2Type))
 {
-	GnAssert(m_pkInstance != NULL);
-	GnAssert(m_pfnCallback != NULL);
+	GnAssert(pkInstance != NULL);
+	GnAssert(pfnCallback != NULL);
 
 	m_pkInstance = pkInstance;
 	m_pfnCallback = pfnCallback;

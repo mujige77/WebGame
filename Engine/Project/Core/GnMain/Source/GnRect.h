@@ -37,6 +37,28 @@ public:
 	inline T GetHeight(){
 		return bottom - top;
 	};
+	
+	inline bool ContainsPoint(T x, T y) {
+		if (x >= left && x <= right && y >= top && y <= bottom )
+			return true;
+		return false;
+	}
+	inline bool ContainsPointX(T x) {
+		if (x >= left && x <= right )
+			return true;
+		return false;
+	}
+	inline bool ContainsPointY(T y) {
+		if ( y >= top && y <= bottom )
+			return true;
+		return false;
+	}
+	inline bool ContainsRectWidth(GnRect<T>& rect) {
+		if ( ( rect.left >= left && rect.left <= right ) 
+			|| ( rect.right >= left && rect.right <= right ) )
+			return true;
+		return false;
+	}
 };
 
 class GNMAIN_ENTRY GnFRect : public GnRect<float>

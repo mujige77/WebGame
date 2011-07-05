@@ -43,3 +43,12 @@ void GnFile::Destory()
 {
 	GnDelete this;
 }
+
+gchar* GnFile::CopyAsciiFileString(const gchar* pcBuffer)
+{
+	size_t len = GnStrlen( pcBuffer )-1;
+	gchar* copyString = GnAlloc(gchar, len);
+	strcpy( copyString, pcBuffer );
+	copyString[len-1] = '\0';
+	return copyString;
+}

@@ -30,6 +30,8 @@ protected:
 public:
 	virtual ~GnFile();
 	static GnFile* GetFile(const gchar* strFileName, eOpenMode eMode, gtuint uiBufferSize = 2048);
+	static gchar* CopyAsciiFileString(const gchar* pcBuffer);
+	
 	void Destory();
 
 	inline GnFile::eOpenMode GetMode() {

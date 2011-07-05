@@ -6,4 +6,8 @@
 //  Copyright 2011년 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
+#include "GnGamePCH.h"
+#include "GGameFactory.h"
+#include "GMainGameMove.h"
+
+GnImplementSingleton(GGameFactory);

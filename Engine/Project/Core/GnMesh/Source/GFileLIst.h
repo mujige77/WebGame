@@ -21,7 +21,7 @@ public:
 	const gchar* GetForcesFileName(gtuint uiIndex)
 	{
 		gchar* name = NULL;
-		mEnemyNames.GetAt(uiIndex, name);
+		mForcesNames.GetAt(uiIndex, name);
 		return name;
 	};	
 	
