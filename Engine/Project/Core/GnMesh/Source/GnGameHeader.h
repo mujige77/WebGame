@@ -6,9 +6,10 @@
 //  Copyright 2011년 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef __Core__GnGameHeader__
-#define __Core__GnGameHeader__
-
-
-
-#endif
+#include "GGameEnvironment.h"
+#include "GnInterfaceHeader.h"
+#include "GAccumulationTimeEvent.h"
+#include "GActorController.h"
+#include "GAction.h"
+#include "GInfo.h"
+#include "GActorCtlrManager.h"

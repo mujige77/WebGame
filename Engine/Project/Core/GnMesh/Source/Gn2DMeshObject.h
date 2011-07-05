@@ -25,7 +25,7 @@ public:
 	virtual ~Gn2DMeshObject();
 
 	static Gn2DMeshObject* CreateFromTextureFile(const gchar* pcFilePath);
-
+	
 	void SetMesh(GnReal2DMesh* pMesh);
 	void SetAVData(Gn2DAVData* val);
 	void AttachParent(Gn2DMeshObject* pParent);
@@ -52,32 +52,43 @@ public:
 	inline bool IsVisible() {
 		return GetBit( VISIBLE_MASK );
 	}
-	inline void SetVisible(bool val) {
+	inline void SetVisible(bool val)
+	{
+		mpMesh->setIsVisible( val );
 		SetBit( val, VISIBLE_MASK );
 	}
 	inline GnVector2& GetOriginalPosition() {
-		//if( mpsAVData )
-		//{
-		//	if( mpMesh->isFlipX() )
-		//		mOriginalPosition = GetPosition() + GetAVData()->GetAnchorPoint();
-		//	else
-		//		mOriginalPosition = GetPosition() - GetAVData()->GetAnchorPoint();
-		//}
 		return mOriginalPosition;
 	}
 	inline void SetOriginalPosition(GnVector2& val) {
 		mOriginalPosition = val;
 	}
 	inline GnVector2& GetPosition() {
-		//CCPoint position = mpMesh->getPosition();
-		//return GnVector2( position.x, position.y );
 		return mOriginalPosition;
+	}
+	inline GnVector2 GetPositionFromImageCenter() {
+		CCPoint pos = mpMesh->getPosition();
+		CCSize size = mpMesh->getContentSize();
+		size.width /= 2;
+		size.height /= 2;
+		if( GetAVData() == NULL ) 
+			return GnVector2( pos.x + size.width, pos.y + size.height );
+		if( mpMesh->isFlipX() )
+		{
+			return GnVector2( pos.x + size.width, pos.y + size.height );;
+		}
+
+		return GnVector2( pos.x + size.width, pos.y + size.height );;
 	}
 	inline float GetAlpha() {
 		return mpMesh->getOpacity();
 	}
-	inline void SetAlpha(guint8 val) {
-		mpMesh->setOpacity( val );
+	inline void SetAlpha(float val) {
+		mpMesh->setOpacity( (GLubyte)(val * 255) );
+	}
+	inline void SetColor(GnColor gnColor) {
+		mpMesh->setColor( ccc3( (GLubyte)(gnColor.r * 255), (GLubyte)(gnColor.g * 255.0f)
+		   , (GLubyte)(gnColor.b * 255.0f) ) );
 	}
 	inline float GetScale() {
 		return mpMesh->getScale();
@@ -85,5 +96,10 @@ public:
 	inline bool GetFlipX() {
 		return mpMesh->isFlipX();
 	}
+	inline GnVector2 GetSize() {
+		CCSize size = mpMesh->getContentSize();
+		return GnVector2( size.width, size.height );
+	}
+	
 };
 #endif // GNSMELEMENT_H

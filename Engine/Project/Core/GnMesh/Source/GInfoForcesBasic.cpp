@@ -6,4 +6,12 @@
 //  Copyright 2011년 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
+#include "GnGamePCH.h"
+#include "GInfoForcesBasic.h"
+#include "GActorInfoDatabase.h"
+
+void GInfoForcesBasic::LoadDataFromQuery(GnSQLiteQuery *pQuery)
+{
+	GnAssert( pQuery->GetColumnCount() == FORCESCOL_MAX );
+	GInfoBasic::LoadDataFromQuery( pQuery );
+}

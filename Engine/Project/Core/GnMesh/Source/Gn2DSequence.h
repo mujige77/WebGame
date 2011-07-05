@@ -10,7 +10,8 @@ class Gn2DSequence : public GnObject
 	GnDeclareFlags(gushort);
 	enum
 	{
-		LOOP_MASK = 0x0001,
+		MASK_LOOP = 0x0001,
+		MASK_STOP = 0x0002,
 	};
 
 protected:
@@ -59,8 +60,18 @@ public:
 	inline void SetAVData(Gn2DAVData* val) {
 		mpsAVData = val;
 	}
-	inline bool IsLoop() { return GetBit(LOOP_MASK); }
-	inline void SetLoop(bool val) { SetBit(val, LOOP_MASK); }
+	inline bool IsLoop() {
+		return GetBit(MASK_LOOP);
+	}
+	inline void SetLoop(bool val) {
+		SetBit(val, MASK_LOOP);
+	}
+	inline bool IsStop() {
+		return GetBit(MASK_STOP);
+	}
+	inline void SetStop(bool val) {
+		SetBit(val, MASK_STOP);
+	}
 	
 	inline GnAnimationKeyManager* GetAnimationKeyManager() {
 		return &mAnimationKeyManager;

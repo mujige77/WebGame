@@ -5,7 +5,8 @@ GnImplementRTTI(Gn2DSequence, GnSequence);
 
 Gn2DSequence::Gn2DSequence()
 {
-
+	SetLoop( true );
+	SetStop( true );
 }
 
 Gn2DSequence::~Gn2DSequence()
@@ -99,10 +100,6 @@ void Gn2DSequence::Update(float fDeltaTime)
 	if( mAccumulateDeltaTime >= mEndTime )
 	{
 		Stop();
-		if( IsLoop() )
-		{
-			Start( 0.0f );
-		}
 	}
 }
 
@@ -115,6 +112,8 @@ void Gn2DSequence::Start(float fTime)
 		Gn2DTextureAni* ani =  mTextureAni.GetAt( i );	
 		ani->Start( mEndTime );
 	}
+	
+	SetStop( false );
 }
 
 void Gn2DSequence::Stop()
@@ -124,6 +123,8 @@ void Gn2DSequence::Stop()
 		Gn2DTextureAni* ani =  mTextureAni.GetAt( i );	
 		ani->Stop();
 	}
+	
+	SetStop( true );
 }
 
 void Gn2DSequence::ResetTargetAV()

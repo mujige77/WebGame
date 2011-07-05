@@ -5,15 +5,47 @@
 
 class GNMESH_ENTRY Gn2DActor : public GnSmartObject
 {
+public:
+	class TimeEvent
+	{
+	public:
+		enum eType
+		{
+			END_SEQUENCE,
+		};
+	public:
+		eType mEventType;
+		guint32 mSequenceID;
+		float mCurrentTime;
+		float mEventTime;
+		void* mpEventData;
+	protected:
+		GNFORCEINLINE void SetTimeEvent(eType eEvent, guint32 uiSequenceID, float fCurrentTime
+			, float fEventTime) {
+			mEventType = eEvent;
+			mSequenceID = uiSequenceID;
+			mCurrentTime = fCurrentTime;
+			mEventTime = fEventTime;			
+		}
+		inline void SetData(void* pData) {
+			mpEventData = pData;
+		}
+		friend class Gn2DActor;
+	};
+	
+protected:
+	static const guint32 NULL_ANI = GUINT32_MAX;
+	
 protected:	
 	guint32 mTargetID;
 	guint32 mCurrentID;
 	Gn2DSequence* mpCurrentSequence;
 	GnTObjectDeleteMap<guint32, Gn2DSequence*> mpSequences;
 	Gn2DMeshObjectPtr mpsRootNode;
-	GnActorToolPtr mpsActorTool;
-	static const guint32 NULL_ANI = GUINT32_MAX;	
-	
+	GnActorToolPtr mpsActorTool;	
+	float mSequenceAccumulateDeltaTime;
+	GnBaseSlot1<TimeEvent*>* mpCallbackEventSlot;
+	TimeEvent mTimeEvent;
 public:
 	Gn2DActor();
 	static Gn2DActor* Create(const gchar* pcActorToolFileName, GnObjectStream& stream
@@ -61,6 +93,9 @@ public:
 	}
 	inline void SetActorTool(GnActorTool* val) {
 		mpsActorTool = val;
+	}
+	inline void SetCallbackEvent(GnBaseSlot1<TimeEvent*>* pEventSlot) {
+		mpCallbackEventSlot = pEventSlot;
 	}
 protected:
 	Gn2DActor(GnActorTool* pActorTool, Gn2DMeshObject* pRootObject);

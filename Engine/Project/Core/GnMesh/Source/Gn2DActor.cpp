@@ -33,7 +33,8 @@ Gn2DActor::Gn2DActor() : mpsActorTool(NULL), mpsRootNode(NULL), mpCurrentSequenc
 
 }
 Gn2DActor::Gn2DActor(GnActorTool* pActorTool, Gn2DMeshObject* pRootObject) : mpsActorTool(pActorTool)
-	, mpsRootNode(pRootObject), mpCurrentSequence(NULL)
+	, mpsRootNode(pRootObject), mpCurrentSequence(NULL), mSequenceAccumulateDeltaTime( 0.0f )
+	, mpCallbackEventSlot( NULL )
 {
 }
 
@@ -45,6 +46,7 @@ Gn2DActor::~Gn2DActor()
 
 void Gn2DActor::Update(float fDeltaTime)
 {
+	mSequenceAccumulateDeltaTime += fDeltaTime;
 	if( mCurrentID != mTargetID )
 	{
 		Gn2DSequence* sequence = NULL;
@@ -55,16 +57,31 @@ void Gn2DActor::Update(float fDeltaTime)
 				mpCurrentSequence->Stop();
 
 			mpCurrentSequence = sequence;			
-			mpCurrentSequence->Start( fDeltaTime );			
-			
+			mpCurrentSequence->Start( 0.0f );	
+			mSequenceAccumulateDeltaTime = 0.0f;
 		}
 	}
-
-	if( mpCurrentSequence == NULL )
-		return;
-
-	// 바뀌면서 된것
-	mpCurrentSequence->Update( fDeltaTime );
+	else
+	{
+		if( mpCurrentSequence == NULL )
+			return;
+		
+		// 바뀌면서 된것
+		mpCurrentSequence->Update( fDeltaTime );
+		if( mpCurrentSequence->IsStop() )
+		{
+			if( mpCallbackEventSlot )
+			{
+				mTimeEvent.SetTimeEvent( TimeEvent::END_SEQUENCE, mCurrentID, mSequenceAccumulateDeltaTime
+					, mpCurrentSequence->GetEndTime() );
+				mpCallbackEventSlot->ReceiveSignal( &mTimeEvent );
+			}
+			if( mpCurrentSequence->IsLoop() )
+				mpCurrentSequence->Start( 0.0f );
+			
+			mSequenceAccumulateDeltaTime = 0.0f;
+		}
+	}
 }
 
 bool Gn2DActor::SetTargetAnimation(guint32 uiID)
@@ -87,6 +104,7 @@ void Gn2DActor::StopAnimation()
 {
 	mTargetID = NULL_ANI;
 	mCurrentID = NULL_ANI;
+	mSequenceAccumulateDeltaTime = 0.0f;
 	if( mpCurrentSequence )
 		mpCurrentSequence->Stop();
 	mpCurrentSequence = NULL;

@@ -9,6 +9,11 @@
 #ifndef __Core__GMainGameInterface__
 #define __Core__GMainGameInterface__
 
+#include "GInterface.h"
 
+class GMainGameInterface : public GInterface
+{
+	
+};
 
 #endif
