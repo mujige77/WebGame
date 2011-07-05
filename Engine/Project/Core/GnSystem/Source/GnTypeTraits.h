@@ -79,7 +79,7 @@ namespace GnT
 		enum { result = true };
 		typedef U PointeeType;
 		typedef U* ReferenceType;
-		inline static void SetNull(U* val)
+		inline static void SetNull(U*& val)
 		{
 			val = NULL;
 		}

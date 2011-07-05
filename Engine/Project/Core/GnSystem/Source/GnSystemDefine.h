@@ -107,7 +107,7 @@ typedef gulong gtulong;
 
 #endif // defined(GN64)
 
-#define CHAR_BIT      8         /* number of bits in a char */
+#define GCHAR_BIT      8         /* number of bits in a char */
 #define GSCHAR_MIN   (-128)      /* minimum signed char value */
 #define GSCHAR_MAX     127       /* maximum signed char value */
 #define GUCHAR_MAX     0xff      /* maximum unsigned char value */

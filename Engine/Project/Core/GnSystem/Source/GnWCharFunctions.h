@@ -32,6 +32,7 @@
 #define GnWVssprintf vswprintf
 #endif // WIN32
 
+typedef std::wstring gwstring;
 
 static GNSYSTEM_ENTRY GNFORCEINLINE gsize GnWStrlen(const gwchar* GNRESTRICT str)
 {

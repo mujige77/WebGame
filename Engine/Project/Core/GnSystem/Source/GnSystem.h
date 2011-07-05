@@ -2,6 +2,7 @@
 #ifndef GNSYSTEM_H
 #define GNSYSTEM_H
 
+#include "GnPlatformConfig.h"
 
 #include <wchar.h>
 #include <stddef.h>
@@ -9,13 +10,12 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#if defined(__IPHONE_NA) || defined (__MAC_NA)
+#if (GNUSE_PLATFORM == PLATFORM_IOS)
 
-    #include <TargetConditionals.h>
     #include <string.h>
     #include <unistd.h>
 
-#elif defined(WIN32) // #if defined(__IPHONE_NA) || defined (__MAC_
+#elif (GNUSE_PLATFORM == PLATFORM_WIN32) // (GNUSE_PLATFORM == PLATFORM_IOS)
 
     #include <io.h>
     #include <tchar.h>
@@ -32,7 +32,7 @@
 	#include <Windows.h>
 	#include <SDKDDKVer.h>
 
-#endif // #if defined(__IPHONE_NA) || defined (__MAC_NA)
+#endif // (GNUSE_PLATFORM == PLATFORM_IOS)
 
 #include "GnSystemLibType.h"
 #include "GnSystemDefine.h"

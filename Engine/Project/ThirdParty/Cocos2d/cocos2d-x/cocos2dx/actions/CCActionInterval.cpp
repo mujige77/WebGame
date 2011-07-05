@@ -1932,7 +1932,6 @@ void CCAnimate::update(cocos2d::ccTime time)
 	{
 		idx = numberOfFrames - 1;
 	}
-
 	CCSprite *pSprite = (CCSprite*)(m_pTarget);
 	if (! pSprite->isFrameDisplayed(pFrames->getObjectAtIndex(idx)))
 	{

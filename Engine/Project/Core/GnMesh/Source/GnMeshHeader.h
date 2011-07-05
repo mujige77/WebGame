@@ -1,6 +1,7 @@
 #include <cocos2d.h>
 using namespace cocos2d;
 typedef CCSprite GnReal2DMesh;
+typedef CCNode GnInterfaceNode;
 
 #include "GnMeshLibType.h"
 #include "GnDataStream.h"

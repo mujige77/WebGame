@@ -6,4 +6,6 @@
 //  Copyright 2011년 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
+#include <GnMainHeader.h>
+#include "GnMeshHeader.h"
+#include "GnInterfaceHeader.h"

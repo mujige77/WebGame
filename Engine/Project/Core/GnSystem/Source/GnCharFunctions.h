@@ -33,6 +33,7 @@
 #define GnVssprintf vsprintf
 #endif // WIN32
 
+typedef std::string gstring;
 
 gchar* GnAllocStrcpy(const gchar* GNRESTRICT src);
 
