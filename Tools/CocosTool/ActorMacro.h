@@ -1,1 +1,1 @@
-const static GnVector2 ActorBasePosition( 200, 100 );
+const static GnVector2 ActorBasePosition( 0, 0 );

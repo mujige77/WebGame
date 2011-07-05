@@ -20,3 +20,4 @@
 /Tools/GnToolLib/Debug
 /Tools/GnToolLib/Log
 HiroCat/Resource/ActorInfo.sqlite
+*.DS_Store
