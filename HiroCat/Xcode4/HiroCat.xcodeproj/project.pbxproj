@@ -7,21 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2126B05313AE12A80084EBFF /* GScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2126B05213AE12A40084EBFF /* GScene.cpp */; };
-		2161AA2913A996A0002CE952 /* GActorCtlrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA2813A996A0002CE952 /* GActorCtlrManager.cpp */; };
-		2161AA2D13A9AA15002CE952 /* GForcesController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA2C13A9AA15002CE952 /* GForcesController.cpp */; };
-		2161AA3013A9BCAF002CE952 /* GAccumulationTimeEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA2F13A9BCAF002CE952 /* GAccumulationTimeEvent.cpp */; };
+		212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */; };
+		212FB7F013B5C33F00F2F597 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */; };
 		2168BB1113A8556900DED246 /* GMediateMoveState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2168BB1013A8556900DED246 /* GMediateMoveState.cpp */; };
 		2168BB1413A8566E00DED246 /* GMediate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2168BB1313A8566E00DED246 /* GMediate.cpp */; };
 		2176019413A4E5A600A85384 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 2176019313A4E5A600A85384 /* Data */; };
-		218491DC13ACC55F0076A96F /* GInterfaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218491DB13ACC55E0076A96F /* GInterfaceLayer.cpp */; };
 		218961FA13A6D9290074237B /* GGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218961F913A6D9280074237B /* GGameScene.cpp */; };
-		218961FD13A703160074237B /* GBackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218961FC13A703160074237B /* GBackgroundLayer.cpp */; };
 		2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189620213A719FA0074237B /* GSceneSelector.cpp */; };
-		2189F02613A9835800FF6601 /* GActorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189F02513A9835800FF6601 /* GActorController.cpp */; };
-		2189F02913A9839100FF6601 /* GUserController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189F02813A9839100FF6601 /* GUserController.cpp */; };
-		2189F02C13A983B500FF6601 /* GEnemyController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189F02B13A983B500FF6601 /* GEnemyController.cpp */; };
-		2189F02E13A9937A00FF6601 /* GEnemyCtlrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189F02D13A9937900FF6601 /* GEnemyCtlrManager.cpp */; };
 		218B717913A8D96C00730D9F /* HiroCatDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218B717813A8D96C00730D9F /* HiroCatDirector.cpp */; };
 		21C957EE13AB4DFF00978181 /* template.lst in Resources */ = {isa = PBXBuildFile; fileRef = 21C957ED13AB4DFF00978181 /* template.lst */; };
 		21CDBAC813A4B57600BEF1DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBAC713A4B57600BEF1DA /* UIKit.framework */; };
@@ -38,14 +30,18 @@
 		21CDBB1813A4B77400BEF1DA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CDBB1213A4B77400BEF1DA /* Icon.png */; };
 		21CDBB2613A4BB9800BEF1DA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBB2513A4BB9800BEF1DA /* libxml2.dylib */; };
 		21CDBB2813A4BBAA00BEF1DA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBB2713A4BBAA00BEF1DA /* libz.dylib */; };
-		21D56B1A13AA36A2004893C2 /* GGameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D56B1913AA36A2004893C2 /* GGameManager.cpp */; };
 		21E1822E13A8826D00025FA4 /* HiroCatApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21E1822D13A8826D00025FA4 /* HiroCatApplication.mm */; };
 		21E426BD13A6267100ECD28F /* GStartScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E426BB13A6267000ECD28F /* GStartScene.cpp */; };
-		21EA736D13AEBF2000E3D75F /* GComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA736C13AEBF2000E3D75F /* GComponent.cpp */; };
-		21EA737013AEBF5700E3D75F /* GCPMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EA736F13AEBF5700E3D75F /* GCPMove.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2164978E13B780BE0023E03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217601D613A5048900A85384 /* Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D7FDF813A1FA1500CE0D46;
+			remoteInfo = GnMesh;
+		};
 		217601DF13A5048900A85384 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 217601D613A5048900A85384 /* Core.xcodeproj */;
@@ -77,41 +73,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2126B05213AE12A40084EBFF /* GScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GScene.cpp; sourceTree = "<group>"; };
-		2161AA2713A99693002CE952 /* GActorCtlrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActorCtlrManager.h; sourceTree = "<group>"; };
-		2161AA2813A996A0002CE952 /* GActorCtlrManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActorCtlrManager.cpp; sourceTree = "<group>"; };
-		2161AA2B13A9AA07002CE952 /* GForcesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GForcesController.h; sourceTree = "<group>"; };
-		2161AA2C13A9AA15002CE952 /* GForcesController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GForcesController.cpp; sourceTree = "<group>"; };
-		2161AA2E13A9BB63002CE952 /* GAccumulationTimeEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAccumulationTimeEvent.h; sourceTree = "<group>"; };
-		2161AA2F13A9BCAF002CE952 /* GAccumulationTimeEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GAccumulationTimeEvent.cpp; sourceTree = "<group>"; };
+		212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ActorInfo.sqlite; sourceTree = "<group>"; };
+		212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2168BB0F13A8555F00DED246 /* GMediateMoveState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMediateMoveState.h; sourceTree = "<group>"; };
-		2168BB1013A8556900DED246 /* GMediateMoveState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMediateMoveState.cpp; sourceTree = "<group>"; };
+		2168BB1013A8556900DED246 /* GMediateMoveState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GMediateMoveState.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		2168BB1213A855B400DED246 /* GMediate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMediate.h; sourceTree = "<group>"; };
-		2168BB1313A8566E00DED246 /* GMediate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMediate.cpp; sourceTree = "<group>"; };
+		2168BB1313A8566E00DED246 /* GMediate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GMediate.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		2176019313A4E5A600A85384 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		217601D613A5048900A85384 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../../Engine/Builder/XCode4/Core/Core.xcodeproj; sourceTree = "<group>"; };
-		218491DA13ACC5500076A96F /* GInterfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInterfaceLayer.h; sourceTree = "<group>"; };
-		218491DB13ACC55E0076A96F /* GInterfaceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInterfaceLayer.cpp; sourceTree = "<group>"; };
 		218961F813A6D91B0074237B /* GGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameScene.h; sourceTree = "<group>"; };
-		218961F913A6D9280074237B /* GGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GGameScene.cpp; sourceTree = "<group>"; };
-		218961FB13A6FE130074237B /* GLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLayer.h; sourceTree = "<group>"; };
-		218961FC13A703160074237B /* GBackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBackgroundLayer.cpp; sourceTree = "<group>"; };
-		218961FE13A703270074237B /* GBackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBackgroundLayer.h; sourceTree = "<group>"; };
+		218961F913A6D9280074237B /* GGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GGameScene.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		218961FF13A706AF0074237B /* GSceneSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSceneSelector.h; sourceTree = "<group>"; };
-		2189620213A719FA0074237B /* GSceneSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GSceneSelector.cpp; sourceTree = "<group>"; };
-		2189F02413A9832900FF6601 /* GActorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActorController.h; sourceTree = "<group>"; };
-		2189F02513A9835800FF6601 /* GActorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActorController.cpp; sourceTree = "<group>"; };
-		2189F02713A9838400FF6601 /* GUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUserController.h; sourceTree = "<group>"; };
-		2189F02813A9839100FF6601 /* GUserController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUserController.cpp; sourceTree = "<group>"; };
-		2189F02A13A983A600FF6601 /* GEnemyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEnemyController.h; sourceTree = "<group>"; };
-		2189F02B13A983B500FF6601 /* GEnemyController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GEnemyController.cpp; sourceTree = "<group>"; };
-		2189F02D13A9937900FF6601 /* GEnemyCtlrManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GEnemyCtlrManager.cpp; sourceTree = "<group>"; };
-		2189F02F13A9938400FF6601 /* GEnemyCtlrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEnemyCtlrManager.h; sourceTree = "<group>"; };
+		2189620213A719FA0074237B /* GSceneSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GSceneSelector.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		218B717713A8D92F00730D9F /* HiroCatDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiroCatDirector.h; path = ../../Source/HiroCatDirector.h; sourceTree = "<group>"; };
-		218B717813A8D96C00730D9F /* HiroCatDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = HiroCatDirector.cpp; path = ../../Source/HiroCatDirector.cpp; sourceTree = "<group>"; };
+		218B717813A8D96C00730D9F /* HiroCatDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = HiroCatDirector.cpp; path = ../../Source/HiroCatDirector.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		21C89C5213A5F3FC00507155 /* GamePCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePCH.h; sourceTree = "<group>"; };
 		21C89C5313A5F61A00507155 /* GGameEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameEBM.h; sourceTree = "<group>"; };
-		21C957ED13AB4DFF00978181 /* template.lst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = template.lst; sourceTree = "<group>"; };
+		21C957ED13AB4DFF00978181 /* template.lst */ = {isa = PBXFileReference; fileEncoding = 7; lastKnownFileType = text; path = template.lst; sourceTree = "<group>"; };
 		21CDBAC313A4B57600BEF1DA /* HiroCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiroCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21CDBAC713A4B57600BEF1DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		21CDBAC913A4B57600BEF1DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,7 +103,7 @@
 		21CDBAFE13A4B72B00BEF1DA /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = SOURCE_ROOT; };
 		21CDBAFF13A4B72B00BEF1DA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = SOURCE_ROOT; };
 		21CDBB0013A4B72B00BEF1DA /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = SOURCE_ROOT; };
-		21CDBB0813A4B75C00BEF1DA /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = ../../Source/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		21CDBB0813A4B75C00BEF1DA /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = HelloWorldScene.cpp; path = ../../Source/HelloWorldScene.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		21CDBB0913A4B75C00BEF1DA /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../../Source/HelloWorldScene.h; sourceTree = "<group>"; };
 		21CDBB0D13A4B77400BEF1DA /* app.config.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.config.txt; sourceTree = "<group>"; };
 		21CDBB0F13A4B77400BEF1DA /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
@@ -134,18 +112,11 @@
 		21CDBB1213A4B77400BEF1DA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		21CDBB2513A4BB9800BEF1DA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		21CDBB2713A4BBAA00BEF1DA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		21D56B1813AA3696004893C2 /* GGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameManager.h; sourceTree = "<group>"; };
-		21D56B1913AA36A2004893C2 /* GGameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GGameManager.cpp; sourceTree = "<group>"; };
 		21E1822C13A8826D00025FA4 /* HiroCatApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HiroCatApplication.h; sourceTree = "<group>"; };
 		21E1822D13A8826D00025FA4 /* HiroCatApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HiroCatApplication.mm; sourceTree = "<group>"; };
 		21E426A713A5F8C400ECD28F /* Cocos2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cocos2d.xcodeproj; path = ../../Engine/Project/ThirdParty/Cocos2d/Cocos2d.xcodeproj; sourceTree = "<group>"; };
-		21E426BA13A604C200ECD28F /* GScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GScene.h; sourceTree = "<group>"; };
-		21E426BB13A6267000ECD28F /* GStartScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStartScene.cpp; sourceTree = "<group>"; };
+		21E426BB13A6267000ECD28F /* GStartScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GStartScene.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		21E426BC13A6267000ECD28F /* GStartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStartScene.h; sourceTree = "<group>"; };
-		21EA736B13AEBF1400E3D75F /* GComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; path = GComponent.h; sourceTree = "<group>"; };
-		21EA736C13AEBF2000E3D75F /* GComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GComponent.cpp; sourceTree = "<group>"; };
-		21EA736E13AEBF4A00E3D75F /* GCPMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCPMove.h; sourceTree = "<group>"; };
-		21EA736F13AEBF5700E3D75F /* GCPMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GCPMove.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212FB7F013B5C33F00F2F597 /* libsqlite3.dylib in Frameworks */,
 				21CDBB2813A4BBAA00BEF1DA /* libz.dylib in Frameworks */,
 				21CDBB2613A4BB9800BEF1DA /* libxml2.dylib in Frameworks */,
 				21CDBAC813A4B57600BEF1DA /* UIKit.framework in Frameworks */,
@@ -166,34 +138,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2161AA2A13A9A0A6002CE952 /* Actor */ = {
-			isa = PBXGroup;
-			children = (
-				21EA736A13AEBBEB00E3D75F /* Component */,
-				2161AA3113A9CAA9002CE952 /* Manager */,
-				2161AA2C13A9AA15002CE952 /* GForcesController.cpp */,
-				2161AA2B13A9AA07002CE952 /* GForcesController.h */,
-				2189F02B13A983B500FF6601 /* GEnemyController.cpp */,
-				2189F02A13A983A600FF6601 /* GEnemyController.h */,
-				2189F02813A9839100FF6601 /* GUserController.cpp */,
-				2189F02713A9838400FF6601 /* GUserController.h */,
-				2189F02513A9835800FF6601 /* GActorController.cpp */,
-				2189F02413A9832900FF6601 /* GActorController.h */,
-			);
-			name = Actor;
-			sourceTree = "<group>";
-		};
-		2161AA3113A9CAA9002CE952 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				2189F02D13A9937900FF6601 /* GEnemyCtlrManager.cpp */,
-				2189F02F13A9938400FF6601 /* GEnemyCtlrManager.h */,
-				2161AA2813A996A0002CE952 /* GActorCtlrManager.cpp */,
-				2161AA2713A99693002CE952 /* GActorCtlrManager.h */,
-			);
-			name = Manager;
-			sourceTree = "<group>";
-		};
 		217601D713A5048900A85384 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +170,7 @@
 		21CDBAC613A4B57600BEF1DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */,
 				21CDBB2713A4BBAA00BEF1DA /* libz.dylib */,
 				21CDBB2513A4BB9800BEF1DA /* libxml2.dylib */,
 				21CDBAC713A4B57600BEF1DA /* UIKit.framework */,
@@ -261,30 +206,18 @@
 		21CDBB0513A4B75C00BEF1DA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2161AA2A13A9A0A6002CE952 /* Actor */,
-				21D56B1913AA36A2004893C2 /* GGameManager.cpp */,
-				21D56B1813AA3696004893C2 /* GGameManager.h */,
-				2161AA2F13A9BCAF002CE952 /* GAccumulationTimeEvent.cpp */,
-				2161AA2E13A9BB63002CE952 /* GAccumulationTimeEvent.h */,
 				2168BB1313A8566E00DED246 /* GMediate.cpp */,
 				2168BB1213A855B400DED246 /* GMediate.h */,
 				2168BB1013A8556900DED246 /* GMediateMoveState.cpp */,
 				2168BB0F13A8555F00DED246 /* GMediateMoveState.h */,
 				2189620213A719FA0074237B /* GSceneSelector.cpp */,
 				218961FF13A706AF0074237B /* GSceneSelector.h */,
-				218491DB13ACC55E0076A96F /* GInterfaceLayer.cpp */,
-				218491DA13ACC5500076A96F /* GInterfaceLayer.h */,
-				218961FC13A703160074237B /* GBackgroundLayer.cpp */,
-				218961FE13A703270074237B /* GBackgroundLayer.h */,
 				218961F913A6D9280074237B /* GGameScene.cpp */,
 				218961F813A6D91B0074237B /* GGameScene.h */,
 				21E426BB13A6267000ECD28F /* GStartScene.cpp */,
 				21E426BC13A6267000ECD28F /* GStartScene.h */,
 				21C89C5213A5F3FC00507155 /* GamePCH.h */,
 				21C89C5313A5F61A00507155 /* GGameEBM.h */,
-				218961FB13A6FE130074237B /* GLayer.h */,
-				2126B05213AE12A40084EBFF /* GScene.cpp */,
-				21E426BA13A604C200ECD28F /* GScene.h */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -295,6 +228,7 @@
 			children = (
 				2176019313A4E5A600A85384 /* Data */,
 				21C957ED13AB4DFF00978181 /* template.lst */,
+				212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */,
 				21CDBAD413A4B57600BEF1DA /* InfoPlist.strings */,
 				21CDBAD313A4B57600BEF1DA /* HiroCat-Info.plist */,
 				21CDBB0D13A4B77400BEF1DA /* app.config.txt */,
@@ -330,17 +264,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21EA736A13AEBBEB00E3D75F /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				21EA736F13AEBF5700E3D75F /* GCPMove.cpp */,
-				21EA736E13AEBF4A00E3D75F /* GCPMove.h */,
-				21EA736C13AEBF2000E3D75F /* GComponent.cpp */,
-				21EA736B13AEBF1400E3D75F /* GComponent.h */,
-			);
-			name = Component;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,6 +278,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2164978F13B780BE0023E03A /* PBXTargetDependency */,
 			);
 			name = HiroCat;
 			productName = HiroCat;
@@ -435,6 +359,7 @@
 				21CDBB1813A4B77400BEF1DA /* Icon.png in Resources */,
 				2176019413A4E5A600A85384 /* Data in Resources */,
 				21C957EE13AB4DFF00978181 /* template.lst in Resources */,
+				212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,28 +375,23 @@
 				21CDBB0B13A4B75C00BEF1DA /* HelloWorldScene.cpp in Sources */,
 				21E426BD13A6267100ECD28F /* GStartScene.cpp in Sources */,
 				218961FA13A6D9290074237B /* GGameScene.cpp in Sources */,
-				218961FD13A703160074237B /* GBackgroundLayer.cpp in Sources */,
 				2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */,
 				2168BB1113A8556900DED246 /* GMediateMoveState.cpp in Sources */,
 				2168BB1413A8566E00DED246 /* GMediate.cpp in Sources */,
 				21E1822E13A8826D00025FA4 /* HiroCatApplication.mm in Sources */,
 				218B717913A8D96C00730D9F /* HiroCatDirector.cpp in Sources */,
-				2189F02613A9835800FF6601 /* GActorController.cpp in Sources */,
-				2189F02913A9839100FF6601 /* GUserController.cpp in Sources */,
-				2189F02C13A983B500FF6601 /* GEnemyController.cpp in Sources */,
-				2189F02E13A9937A00FF6601 /* GEnemyCtlrManager.cpp in Sources */,
-				2161AA2913A996A0002CE952 /* GActorCtlrManager.cpp in Sources */,
-				2161AA2D13A9AA15002CE952 /* GForcesController.cpp in Sources */,
-				2161AA3013A9BCAF002CE952 /* GAccumulationTimeEvent.cpp in Sources */,
-				21D56B1A13AA36A2004893C2 /* GGameManager.cpp in Sources */,
-				218491DC13ACC55F0076A96F /* GInterfaceLayer.cpp in Sources */,
-				2126B05313AE12A80084EBFF /* GScene.cpp in Sources */,
-				21EA736D13AEBF2000E3D75F /* GComponent.cpp in Sources */,
-				21EA737013AEBF5700E3D75F /* GCPMove.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2164978F13B780BE0023E03A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GnMesh;
+			targetProxy = 2164978E13B780BE0023E03A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		21CDBAD413A4B57600BEF1DA /* InfoPlist.strings */ = {
@@ -527,6 +447,8 @@
 					"../../SDK/include/cocos2d-x/cocos2dx/include",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform/ios",
+					../,
+					../../,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
@@ -611,6 +533,8 @@
 					"../../SDK/include/cocos2d-x/cocos2dx/include",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform/ios",
+					../,
+					../../,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
@@ -654,6 +578,8 @@
 					"../../SDK/include/cocos2d-x/cocos2dx/include",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform",
 					"../../SDK/include/cocos2d-x/cocos2dx/platform/ios",
+					../,
+					../../,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";

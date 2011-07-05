@@ -26,11 +26,14 @@ class GGameScene : public GScene
 	};	
 	enum eManagerType
 	{
+		USER_CTLRMANAGER,
+		FORCES_CTLRMANAGER,		
 		ENEMY_CTLRMANAGER,
 		MAX_CTLRMANAGER,
 	};
 	
 private:
+	gtuint mNumLine;
 	GLayer* mLayers[MAX_LAYER];
 	GActorCtlrManager* mActorManage[MAX_CTLRMANAGER];
 	
@@ -41,7 +44,7 @@ public:
 	bool CreateBackgroundLayer(const gchar* pcName);
 	bool CreateInterfaceLayer(const gchar* pcName);
 	bool CreateActorLayer();
-	
+	bool InitEnvironment();	
 	virtual void Update(float fDeltaTime);
 };
 

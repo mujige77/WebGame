@@ -11,6 +11,7 @@
 #include "GBackgroundLayer.h"
 #include "GGameScene.h"
 #include "GFileLIst.h"
+#include "GMainGameEnvironment.h"
 
 GnImplementSingleton(GSceneSelector);
 
@@ -24,28 +25,34 @@ void GSceneSelector::RunApplication()
 
 	pDirector->setAnimationInterval(1.0 / 60);	
 	
+	CreateEnvironment( 1 );
+	
 	GScene* gameScene = CreateScene( 1 );
 	if( gameScene )
 		pDirector->runWithScene( gameScene );
+	
 	mpCurrentScene = gameScene;
+	GetGameState()->SetGameScale( 0.7 );
 }
 
 GScene* GSceneSelector::CreateScene(gtuint uiStage)
 {
 	bool success = false;
 	GGameScene* scene = new GGameScene();
-	
 	do
 	{
 		if( scene->CreateBackgroundLayer( "./Data/Background/BG_01.png" ) == false )
 			break;
 		
-		if( scene->CreateInterfaceLayer( "./Data/Background/interface_3GS.png" ) == false )
+		if( scene->CreateInterfaceLayer( "./Data/Controll/0_215.png" ) == false )
+			break;
+		
+		if( scene->InitEnvironment() == false )
 			break;
 		
 		if( scene->CreateActorLayer() == false )
 			break;
-
+		
 		success = true;
 		
 	}while(false);
@@ -56,10 +63,13 @@ GScene* GSceneSelector::CreateScene(gtuint uiStage)
 	{
 		delete scene;
 		return NULL;
-	}
+	}	
 	return scene;
 }
-
+void GSceneSelector::CreateEnvironment(gtuint uiStage)
+{
+	GMainGameEnvironment::Create();
+}
 void GSceneSelector::SetUseActorFile()
 {
 	

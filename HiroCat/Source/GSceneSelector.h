@@ -18,8 +18,7 @@ private:
 	static const guint DEFAULT_ZORDER = 100;
 	GScene* mpCurrentScene;
 	
-public:	
-	GScene* CreateScene(gtuint uiStage);
+public:
 	void RunApplication();
 	
 public:
@@ -29,6 +28,8 @@ public:
 	
 protected:
 	void SetUseActorFile();
+	GScene* CreateScene(gtuint uiStage);
+	void CreateEnvironment(gtuint uiStage);
 };
 
 #endif

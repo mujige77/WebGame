@@ -11,14 +11,9 @@
 
 #include <GnMainHeader.h>
 #include <GnMeshHeader.h>
+#include <GnGameHeader.h>
 #include <cocos2d.h>
-#include "GAccumulationTimeEvent.h"
-#include "GLayer.h"
-#include "GScene.h"
 #include "GMediate.h"
-#include "GActorController.h"
-#include "GActorCtlrManager.h"
-
 using namespace cocos2d;
 
 #endif

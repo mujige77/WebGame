@@ -6,10 +6,18 @@
          contextName = "GnTMap&lt;char const*, GnObject* (*)(), GnDefaultDeallocate, GnTStringMapHash, GnTStringEqual&gt;::Find(char const*):GnTMap.h">
       </ContextState>
       <ContextState
+         contextName = "GnTArray&lt;GnTMallocInterface&lt;GInfo*&gt;, GInfo*&gt;::SetSize(unsigned int, unsigned short):GnTArray.h">
+      </ContextState>
+      <ContextState
          contextName = "GEnemyController::Create(char const*):GEnemyController.cpp">
       </ContextState>
       <ContextState
-         contextName = "GEnemyCtlrManager::CreateEnemy():GEnemyCtlrManager.cpp">
+         contextName = "GnTArray&lt;GnTMallocInterface&lt;GInfo*&gt;, GInfo*&gt;::GetAt(unsigned int):GnTArray.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "mpArray[uiIndex]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "GnFile::GetFile(char const*, GnFile::eOpenMode, unsigned int):GnFile.cpp">
@@ -19,6 +27,25 @@
             </PersistentString>
             <PersistentString
                value = "(char*)strFileName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GFileList::AddListFromFile(char*, GnTPrimitiveDeleteMap&lt;unsigned int, char*, GnPrimitiveMapEntityDeallocate, GnDefaultMapHash, GnDefaultEqual&gt;&amp;):GFileList.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "\0">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GEnemyCtlrManager::CreateEnemy():GEnemyCtlrManager.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "GnTArray&lt;GnTMallocInterface&lt;GAction*&gt;, GAction*&gt;::SetSize(unsigned int, unsigned short):GnTArray.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "mpArray[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
