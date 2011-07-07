@@ -1,11 +1,3 @@
-//
-//  GLayer.h
-//  HiroCat
-//
-//  Created by Max Yoon on 11. 6. 14..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __HiroCat__GLayer__
 #define __HiroCat__GLayer__
 		

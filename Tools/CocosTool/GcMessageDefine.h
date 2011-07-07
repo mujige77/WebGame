@@ -1,7 +1,7 @@
 #ifndef GNMESSAGEDEFINE_H
 #define GNMESSAGEDEFINE_H
 
-const static guint PropEntityMessage = 400;
+const static guint PropEntityMessage = 450;
 
 enum
 {

@@ -6,8 +6,11 @@
 #include "GcSequenceModifyDockable.h"
 #include "GcSequenceTimeDlg.h"
 #include "GcSequenceCollisionDlg.h"
+#include "GcActorExtraDataDlg.h"
 
-// GcSequenceModifyDockable
+const gtchar* GcSequenceModifyDockable::msSequenceCollisionDlgName = _T("Collision");
+const gtchar* GcSequenceModifyDockable::msSequenceTimeDlgName = _T("TimeKey");
+const gtchar* GcSequenceModifyDockable::msActorEventDlgName = _T("ActorEvent");
 
 GcSequenceModifyDockable::GcSequenceModifyDockable() : mCurrentAniTime(0.0f)
 {
@@ -70,6 +73,23 @@ void GcSequenceModifyDockable::RemoveAllTab()
 		mTabCtrl.RemoveAllTabs();
 }
 
+void GcSequenceModifyDockable::RemoveSequenceTab()
+{
+	for (int i = 0; i < mTabCtrl.GetTabsNum (); i++)
+	{
+		CWnd* pWnd = mTabCtrl.GetTabWnd (i);
+		CString name;
+		pWnd->GetWindowText( name );
+		if( name == msSequenceCollisionDlgName || name == msSequenceTimeDlgName )
+		{
+			if( mTabCtrl.GetSafeHwnd() )
+				mTabCtrl.RemoveTab( i-- );
+			pWnd->DestroyWindow();
+			delete pWnd;
+		}
+	}
+}
+
 void GcSequenceModifyDockable::ReceiveMediateMessage(gtuint messageIndex
 	, GcMediateObjectMessage* pMessage)
 {
@@ -94,12 +114,39 @@ void GcSequenceModifyDockable::ReceiveMediateMessage(gtuint messageIndex
 
 void GcSequenceModifyDockable::ChangeProperty(GcMediateObjectMessage* pMessage)
 {
-	 mpsCurrentObject = pMessage->mpObject;
-	 RemoveAllTab();
+	CWnd* focus = GetFocus();
+	mpsCurrentObject = pMessage->mpObject;
+	RemoveAllTab();
+	
+	if( mpsCurrentObject )
+	{
+		Gn2DMeshObject* meshObject = NULL;
+		Gt2DActor* actor = GnDynamicCast(Gt2DActor,  mpsCurrentObject );
+		if( actor == NULL )
+		{
+			Gt2DMesh* mesh = GnDynamicCast(Gt2DMesh,  mpsCurrentObject );
+			meshObject = mesh->Get2DMeshObjecct();
+		}
+		else
+			meshObject = actor->GetRootNode();
+			
+		if( meshObject )
+		{
+			GcActorExtraDataDlg* timeDlg = new GcActorExtraDataDlg();
+			timeDlg->Create( GcActorExtraDataDlg::IDD, &mTabCtrl );		
+			timeDlg->ResetData( mpsCurrentObject, meshObject );
+			//timeDlg->SetCurrentAniTime( mCurrentAniTime );
+			timeDlg->SetWindowText( msActorEventDlgName );
+			AddTab( timeDlg, msActorEventDlgName );
+		}		
+	}
+
+	::SetFocus( focus->GetSafeHwnd() );
 }
 
 void GcSequenceModifyDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 {
+	CWnd* focus = GetFocus();
 	int activeTab = -1;
 	if( mTabCtrl.GetSafeHwnd() )
 	{
@@ -108,10 +155,10 @@ void GcSequenceModifyDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 	GcSequenceMessage* sequenceMessage = (GcSequenceMessage*)pMessage;
 	if( sequenceMessage->mpSequenceInfo == NULL )
 	{
-		RemoveAllTab();
+		RemoveSequenceTab();
 		return;
 	}
-	RemoveAllTab();
+	RemoveSequenceTab();
 
 	Gt2DActor* actor = (Gt2DActor*)(GtObject*)sequenceMessage->mpObject;
 	Gt2DSequence* gtSequence = NULL;
@@ -123,15 +170,19 @@ void GcSequenceModifyDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 	timeDlg->Create( GcSequenceTimeDlg::IDD, &mTabCtrl );
 	timeDlg->ResetData( gtSequence );
 	timeDlg->SetCurrentAniTime( mCurrentAniTime );
-	AddTab( timeDlg, _T("TimeKey") );
+	timeDlg->SetWindowText( msSequenceTimeDlgName );
+	AddTab( timeDlg, msSequenceTimeDlgName );
 
 	GcSequenceCollisionDlg* collisionDlg = new GcSequenceCollisionDlg();
 	collisionDlg->Create( GcSequenceCollisionDlg::IDD, &mTabCtrl );
 	collisionDlg->ResetData( actor, gtSequence );
-	AddTab( collisionDlg, _T("Collision") );
+	collisionDlg->SetWindowText( msSequenceCollisionDlgName );
+	AddTab( collisionDlg, msSequenceCollisionDlgName );
 
 	if( activeTab != -1 )
 		mTabCtrl.SetActiveTab( activeTab );
+
+	::SetFocus( focus->GetSafeHwnd() );
 }
 
 void GcSequenceModifyDockable::OnSize(UINT nType, int cx, int cy)

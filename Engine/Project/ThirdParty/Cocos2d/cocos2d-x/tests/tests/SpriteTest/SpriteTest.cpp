@@ -2703,10 +2703,10 @@ SpriteChildrenAnchorPoint::SpriteChildrenAnchorPoint()
 
     
     sprite2 = CCSprite::spriteWithSpriteFrameName("grossini_dance_02.png");
-    sprite2->setPosition(ccp(20,30));
+    sprite2->setPosition(ccp(0,0));
     
     sprite3 = CCSprite::spriteWithSpriteFrameName("grossini_dance_03.png");
-    sprite3->setPosition(ccp(-20,30));
+    sprite3->setPosition(ccp(-0,0));
     
     sprite4 = CCSprite::spriteWithSpriteFrameName("grossini_dance_04.png");
     sprite4->setPosition(ccp(0,0));
@@ -2815,10 +2815,10 @@ SpriteBatchNodeChildrenAnchorPoint::SpriteBatchNodeChildrenAnchorPoint()
     sprite1->setAnchorPoint( ccp(0,0) );
     
     sprite2 = CCSprite::spriteWithSpriteFrameName("grossini_dance_02.png");
-    sprite2->setPosition(ccp(20,30));
+    sprite2->setPosition(ccp(0,0));
     
     sprite3 = CCSprite::spriteWithSpriteFrameName("grossini_dance_03.png");
-    sprite3->setPosition(ccp(-20,30));
+    sprite3->setPosition(ccp(-0,00));
     
     sprite4 = CCSprite::spriteWithSpriteFrameName("grossini_dance_04.png");
     sprite4->setPosition(ccp(0,0));

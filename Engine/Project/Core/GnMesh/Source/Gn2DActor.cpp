@@ -21,7 +21,21 @@ Gn2DActor* Gn2DActor::Create(GnActorTool* pActorTool, GnObjectStream& stream, bo
 	//if( stream.Load(pActorTool->GetGMFilePath()) == false )
 	//	return false;
 	//Gn2DMeshObject* rootNode = (Gn2DMeshObject*)stream.GetObject(0);
-	Gn2DMeshObject* rootNode = GnNew Gn2DMeshObject();
+	Gn2DMeshObject* rootNode = NULL;
+	if( pActorTool->GetGMFilePath() == NULL )
+		rootNode = GnNew Gn2DMeshObject();
+	else
+	{
+		gchar gmWorkPath[GN_MAX_PATH] = { 0, };
+		GnStrcpy( gmWorkPath, GnSystem::GetWorkDirectory(), sizeof(gmWorkPath) );
+		GnStrcat( gmWorkPath, pActorTool->GetGMFilePath(), sizeof(gmWorkPath) );
+		if( stream.Load( gmWorkPath ) )
+		{
+			rootNode = (Gn2DMeshObject*) stream.GetObject( 0 );
+		}
+		if( rootNode == NULL )
+			rootNode = GnNew Gn2DMeshObject();
+	}
 	Gn2DActor* pActor = GnNew Gn2DActor( pActorTool, rootNode );
 	if( bLoadSequenceFile )
 		pActor->LoadAllSequence( stream );
@@ -29,6 +43,7 @@ Gn2DActor* Gn2DActor::Create(GnActorTool* pActorTool, GnObjectStream& stream, bo
 	return pActor;
 }
 Gn2DActor::Gn2DActor() : mpsActorTool(NULL), mpsRootNode(NULL), mpCurrentSequence(NULL)
+	, mpCallbackEventSlot( NULL )
 {
 
 }

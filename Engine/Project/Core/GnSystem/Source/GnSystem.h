@@ -5,13 +5,13 @@
 #include "GnPlatformConfig.h"
 
 #include <wchar.h>
-#include <stddef.h>
 #include <sys/stat.h>
 #include <stdio.h>
 #include <stdint.h>
 
 #if (GNUSE_PLATFORM == PLATFORM_IOS)
-
+	
+	#include <stddef.h>
     #include <string.h>
     #include <unistd.h>
 

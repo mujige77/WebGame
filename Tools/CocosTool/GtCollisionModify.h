@@ -22,5 +22,7 @@ public:
 		return mVisible;
 	}
 	void SetScale(float val);
+
+	void SetActorPosition(GnVector2& cPos);
 };
 

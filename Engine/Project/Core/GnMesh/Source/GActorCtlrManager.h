@@ -1,11 +1,3 @@
-//
-//  GActorCtlrManager.h
-//  HiroCat
-//
-//  Created by Max Yoon on 11. 6. 16..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __HiroCat__GActorCtlrManager__
 #define __HiroCat__GActorCtlrManager__
 
@@ -33,7 +25,7 @@ public:
 public:
 	inline void AddActorCtlr(GActorController* pActorCtlr) {
 		GetActorLayer()->AddChild( pActorCtlr->GetMesh()
-			, GetGameState()->GetGameHeight() - pActorCtlr->GetPosition().y );
+			, (int)(GetGameState()->GetGameHeight() - pActorCtlr->GetPosition().y) );
 		mActors.Add( pActorCtlr );
 	};
 	inline GActorController* GetActorCtlr(gtuint uiIndex)	{

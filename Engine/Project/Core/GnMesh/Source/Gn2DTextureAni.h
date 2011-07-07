@@ -26,7 +26,6 @@ public:
 	};
 protected:
 	CCAnimate* mpAnimate;
-	CCSequence* mpSequence;
 	CCSize mSize;
 	
 public:
@@ -40,6 +39,11 @@ public:
 
 	inline CCAnimate* GetAnimate() {
 		return mpAnimate;
+	}
+
+protected:
+	Gn2DMeshObject* Get2DMeshObject() {
+		return (Gn2DMeshObject*)mpTarget;
 	}
 };
 

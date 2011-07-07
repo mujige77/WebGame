@@ -105,6 +105,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\GnAllocator.h" />
     <ClInclude Include="..\..\Source\GnPath.h" />
+    <ClInclude Include="..\..\Source\GnPlatformConfig.h" />
     <ClInclude Include="..\..\Source\GnSimpleTString.h" />
     <ClInclude Include="..\..\Source\GnSingletonManager.h" />
     <ClInclude Include="..\..\Source\GnTSet.h" />

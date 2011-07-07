@@ -2,6 +2,7 @@
 #define GNANIMATION_H
 
 class Gn2DMeshObject;
+GnSmartPointer(GnAnimation);
 class GnAnimation : public GnObject
 {
 	GnDeclareFlags(gushort);
@@ -37,10 +38,9 @@ public:
 	typedef GnPointer<AniInfo> AniInfoPtr;
 protected:
 	GnTObjectArray<AniInfoPtr> mInfos;
-	Gn2DMeshObject* mpTarget;
+	GnObjectForm* mpTarget;
 	bool mIsMeshStream;
 	float mAniSpeed;
-
 public:
 	GnAnimation();
 	virtual ~GnAnimation(){};
@@ -89,6 +89,5 @@ public:
 	}
 };
 
-GnSmartPointer(GnAnimation);
 
 #endif // GNANIMATION_H

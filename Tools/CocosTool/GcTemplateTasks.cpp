@@ -39,15 +39,25 @@ int GcTemplateTasks::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 
 	DWORD defaultStyle = WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_NOALIGN;
-	if (!mTemplateList.Create(_T("FDSF"), this, CRect(0, 0, 0, 0), TRUE, ID_CTRL_TEMPLATELIST,
-		defaultStyle ))
+	if ( !mTemplateList.Create( _T("FDSF"), this, CRect(0, 0, 0, 0), TRUE, ID_CTRL_TEMPLATELIST,
+		defaultStyle ) )
 	{
 		TRACE0("속성 창을 만들지 못했습니다.\n");
 		return FALSE; // 만들지 못했습니다.
 	}
 
-	int groupIndex = AddGroup (_T("Template List"), FALSE, TRUE);
-	AddWindow (groupIndex, mTemplateList.GetSafeHwnd (), 300);
+	int groupIndex = AddGroup (_T("Template list"), FALSE, TRUE);
+	AddWindow( groupIndex, mTemplateList.GetSafeHwnd (), 250 );
+
+	if ( !mEffectTemplateList.Create( _T("FDsssSF"), this, CRect(0, 0, 0, 0), TRUE
+		, ID_CTRL_EFFECTTEMPLATELIST,defaultStyle ) )
+	{
+		TRACE0("속성 창을 만들지 못했습니다.\n");
+		return FALSE; // 만들지 못했습니다.
+	}
+
+	groupIndex = AddGroup( _T("Effect template list"), FALSE, TRUE );
+	AddWindow( groupIndex, mEffectTemplateList.GetSafeHwnd (), 250 );
 
 	SetVisibleCaptionBar(true);
 	return 0;

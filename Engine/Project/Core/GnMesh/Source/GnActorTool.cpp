@@ -9,7 +9,18 @@ void GnActorTool::SequenceInfo::SaveStream(GnStream* pStream)
 	const gchar* name =mSequenceName.GetHandle();
 	pStream->SaveStream( name );
 	name = mFileName.GetHandle();
-	pStream->SaveStream( name );
+	// 나중에 지우자
+	const gchar* findConstChar = GnStrchr(name, '\\');
+	if( findConstChar )
+	{
+		gchar fileName[MAX_ACTOR_PATH] = {0,};
+		GnStrcpy( fileName, name, sizeof(fileName) );
+		gchar* findChar = GnStrchr( fileName, '\\' );
+		*findChar = '/';
+		pStream->SaveStream( fileName );
+	}
+	else
+		pStream->SaveStream( name );
 }
 
 void GnActorTool::SequenceInfo::LoadStream(GnStream* pStream)

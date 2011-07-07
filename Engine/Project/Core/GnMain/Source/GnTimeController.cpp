@@ -14,11 +14,14 @@ GnTimeController::~GnTimeController()
 
 void GnTimeController::Start(float fTime)
 {
+	mPlayFlags = PLAY;
 	mStartTime = fTime;
+	mAccumulateDeltaTime = fTime;
 }
 
 void GnTimeController::Stop()
 {
+	mPlayFlags = STOP;
 }
 
 bool GnTimeController::SetTargetObject(GnObjectForm* pObject)
@@ -29,7 +32,7 @@ bool GnTimeController::SetTargetObject(GnObjectForm* pObject)
 		return true;
 	}
 	GnAssert(mTargetName.Exists());
-	mpTarget = (GnAVObject*)pObject->GetObjectByName(mTargetName);
+	mpTarget = pObject->GetObjectByName(mTargetName);
 	if( mpTarget == NULL )
 		return false;
 

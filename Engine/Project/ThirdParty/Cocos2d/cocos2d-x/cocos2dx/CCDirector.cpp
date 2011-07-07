@@ -925,6 +925,7 @@ void CCDisplayLinkDirector::mainLoop(void)
 	}
 	else if (! m_bInvalid)
  	{
+		//calculateDeltaTime();
  		drawScene();
 	 
  		// release the objects

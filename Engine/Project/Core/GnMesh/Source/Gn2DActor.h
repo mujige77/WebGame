@@ -46,6 +46,7 @@ protected:
 	float mSequenceAccumulateDeltaTime;
 	GnBaseSlot1<TimeEvent*>* mpCallbackEventSlot;
 	TimeEvent mTimeEvent;
+	
 public:
 	Gn2DActor();
 	static Gn2DActor* Create(const gchar* pcActorToolFileName, GnObjectStream& stream

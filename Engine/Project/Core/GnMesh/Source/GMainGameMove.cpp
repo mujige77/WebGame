@@ -1,11 +1,4 @@
-//
-//  GMainGameMove.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 29..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
+#include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GMainGameMove.h"
 #include "GMainGameEnvironment.h"
@@ -42,7 +35,7 @@ void GMainGameMove::SetMove(gtuint uiType, bool bCleanMove)
 				if( GetActorLayer() )
 				{
 					GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
-						, GetGameState()->GetGameHeight() - movePos.y );
+						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
 				}
 			}
 			SetMoveUp( false );
@@ -58,7 +51,7 @@ void GMainGameMove::SetMove(gtuint uiType, bool bCleanMove)
 				if( GetActorLayer() )
 				{
 					GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
-						, GetGameState()->GetGameHeight() - movePos.y );
+						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
 				}
 					
 			}

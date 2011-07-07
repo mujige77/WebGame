@@ -9,7 +9,7 @@
 #include "GnScreenMesh.h"
 #include "Gn2DMeshObject.h"
 #include "Gn2DNode.h"
-
+#include "Gn2DTextureAniCtlr.h"
 
 void GnMeshEBM::StartupEBM()
 {
@@ -24,6 +24,8 @@ void GnMeshEBM::StartupEBM()
 	GnRegisterStream(Gn2DNode);
 	GnRegisterStream(Gn2DAVData);
 	GnRegisterStream(Gn2DTextureAni);
+	GnRegisterStream(Gn2DTextureAniCtlr);
+	
 
 	GnSceneManager::_StartupEBM();	
 }
@@ -43,4 +45,5 @@ void GnMeshEBM::ShutdownEBM()
 	GnUnregisterStream(Gn2DNode);
 	GnUnregisterStream(Gn2DAVData);
 	GnUnregisterStream(Gn2DTextureAni);
+	GnUnregisterStream(Gn2DTextureAniCtlr);
 }

@@ -3,11 +3,13 @@
 
 class Gt2DActor : public GtObject
 {
+	GnDeclareRTTI;
 public:
 	const static  gint OBJECT_TYPE = 1;
 private:
 	Gn2DActorPtr mpsActor;
 	GnSimpleString mGATFileName;
+	GnSimpleString mGMFileName;
 	Gt2DSequence* mModifySequence;
 	GnTMap<guint32, Gt2DSequencePtr> mpGtSequences;
 
@@ -52,8 +54,12 @@ public:
 	inline void SetGATFileName(const gchar* val) {
 		mGATFileName = val;
 	}
-
-
+	inline const gchar* GetGMFileName() {
+		return mGMFileName;
+	}
+	inline void SetGMFileName(const gchar* val) {
+		mGMFileName = val;
+	}
 };
 
 GnSmartPointer(Gt2DActor);

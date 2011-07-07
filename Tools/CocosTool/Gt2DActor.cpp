@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "Gt2DActor.h"
 
-
+GnImplementRTTI(Gt2DActor, GtObject);
 Gt2DActor::Gt2DActor(void)
 {
 }
@@ -20,17 +20,32 @@ bool Gt2DActor::SaveData(const gchar* pcBasePath)
 
 	GtToolSettings::CreateDirectoryInWorkDirectory( GetObjectName() );
 
+	// save *.gat file
 	std::string toolPath = sequenceBasePath;
 	toolPath += GetGATFileName();
 	GnStream toolStream;
 	if( toolStream.Save( toolPath.c_str() ) )
 	{
+		std::string gmFileName = GetObjectName();
+		gmFileName += "/";
+		gmFileName += GetGMFileName();
+		GetActorTool()->SetGMFilePath( gmFileName.c_str() );
 		GetActorTool()->SaveStream( &toolStream );
 	}
 	else
 		GnLogA( "GtActorObject SaveStream %s", toolPath );
 	toolStream.Close();	
 
+	// save *.gm file
+	GetRootNode()->SetName( GetObjectName() );
+	std::string meshPath = sequenceBasePath;
+	meshPath += GetGMFileName();
+	GnObjectStream meshStream;	
+	meshStream.InsertRootObjects( GetRootNode() );
+	GnVerify( meshStream.Save( meshPath.c_str() ) );
+	meshStream.Close();
+
+	// save *.ga file
 	GnTMap<guint32, Gt2DSequencePtr>::Iterator iter;
 	mpGtSequences.GetFirstIter(iter);	
 	while( iter.Valid() )
@@ -55,10 +70,12 @@ bool Gt2DActor::LoadData()
 		gchar outPath[GN_MAX_PATH] = {0,};
 		GtToolSettings::MakeSaveFilePath( mGATFileName, GetObjectName(), outPath, sizeof(outPath) );
 
-
-
 		if( mpsActor == NULL )
-			mpsActor = GnNew Gn2DActor();
+		{
+			GnObjectStream objStream;
+			mpsActor = Gn2DActor::Create( outPath, objStream, false );
+			//mpsActor = GnNew Gn2DActor();
+		}
 
 		if( mpsActor->GetActorTool() == NULL )
 		{
@@ -90,6 +107,9 @@ void Gt2DActor::SetObjectName(const gchar* pcVal)
 	string fileName = pcVal;
 	fileName +=  ".gat";
 	SetGATFileName( fileName.c_str() );
+	fileName = pcVal;
+	fileName += ".gm";
+	SetGMFileName( fileName.c_str() );
 }
 
 void Gt2DActor::RemoveSequenceWithTool(guint32 uiID)
@@ -107,10 +127,12 @@ bool Gt2DActor::CreateData()
 	GnAssert( actorTool == NULL );
 	actorTool = GnNew GtActorTool();
 	GnAssert( mGATFileName.Exists() );
-	std::string fileName = GetObjectName();	
+	std::string fileName = GetObjectName();
 	fileName += GetGATFileName();
 	actorTool->SetGATFilePath( fileName.c_str() );
-	actorTool->SetGMFilePath( GetObjectName() );
+	fileName = GetObjectName();
+	fileName += GetGMFileName();
+	actorTool->SetGMFilePath( fileName.c_str() );
 	GetActor()->SetActorTool( actorTool );
 
 	Gn2DMeshObject* rootNode = GnNew Gn2DMeshObject();

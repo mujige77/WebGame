@@ -20,6 +20,7 @@
 #include "Gn3DTransform.h"
 #include "GnSignal.h"
 #include "GnObject.h"
+#include "GnExtraData.h"
 #include "GnObjectForm.h"
 #include "GnAVObject.h"
 #include "GnTimeController.h"

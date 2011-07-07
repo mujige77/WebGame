@@ -1,6 +1,7 @@
 #pragma once
 #include "GcTasksPane.h"
-#include "GcTemplateDockable.h"
+#include "GcActorTemplateDockable.h"
+#include "GcEffectTemplateDockable.h"
 // GcTemplateTasks
 
 class GcTemplateTasks : public GcTasksPane
@@ -8,13 +9,13 @@ class GcTemplateTasks : public GcTasksPane
 	DECLARE_DYNAMIC(GcTemplateTasks)
 
 protected:
-	GcTemplateDockable mTemplateList;
-	
+	GcActorTemplateDockable mTemplateList;
+	GcEffectTemplateDockable  mEffectTemplateList;	
 public:
 	GcTemplateTasks();
 	virtual ~GcTemplateTasks();
 	
-	inline GcTemplateDockable& GetTemplateList() {
+	inline GcActorTemplateDockable& GetTemplateList() {
 		return mTemplateList;
 	}
 

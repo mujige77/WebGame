@@ -44,7 +44,7 @@ int GcSequenceDockable::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	dwViewStyle = WS_CHILD | WS_VISIBLE | LVS_REPORT;
 	rectDummy.right = 50;
-	rectDummy.bottom = 200;
+	rectDummy.bottom = 150;
 	if ( !mSequenceListCtrl.Create( dwViewStyle, rectDummy, this, 2 ) )
 	{
 		TRACE0("파일 뷰를 만들지 못했습니다.\n");

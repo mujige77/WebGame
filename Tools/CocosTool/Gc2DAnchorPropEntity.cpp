@@ -46,11 +46,11 @@ bool Gc2DAnchorPropEntity::Init()
 	apSize->AddSubItem( pProp );
 	pGroup->AddSubItem( apSize.release() );	
 
-	std::auto_ptr<CMFCPropertyGridProperty> apCenter( new GcPropertyGridNumberPair( _T("Image Center")
+	std::auto_ptr<CMFCPropertyGridProperty> apCenter( new GcPropertyGridNumberPair( _T("Flip Center")
 		, 0, GINT_MAX, 0, GINT_MAX, 0, TRUE ) );
 	apCenter->AllowEdit( false );
 	//pProp = new GtBoundedNumberSubProp( _T("Image X"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
-		pProp = new GtBoundedNumberSubProp( _T("Image X"), (COleVariant)0l, GINT_MIN, GINT_MAX
+		pProp = new GtBoundedNumberSubProp( _T("Center X"), (COleVariant)0l, GINT_MIN, GINT_MAX
 		, _T("AnchorPoint Position x") );
 	mpUseGridProperty[PROP_IMAGECENTERX] = pProp;
 	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );
@@ -59,7 +59,7 @@ bool Gc2DAnchorPropEntity::Init()
 	pProp->SubscribeToUpdateEvent( &mUpdateEventSlot );
 	apCenter->AddSubItem( pProp );
 	//pProp = new GtBoundedNumberSubProp( _T("Image Y"), (COleVariant)(float)0, GINT_MIN, GINT_MAX
-		pProp = new GtBoundedNumberSubProp( _T("Image Y"), (COleVariant)0l, GINT_MIN, GINT_MAX
+		pProp = new GtBoundedNumberSubProp( _T("Center Y"), (COleVariant)0l, GINT_MIN, GINT_MAX
 		, _T("AnchorPoint Position y") );
 	mpUseGridProperty[PROP_IMAGECENTERY] = pProp;
 	//pProp->EnableFloatSpinControl( TRUE, GINT_MIN, GINT_MAX );

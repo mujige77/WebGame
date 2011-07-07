@@ -2,7 +2,7 @@
 #define GNTIMECONTROLLER_H
 
 
-class GnAVObject;
+class GnObjectForm;
 GnSmartPointer(GnTimeController);
 class GNMAIN_ENTRY GnTimeController : public GnObject
 {
@@ -10,10 +10,11 @@ class GNMAIN_ENTRY GnTimeController : public GnObject
 	GnDeclareStream;
 	GnDeclareFlags(gint);
 protected:
-	GnAVObject* mpTarget;	
+	GnObjectForm* mpTarget;	
 	GnSimpleString mTargetName;
 	GnTimeControllerPtr mpsNext;
 	float mStartTime;
+	float mAccumulateDeltaTime;
 	gtuint mPlayFlags;	
 
 public:
@@ -26,9 +27,8 @@ protected:
 		STOP,
 		PLAY,
 	};	
-
 public:
-	virtual void Update(float fTime){};
+	virtual void Update(float fDeltaTime){};
 	virtual void Start(float fTime);
 	virtual void Stop();
 
@@ -52,6 +52,14 @@ public:
 		return true;
 	}
 	virtual bool SetTargetObject(GnObjectForm* pObject);
+
+protected:
+	inline float GetAccumulateTime() {
+		return mAccumulateDeltaTime;
+	}
+	void SetAccumulateTime(float fTime) {
+		mAccumulateDeltaTime = fTime;
+	}
 };
 
 

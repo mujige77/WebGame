@@ -1,16 +1,10 @@
-//
-//  GnSQLite.h
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 23..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __Core__GnSQLite__
 #define __Core__GnSQLite__
 
-#if ( GNUSE_OS == FLATFORM_IOS )
+#if ( GNUSE_OS == PLATFORM_IOS )
 #include "/usr/include/sqlite3.h"
+#else
+typedef int sqlite3;
 #endif
 
 #include "GnSQLiteQuery.h"

@@ -1,11 +1,3 @@
-//
-//  GAction.h
-//  HiroCat
-//
-//  Created by Max Yoon on 11. 6. 20..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #ifndef __HiroCat__GAction__
 #define __HiroCat__GAction__
 

@@ -1,10 +1,4 @@
-//
-//  GUserCtlrManager.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 26..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
+#include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GUserCtlrManager.h"
 #include "GUserController.h"
@@ -57,7 +51,7 @@ void GUserCtlrManager::Init()
 	GetGameEnvironment()->UserMove( move );
 	GetGameEnvironment()->SetStartPositionToActor( mpUserCtlr, 0 );
 	GetActorLayer()->AddChild( mpUserCtlr->GetMesh()
-		, GetGameState()->GetGameHeight() - mpUserCtlr->GetMesh()->GetPosition().y );
+		, (gint)(GetGameState()->GetGameHeight() - mpUserCtlr->GetMesh()->GetPosition().y) );
 	move->SetActorLayer( GetActorLayer() );
 	
 	mMoveInputEvent.Initialize( this, &GUserCtlrManager::Move );

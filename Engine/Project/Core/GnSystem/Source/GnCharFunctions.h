@@ -116,4 +116,14 @@ static GNFORCEINLINE const gchar* GnStrstr(const gchar* GNRESTRICT pStr1, const 
 	return strstr(pStr1, pStr2);
 }
 
+static GNFORCEINLINE gchar* GnStrchr(gchar* GNRESTRICT pStr1, int GNRESTRICT pStr2)
+{
+	return strchr(pStr1, pStr2);
+}
+
+static GNFORCEINLINE const gchar* GnStrchr(const gchar* GNRESTRICT pStr1, int GNRESTRICT pStr2)
+{
+	return strchr(pStr1, pStr2);
+}
+
 #endif // GNCHARFUNCTIONS_H

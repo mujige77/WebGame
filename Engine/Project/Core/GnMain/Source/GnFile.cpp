@@ -48,7 +48,11 @@ gchar* GnFile::CopyAsciiFileString(const gchar* pcBuffer)
 {
 	size_t len = GnStrlen( pcBuffer )-1;
 	gchar* copyString = GnAlloc(gchar, len);
+#if ( GNUSE_OS == PLATFORM_WIN32 )
+	strcpy_s( copyString, sizeof( copyString ) * len , pcBuffer );
+#else
 	strcpy( copyString, pcBuffer );
+#endif
 	copyString[len-1] = '\0';
 	return copyString;
 }

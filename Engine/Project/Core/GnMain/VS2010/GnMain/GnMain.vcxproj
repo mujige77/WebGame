@@ -117,6 +117,8 @@
     <ClCompile Include="..\..\Source\Gn2DBackBuffer.cpp" />
     <ClCompile Include="..\..\Source\GnAVObject.cpp" />
     <ClCompile Include="..\..\Source\GnCamera.cpp" />
+    <ClCompile Include="..\..\Source\GnColor.cpp" />
+    <ClCompile Include="..\..\Source\GnExtraData.cpp" />
     <ClCompile Include="..\..\Source\GnFactoryManager.cpp" />
     <ClCompile Include="..\..\Source\GnFile.cpp" />
     <ClCompile Include="..\..\Source\GnMainEBM.cpp" />
@@ -154,6 +156,7 @@
     <ClInclude Include="..\..\Source\GnAVObject.h" />
     <ClInclude Include="..\..\Source\GnCamera.h" />
     <ClInclude Include="..\..\Source\GnColor.h" />
+    <ClInclude Include="..\..\Source\GnExtraData.h" />
     <ClInclude Include="..\..\Source\GnFactoryManager.h" />
     <ClInclude Include="..\..\Source\GnFile.h" />
     <ClInclude Include="..\..\Source\GnFileMacro.h" />

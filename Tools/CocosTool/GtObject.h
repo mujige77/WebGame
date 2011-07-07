@@ -2,6 +2,9 @@
 
 class GtObject : public GnSmartObject
 {
+	GnDeclareRootRTTI(GtObject);
+
+private:
 	GnSimpleString mObjectName;
 	bool mNewItem; // 툴에서 새로 만들어진 오브젝트인지 확인	
 	bool mModifed;

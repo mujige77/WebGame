@@ -8,7 +8,8 @@ Gn2DTextureAni::TextureAniInfo::TextureAniInfo() : mTextureName(NULL)
 
 Gn2DTextureAni::TextureAniInfo::~TextureAniInfo()
 {
-	GnFree( mTextureName );
+	if( mTextureName  )
+		GnFree( mTextureName );
 }
 
 void Gn2DTextureAni::TextureAniInfo::LoadStream(GnStream* pStream)
@@ -125,9 +126,9 @@ void Gn2DTextureAni::RemoveData()
 {
 	if( mpAnimate )
 	{
-		if( mpTarget )
+		if( Get2DMeshObject() )
 		{
-			GnReal2DMesh* mesh = mpTarget->GetMesh();
+			GnReal2DMesh* mesh = Get2DMeshObject()->GetMesh();
 			mesh->stopAction( mpAnimate );
 		}
 		mpAnimate->release();
@@ -138,7 +139,7 @@ void Gn2DTextureAni::RemoveData()
 
 void Gn2DTextureAni::Start(float fTime)
 {
-	GnAssert( mpTarget );
+	GnAssert( Get2DMeshObject() );
 	if( mpAnimate == NULL )
 	{
 		if( CreateData() == false )
@@ -148,14 +149,14 @@ void Gn2DTextureAni::Start(float fTime)
 	GnAssert( mpAnimate );
 	mpAnimate->setDuration( fTime );
 
-	GnReal2DMesh* mesh = mpTarget->GetMesh();
+	GnReal2DMesh* mesh = Get2DMeshObject()->GetMesh();
 	mesh->runAction( mpAnimate );
 	//mesh->setScale( 0.5f );
 }
 
 void Gn2DTextureAni::Stop()
 {
-	GnAssert( mpTarget );
-	GnReal2DMesh* mesh = mpTarget->GetMesh();
+	GnAssert( Get2DMeshObject() );
+	GnReal2DMesh* mesh = Get2DMeshObject()->GetMesh();
 	mesh->stopAction( mpAnimate );
 }

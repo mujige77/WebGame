@@ -1,6 +1,6 @@
 #include "GnMeshPCH.h"
 #include "Gn2DMeshObject.h"
-
+#include "Gn2DMeshData.h"
 GnImplementRTTI( Gn2DMeshObject, GnObjectForm );
 Gn2DMeshObject::Gn2DMeshObject() : mpParent( NULL )
 {
@@ -118,6 +118,7 @@ void Gn2DMeshObject::SetFlipX(bool val)
 
 void Gn2DMeshObject::Update(float fTime)
 {
+	GnObjectForm::Update( fTime );
 }
 
 GnObjectForm* Gn2DMeshObject::GetObjectByName(const GnSimpleString& kName)
@@ -128,7 +129,13 @@ GnObjectForm* Gn2DMeshObject::GetObjectByName(const GnSimpleString& kName)
 	return NULL;
 }
 
-GnImplementCreateObject(Gn2DMeshObject);
+GnObject* Gn2DMeshObject::CreateObject()
+{
+	Gn2DMeshObject* object = GnNew Gn2DMeshObject(new Gn2DMeshData() );
+	GnAssert(object != NULL);
+	return object;
+}
+
 void Gn2DMeshObject::LoadStream(GnObjectStream* pStream)
 {
 	GnObjectForm::LoadStream( pStream );

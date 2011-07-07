@@ -1,1 +1,1 @@
-const static GnVector2 ActorBasePosition( 0, 0 );
+extern GnVector2 ActorBasePosition;

@@ -33,6 +33,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_COMMAND(IDC_SAVE_OBJECTSTATE, &CMainFrame::OnSaveObjectState)
 	ON_COMMAND(ID_VIEW_SEQUENCEDOCKABLE, &CMainFrame::OnViewSequencedockable)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SEQUENCEDOCKABLE, &CMainFrame::OnUpdateViewSequencedockable)
+	ON_COMMAND(ID_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnViewOutlookvisible)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnUpdateViewOutlookvisible)
 END_MESSAGE_MAP()
 
 // CMainFrame »ý¼º/¼Ò¸ê
@@ -130,6 +132,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	AttachNeedMessage( GTMG_SELECTOBJECT );
 	AttachNeedMessage( GTMG_DESTORY );
+
+
+	BOOL BIB =m_wndNavigationBar.IsVisible();
 	return 0;
 }
 
@@ -295,6 +300,17 @@ void CMainFrame::OnUpdateViewSequencedockable(CCmdUI *pCmdUI)
 	pCmdUI->SetCheck(mSequenceDockable.IsVisible());
 }
 
+void CMainFrame::OnViewOutlookvisible()
+{
+	m_wndNavigationBar.ShowWindow(m_wndNavigationBar.IsVisible() ? SW_HIDE : SW_SHOW);
+	RecalcLayout(FALSE);
+}
+
+void CMainFrame::OnUpdateViewOutlookvisible(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndNavigationBar.IsVisible());
+}
+
 void CMainFrame::OnOptions()
 {
 	CMFCRibbonCustomizeDialog *pOptionsDlg = new CMFCRibbonCustomizeDialog(this, &m_wndRibbonBar);
@@ -303,7 +319,6 @@ void CMainFrame::OnOptions()
 	pOptionsDlg->DoModal();
 	delete pOptionsDlg;
 }
-
 
 BOOL CMainFrame::DestroyWindow()
 {
@@ -340,7 +355,6 @@ void CMainFrame::ReceiveMediateMessage(gtuint messageIndex, GcMediateObjectMessa
 		break;
 	}
 }
-
 
 void CMainFrame::OnSaveObjectState()
 {

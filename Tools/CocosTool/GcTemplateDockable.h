@@ -29,7 +29,6 @@ protected:
 	int mLastSelectItem;
 	GcTemplateListCtrl mListCtrl;
 	CArray<TemplateListData> mTemplateList;
-	Gt2DActorPtr mpsCurrentObject;
 
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -42,12 +41,11 @@ public:
 	void LoadTemplateList(const gchar* filePath);
 
 protected:	
-	virtual void ReciveNotiyfiMessage(WPARAM wParam, LPARAM lParam);	
-	Gt2DActor* GetActorObject(CString itemText );
-	void AddItem(CString itemName, gint8 iActortype, bool bSelected = false);
-	void SelectItem(int iIndex);
-public:
-	afx_msg void OnSaveObjectstate();
+	virtual void AddItem(CString itemName, gint8 iActortype, bool bSelected = false);
+	virtual void DoNewTemplate(){}
+	virtual void DoDelTemplate(){}
+	virtual void DoOpenTemplate(){}
+
 };
 
 

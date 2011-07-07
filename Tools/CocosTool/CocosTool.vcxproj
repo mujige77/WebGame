@@ -171,6 +171,7 @@
     <None Include="res\writesmall.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GcActorExtraDataDlg.h" />
     <ClInclude Include="ActorMacro.h" />
     <ClInclude Include="CalendarBar.h" />
     <ClInclude Include="CategoryAnimationManager.h" />
@@ -181,11 +182,17 @@
     <ClInclude Include="Gc2DAnchorPropEntity.h" />
     <ClInclude Include="Gc2DCollisionBoxPropEntity.h" />
     <ClInclude Include="Gc2DRectPropEntity.h" />
+    <ClInclude Include="GcActorExtraDataList.h" />
+    <ClInclude Include="GcActorTemplateDockable.h" />
     <ClInclude Include="GcAnimationKeyList.h" />
     <ClInclude Include="GcAnimationKeyPropEntity.h" />
     <ClInclude Include="GcCollisionList.h" />
     <ClInclude Include="GcCreateCollisionDlg.h" />
+    <ClInclude Include="GcCreateExtraDataDlg.h" />
+    <ClInclude Include="GcEffectTemplateDockable.h" />
+    <ClInclude Include="GcExtraDataPropEntity.h" />
     <ClInclude Include="GcSequenceCollisionDlg.h" />
+    <ClInclude Include="Gt2DMesh.h" />
     <ClInclude Include="GtAniKeyHelper.h" />
     <ClInclude Include="GtCollisionModify.h" />
     <ClInclude Include="GtNumberString.h" />
@@ -243,6 +250,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GcActorExtraDataDlg.cpp" />
     <ClCompile Include="CalendarBar.cpp" />
     <ClCompile Include="CategoryAnimationManager.cpp" />
     <ClCompile Include="CocosTool.cpp" />
@@ -252,11 +260,17 @@
     <ClCompile Include="Gc2DAnchorPropEntity.cpp" />
     <ClCompile Include="Gc2DCollisionBoxPropEntity.cpp" />
     <ClCompile Include="Gc2DRectPropEntity.cpp" />
+    <ClCompile Include="GcActorExtraDataList.cpp" />
+    <ClCompile Include="GcActorTemplateDockable.cpp" />
     <ClCompile Include="GcAnimationKeyList.cpp" />
     <ClCompile Include="GcAnimationKeyPropEntity.cpp" />
     <ClCompile Include="GcCollisionList.cpp" />
     <ClCompile Include="GcCreateCollisionDlg.cpp" />
+    <ClCompile Include="GcCreateExtraDataDlg.cpp" />
+    <ClCompile Include="GcEffectTemplateDockable.cpp" />
+    <ClCompile Include="GcExtraDataPropEntity.cpp" />
     <ClCompile Include="GcSequenceCollisionDlg.cpp" />
+    <ClCompile Include="Gt2DMesh.cpp" />
     <ClCompile Include="GtAniKeyHelper.cpp" />
     <ClCompile Include="GtCollisionModify.cpp" />
     <ClCompile Include="GtNumberString.cpp" />

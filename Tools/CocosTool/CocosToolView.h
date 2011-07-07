@@ -62,6 +62,7 @@ private:
 protected:
 	CStatic mLoactionRender;
 	bool mModifyCollsionBoxsCheck;
+	bool mActorCenterCheck;
 
 
 public:
@@ -106,12 +107,14 @@ public:
 	
 	afx_msg void OnModifyCollisionboxs();
 	afx_msg void OnUpdateModifyCollisionboxs(CCmdUI *pCmdUI);
+	afx_msg void OnActorCenter();
+	afx_msg void OnUpdateActorCenter(CCmdUI *pCmdUI);
 	afx_msg void OnAnicurrenttime();
 	afx_msg void OnAnitimeslider();
 	afx_msg void OnBtLoadbackground();
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	afx_msg void OnScaleRange();
-	afx_msg void OnFlipx();
+	afx_msg void OnFlipx();	
 };
 
 #ifndef _DEBUG  // CocosToolView.cpp의 디버그 버전

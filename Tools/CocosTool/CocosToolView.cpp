@@ -28,11 +28,13 @@
 #include "MainFrm.h"
 #include "GtGLView.h"
 #include "GnLayerMain.h"
+#include "ActorMacro.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+GnVector2 ActorBasePosition( 0, 0 );
 const float CCocosToolView::msWidth = 480.0f;
 const float CCocosToolView::msHeight = 320.0f;
 
@@ -53,6 +55,8 @@ BEGIN_MESSAGE_MAP(CCocosToolView, CFormView)
 	ON_COMMAND(ID_BT_LOADBACKGROUND, &CCocosToolView::OnBtLoadbackground)
 	ON_COMMAND(ID_SCALERANGE, &CCocosToolView::OnScaleRange)
 	ON_COMMAND(ID_BT_FLIPX, &CCocosToolView::OnFlipx)
+	ON_COMMAND(ID_ACTOR_CENTER, &CCocosToolView::OnActorCenter)
+	ON_UPDATE_COMMAND_UI(ID_ACTOR_CENTER, &CCocosToolView::OnUpdateActorCenter)
 END_MESSAGE_MAP()
 
 // CCocosToolView 생성/소멸
@@ -60,7 +64,12 @@ END_MESSAGE_MAP()
 CCocosToolView::CCocosToolView() :CFormView( CCocosToolView::IDD ), mpApp( NULL )
 	, mpSpinCurrentTime(NULL), mpCollisionModify(NULL)
 {
-	// TODO: 여기에 생성 코드를 추가합니다.
+	mfCurrentTime = 0.0f;
+	mBforeTime = 0.0f;
+	mfStartTime = 0.0f;
+	mfEndTime = 0.0f;
+	mfTick = 0.0f;
+	mfLastTick = 0.0f;
 
 }
 
@@ -162,6 +171,7 @@ void CCocosToolView::OnInitialUpdate()
 		Loadbackground( GtToolSettings::GetBackgroundFilePath() );
 	}	
 	mModifyCollsionBoxsCheck = false;
+	mActorCenterCheck = false;
 }
 
 void CCocosToolView::PostNcDestroy()
@@ -231,7 +241,6 @@ void CCocosToolView::OnDraw(CDC* /*pDC*/)
 	CCDirector::sharedDirector()->setDeltaTime( GetCurrentTime() - mBforeTime );
 	CCDirector::sharedDirector()->mainLoop();
 	mBforeTime = GetCurrentTime();
-	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 }
 void CCocosToolView::OnAniPlay()
 {
@@ -350,6 +359,26 @@ void CCocosToolView::OnModifyCollisionboxs()
 	AddCurrentActorToLayerDrawPprimitives();
 }
 
+void CCocosToolView::OnActorCenter()
+{
+	mActorCenterCheck = !mActorCenterCheck;
+	if( mActorCenterCheck )
+		ActorBasePosition = GnVector2( 200.0f, 100.0f );
+	else
+		ActorBasePosition = GnVector2( 0.0f, 0.0f );
+	if( mpsActor && mpsActor->GetRootNode() )
+		mpsActor->GetRootNode()->SetPosition( ActorBasePosition );
+
+	if( mpCollisionModify  )
+		mpCollisionModify->SetActorPosition( ActorBasePosition );
+
+	Invalidate( FALSE );	
+}
+
+void CCocosToolView::OnUpdateActorCenter(CCmdUI *pCmdUI)
+{
+	pCmdUI->SetCheck( mActorCenterCheck );
+}
 
 void CCocosToolView::AddCurrentActorToLayerDrawPprimitives()
 {

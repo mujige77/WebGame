@@ -1,3 +1,4 @@
+#include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GFileList.h"
 
@@ -64,8 +65,11 @@ void GFileList::AddListFromFile(gchar* buffer, GnTPrimitiveDeleteMap<gtuint, gch
 {
 	gchar tempString[16] = {0,};
 	guint32 numID = 0;
+#if ( GNUSE_OS != PLATFORM_WIN32 )
 	sscanf( buffer, "%c%d", tempString, &numID );
-	
+#else
+	sscanf_s( buffer, "%c%d", tempString, &numID );
+#endif
 	gchar* fileName = GnFile::CopyAsciiFileString(buffer);
 	//GnStrcat(fileName, ".gat", len);
 	names.Insert( numID, fileName );

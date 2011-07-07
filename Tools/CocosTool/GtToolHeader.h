@@ -4,7 +4,7 @@
 
 #include <GnMainHeader.h>
 #include <GnMeshHeader.h>
-
+#include <GnGameHeader.h>
 template<class KeyType>
 class GtTCStringMapHash
 {
@@ -30,6 +30,7 @@ public:
 #include "Gt2DSequence.h"
 #include "Gt2DObject.h"
 #include "GtActorTool.h"
+#include "Gt2DMesh.h"
 #include "Gt2DActor.h"
 #include "GtObjectNew.h"
 #include "GtObjectFactory.h"

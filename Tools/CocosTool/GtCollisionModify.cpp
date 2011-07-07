@@ -89,7 +89,7 @@ void GtCollisionModify::SetBasicSequenceID(guint32 uiID)
 	mpsBasicMeshObject->GetMesh()->setOpacity( 255 );
 	mpsBasicMeshObject->GetMesh()->setColor( ccc3( 0, 255 , 255 ) );
 	mpsBasicMeshObject->GetMesh()->setAnchorPoint( CCPointMake(0,0) );
-	mpsBasicMeshObject->SetPosition( ActorBasePosition );
+	SetActorPosition( ActorBasePosition );
 }
 
 void GtCollisionModify::SetVisible(bool val, Gn2DMeshObject* pMesh)
@@ -111,6 +111,7 @@ void GtCollisionModify::SetVisible(bool val, Gn2DMeshObject* pMesh)
 
 		if( mpsBasicMeshObject )
 		{
+			SetActorPosition( ActorBasePosition );
 			GetSceneManager()->GetMainGameLayer()->AddChild( mpsBasicMeshObject, mZrOder );
 		}
 	}
@@ -131,4 +132,12 @@ void GtCollisionModify::SetScale(float val)
 {
 	if( mpsBasicMeshObject )
 		mpsBasicMeshObject->SetScale( val );
+}
+
+void GtCollisionModify::SetActorPosition(GnVector2& cPos)
+{
+	if( mpsBasicMeshObject )
+	{
+		mpsBasicMeshObject->SetPosition( cPos );
+	}
 }

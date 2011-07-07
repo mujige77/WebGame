@@ -1,11 +1,4 @@
-//
-//  GnIButton.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 6. 28..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
+#include "GnMeshPCH.h"
 #include "GnInterfacePCH.h"
 #include "GnIButton.h"
 #include "GnICoolTime.h"

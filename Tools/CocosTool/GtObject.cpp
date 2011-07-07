@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "GtObject.h"
 
-
+GnImplementRootRTTI(GtObject);
 GtObject::GtObject(void) : mNewItem(false), mModifed(false)
 {
 }

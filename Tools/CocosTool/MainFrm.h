@@ -85,6 +85,8 @@ public:
 	afx_msg void OnSaveObjectState();
 	afx_msg void OnViewSequencedockable();
 	afx_msg void OnUpdateViewSequencedockable(CCmdUI *pCmdUI);
+	afx_msg void OnViewOutlookvisible();
+	afx_msg void OnUpdateViewOutlookvisible(CCmdUI *pCmdUI);
 };
 
 

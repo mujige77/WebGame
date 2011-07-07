@@ -1,11 +1,4 @@
-//
-//  GBackgroundLayer.cpp
-//  HiroCat
-//
-//  Created by Max Yoon on 11. 6. 14..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
+#include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GBackgroundLayer.h"
 
@@ -59,8 +52,8 @@ void GBackgroundLayer::Create(CCSprite* pSprite)
    
    mBackgroundRect.left = 0;
    mBackgroundRect.top = 0;
-   mBackgroundRect.right = bgSize.width;
-   mBackgroundRect.bottom = bgSize.height;
+   mBackgroundRect.right = (gint32)bgSize.width;
+   mBackgroundRect.bottom = (gint32)bgSize.height;
 }
 
 void GBackgroundLayer::MoveLayer(float fDeltaX, float fDeltaY)

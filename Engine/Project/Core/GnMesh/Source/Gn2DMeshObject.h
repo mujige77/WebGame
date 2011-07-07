@@ -86,9 +86,13 @@ public:
 	inline void SetAlpha(float val) {
 		mpMesh->setOpacity( (GLubyte)(val * 255) );
 	}
-	inline void SetColor(GnColor gnColor) {
-		mpMesh->setColor( ccc3( (GLubyte)(gnColor.r * 255), (GLubyte)(gnColor.g * 255.0f)
-		   , (GLubyte)(gnColor.b * 255.0f) ) );
+	inline void SetColor(GnColor cColor) {
+		mpMesh->setColor( ccc3( (GLubyte)(cColor.r * 255), (GLubyte)(cColor.g * 255.0f)
+		   , (GLubyte)(cColor.b * 255.0f) ) );
+	}
+	inline GnColor GetColor() {
+		ccColor3B color = mpMesh->getColor();
+		return GnColor( (float)color.r / 255.0f , (float)color.g / 255.0f, (float)color.b / 255.0f ) ;
 	}
 	inline float GetScale() {
 		return mpMesh->getScale();

@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;_DEBUG;_LIB;GNDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -79,7 +79,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;NDEBUG;_LIB;GNRELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,7 +100,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;NDEBUG;_LIB;GNLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32;..\..\..\..\..\..\SDK\include\Cocos2D\platform;..\..\..\..\..\..\SDK\include\Cocos2D;..\..\..\..\..\..\SDK\include\Cocos2D\include;..\..\..\..\..\..\SDK\include\Cocos2D\platform\third_party\win32\OGLES;../../Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,19 +117,60 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\GAccumulationTimeEvent.h" />
+    <ClInclude Include="..\..\Source\GAction.h" />
+    <ClInclude Include="..\..\Source\GActionAttack.h" />
+    <ClInclude Include="..\..\Source\GActionMove.h" />
+    <ClInclude Include="..\..\Source\GActionStand.h" />
+    <ClInclude Include="..\..\Source\GActorController.h" />
+    <ClInclude Include="..\..\Source\GActorCtlrManager.h" />
+    <ClInclude Include="..\..\Source\GActorInfoDatabase.h" />
+    <ClInclude Include="..\..\Source\GBackgroundLayer.h" />
+    <ClInclude Include="..\..\Source\GCollectComponentHeader.h" />
+    <ClInclude Include="..\..\Source\GCurrentActorInfo.h" />
+    <ClInclude Include="..\..\Source\GEnemyController.h" />
+    <ClInclude Include="..\..\Source\GEnemyCtlrManager.h" />
+    <ClInclude Include="..\..\Source\GExtraData.h" />
     <ClInclude Include="..\..\Source\GFileLIst.h" />
+    <ClInclude Include="..\..\Source\GForcesController.h" />
+    <ClInclude Include="..\..\Source\GForcesCtlrManager.h" />
     <ClInclude Include="..\..\Source\Gg2dCollision.h" />
+    <ClInclude Include="..\..\Source\GGameEnvironment.h" />
+    <ClInclude Include="..\..\Source\GGameFactory.h" />
+    <ClInclude Include="..\..\Source\GGameManager.h" />
+    <ClInclude Include="..\..\Source\GInfo.h" />
+    <ClInclude Include="..\..\Source\GInfoBasic.h" />
+    <ClInclude Include="..\..\Source\GInfoEnemyBasic.h" />
+    <ClInclude Include="..\..\Source\GInfoForcesBasic.h" />
+    <ClInclude Include="..\..\Source\GInterface.h" />
+    <ClInclude Include="..\..\Source\GInterfaceLayer.h" />
+    <ClInclude Include="..\..\Source\GLayer.h" />
+    <ClInclude Include="..\..\Source\GMainGameEnvironment.h" />
+    <ClInclude Include="..\..\Source\GMainGameInterface.h" />
+    <ClInclude Include="..\..\Source\GMainGameInterfaceLayer.h" />
+    <ClInclude Include="..\..\Source\GMainGameMove.h" />
     <ClInclude Include="..\..\Source\Gn2DAVData.h" />
     <ClInclude Include="..\..\Source\Gn2DAVDataConverter.h" />
     <ClInclude Include="..\..\Source\Gn2DTextureAni.h" />
+    <ClInclude Include="..\..\Source\Gn2DTextureAniCtlr.h" />
     <ClInclude Include="..\..\Source\GnActorStreamMacro.h" />
     <ClInclude Include="..\..\Source\GnAnimation.h" />
     <ClInclude Include="..\..\Source\GnAnimationKey.h" />
     <ClInclude Include="..\..\Source\GnAnimationKeyMacro.h" />
     <ClInclude Include="..\..\Source\GnAnimationKeyManager.h" />
+    <ClInclude Include="..\..\Source\Gn2DMeshData.h" />
     <ClInclude Include="..\..\Source\GnCocosScene.h" />
     <ClInclude Include="..\..\Source\GnDrawPrimitives.h" />
+    <ClInclude Include="..\..\Source\GnGameHeader.h" />
+    <ClInclude Include="..\..\Source\GnGamePCH.h" />
     <ClInclude Include="..\..\Source\GnGameState.h" />
+    <ClInclude Include="..\..\Source\GnIButton.h" />
+    <ClInclude Include="..\..\Source\GnICoolTime.h" />
+    <ClInclude Include="..\..\Source\GnIInputEvent.h" />
+    <ClInclude Include="..\..\Source\GnInterface.h" />
+    <ClInclude Include="..\..\Source\GnInterfaceGroup.h" />
+    <ClInclude Include="..\..\Source\GnInterfaceHeader.h" />
+    <ClInclude Include="..\..\Source\GnInterfacePCH.h" />
     <ClInclude Include="..\..\Source\GnLayerBackground.h" />
     <ClInclude Include="..\..\Source\GnLayerMain.h" />
     <ClInclude Include="..\..\Source\GnMeshEBM.h" />
@@ -154,20 +195,59 @@
     <ClInclude Include="..\..\Source\GnSMRenderView.h" />
     <ClInclude Include="..\..\Source\GnSMTextureAniCtrl.h" />
     <ClInclude Include="..\..\Source\GnLayer.h" />
+    <ClInclude Include="..\..\Source\GnSQLite.h" />
+    <ClInclude Include="..\..\Source\GnSQLiteQuery.h" />
     <ClInclude Include="..\..\Source\GnTegIDKey.h" />
+    <ClInclude Include="..\..\Source\GScene.h" />
+    <ClInclude Include="..\..\Source\GUserController.h" />
+    <ClInclude Include="..\..\Source\GUserCtlrManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\GAccumulationTimeEvent.cpp" />
+    <ClCompile Include="..\..\Source\GAction.cpp" />
+    <ClCompile Include="..\..\Source\GActionAttack.cpp" />
+    <ClCompile Include="..\..\Source\GActionMove.cpp" />
+    <ClCompile Include="..\..\Source\GActionStand.cpp" />
+    <ClCompile Include="..\..\Source\GActorController.cpp" />
+    <ClCompile Include="..\..\Source\GActorCtlrManager.cpp" />
+    <ClCompile Include="..\..\Source\GActorInfoDatabase.cpp" />
+    <ClCompile Include="..\..\Source\GBackgroundLayer.cpp" />
+    <ClCompile Include="..\..\Source\GEnemyController.cpp" />
+    <ClCompile Include="..\..\Source\GEnemyCtlrManager.cpp" />
+    <ClCompile Include="..\..\Source\GExtraData.cpp" />
     <ClCompile Include="..\..\Source\GFileList.cpp" />
+    <ClCompile Include="..\..\Source\GForcesController.cpp" />
+    <ClCompile Include="..\..\Source\GForcesCtlrManager.cpp" />
     <ClCompile Include="..\..\Source\Gg2DCollision.cpp" />
+    <ClCompile Include="..\..\Source\GGameEnvironment.cpp" />
+    <ClCompile Include="..\..\Source\GGameFactory.cpp" />
+    <ClCompile Include="..\..\Source\GGameManager.cpp" />
+    <ClCompile Include="..\..\Source\Ginfo.cpp" />
+    <ClCompile Include="..\..\Source\GInfoBasic.cpp" />
+    <ClCompile Include="..\..\Source\GInfoEnemyBasic.cpp" />
+    <ClCompile Include="..\..\Source\GInfoForcesBasic.cpp" />
+    <ClCompile Include="..\..\Source\GInterface.cpp" />
+    <ClCompile Include="..\..\Source\GInterfaceLayer.cpp" />
+    <ClCompile Include="..\..\Source\GLayer.cpp" />
+    <ClCompile Include="..\..\Source\GMainGameEnvironment.cpp" />
+    <ClCompile Include="..\..\Source\GMainGameInterface.cpp" />
+    <ClCompile Include="..\..\Source\GMainGameInterfaceLayer.cpp" />
+    <ClCompile Include="..\..\Source\GMainGameMove.cpp" />
     <ClCompile Include="..\..\Source\Gn2DAVData.cpp" />
     <ClCompile Include="..\..\Source\Gn2DAVDataConverter.cpp" />
     <ClCompile Include="..\..\Source\Gn2DTextureAni.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DTextureAniCtlr.cpp" />
     <ClCompile Include="..\..\Source\GnAnimation.cpp" />
     <ClCompile Include="..\..\Source\GnAnimationKey.cpp" />
     <ClCompile Include="..\..\Source\GnAnimationKeyManager.cpp" />
+    <ClCompile Include="..\..\Source\Gn2DMeshData.cpp" />
     <ClCompile Include="..\..\Source\GnCocosScene.cpp" />
     <ClCompile Include="..\..\Source\GnDrawPrimitives.cpp" />
     <ClCompile Include="..\..\Source\GnGameState.cpp" />
+    <ClCompile Include="..\..\Source\GnIButton.cpp" />
+    <ClCompile Include="..\..\Source\GnICoolTime.cpp" />
+    <ClCompile Include="..\..\Source\GnInterface.cpp" />
+    <ClCompile Include="..\..\Source\GnInterfaceGroup.cpp" />
     <ClCompile Include="..\..\Source\GnLayerBackground.cpp" />
     <ClCompile Include="..\..\Source\GnLayerMain.cpp" />
     <ClCompile Include="..\..\Source\GnMeshEBM.cpp" />
@@ -196,6 +276,12 @@
     <ClCompile Include="..\..\Source\GnSMTextureAniCtrl.cpp" />
     <ClCompile Include="..\..\Source\GnLayer.cpp" />
     <ClCompile Include="..\..\Source\GnTegIDKey.cpp" />
+    <ClCompile Include="..\..\Source\GScene.cpp" />
+    <ClCompile Include="..\..\Source\GUserController.cpp" />
+    <ClCompile Include="..\..\Source\GUserCtlrManager.cpp" />
+    <ClCompile Include="..\..\Source\win32\GnPathUtil.cpp" />
+    <ClCompile Include="..\..\Source\win32\GnSQLite.cpp" />
+    <ClCompile Include="..\..\Source\win32\GnSQLiteQuery.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
