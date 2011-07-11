@@ -17,8 +17,12 @@ void Gn2DAVData::LoadStream(GnObjectStream* pStream)
 	GnObject::LoadStream( pStream );
 
 	if( pStream->GetFileVersion() != GnStream::GetVersion( 1, 0, 0, 0 ) )
+	{
 		mImageCenter.LoadStream( pStream );
+		mImageCenter *= GetGameState()->GetGameScale();
+	}
 	mAnchorPoint.LoadStream( pStream );
+	//mAnchorPoint *= GetGameState()->GetGameScale();
 
 	guint32 size = 0;
 	pStream->LoadStream( size );
@@ -34,12 +38,14 @@ void Gn2DAVData::LoadStream(GnObjectStream* pStream)
 			{
 				GnIRect iRect;
 				iRect.LoadStream( pStream );
-				rect.mRect = GnFRect( (float)iRect.left, (float)iRect.top, (float)iRect.right, (float)iRect.bottom );
+				rect.mRect = GnFRect( (float)iRect.left, (float)iRect.top, (float)iRect.right
+					, (float)iRect.bottom );
 			}
 			else
 			{
 				rect.mRect.LoadStream( pStream );
 			}
+			SetRectScale(rect);
 
 			SetCollisionRect( i, rect );
 		}
@@ -57,7 +63,7 @@ void Gn2DAVData::SaveStream(GnObjectStream* pStream)
 
 	mImageCenter.SaveStream( pStream );
 	mAnchorPoint.SaveStream( pStream );
-	
+
 	guint32 size = mCollisionRects.GetSize();
 	pStream->SaveStream( size );
 	for( gtuint i = 0 ; i < mCollisionRects.GetSize() ; i++ )
@@ -110,4 +116,16 @@ void Gn2DAVData::FlipX(bool bFlip, float postionX)
 			mCollisionRects.SetAt( i, rect );
 		}
 	}
+}
+
+void Gn2DAVData::SetRectScale(CollisionRect &rect)
+{
+	float scale = rect.mRect.GetWidth() * GetGameState()->GetGameScale();
+	rect.mRect.SetWidth( scale );
+	scale = rect.mRect.GetHeight() * GetGameState()->GetGameScale();
+	rect.mRect.SetHeight( scale );
+	float move = ( rect.mRect.left * GetGameState()->GetGameScale() ) - rect.mRect.left;
+	rect.mRect.MoveX( move );
+	move = ( rect.mRect.top * GetGameState()->GetGameScale() ) - rect.mRect.top;
+	rect.mRect.MoveY( move );
 }

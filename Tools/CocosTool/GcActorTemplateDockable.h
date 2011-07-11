@@ -15,9 +15,8 @@ protected:
 	virtual void DoNewTemplate();
 	virtual void DoDelTemplate();
 	virtual void DoOpenTemplate();
-
-public:
-	afx_msg void OnSaveObjectstate();
-
+	virtual const gchar* GetFileName() {
+		return "templatelist.lst";
+	}
 };
 

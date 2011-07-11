@@ -49,7 +49,7 @@ int GcTemplateTasks::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	int groupIndex = AddGroup (_T("Template list"), FALSE, TRUE);
 	AddWindow( groupIndex, mTemplateList.GetSafeHwnd (), 250 );
 
-	if ( !mEffectTemplateList.Create( _T("FDsssSF"), this, CRect(0, 0, 0, 0), TRUE
+	if ( !mObjectTemplateList.Create( _T("FDsssSF"), this, CRect(0, 0, 0, 0), TRUE
 		, ID_CTRL_EFFECTTEMPLATELIST,defaultStyle ) )
 	{
 		TRACE0("속성 창을 만들지 못했습니다.\n");
@@ -57,7 +57,7 @@ int GcTemplateTasks::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	groupIndex = AddGroup( _T("Effect template list"), FALSE, TRUE );
-	AddWindow( groupIndex, mEffectTemplateList.GetSafeHwnd (), 250 );
+	AddWindow( groupIndex, mObjectTemplateList.GetSafeHwnd (), 250 );
 
 	SetVisibleCaptionBar(true);
 	return 0;

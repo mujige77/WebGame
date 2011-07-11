@@ -13,6 +13,7 @@ IMPLEMENT_DYNAMIC(GcNewObjectDlg, CDialogEx)
 
 	GcNewObjectDlg::GcNewObjectDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(GcNewObjectDlg::IDD, pParent)
+	, mObjectType(0)
 {
 
 }
@@ -25,6 +26,8 @@ void GcNewObjectDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDT_NEWOBJECTNAME, mObjectNameEdt);	
+	DDX_Control(pDX, IDC_CB_2DOBJECTTYPE, mCBObjectType);
+	DDX_CBIndex(pDX, IDC_CB_2DOBJECTTYPE, mObjectType);
 }
 
 
@@ -44,6 +47,7 @@ void GcNewObjectDlg::OnOK()
 
 BOOL GcNewObjectDlg::OnInitDialog()
 {
-	CDialogEx::OnInitDialog();		
+	CDialogEx::OnInitDialog();
+	mCBObjectType.SetCurSel( 0 );
 	return TRUE;  // return TRUE unless you set the focus to a control
 }

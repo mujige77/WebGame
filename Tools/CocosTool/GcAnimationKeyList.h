@@ -4,7 +4,7 @@ class GnAnimationKeyManager;
 
 class GcAnimationKeyList : public GcVSListBox
 {
-	Gt2DSequencePtr mpsSequence;
+	Gt2DSequence* mpsSequence;
 	GnAnimationKeyManager* mpAniKeyManager;
 	float mCurrentTime;
 

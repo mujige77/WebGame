@@ -22,6 +22,24 @@ public:
 	GtTCStringMap(gtuint size = 5) :GnTMap(size)
 	{}
 };
+static const gchar gsActorPath[] = {
+	"Actor/"
+};
+
+enum
+{
+	TYPE_2DOBJECT_EFFECT,
+	TYPE_2DOBJECT_OBJECT,
+	TYPE_2DOBJECT_MAX,
+};
+static const gchar gs2DObjectPath[TYPE_2DOBJECT_MAX][64] =
+{
+	"Effect/",
+	"Object/"
+};
+
+std::string GetOnlyFileNameAttachNumber(gtint iID, const gchar* filePath);
+
 #include "GnTimer.h"
 #include "GtConvertString.h"
 #include "GtNumberString.h"

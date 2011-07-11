@@ -1,20 +1,4 @@
-// 이 MFC 샘플 소스 코드는 MFC Microsoft Office Fluent 사용자 인터페이스("Fluent UI")를 
-// 사용하는 방법을 보여 주며, MFC C++ 라이브러리 소프트웨어에 포함된 
-// Microsoft Foundation Classes Reference 및 관련 전자 문서에 대해 
-// 추가적으로 제공되는 내용입니다.  
-// Fluent UI를 복사, 사용 또는 배포하는 데 대한 사용 약관은 별도로 제공됩니다.  
-// Fluent UI 라이선싱 프로그램에 대한 자세한 내용은 
-// http://msdn.microsoft.com/officeui를 참조하십시오.
-//
-// Copyright (C) Microsoft Corporation
-// 모든 권리 보유.
-
-// CocosToolView.cpp : CCocosToolView 클래스의 구현
-//
-
 #include "stdafx.h"
-// SHARED_HANDLERS는 미리 보기, 축소판 그림 및 검색 필터 처리기를 구현하는 ATL 프로젝트에서 정의할 수 있으며
-// 해당 프로젝트와 문서 코드를 공유하도록 해 줍니다.
 #ifndef SHARED_HANDLERS
 #include "CocosTool.h"
 #endif
@@ -77,8 +61,6 @@ CCocosToolView::~CCocosToolView()
 {
 }
 
-
-
 void CCocosToolView::DoDataExchange(CDataExchange* pDX)
 {
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
@@ -86,7 +68,6 @@ void CCocosToolView::DoDataExchange(CDataExchange* pDX)
 	CFormView::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LOCATION_RENDER, mLoactionRender);
 }
-
 
 BOOL CCocosToolView::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -130,16 +111,13 @@ CCocosToolDoc* CCocosToolView::GetDocument() const // 디버그되지 않은 버전은 인�
 }
 #endif //_DEBUG
 
-
-// CCocosToolView 메시지 처리기
-
-
 void CCocosToolView::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
 	if( mpApp == NULL )
 	{
 		AttachNeedMessage( GTMG_SELECTOBJECT );
+		AttachNeedMessage( GTMG_SELECT2DOBJECT );
 		AttachNeedMessage( GTMG_SELECTSEQUENCE );
 		AttachNeedMessage( GTMG_REDRAW );
 		AttachNeedMessage( GTMG_DESTORY );
@@ -169,6 +147,8 @@ void CCocosToolView::OnInitialUpdate()
 		CCFileUtils::setIsPopupNotify(false );
 
 		Loadbackground( GtToolSettings::GetBackgroundFilePath() );
+
+		GetDrawObjectManager()->Reset();
 	}	
 	mModifyCollsionBoxsCheck = false;
 	mActorCenterCheck = false;
@@ -176,8 +156,8 @@ void CCocosToolView::OnInitialUpdate()
 
 void CCocosToolView::PostNcDestroy()
 {
-	//delete CCDirector::sharedDirector()->getOpenGLView();
-	delete mpCollisionModify;
+	if( mpCollisionModify )
+		delete mpCollisionModify;
 	delete mpApp;
 	CFormView::PostNcDestroy();
 }
@@ -188,42 +168,49 @@ void CCocosToolView::ReceiveMediateMessage(gtuint messageIndex
 	switch( messageIndex )
 	{
 	case GTMG_DESTORY:
-		mpsActor = NULL;
-		mpsSequence = NULL;
+		
+		GetDrawObjectManager()->Reset();
+		if( pMessage && *((bool*)(pMessage->mTempMessage)) )
+			break;
+		GetSceneManager()->GetMainGameLayer()->removeAllChildrenWithCleanup( true );
+		if( mpCollisionModify )
+			delete mpCollisionModify;
+		mpCollisionModify = GtCollisionModify::Create( msWidth, msHeight );		
+		Loadbackground( GtToolSettings::GetBackgroundFilePath() );		
 		break;
 	case GTMG_SELECTOBJECT:
 		{
-			mpsActor = (Gt2DActor*)((GcObjectMessage*)pMessage)->mpObject;
+			GetDrawObjectManager()->SelectActor( pMessage->mpObject );
 			AddCurrentActorToLayerDrawPprimitives();
+		}
+		break;
+	case GTMG_SELECT2DOBJECT:
+		{
+			GetDrawObjectManager()->Select2DObject( pMessage->mpObject );
 		}
 		break;
 	case GTMG_SELECTSEQUENCE:
 		{
-			mpsSequence = NULL;
 			GcSequenceMessage* sequenceMessage = (GcSequenceMessage*)pMessage;
-			if( mpsActor && sequenceMessage->mpSequenceInfo )
-			{
-				Gt2DSequence* sequence;
-				mpsActor->GetGtSequence( sequenceMessage->mpSequenceInfo->GetSequenceID(), sequence );
-				if( sequence == NULL || sequence->GetSequence() == NULL )
-					return;
-				mpsSequence = sequence;
-				sequence->GetSequence()->SetLoop( TRUE );
-
-				ChageSequenceAniTime(sequence);
-			}
+			if( GetDrawObjectManager()->SelectSequence( sequenceMessage->mpSequenceInfo ) == false )
+				break;
+			
+			ChageSequenceAniTime( GetDrawObjectManager()->GetSequence() );
 			mBforeTime = 0.0f;
 			mfCurrentTime = 0.0f;
 			mCategoryAnimation.GetAniTimeSpin()->SetEditText( _T("0.000") );	
 		}
 		break;
-		case GTMG_CHAGESEQUENCEANITIME:
-			{
-				if( mpsSequence )
-					ChageSequenceAniTime( mpsSequence );
-			}
+	case GTMG_CHAGESEQUENCEANITIME:
+		{
+			if( GetDrawObjectManager()->GetSequence() )
+				ChageSequenceAniTime( GetDrawObjectManager()->GetSequence() );
+		}
+		break;
 	case GTMG_REDRAW:
-		Invalidate( FALSE );
+		{
+			Invalidate( FALSE );
+		}		
 		break;
 	}
 }
@@ -235,10 +222,11 @@ void CCocosToolView::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 
-	if( mpsActor )
-		mpsActor->GetActor()->Update( GetCurrentTime() - mBforeTime );
+	float deltaTime = GetCurrentTime() - mBforeTime;
 
-	CCDirector::sharedDirector()->setDeltaTime( GetCurrentTime() - mBforeTime );
+	GetDrawObjectManager()->Update( deltaTime );
+
+	CCDirector::sharedDirector()->setDeltaTime( deltaTime );
 	CCDirector::sharedDirector()->mainLoop();
 	mBforeTime = GetCurrentTime();
 }
@@ -266,6 +254,7 @@ void CCocosToolView::OnTimer(UINT_PTR nIDEvent)
 	SetCurrentTimeFromOnTimer();
 
 	Invalidate(FALSE);
+
 }
 
 void CCocosToolView::OnAnicurrenttime()
@@ -274,7 +263,8 @@ void CCocosToolView::OnAnicurrenttime()
 	if( mStrCurrentTime == intTime )
 		return;
 
-	if( mpsActor == NULL || mpsSequence == NULL )
+	if( GetDrawObjectManager()->GetActor() == NULL 
+		|| GetDrawObjectManager()->GetSequence() == NULL )
 		return;
 
 	float num = 0.0f;
@@ -292,10 +282,10 @@ void CCocosToolView::OnAnicurrenttime()
 	Invalidate(FALSE);
 }
 
-
 void CCocosToolView::OnAnitimeslider()
 {
-	if( mpsActor == NULL || mpsSequence == NULL )
+	if( GetDrawObjectManager()->GetActor() == NULL
+		|| GetDrawObjectManager()->GetSequence()== NULL )
 		return;
 
 	if( GetCurrentTime() >= mfEndTime  )
@@ -362,12 +352,8 @@ void CCocosToolView::OnModifyCollisionboxs()
 void CCocosToolView::OnActorCenter()
 {
 	mActorCenterCheck = !mActorCenterCheck;
-	if( mActorCenterCheck )
-		ActorBasePosition = GnVector2( 200.0f, 100.0f );
-	else
-		ActorBasePosition = GnVector2( 0.0f, 0.0f );
-	if( mpsActor && mpsActor->GetRootNode() )
-		mpsActor->GetRootNode()->SetPosition( ActorBasePosition );
+
+	GetDrawObjectManager()->SetObjectCenter( mActorCenterCheck );
 
 	if( mpCollisionModify  )
 		mpCollisionModify->SetActorPosition( ActorBasePosition );
@@ -385,48 +371,23 @@ void CCocosToolView::AddCurrentActorToLayerDrawPprimitives()
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.	
 	if( mModifyCollsionBoxsCheck )
 	{
-		if( mpsActor && mpsSequence )
+		if( GetDrawObjectManager()->GetActor() && GetDrawObjectManager()->GetSequence() )
 		{
 			std::string strName = GtToolSettings::GetWorkPath();
-			strName += mpsActor->GetObjectName();
+			strName += gsActorPath;
+			strName += GetDrawObjectManager()->GetActor()->GetObjectName();
 			strName += "/";
-			strName += mpsActor->GetGATFileName();
+			strName += GetDrawObjectManager()->GetActor()->GetGATFileName();
 			mpCollisionModify->LoadBasicActor( strName.c_str() );
 			mpCollisionModify->SetBasicSequenceID( 1 );
-			mpCollisionModify->SetVisible( true, mpsActor->GetActor()->GetRootNode() );
+			mpCollisionModify->SetVisible( true, GetDrawObjectManager()->GetActor()->GetRootNode() );
 		}		
 	}
 	else
 	{
 		mpCollisionModify->SetVisible( false );
 	}
-	Invalidate( FALSE );	
-	//if( mModifyCollsionBoxsCheck )
-	//{
-	//	if( mpsActor )
-	//	{
-	//		GnLayerDrawPrimitives* node = 
-	//			(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
-
-	//		if( mpsDrawSequenceRect )
-	//			node->RemoveChild( mpsDrawSequenceRect );
-
-	//		GnDraw2DObjectRect* drawObject = GtObjectNew<GnDraw2DObjectRect>::Create();
-	//		drawObject->SetThickness( 3.0f );
-	//		drawObject->SetColor( GnColorA(1.0f, 1.0f, 0.0f, 1.0f) );
-	//		drawObject->SetObject( mpsActor->GetRootNode() );
-	//		node->AddChild( drawObject );
-	//		mpsDrawSequenceRect = drawObject;
-	//	}
-	//}
-	//else if( mpsDrawSequenceRect )
-	//{
-	//	GnLayerDrawPrimitives* node = 
-	//		(GnLayerDrawPrimitives*)GetSceneManager()->GetMainGameLayer()->getChildByTag( 1 );
-	//	node->RemoveChild( mpsDrawSequenceRect );
-	//}	
-
-	//Invalidate( FALSE );
+	Invalidate( FALSE );
 }
 
 void CCocosToolView::OnBtLoadbackground()
@@ -452,7 +413,6 @@ void CCocosToolView::Loadbackground(const gchar* pcFilePath)
 		GnVerify( main->CreateBackgroundFromFile( pcFilePath ) );	
 	}
 }
-
 
 LRESULT CCocosToolView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {  
@@ -501,41 +461,33 @@ void CCocosToolView::OnScaleRange()
 			(CMFCSpinButtonCtrl*)mainFrame->GetRibbonBar()->GetNextDlgGroupItem( ps );
 		if( spin )
 		{
-			if( spin->GetPos() == 0 )
+			if( GtToolSettings::GetScalePercent() == 100 )
 			{
-				mpCollisionModify->SetScale( 0.36f );
-				GetGameState()->SetGameScale( 0.36f );
+				int btRet = MessageBox( 
+					_T("스케일을 조정 하면 데이터를 저장 할 수 없습니다. 미리 저장 하시겠습니까?") 
+					,_T("Warring"), MB_OKCANCEL );
+				if( btRet == IDOK )
+					GetObjectFactory()->SaveObjects(true);
 			}
-			else
-			{
-				mpCollisionModify->SetScale( (float)spin->GetPos() );
-				GetGameState()->SetGameScale( (float)spin->GetPos() );
-			}
+			GetObjectFactory()->RemvoeAllObject();
+			SendMediateMessage( GTMG_DESTORY, NULL );
+			GtToolSettings::SetScalsePercent( spin->GetPos() );
+			GetGameState()->SetGameScale( GtToolSettings::GetScale() );
 		}
-		if( mpsActor )
-		{
-			mpsActor->GetActor()->GetRootNode()->SetScale( 1.0f );
-		}
+		//if( GetDrawObjectManager()->GetActor() )
+		//	GetDrawObjectManager()->GetActor()->GetRootNode()->SetScale( 1.0f );
 		Invalidate( false );
 	}
 }
 
-
 void CCocosToolView::OnFlipx()
 {
-	if( mpsActor )
+	if( GetDrawObjectManager()->GetActor() )
 	{
-		Gn2DMeshObject* mesh = mpsActor->GetRootNode();
+		Gn2DMeshObject* mesh = GetDrawObjectManager()->GetActor()->GetRootNode();
 		if( mesh )
 		{
-			static int i= 1;
 			mesh->SetFlipX( !mesh->GetMesh()->isFlipX() );
-			//if( mesh->GetMesh()->isFlipX() )
-			//{
-			//	mesh->SetPosition( mesh->GetPosition() - mesh->GetAVData()->GetAnchorPoint() );
-			//}
-			//else
-			//	mesh->SetPosition( mesh->GetPosition() + mesh->GetAVData()->GetAnchorPoint() );
 			Invalidate( false );
 		}
 	}

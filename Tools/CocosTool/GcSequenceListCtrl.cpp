@@ -59,6 +59,13 @@ void GcSequenceListCtrl::ResetData(Gt2DActor* pObject)
 			for( gtuint i = 0 ; i < sequenceInfos.GetSize() ; i++ )
 			{
 				GtActorTool::SequenceInfo* info = sequenceInfos.GetAt( i );
+				std::string name = info->GetFileName();
+				if( name.find("Actor") != 0 )
+				{
+					name = "Actor/";
+					name += info->GetFileName();
+					info->SetFileName( name.c_str() );
+				}
 				AddSequence( info->GetSequenceID(), info->GetSequenceName(), info->GetFileName(), false );
 			}
 		}

@@ -19,12 +19,12 @@ protected:
 	Gn2DAVDataPtr mpsAVData;
 	GnVector2 mOriginalPosition;
 
-public:	
-	Gn2DMeshObject();
-	Gn2DMeshObject(GnReal2DMesh* pMesh);
+public:		
 	virtual ~Gn2DMeshObject();
 
 	static Gn2DMeshObject* CreateFromTextureFile(const gchar* pcFilePath);
+	static Gn2DMeshObject* Create(bool bUseGn2DMeshData);
+	static Gn2DMeshObject* Create(const gchar* pcFilePath, bool bUseGn2DMeshData);
 	
 	void SetMesh(GnReal2DMesh* pMesh);
 	void SetAVData(Gn2DAVData* val);
@@ -104,6 +104,10 @@ public:
 		CCSize size = mpMesh->getContentSize();
 		return GnVector2( size.width, size.height );
 	}
-	
+
+protected:
+	Gn2DMeshObject(GnReal2DMesh* pMesh);
+	void SetVectorExtraDataScale();
+
 };
 #endif // GNSMELEMENT_H

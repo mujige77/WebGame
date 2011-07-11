@@ -7,51 +7,75 @@ GnSmartPointer(GnTimeController);
 class GNMAIN_ENTRY GnTimeController : public GnObject
 {
 	GnDeclareRTTI;
-	GnDeclareStream;
+	GnDeclareAbstractStream;
 	GnDeclareFlags(gint);
+
+public:
+	enum eCycleType
+	{
+		LOOP,
+		REVERSE,
+		ONCE,
+		MAX_CYCLE_TYPES
+	};
+
+	enum ePlayFlag
+	{
+		STOP,
+		PLAY,
+		PLAYING,
+	};	
+
 protected:
-	GnObjectForm* mpTarget;	
-	GnSimpleString mTargetName;
+	GnObjectForm* mpTarget;
 	GnTimeControllerPtr mpsNext;
 	float mStartTime;
 	float mAccumulateDeltaTime;
-	gtuint mPlayFlags;	
+	gtuint mPlayFlags;
+	bool mIsMeshSteram;
+	eCycleType mCycleType;
 
 public:
 	GnTimeController();
 	virtual ~GnTimeController();
-protected:
-	enum
-	{
-		LOOP_MASK = 0x00000001,
-		STOP,
-		PLAY,
-	};	
-public:
-	virtual void Update(float fDeltaTime){};
-	virtual void Start(float fTime);
-	virtual void Stop();
 
-	inline bool IsLoop() { return GetBit(LOOP_MASK); }
-	inline void SetLoop(bool val) { SetBit(val, LOOP_MASK); }
+protected:
+
+public:
+	virtual void Update(float fDeltaTime) = 0;
+	virtual void Start();
+	virtual void Stop();	
+	virtual bool SetTargetObject(GnObjectForm* pObject);
+public:
 	inline  GnTimeController* GetNext() {
 		return mpsNext;
 	}
 	inline void SetNext( GnTimeController* pNext ) {
 		mpsNext = pNext;
 	}
-
-	inline GnSimpleString& GetTargetName() {
-		return mTargetName;
-	}
-	inline void SetTargetName(const gchar* val) {
-		mTargetName = val;
-	}
-	
 	inline bool IsStreamable() const {
 		return true;
 	}
-	virtual bool SetTargetObject(GnObjectForm* pObject);
+	inline void SetIsMeshStreamble(bool val) {
+
+	}
+	inline bool IsMeshStreamble() const {
+
+	}
+	inline eCycleType GetCycleType() {
+		return mCycleType;
+	}
+	inline void SetCycleType(eCycleType val) {
+		mCycleType = val;
+	}
+	inline gtuint GetPlayFlags() {
+		return mPlayFlags;
+	}
+	inline void SetPlayFlags(gtuint val) {
+		mPlayFlags = val;
+	}
+protected:	
+	virtual void Playing(float fTime);
 
 protected:
 	inline float GetAccumulateTime() {

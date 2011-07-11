@@ -28,7 +28,7 @@ public:
 	inline bool IsControllerProperty() {
 		return mIsSequenceProperty;
 	}
-	inline void SetControllerProperty(bool val) {
+	inline void SetTimeControllerProperty(bool val) {
 		mIsSequenceProperty = val;
 	}
 };

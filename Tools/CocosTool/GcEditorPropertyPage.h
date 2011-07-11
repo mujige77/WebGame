@@ -6,7 +6,7 @@ class GcEditorPropertyPage : public CMFCPropertyPage
 protected:
 	GtObject* mpObject;
 	Gt2DSequence* mpSequence;
-	bool mModifyMode;
+	gint mModifyMode;
 
 public:
 	GcEditorPropertyPage();
@@ -26,10 +26,10 @@ public:
 	virtual void SetObject(GtObject* val) {
 		mpObject = val;
 	}
-	inline bool GetModifyMode() {
+	inline gint GetModifyMode() {
 		return mModifyMode;
 	}
-	inline void SetModifyMode(bool val) {
+	inline void SetModifyMode(gint val) {
 		mModifyMode = val;
 	}
 	virtual bool CheckEnableButton();

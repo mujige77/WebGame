@@ -128,6 +128,9 @@
     <ClInclude Include="..\..\Source\GnSingletonManager.h">
       <Filter>소스 파일\String</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\GnPlatformConfig.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\GnDebug.cpp">

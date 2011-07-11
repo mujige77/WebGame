@@ -20,6 +20,7 @@
 #include "afxwin.h"
 #include "CategoryAnimationManager.h"
 #include "GtCollisionModify.h"
+#include "GcDrawObjectManager.h"
 
 class CCocosToolView : public CFormView, GcMediateObject
 {
@@ -45,8 +46,6 @@ public:
 
 private:
 	GtCocos2DApp* mpApp;
-	Gt2DActorPtr mpsActor;
-	Gt2DSequencePtr mpsSequence;
 	GtCollisionModify* mpCollisionModify;
 	CString mStrCurrentTime;
 	float mfCurrentTime;
@@ -56,9 +55,10 @@ private:
 	float mfTick;
 	float mfLastTick;
 	CategoryAnimationManager mCategoryAnimation;
+	GcDrawObjectManager mDrawObject;
 	CMFCSpinButtonCtrl* mpSpinCurrentTime;
 	UINT_PTR mTimerID;
-
+	
 protected:
 	CStatic mLoactionRender;
 	bool mModifyCollsionBoxsCheck;
@@ -70,7 +70,9 @@ public:
 	inline float GetCurrentTime() {
 		return mfCurrentTime;
 	}
-
+	inline GcDrawObjectManager* GetDrawObjectManager() {
+		return &mDrawObject;
+	}
 protected:
 	void SetCurrentTimeFromOnTimer();
 	void Loadbackground(const gchar* pcFilePath);
@@ -87,7 +89,6 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	virtual void ReceiveMediateMessage(gtuint messageIndex, GcMediateObjectMessage* pSanderInfo);
-
 	void ChageSequenceAniTime( Gt2DSequence* sequence );
 	void AddCurrentActorToLayerDrawPprimitives();
 	DECLARE_MESSAGE_MAP()

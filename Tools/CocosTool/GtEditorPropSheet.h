@@ -1,7 +1,7 @@
 #pragma once
 #include "GcEditorSequenceTexture.h"
 #include "GcEditorSequenceMain.h"
-
+#include "GcEditorTexture.h"
 
 // GtEditorPropSheet
 
@@ -11,6 +11,7 @@ class GtEditorPropSheet : public CMFCPropertySheet
 protected:
 	GcEditorSequenceTexture mSequenceTexturepage;
 	GcEditorSequenceMain mSequenceMainPage;
+	GcEditorTexture	mTexturepage;
 	GcPropertyGridCtrl mPropList;
 
 public:
@@ -22,6 +23,9 @@ public:
 
 	inline GcEditorSequenceTexture* GetSequenceTexturepage() {
 		return &mSequenceTexturepage;
+	}
+	inline GcEditorTexture* GetTexturepage() {
+		return &mTexturepage;
 	}
 
 protected:

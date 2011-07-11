@@ -19,6 +19,13 @@ GnSMTextureAniCtrl::~GnSMTextureAniCtrl()
 
 void GnSMTextureAniCtrl::Update(float fTime)
 {
+	if( GetPlayFlags() == GnTimeController::STOP )
+		return;
+	else if( GetPlayFlags() == GnTimeController::PLAY )
+	{
+		Playing( 0.0f );
+	}
+
 	if( mPlayFlags != PLAY )
 		return;
 
@@ -26,8 +33,8 @@ void GnSMTextureAniCtrl::Update(float fTime)
 	if( mpCurrentAni == NULL )
 		return;
 	
-	float deltaTime = fTime - mStartTime;
-	if( mpCurrentAni->mEndTime < deltaTime )
+	mAccumulateDeltaTime += fTime;
+	if( mpCurrentAni->mEndTime < fTime )
 	{
 		if( mCurrentAniIndex < mAnis.GetSize() )
 		{
@@ -35,6 +42,7 @@ void GnSMTextureAniCtrl::Update(float fTime)
 				object->DetachProperty( mpCurrentAni->mpsPrperty );
 
 			mStartTime = fTime;
+			SetAccumulateTime( 0.0f );
 			mpCurrentAni = &mAnis.GetAt(mCurrentAniIndex++);
 			
 			if( mpCurrentAni )
@@ -42,10 +50,9 @@ void GnSMTextureAniCtrl::Update(float fTime)
 		}
 		else
 		{
-			if( IsLoop() )
+			if( GetCycleType() == GnTimeController::LOOP )
 			{
-				Start(fTime);
-				GnLogA( "start" );
+				Start();
 			}
 			else
 				Stop();
@@ -57,7 +64,7 @@ void GnSMTextureAniCtrl::SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture,
 	, float fEndTime)
 {
 	if( pTexture )
-		pTexture->SetControllerProperty( true );
+		pTexture->SetTimeControllerProperty( true );
 
 	TextureAni ani;
 	ani.mpsPrperty = pTexture;
@@ -84,10 +91,9 @@ void GnSMTextureAniCtrl::Stop()
 		object->DetachProperty( mpCurrentAni->mpsPrperty );
 }
 
-void GnSMTextureAniCtrl::Start(float fTime)
+void GnSMTextureAniCtrl::Playing(float fTime)
 {
-	mPlayFlags = PLAY;
-	GnTimeController::Start(fTime);
+	GnTimeController::Playing(fTime);
 	GnRenderObject* object = GnDynamicCast( GnRenderObject, mpTarget );
 	GnAssert( object );
 
@@ -132,7 +138,7 @@ void GnSMTextureAniCtrl::LinkObject(GnObjectStream* pStream)
 	for( guint32 i = 0 ; i < numAni ; i++ )
 	{
 		mAnis[i].mpsPrperty = (GnTextureProperty*)pStream->GetObjectFromLinkID();
-		mAnis[i].mpsPrperty->SetControllerProperty( true );
+		mAnis[i].mpsPrperty->SetTimeControllerProperty( true );
 	}
 }
 

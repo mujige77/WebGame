@@ -2,7 +2,7 @@
 #include "Gn2DTextureAniCtlr.h"
 
 
-Gn2DTextureAniCtlr::TextureAniInfo::TextureAniInfo() : mTextureName(NULL)
+Gn2DTextureAniCtlr::TextureAniInfo::TextureAniInfo() : mpMesh(NULL), mTextureName(NULL)
 {
 }
 
@@ -87,13 +87,17 @@ bool Gn2DTextureAniCtlr::CreateData()
 	for( gtuint i = 0 ; i < mInfos.GetSize() ; i++ )
 	{
 		TextureAniInfo* info = mInfos.GetAt( i );
-
+		if( info->GetMesh() )
+			continue;
 		gchar textureWorkPath[GN_MAX_PATH] = { 0, };
 		GnStrcpy( textureWorkPath, GnSystem::GetWorkDirectory(), sizeof(textureWorkPath) );
 		GnStrcat( textureWorkPath, info->GetTextureName(), sizeof(textureWorkPath) );
 		GnReal2DMesh* mesh = GnReal2DMesh::spriteWithFile( textureWorkPath );
 		if( mesh == NULL )
 			mesh= GnReal2DMesh::spriteWithFile( info->GetTextureName() );
+		GnAssert( mesh );
+		mesh->retain();
+		info->SetMesh( mesh );
 	}
 	return true;
 }
@@ -119,39 +123,43 @@ void Gn2DTextureAniCtlr::RemoveData()
 	//SetCreateData( false );
 }
 
-void Gn2DTextureAniCtlr::Start(float fTime)
+void Gn2DTextureAniCtlr::Playing(float fTime)
 {
-	GnTimeController::Start( fTime );
+	GnTimeController::Playing( fTime );
 	GnAssert( Get2DMeshObject() );
 
-	if( mpCurrentAni )	
+	if( mpCurrentAni && Get2DMeshObject() )	
 		Get2DMeshObject()->GetMesh()->removeChild( mpCurrentAni->GetMesh(), true );
 	
 	GnAssert( mInfos.GetSize() );
 	mCurrentAniIndex = 0;
 	mpCurrentAni = mInfos.GetAt( mCurrentAniIndex++ );
-	
 
-	if( mpCurrentAni  )
+	if( mpCurrentAni->GetMesh() == NULL )
+		CreateData();
+
+	if( mpCurrentAni && Get2DMeshObject() )
 		Get2DMeshObject()->GetMesh()->addChild( mpCurrentAni->GetMesh() );
 }
 
 void Gn2DTextureAniCtlr::Stop()
 {
 	GnTimeController::Stop();
+	if( mpCurrentAni && Get2DMeshObject() )	
+		Get2DMeshObject()->GetMesh()->removeChild( mpCurrentAni->GetMesh(), true );
 }
 
 void Gn2DTextureAniCtlr::Update(float fDeltaTime)
 {
-	if( mPlayFlags != PLAY )
+	if( GetPlayFlags() == GnTimeController::STOP )
 		return;
+	else if( GetPlayFlags() == GnTimeController::PLAY )
+	{
+		Playing( 0.0f );
+	}
 
-	GnRenderObject* object = GnDynamicCast(GnRenderObject, mpTarget);
-	if( mpCurrentAni == NULL )
-		return;
-
-	float deltaTime = fDeltaTime + GetAccumulateTime();
-	if( mpCurrentAni->GetEndTime() < deltaTime )
+	mAccumulateDeltaTime += fDeltaTime;
+	if( mpCurrentAni->GetEndTime() < GetAccumulateTime() )
 	{
 		if( mCurrentAniIndex < mInfos.GetSize() )
 		{
@@ -161,14 +169,14 @@ void Gn2DTextureAniCtlr::Update(float fDeltaTime)
 			SetAccumulateTime( 0.0f );
 			mpCurrentAni = mInfos.GetAt(mCurrentAniIndex++);
 
-			if( mpCurrentAni  )
+			if( mpCurrentAni )
 				Get2DMeshObject()->GetMesh()->addChild( mpCurrentAni->GetMesh() );
 		}
 		else
 		{
-			if( IsLoop() )
+			if( GetCycleType() == LOOP )
 			{
-				Start( 0.0f );
+				Start();
 			}
 			else
 				Stop();

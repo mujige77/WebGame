@@ -32,9 +32,6 @@ void Gt2DSequence::ChangeTime(gtuint uiAniIndex, float fTime)
 
 bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 {
-	std::string fullFilePath = GtToolSettings::GetWorkPath();
-	fullFilePath += mFileName.GetAciiString();
-
 	for( gtuint i = 0 ; i < GetSequence()->GetTextureAnis().GetSize() ; i++ )
 	{
 		Gn2DTextureAni* ani = GetSequence()->GetTextureAnis().GetAt( i );
@@ -42,6 +39,7 @@ bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 		for( gtuint j = 0 ; j < ani->GetAniInfoCount() ; j++ )
 		{
 			Gn2DTextureAni::TextureAniInfo* aniInfo = (Gn2DTextureAni::TextureAniInfo*)ani->GetAniInfo( j );
+			
 			GtNumberString number;
 			number.SetNumber( 3, GetSequence()->GetID() );
 			GtConvertString convert = number.GetString().c_str();
@@ -55,7 +53,7 @@ bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 				fileName = convert.GetAciiString();
 				fileName += name;
 			}
-
+			
 			std::string copyFilePath = pcBasePath;	
 			copyFilePath += fileName;
 			if( GnPath::CheckSamePathA( aniInfo->GetTextureName(), copyFilePath.c_str() ) == false )
@@ -63,13 +61,17 @@ bool Gt2DSequence::SaveData(const gchar* folderName, const gchar* pcBasePath)
 				BOOL ret = CopyFileA( aniInfo->GetTextureName(), copyFilePath.c_str(), false );
 				ret = TRUE;
 			}
-			std::string filePath = folderName;
+			std::string filePath = gsActorPath;
+			filePath += folderName;
 			filePath += "/";
 			filePath += fileName;
 			aniInfo->SetTextureName( filePath.c_str() );
 		}
 	}
 	
+	std::string fullFilePath = GtToolSettings::GetWorkPath();	
+	fullFilePath += mFileName.GetAciiString();
+
 	GnObjectStream objectStream;
 	objectStream.InsertRootObjects( mpSequence );
 

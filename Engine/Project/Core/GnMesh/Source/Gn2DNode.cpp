@@ -3,7 +3,8 @@
 
 GnImplementRTTI(Gn2DNode, Gn2DMeshObject);
 
-Gn2DNode::Gn2DNode(gtuint uiChildSize /*= 0*/) : mChildern(uiChildSize, 10)
+Gn2DNode::Gn2DNode(gtuint uiChildSize /*= 0*/) : Gn2DMeshObject( NULL ),
+	mChildern(uiChildSize, 10)
 {
 
 }

@@ -26,11 +26,6 @@ void GnDrawPrimitives::DrawRect(float fLeft, float fTop, float fRight, float fBo
 	glColor4f( mColor.r, mColor.g, mColor.b, mColor.a );
 	glLineWidth(mThickness);
 
-	fLeft *= GetGameState()->GetGameScale();
-	fTop *= GetGameState()->GetGameScale();
-	fRight *= GetGameState()->GetGameScale();
-	fBottom *= GetGameState()->GetGameScale();
-
 	CCPoint vertices2[] = {
 		CCPointMake( fLeft, fTop )
 		, CCPointMake( fLeft, fBottom )
@@ -44,8 +39,8 @@ void GnDrawPrimitives::DrawPoint(GnVector2 vPoint)
 {
 	glPointSize(mThickness);
 	glColor4f(mColor.r, mColor.g, mColor.b, mColor.a);
-	vPoint.x *= GetGameState()->GetGameScale();
-	vPoint.y *= GetGameState()->GetGameScale();
+	//vPoint.x *= GetGameState()->GetGameScale();
+	//vPoint.y *= GetGameState()->GetGameScale();
 	ccDrawPoint( CCPointMake(vPoint.x, vPoint.y) );
 }
 
@@ -100,6 +95,10 @@ void GnDraw2DObjectRect::Draw()
 		}
 		//drawRect.mRect.MoveX( mpObject->GetPosition().x );
 		//drawRect.mRect.MoveY( mpObject->GetPosition().y );
+		//float scale = drawRect.mRect.GetWidth() * GetGameState()->GetGameScale();
+		//drawRect.mRect.SetWidth( scale );
+		//scale = drawRect.mRect.GetHeight() * GetGameState()->GetGameScale();
+		//drawRect.mRect.SetHeight( scale  );
 		DrawRect( drawRect.mRect );
 	}
 

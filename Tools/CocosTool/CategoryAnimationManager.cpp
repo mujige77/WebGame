@@ -33,4 +33,18 @@ void CategoryAnimationManager::Create(CMFCRibbonBar* wndRibbonBar)
 	arElements.RemoveAll();
 	pPanel1->GetElementsByID( IDC_ANITIMESLIDER, arElements  );
 	mpAniTimeSlider = (CMFCRibbonSlider*)arElements.GetAt( 0 );
+
+	CWnd* ps =  wndRibbonBar->GetDlgItem( ID_SCALERANGE );
+	if( ps )
+	{
+		CMFCSpinButtonCtrl* spin = 
+			(CMFCSpinButtonCtrl*)wndRibbonBar->GetNextDlgGroupItem( ps );
+		if( spin )
+		{
+			GtNumberString num;
+			num.SetNumber( 3,  GtToolSettings::GetScalePercent() );
+			spin->SetPos( GtToolSettings::GetScalePercent() );
+			ps->SetWindowText( num.GetString().c_str() );
+		}
+	}
 }

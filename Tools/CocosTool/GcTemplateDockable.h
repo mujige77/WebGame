@@ -28,24 +28,29 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	int mLastSelectItem;
 	GcTemplateListCtrl mListCtrl;
-	CArray<TemplateListData> mTemplateList;
+	CArray<TemplateListData> mTemplateList;	
 
 public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnBtDeltemplate();
 	afx_msg void OnBtNewtemplate();
 	afx_msg void OnBtOpentemplate();
+	afx_msg void OnSaveObjectstate();
 	
 	// 현재 만들어 져잇는 오브젝트 리스트를 저장 로드 한다.
 	void SaveTemplateList(const gchar* filePath);
 	void LoadTemplateList(const gchar* filePath);
 
+public:
+	TemplateListData GetTemplateListData(gtuint uiIndex){
+		return mTemplateList.GetAt( uiIndex );
+	}
 protected:	
 	virtual void AddItem(CString itemName, gint8 iActortype, bool bSelected = false);
 	virtual void DoNewTemplate(){}
 	virtual void DoDelTemplate(){}
 	virtual void DoOpenTemplate(){}
-
+	virtual const gchar* GetFileName() = 0;
 };
 
 

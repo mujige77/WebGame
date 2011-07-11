@@ -86,14 +86,15 @@ public:
 		SetBit( val, MASK_MESHSTREAM );
 	}
 
+protected:
+	void SetRectScale( CollisionRect &rect );
 	// 툴 때문에 만든 것임
 public:	
 	inline void RemoveAtAndFillAllCollisionRect(gtuint uiIndex)
 	{
 		mCollisionRects.RemoveAtAndFillAll( uiIndex );
 		mOriginalCollisionRects.RemoveAtAndFillAll( uiIndex );
-	}
-
+	}	
 	//inline GnIRect GetAttackRect() {
 	//	return mAttackRect;
 	//}

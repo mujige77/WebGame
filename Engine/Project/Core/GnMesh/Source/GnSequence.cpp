@@ -11,9 +11,7 @@ void GnSequence::SetTargetObject(GnObjectForm* pObject)
 		bool failed = pkControl->SetTargetObject(pObject);
 		if( failed == false )
 		{
-			GnLogA( "Warning : Failed sequence targeting = %s",
-				pkControl->GetTargetName().Exists() ? pkControl->GetTargetName().GetHandle()
-				   : "NULL Controller TargetName" );
+			GnLogA( "Warning : Failed sequence NULL Controller TargetName" );
 		}
 		pkControl = pkControl->GetNext();
 	}
@@ -24,7 +22,7 @@ void GnSequence::Start(float fTime)
 	GnTimeController* pkControl = mpsTimeControls;
 	while( pkControl )
 	{
-		pkControl->Start(fTime);
+		pkControl->Start();
 		pkControl = pkControl->GetNext();
 	}
 }

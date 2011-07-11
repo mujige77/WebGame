@@ -56,7 +56,7 @@ int GcTemplateDockable::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	mToolBar.RemoveButton(3);
 
 	gchar filePath[GN_MAX_PATH];
-	GtToolSettings::MakeSaveFilePath( "templatelist.lst", NULL, filePath, GN_MAX_PATH );
+	GtToolSettings::MakeSaveFilePath( GetFileName(), NULL, filePath, GN_MAX_PATH );
 	LoadTemplateList( filePath );
 	return 0;
 }
@@ -64,7 +64,7 @@ int GcTemplateDockable::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void GcTemplateDockable::OnBtOpentemplate()
 {
 	gchar filePath[GN_MAX_PATH];
-	GtToolSettings::MakeSaveFilePath( "templatelist.lst", NULL, filePath, GN_MAX_PATH );
+	GtToolSettings::MakeSaveFilePath( GetFileName(), NULL, filePath, GN_MAX_PATH );
 	SaveTemplateList( filePath );
 }
 
@@ -72,7 +72,6 @@ void GcTemplateDockable::OnBtNewtemplate()
 {	
 	DoNewTemplate();
 }
-
 
 void GcTemplateDockable::OnBtDeltemplate()
 {
@@ -94,6 +93,9 @@ void GcTemplateDockable::OnBtDeltemplate()
 
 void GcTemplateDockable::AddItem(CString itemName, gint8 iActortype, bool bSelected)
 {
+	TemplateListData listData( itemName.GetString(), iActortype );
+	mTemplateList.Add( listData );
+
 	int index = mListCtrl.GetItemCount();
 	mListCtrl.InsertItem( index, itemName );
 	//mListCtrl.SetItemData(index, )
@@ -104,9 +106,6 @@ void GcTemplateDockable::AddItem(CString itemName, gint8 iActortype, bool bSelec
 	}
 	mListCtrl.RedrawWindow();
 	mListCtrl.RedrawItems( 0, mListCtrl.GetItemCount() );
-
-	TemplateListData listData( itemName.GetString(), iActortype );
-	mTemplateList.Add( listData );
 }
 
 
@@ -154,4 +153,12 @@ void GcTemplateDockable::LoadTemplateList(const gchar* filePath)
 	}
 
 	gnStream.Close();
+}
+
+void GcTemplateDockable::OnSaveObjectstate()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	gchar filePath[GN_MAX_PATH];
+	GtToolSettings::MakeSaveFilePath( GetFileName(), NULL, filePath, GN_MAX_PATH );
+	SaveTemplateList( filePath );
 }

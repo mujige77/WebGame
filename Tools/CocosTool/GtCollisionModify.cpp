@@ -11,7 +11,6 @@ GtCollisionModify::GtCollisionModify(void)
 GtCollisionModify::~GtCollisionModify(void)
 {
 	GetSceneManager()->GetMainGameLayer()->removeChild( mpDrawLayer, true );
-	mpDrawLayer->release();
 }
 
 GtCollisionModify* GtCollisionModify::Create(float fWidth, float fHeight)
@@ -22,6 +21,7 @@ GtCollisionModify* GtCollisionModify::Create(float fWidth, float fHeight)
 	drawLayer->setContentSize( CCSizeMake(fWidth, fHeight) );
 	drawLayer->setIsVisible( false );
 	GetSceneManager()->GetMainGameLayer()->addChild( drawLayer, 200, 1 );
+	drawLayer->autorelease();
 
 	GtCollisionModify* thisVal = new GtCollisionModify;
 	thisVal->mpDrawLayer = drawLayer;

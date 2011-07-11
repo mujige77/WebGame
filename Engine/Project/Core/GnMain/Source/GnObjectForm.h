@@ -12,12 +12,12 @@ private:
 
 public:
 	GnObjectForm();
-	virtual ~GnObjectForm(){};
+	virtual ~GnObjectForm();
 
 public:
 	virtual void Update(float fDeltaTime);
 	virtual GnObjectForm* GetObjectByName(const GnSimpleString& kName);
-	void SetController(GnTimeController* pCtlr);
+	void SetTimeController(GnTimeController* pCtlr);
 
 public:
 	inline GnSimpleString& GetName() {
@@ -52,13 +52,15 @@ public:
 	inline gtuint GetExtraDataSize() {
 		return mExtraDatas.GetSize();
 	}
-	inline GnTimeController* GetControllers() {
+	inline GnTimeController* GetTimeControllers() {
 		return mpsControls;
 	}
-	inline void SetControllers(GnTimeController* val) {
+	inline void SetTimeControllers(GnTimeController* val) {
 		mpsControls = val;
 	}
 
+protected:
+	void RemoveTimeControllerTarget();
 	// 툴 때문에 사용 하는 것임
 public:
 	inline GnTPrimitiveArray<GnExtraData*>* GetExtraDatas() {

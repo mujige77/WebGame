@@ -7,6 +7,9 @@
 class GcNewObjectDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(GcNewObjectDlg)
+private:
+	CComboBox mCBObjectType;
+	int mObjectType;
 
 protected:
 	CString mObjectName;
@@ -22,6 +25,9 @@ public:
 
 	inline CString& GetObjectName() {
 		return mObjectName;
+	}
+	inline int GetObjectType() {
+		return mObjectType;
 	}
 
 protected:

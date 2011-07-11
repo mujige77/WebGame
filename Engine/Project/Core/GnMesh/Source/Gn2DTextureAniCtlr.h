@@ -6,6 +6,10 @@ class Gn2DTextureAniCtlr : public GnTimeController
 	GnDeclareRTTI;
 	GnDeclareStream;
 public:
+	enum
+	{
+
+	};
 	class TextureAniInfo : public GnMemoryObject
 	{
 		GnDeclareDataStream;
@@ -56,7 +60,7 @@ public:
 
 	virtual bool CreateData();
 	virtual void RemoveData();
-	virtual void Start(float fTime);
+	virtual void Playing(float fTime);
 	virtual void Stop();
 	virtual void Update(float fDeltaTime);
 protected:

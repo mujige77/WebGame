@@ -17,6 +17,7 @@
 #include "Resource.h"
 #include "GcTemplateTasks.h"
 #include "GcSequenceDockable.h"
+#include "Gc2DObjectDockable.h"
 #include "GcSequenceModifyDockable.h"
 
 class COutlookBar : public CMFCOutlookBar
@@ -59,6 +60,7 @@ protected:  // 컨트롤 모음이 포함된 멤버입니다.
 	CMFCCaptionBar    m_wndCaptionBar;
 	GcTemplateTasks  m_wndTemplateTasksPane;
 	GcSequenceDockable mSequenceDockable;
+	Gc2DObjectDockable m2DObjectDockable;
 	GcSequenceModifyDockable mSequenceModifyDockable;
 	GtObject* mpObject;
 	// 생성된 메시지 맵 함수
@@ -87,6 +89,8 @@ public:
 	afx_msg void OnUpdateViewSequencedockable(CCmdUI *pCmdUI);
 	afx_msg void OnViewOutlookvisible();
 	afx_msg void OnUpdateViewOutlookvisible(CCmdUI *pCmdUI);
+	afx_msg void OnView2DObjectvisible();
+	afx_msg void OnUpdateView2DObjectvisible(CCmdUI *pCmdUI);
 };
 
 

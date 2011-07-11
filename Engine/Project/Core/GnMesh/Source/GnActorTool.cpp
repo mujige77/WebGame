@@ -6,7 +6,7 @@ GnImplementRTTI(GnActorTool, GnObject);
 void GnActorTool::SequenceInfo::SaveStream(GnStream* pStream)
 {
 	pStream->SaveStream( mSequenceID );
-	const gchar* name =mSequenceName.GetHandle();
+	const gchar* name = mSequenceName.GetHandle();
 	pStream->SaveStream( name );
 	name = mFileName.GetHandle();
 	// 나중에 지우자

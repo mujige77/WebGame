@@ -1,45 +1,45 @@
-// GcActorExtraDataDlg.cpp : 구현 파일입니다.
+// GcExtraDataDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
 #include "CocosTool.h"
-#include "GcActorExtraDataDlg.h"
+#include "GcExtraDataDlg.h"
 #include "afxdialogex.h"
 
 
-// GcActorExtraDataDlg 대화 상자입니다.
+// GcExtraDataDlg 대화 상자입니다.
 
-IMPLEMENT_DYNAMIC(GcActorExtraDataDlg, CDialogEx)
+IMPLEMENT_DYNAMIC(GcExtraDataDlg, CDialogEx)
 
-GcActorExtraDataDlg::GcActorExtraDataDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(GcActorExtraDataDlg::IDD, pParent)
+GcExtraDataDlg::GcExtraDataDlg(CWnd* pParent /*=NULL*/)
+	: CDialogEx(GcExtraDataDlg::IDD, pParent)
 {
 
 }
 
-GcActorExtraDataDlg::~GcActorExtraDataDlg()
+GcExtraDataDlg::~GcExtraDataDlg()
 {
 	mExtraDataPropEntity.SetNullProperty();
 }
 
-void GcActorExtraDataDlg::DoDataExchange(CDataExchange* pDX)
+void GcExtraDataDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LISTACTOREVENT, mActorEventList);
 	DDX_Control(pDX, IDC_ACTOREVENT_LOCATION, mActorEventPropLocation);
 }
 
-BEGIN_MESSAGE_MAP(GcActorExtraDataDlg, CDialogEx)
+BEGIN_MESSAGE_MAP(GcExtraDataDlg, CDialogEx)
 	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
 
-BOOL GcActorExtraDataDlg::OnInitDialog()
+BOOL GcExtraDataDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	mActorEventList.SetWindowText( _T("ExtraData List") );
+	mListName = _T("ExtraData List");
 	mActorEventList.SetStandardButtons( AFX_VSLISTBOX_BTN_NEW | AFX_VSLISTBOX_BTN_DELETE );
 	mActorEventList.EnableBrowseButton( false );
 
@@ -60,7 +60,7 @@ BOOL GcActorExtraDataDlg::OnInitDialog()
 	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
-void GcActorExtraDataDlg::OnSize(UINT nType, int cx, int cy)
+void GcExtraDataDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
@@ -85,7 +85,7 @@ void GcActorExtraDataDlg::OnSize(UINT nType, int cx, int cy)
 	}
 }
 
-void GcActorExtraDataDlg::ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObject)
+void GcExtraDataDlg::ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObject)
 {
 	mpObject = pObject;
 	mpMeshObject = pMeshObject;
@@ -96,9 +96,15 @@ void GcActorExtraDataDlg::ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObje
 	}
 	mActorEventList.EnableWindow();
 	mActorEventList.ResetData( pObject, pMeshObject );
+
+	GtConvertString convert = mpObject->GetObjectName();
+	CString name = convert.c_str();
+	name += _T(" - ");
+	name += mListName;
+	mActorEventList.SetWindowText( name );
 }
 
-void GcActorExtraDataDlg::EnablePropertyGridCtrl(bool bEnable)
+void GcExtraDataDlg::EnablePropertyGridCtrl(bool bEnable)
 {
 	mActorEventProp.EnableWindow( bEnable );
 	COLORREF color = RGB(220, 220, 220);
@@ -116,7 +122,7 @@ void GcActorExtraDataDlg::EnablePropertyGridCtrl(bool bEnable)
 	mActorEventProp.RedrawWindow();
 }
 
-BOOL GcActorExtraDataDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+BOOL GcExtraDataDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
 	GTVSITEMACTIVATE* item = (GTVSITEMACTIVATE*)lParam;
 	switch( wParam )

@@ -25,7 +25,7 @@ void GnAVObject::AttachParent(GnNode* val)
 
 void GnAVObject::Update(float fTime)
 {
-	GnTimeController* pkControl = GetControllers();
+	GnTimeController* pkControl = GetTimeControllers();
 	while( pkControl )
 	{
 		pkControl->Update(fTime);
@@ -35,7 +35,7 @@ void GnAVObject::Update(float fTime)
 
 void GnAVObject::RemoveTimeControllerTarget()
 {
-	GnTimeController* pkControl = GetControllers();
+	GnTimeController* pkControl = GetTimeControllers();
 	while( pkControl )
 	{
 		pkControl->SetTargetObject((GnAVObject*)NULL);

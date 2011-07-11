@@ -83,6 +83,10 @@ void GDrawActorController::Draw()
 		};		
 		Gn2DAVData::CollisionRect drawRect = avData->GetCollisionRect( i );
 		mColor = color[drawRect.mType];
+		//float scale = drawRect.mRect.GetWidth() * GetGameState()->GetGameScale();
+		//drawRect.mRect.SetWidth( scale );
+		//scale = drawRect.mRect.GetHeight() * GetGameState()->GetGameScale();
+		//drawRect.mRect.SetHeight( scale  );
 		DrawRect( drawRect.mRect );
 	}
 	
@@ -100,6 +104,10 @@ void GDrawActorController::Draw()
 		
 		mColor = GnColorA( 0, 0, 255, 1 );	
 		Gn2DAVData::CollisionRect attackRect = avDataAttack->GetCollisionRect( 1 );	
+		//float scale = attackRect.mRect.GetWidth() * GetGameState()->GetGameScale();
+		//attackRect.mRect.SetWidth( scale );
+		//scale = attackRect.mRect.GetHeight() * GetGameState()->GetGameScale();
+		//attackRect.mRect.SetHeight( scale  );		
 		DrawRect( attackRect.mRect );
 	}
 	
@@ -117,4 +125,21 @@ void GDrawActorController::Draw()
 
 	
 	mColor = tempColor;
+}
+
+void GnExtraDataPrimitivesLayer::Draw()
+{
+	if( mpMeshObject == NULL )
+		return;
+
+	for( gtuint i = 0; i < mpMeshObject->GetExtraDataSize(); i++  )
+	{
+		GnVector2ExtraData* vec2Data = GnDynamicCast(GnVector2ExtraData, mpMeshObject->GetExtraData( i ));
+		if( vec2Data )
+		{
+			GnVector2 point = vec2Data->GetValueVector2();
+			point += mpMeshObject->GetPosition();
+			DrawPoint( point );
+		}
+	}
 }

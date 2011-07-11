@@ -15,10 +15,11 @@ bool Gt2DActor::SaveData(const gchar* pcBasePath)
 {
 	gchar sequenceBasePath[GN_MAX_PATH] = {0,};
 	GnStrcpy( sequenceBasePath, GtToolSettings::GetWorkPath(), sizeof(sequenceBasePath) );
-	GnStrcat( sequenceBasePath, GetObjectName(), sizeof(sequenceBasePath) );
+	GnStrcat( sequenceBasePath, gsActorPath, sizeof(sequenceBasePath) );
+	GnStrcat( sequenceBasePath, GetObjectName(), sizeof(sequenceBasePath) );	
 	GnStrcat( sequenceBasePath, "/", sizeof(sequenceBasePath) );
 
-	GtToolSettings::CreateDirectoryInWorkDirectory( GetObjectName() );
+	GtToolSettings::CreateDirectoryInWorkDirectory( gsActorPath, GetObjectName() );
 
 	// save *.gat file
 	std::string toolPath = sequenceBasePath;
@@ -26,7 +27,8 @@ bool Gt2DActor::SaveData(const gchar* pcBasePath)
 	GnStream toolStream;
 	if( toolStream.Save( toolPath.c_str() ) )
 	{
-		std::string gmFileName = GetObjectName();
+		std::string gmFileName = gsActorPath;
+		gmFileName += GetObjectName();
 		gmFileName += "/";
 		gmFileName += GetGMFileName();
 		GetActorTool()->SetGMFilePath( gmFileName.c_str() );
@@ -68,7 +70,9 @@ bool Gt2DActor::LoadData()
 	if( mGATFileName.Exists() )
 	{
 		gchar outPath[GN_MAX_PATH] = {0,};
-		GtToolSettings::MakeSaveFilePath( mGATFileName, GetObjectName(), outPath, sizeof(outPath) );
+		std::string folderName = gsActorPath;
+		folderName += GetObjectName();
+		GtToolSettings::MakeSaveFilePath( GetGATFileName(), folderName.c_str(), outPath, sizeof(outPath) );
 
 		if( mpsActor == NULL )
 		{
@@ -90,7 +94,7 @@ bool Gt2DActor::LoadData()
 		
 		if( mpsActor->GetRootNode() == NULL )
 		{
-			Gn2DMeshObject* rootNode = GnNew Gn2DMeshObject();
+			Gn2DMeshObject* rootNode = Gn2DMeshObject::Create( false );
 			mpsActor->SetRootNode( rootNode );
 		}
 		
@@ -135,7 +139,7 @@ bool Gt2DActor::CreateData()
 	actorTool->SetGMFilePath( fileName.c_str() );
 	GetActor()->SetActorTool( actorTool );
 
-	Gn2DMeshObject* rootNode = GnNew Gn2DMeshObject();
+	Gn2DMeshObject* rootNode = Gn2DMeshObject::Create( false );
 	GetActor()->SetRootNode( rootNode );
 	return true;
 }

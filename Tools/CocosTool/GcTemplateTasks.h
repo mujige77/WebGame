@@ -1,7 +1,7 @@
 #pragma once
 #include "GcTasksPane.h"
 #include "GcActorTemplateDockable.h"
-#include "GcEffectTemplateDockable.h"
+#include "GcMeshTemplateDockable.h"
 // GcTemplateTasks
 
 class GcTemplateTasks : public GcTasksPane
@@ -10,13 +10,17 @@ class GcTemplateTasks : public GcTasksPane
 
 protected:
 	GcActorTemplateDockable mTemplateList;
-	GcEffectTemplateDockable  mEffectTemplateList;	
+	GcMeshTemplateDockable  mObjectTemplateList;	
+
 public:
 	GcTemplateTasks();
 	virtual ~GcTemplateTasks();
 	
 	inline GcActorTemplateDockable& GetTemplateList() {
 		return mTemplateList;
+	}
+	inline GcMeshTemplateDockable& GetObjectTemplateList() {
+		return mObjectTemplateList;
 	}
 
 protected:

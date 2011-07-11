@@ -42,10 +42,9 @@ void GcActorExtraDataList::CreateNewItem()
 	GnExtraData* extra = NULL;
 	int type = addDlg.GetSelectedExtraDataType();
 	if( type == GExtraData::EXTRA_EFFECT_POSITION )
-	{
 		extra = GnNew GnVector2ExtraData();
-		mpExtraDatas->Add( extra );		
-	}	
+	else if( type == GExtraData::EXTRA_EFFECT_POSITIONID )
+		extra = GnNew GnIntExtraData();
 
 	if( extra == NULL )
 	{
@@ -54,6 +53,7 @@ void GcActorExtraDataList::CreateNewItem()
 	}
 	extra->SetType( type );
 	extra->SetID( 0 );
+	mpExtraDatas->Add( extra );
 
 	CString str = GetMakeName( GetCount(), extra->GetType() );
 	int sel = AddItem( str.GetString(), extra->GetType() );

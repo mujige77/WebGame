@@ -27,6 +27,18 @@
     <Filter Include="소스 파일\Ani\AniKey">
       <UniqueIdentifier>{89a49b36-f1f9-4fdb-82bf-0a6f2fe9ed19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\NewFilter1">
+      <UniqueIdentifier>{7dc46c0e-dc55-4b53-b98f-5f18ab75e075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\GnLayer">
+      <UniqueIdentifier>{b8168d27-6148-4c41-b083-140b3d6d0809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{a4b5a6fc-1971-4a09-8e9e-a14b9df3af73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Interface">
+      <UniqueIdentifier>{18f815a0-8a7a-453c-99b8-8fb1987961cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -55,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\GnMeshEBM.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GnActorTool.h">
-      <Filter>소스 파일\Ani</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GnActorStreamMacro.h">
       <Filter>소스 파일\Ani</Filter>
@@ -113,9 +122,6 @@
     <ClInclude Include="..\..\Source\GnDrawPrimitives.h">
       <Filter>소스 파일\2DEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Gg2dCollision.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\GnAnimationKeyManager.h">
       <Filter>소스 파일\Ani\AniKey</Filter>
     </ClInclude>
@@ -128,23 +134,167 @@
     <ClInclude Include="..\..\Source\GnTegIDKey.h">
       <Filter>소스 파일\Ani\AniKey</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\GnLayerMain.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GnLayerBackground.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GnLayer.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GnSceneManager.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\GnGameState.h">
       <Filter>소스 파일\2DEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GFileLIst.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActorCtlrManager.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActorInfoDatabase.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GBackgroundLayer.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GCollectComponentHeader.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GCurrentActorInfo.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GEnemyController.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GEnemyCtlrManager.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GForcesController.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GForcesCtlrManager.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GGameEnvironment.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GGameFactory.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GGameManager.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInfo.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInfoBasic.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInfoEnemyBasic.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInfoForcesBasic.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInterface.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GInterfaceLayer.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GLayer.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GMainGameEnvironment.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GMainGameInterface.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GMainGameInterfaceLayer.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GMainGameMove.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GScene.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUserController.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GUserCtlrManager.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GAccumulationTimeEvent.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GAction.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActionAttack.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActionMove.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActionStand.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GActorController.h">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSceneManager.h">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gg2dCollision.h">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnLayer.h">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnLayerBackground.h">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnLayerMain.h">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSQLiteQuery.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnSQLite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnInterfacePCH.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnIButton.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnICoolTime.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnIInputEvent.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnInterface.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnInterfaceGroup.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnInterfaceHeader.h">
+      <Filter>소스 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnGamePCH.h">
+      <Filter>소스 파일\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnGameHeader.h">
+      <Filter>소스 파일\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GnActorTool.h">
+      <Filter>소스 파일\Ani</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gn2DTextureAniCtlr.h">
+      <Filter>소스 파일\2DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Gn2DMeshData.h">
+      <Filter>소스 파일\2DEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\GExtraData.h">
+      <Filter>소스 파일\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +318,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\GnMeshEBM.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GnActorTool.cpp">
-      <Filter>소스 파일\Ani</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GnSequenceManager.cpp">
       <Filter>소스 파일\Ani</Filter>
@@ -220,9 +367,6 @@
     <ClCompile Include="..\..\Source\GnDrawPrimitives.cpp">
       <Filter>소스 파일\2DEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Gg2DCollision.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\GnAnimationKey.cpp">
       <Filter>소스 파일\Ani\AniKey</Filter>
     </ClCompile>
@@ -232,23 +376,149 @@
     <ClCompile Include="..\..\Source\GnTegIDKey.cpp">
       <Filter>소스 파일\Ani\AniKey</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\GnLayerMain.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GnLayerBackground.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GnLayer.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GnSceneManager.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\GnGameState.cpp">
       <Filter>소스 파일\2DEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GFileList.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActorCtlrManager.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActorInfoDatabase.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GBackgroundLayer.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GEnemyController.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GEnemyCtlrManager.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GForcesController.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GForcesCtlrManager.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GGameEnvironment.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GGameFactory.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GGameManager.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Ginfo.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GInfoBasic.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GInfoEnemyBasic.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GInfoForcesBasic.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GInterface.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GInterfaceLayer.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GLayer.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GMainGameEnvironment.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GMainGameInterface.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GMainGameInterfaceLayer.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GMainGameMove.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GScene.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUserController.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GUserCtlrManager.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GAccumulationTimeEvent.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GAction.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActionAttack.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActionMove.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActionStand.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GActorController.cpp">
+      <Filter>소스 파일\Game\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gg2DCollision.cpp">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnLayer.cpp">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnLayerBackground.cpp">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnLayerMain.cpp">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnSceneManager.cpp">
+      <Filter>소스 파일\Game\GnLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\win32\GnSQLiteQuery.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\win32\GnPathUtil.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\win32\GnSQLite.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnIButton.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnICoolTime.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnInterface.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnInterfaceGroup.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GnActorTool.cpp">
+      <Filter>소스 파일\Ani</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gn2DTextureAniCtlr.cpp">
+      <Filter>소스 파일\2DEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Gn2DMeshData.cpp">
+      <Filter>소스 파일\2DEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GExtraData.cpp">
+      <Filter>소스 파일\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

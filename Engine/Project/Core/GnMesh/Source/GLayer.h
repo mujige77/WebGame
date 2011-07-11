@@ -69,4 +69,16 @@ public:
 		mpsDrawObject.Draw();
 	};
 };
+
+class GnExtraDataPrimitivesLayer : public GnDrawPrimitives
+{
+protected:
+	Gn2DMeshObject* mpMeshObject;
+
+public:
+	void Draw();
+	void SetMeshObject(Gn2DMeshObject* pMeshObject) {
+		mpMeshObject = pMeshObject;
+	}
+};
 #endif

@@ -5,8 +5,17 @@ GnImplementRTTI(GnObjectForm, GnObject);
 
 GnObjectForm::GnObjectForm()
 {
-
 }
+
+GnObjectForm::~GnObjectForm()
+{
+	RemoveTimeControllerTarget();
+	for( gtuint i = 0; i < mExtraDatas.GetSize(); i++ )
+	{
+		GnDelete mExtraDatas.GetAt( i );
+	}
+}
+
 void GnObjectForm::Update(float fDeltaTime)
 {
 	GnTimeController* ctrl = mpsControls;
@@ -28,11 +37,14 @@ GnObjectForm* GnObjectForm::GetObjectByName(const GnSimpleString& kName)
 	return this;
 }
 
-void GnObjectForm::SetController(GnTimeController* pCtlr)
+void GnObjectForm::SetTimeController(GnTimeController* pCtlr)
 {
-	GnTimeController* ctlr = GetControllers();
+	GnTimeController* ctlr = GetTimeControllers();
 	if( ctlr == NULL )
-		SetControllers( pCtlr  );
+	{
+		SetTimeControllers( pCtlr );
+		return;
+	}
 
 	do
 	{
@@ -93,8 +105,8 @@ void GnObjectForm::SaveStream(GnObjectStream* pStream)
 		pStream->SaveLinkID( extra );
 	}
 
-	GnTimeController* control = GetControllers();
-	while( control && control->IsStreamable() == false )
+	GnTimeController* control = GetTimeControllers();
+	while( control && control->IsStreamable() == false && control->IsStreamable() == false )
 		control = control->GetNext();
 	pStream->SaveLinkID( control );
 }
@@ -111,7 +123,17 @@ void GnObjectForm::RegisterSaveObject(GnObjectStream* pStream)
 		extra->RegisterSaveObject( pStream );
 	}
 
-	GnTimeController* control = GetControllers();
+	GnTimeController* control = GetTimeControllers();
 	if( control )
 		control->RegisterSaveObject( pStream );
+}
+
+void GnObjectForm::RemoveTimeControllerTarget()
+{
+	GnTimeController* pkControl = GetTimeControllers();
+	while( pkControl )
+	{
+		pkControl->SetTargetObject((GnAVObject*)NULL);
+		pkControl = pkControl->GetNext();
+	}
 }

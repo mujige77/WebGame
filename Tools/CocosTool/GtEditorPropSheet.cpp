@@ -18,9 +18,7 @@ GtEditorPropSheet::GtEditorPropSheet(CWnd* pParent) : CMFCPropertySheet( _T("Obj
 	{
 		b32BitIcons = FALSE;
 	}
-	SetLook(CMFCPropertySheet::PropSheetLook_List);
-	AddPage( &mSequenceMainPage );
-	AddPage( &mSequenceTexturepage );		
+	SetLook(CMFCPropertySheet::PropSheetLook_List);	
 }
 
 GtEditorPropSheet::~GtEditorPropSheet()
@@ -57,10 +55,20 @@ void GtEditorPropSheet::SetObject(GtObject* pObject, Gt2DSequence* pSequence)
 
 void GtEditorPropSheet::SetModifyMode(int mode)
 {
+	if( mode == Gt2DObject::OBJECT_TYPE )
+	{
+		AddPage( &mTexturepage );	
+	}
+	else
+	{
+		AddPage( &mSequenceMainPage );
+		AddPage( &mSequenceTexturepage );
+	}		
+
 	for( int i = 0 ; i < GetPageCount() ; i++ )
 	{
 		GcEditorPropertyPage* page = (GcEditorPropertyPage*)GetPage( i );
-		page->SetModifyMode( (bool)mode );
+		page->SetModifyMode( mode );
 	}
 }
 

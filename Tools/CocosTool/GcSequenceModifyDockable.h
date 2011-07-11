@@ -8,12 +8,14 @@ class GcSequenceModifyDockable : public GcToolBarDockable
 private:
 	static const gtchar* msSequenceCollisionDlgName;
 	static const gtchar* msSequenceTimeDlgName;
-	static const gtchar* msActorEventDlgName;
+	static const gtchar* msActorExtraDlgName;
+	static const gtchar* ms2DObjectExtraDlgName;
 
 protected:
 	GcTabCtrl mTabCtrl;
 	float mCurrentAniTime;
-	GtObjectPtr mpsCurrentObject;
+	GtObjectPtr mps2DObject;
+	GtObjectPtr mpsActorObject;
 
 public:
 	GcSequenceModifyDockable();
@@ -32,11 +34,13 @@ public:
 	void AddTab(CWnd* pAddWnd, CString strName);	
 	void RemoveAllTab();
 	void RemoveSequenceTab();
+	void RemoveSequence(const gtchar* pcName);
 
 protected:
 	virtual void ReceiveMediateMessage(gtuint messageIndex, GcMediateObjectMessage* pMessage);
 	void ChangeProperty(GcMediateObjectMessage* pMessage);
 	void ChangeSequence(GcMediateObjectMessage* pMessage);
+	void SetActiveTab(CString strActiveName);
 public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	virtual void PostNcDestroy();

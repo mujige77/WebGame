@@ -6,11 +6,12 @@
 #include "GcSequenceModifyDockable.h"
 #include "GcSequenceTimeDlg.h"
 #include "GcSequenceCollisionDlg.h"
-#include "GcActorExtraDataDlg.h"
+#include "GcExtraDataDlg.h"
 
 const gtchar* GcSequenceModifyDockable::msSequenceCollisionDlgName = _T("Collision");
 const gtchar* GcSequenceModifyDockable::msSequenceTimeDlgName = _T("TimeKey");
-const gtchar* GcSequenceModifyDockable::msActorEventDlgName = _T("ActorEvent");
+const gtchar* GcSequenceModifyDockable::msActorExtraDlgName = _T("ActorExtra");
+const gtchar* GcSequenceModifyDockable::ms2DObjectExtraDlgName = _T("2DObjectExtra");
 
 GcSequenceModifyDockable::GcSequenceModifyDockable() : mCurrentAniTime(0.0f)
 {
@@ -39,20 +40,23 @@ int GcSequenceModifyDockable::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDockablePane::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	if (!mTabCtrl.Create (CMFCTabCtrl::STYLE_FLAT, CRect (0, 0, 0, 0), this, 1))
+	if ( !mTabCtrl.Create(CMFCTabCtrl::STYLE_FLAT, CRect (0, 0, 0, 0), this, 1
+		, CMFCTabCtrl::LOCATION_TOP ) )
 	{
 		TRACE0("Failed to create output tab window\n");
 		return -1;      // fail to create
 	}
 
 	// Create toolbar:
-	mTabCtrl.SetFlatFrame (FALSE, FALSE);
-	mTabCtrl.AutoDestroyWindow (FALSE);
+	mTabCtrl.SetFlatFrame(FALSE, FALSE);
+	mTabCtrl.AutoDestroyWindow(FALSE);
+
 
 	AttachNeedMessage( GTMG_SELECTOBJECT );
 	AttachNeedMessage( GTMG_SELECTSEQUENCE );
 	AttachNeedMessage( GTMG_DESTORY );
 	AttachNeedMessage( GTMG_TIMECHANGE );
+	AttachNeedMessage( GTMG_SELECT2DOBJECT );
 	return 0;
 }
 
@@ -90,16 +94,91 @@ void GcSequenceModifyDockable::RemoveSequenceTab()
 	}
 }
 
+void GcSequenceModifyDockable::RemoveSequence(const gtchar* pcName)
+{
+	for (int i = 0; i < mTabCtrl.GetTabsNum (); i++)
+	{
+		CWnd* pWnd = mTabCtrl.GetTabWnd (i);
+		CString name;
+		pWnd->GetWindowText( name );
+		if( name == pcName )
+		{
+			if( mTabCtrl.GetSafeHwnd() )
+				mTabCtrl.RemoveTab( i-- );
+			pWnd->DestroyWindow();
+			delete pWnd;
+			return;
+		}
+	}
+}
+
+void GcSequenceModifyDockable::SetActiveTab(CString strActiveName)
+{
+	for (int i = 0; i < mTabCtrl.GetTabsNum(); i++)
+	{
+		CWnd* pWnd = mTabCtrl.GetTabWnd (i);
+		CString name;
+		pWnd->GetWindowText( name );
+		if( name == strActiveName )
+		{
+			if( mTabCtrl.GetSafeHwnd() )
+				mTabCtrl.SetActiveTab( i );
+			break;
+		}
+	}
+	CWnd* ActorExtraTab = NULL;
+	CWnd* Object2DTab = NULL;
+	GnTPrimitiveArray<CWnd*> othecrTabs(5, 5);
+	for (int i = 0; i < mTabCtrl.GetTabsNum (); i++)
+	{
+		CWnd* pWnd = mTabCtrl.GetTabWnd(i);
+		CString name;
+		pWnd->GetWindowText( name );
+		if( name == msActorExtraDlgName )
+		{
+			ActorExtraTab = pWnd;
+			mTabCtrl.RemoveTab( i-- );
+		}
+		else if( name == ms2DObjectExtraDlgName )
+		{
+			Object2DTab = pWnd;
+			mTabCtrl.RemoveTab( i-- );
+		}
+		else
+		{
+			othecrTabs.Add( pWnd );
+			mTabCtrl.RemoveTab( i-- );
+		}
+	}
+	if( ActorExtraTab )
+		mTabCtrl.AddTab( ActorExtraTab, msActorExtraDlgName );
+	if( Object2DTab )
+		mTabCtrl.AddTab( Object2DTab, ms2DObjectExtraDlgName );
+
+	for( gtuint i = 0; i < othecrTabs.GetSize(); i++ )
+	{
+		CString name;
+		othecrTabs.GetAt( i )->GetWindowText( name );
+		mTabCtrl.AddTab( othecrTabs.GetAt( i ), name );
+	}
+}
+
 void GcSequenceModifyDockable::ReceiveMediateMessage(gtuint messageIndex
 	, GcMediateObjectMessage* pMessage)
 {
 	switch( messageIndex )
 	{
+	case GTMG_DESTORY:
+		mps2DObject = NULL;
+		mpsActorObject = NULL;
+		RemoveAllTab();
+		break;
 	case GTMG_TIMECHANGE:
 		if( pMessage->mTempMessage )
 			SetCurrentAniTime( *((float*)pMessage->mTempMessage) );
 		break;
 	case GTMG_SELECTOBJECT:
+	case GTMG_SELECT2DOBJECT:
 		{
 			ChangeProperty( pMessage );
 		}
@@ -114,30 +193,47 @@ void GcSequenceModifyDockable::ReceiveMediateMessage(gtuint messageIndex
 
 void GcSequenceModifyDockable::ChangeProperty(GcMediateObjectMessage* pMessage)
 {
-	CWnd* focus = GetFocus();
-	mpsCurrentObject = pMessage->mpObject;
-	RemoveAllTab();
-	
-	if( mpsCurrentObject )
+	CString activeName;
+	if( mTabCtrl.GetSafeHwnd() )
 	{
+		CWnd* wnd = mTabCtrl.GetActiveWnd();
+		if( wnd )
+			wnd->GetWindowText( activeName );
+	}
+
+	CWnd* focus = GetFocus();
+
+	GtObject* changeObject = pMessage->mpObject;
+	if( changeObject )
+	{
+		const gtchar* dlgName = NULL;
 		Gn2DMeshObject* meshObject = NULL;
-		Gt2DActor* actor = GnDynamicCast(Gt2DActor,  mpsCurrentObject );
+		Gt2DActor* actor = GnDynamicCast(Gt2DActor,  changeObject );
 		if( actor == NULL )
 		{
-			Gt2DMesh* mesh = GnDynamicCast(Gt2DMesh,  mpsCurrentObject );
-			meshObject = mesh->Get2DMeshObjecct();
+			dlgName = ms2DObjectExtraDlgName;
+			mps2DObject = changeObject;
+			Gt2DObject* Object2D = GnDynamicCast(Gt2DObject,  mps2DObject );
+			if( Object2D )
+				meshObject = Object2D->Get2DMeshObjecct();
 		}
 		else
+		{
+			RemoveSequenceTab();
+			dlgName = msActorExtraDlgName;
+			mpsActorObject = changeObject;
 			meshObject = actor->GetRootNode();
+		}
 			
 		if( meshObject )
 		{
-			GcActorExtraDataDlg* timeDlg = new GcActorExtraDataDlg();
-			timeDlg->Create( GcActorExtraDataDlg::IDD, &mTabCtrl );		
-			timeDlg->ResetData( mpsCurrentObject, meshObject );
-			//timeDlg->SetCurrentAniTime( mCurrentAniTime );
-			timeDlg->SetWindowText( msActorEventDlgName );
-			AddTab( timeDlg, msActorEventDlgName );
+			RemoveSequence( dlgName );
+			GcExtraDataDlg* timeDlg = new GcExtraDataDlg();
+			timeDlg->Create( GcExtraDataDlg::IDD, &mTabCtrl );		
+			timeDlg->ResetData( changeObject, meshObject );
+			timeDlg->SetWindowText( dlgName );
+			AddTab( timeDlg, dlgName );
+			SetActiveTab( activeName );
 		}		
 	}
 

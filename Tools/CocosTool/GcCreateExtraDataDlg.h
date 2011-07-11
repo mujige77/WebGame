@@ -7,7 +7,7 @@ class GcCreateExtraDataDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(GcCreateExtraDataDlg)
 public:
-	enum { IDD = IDD_GCCREATECOLLISIONDLG };
+	enum { IDD = IDD_GCCREATEEXTRADATA };
 
 protected:
 	CComboBox mComboExtraDataType;

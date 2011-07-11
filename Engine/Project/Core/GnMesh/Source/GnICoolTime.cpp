@@ -4,12 +4,12 @@
 
 GnICoolTime* GnICoolTime::Create(float fWidth, float fHeight)
 {
-	Gn2DMeshObject* sprite = GnNew Gn2DMeshObject();
+	Gn2DMeshObject* sprite = Gn2DMeshObject::Create( false );
     sprite->GetMesh()->setTextureRect( CCRectMake(0, 0, fWidth, fHeight) );
     sprite->SetColor( GnColor::Black );
 	sprite->SetAlpha( 0.5f );
 	
-    Gn2DMeshObject* coolTimeMesh = GnNew Gn2DMeshObject();
+    Gn2DMeshObject* coolTimeMesh = Gn2DMeshObject::Create( false );
     coolTimeMesh->GetMesh()->setTextureRect( CCRectMake(0, 0, fWidth, fHeight) );
     coolTimeMesh->SetColor( GnColor::Black );
 	coolTimeMesh->SetAlpha( 0.5f );

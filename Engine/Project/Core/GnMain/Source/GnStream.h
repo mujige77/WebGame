@@ -70,6 +70,17 @@ public:
 	inline void LoadStream(T*& val) {
 		PointerTraits<T*>::LoadBinary(this, val);
 	}
+	template<class T>
+	inline void SaveEnumStream(T& val) {
+		gint32 saveVal = (gint32)val;
+		SaveStream( saveVal );
+	}
+	template<class T>
+	inline void LoadEnumStream(T& val) {
+		gint32 loadVal = GINT32_MAX;
+		LoadStream( loadVal );
+		val = (T)loadVal;
+	}
 	inline void SaveStreams(gchar* pcStr, gsize uiSize) {
 		mpFile->SaveBinary( pcStr, uiSize );
 	}

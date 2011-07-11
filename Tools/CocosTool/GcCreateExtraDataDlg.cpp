@@ -37,6 +37,11 @@ BOOL GcCreateExtraDataDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
+	for( gtuint i = 0; i < GExtraData::EXTRA_DATA_MAX; i++ )
+	{
+		mComboExtraDataType.AddString( gsExtraType[i] );
+	}
+	
 	mComboExtraDataType.SetCurSel( 0 );
 	return TRUE;  // return TRUE unless you set the focus to a control
 }

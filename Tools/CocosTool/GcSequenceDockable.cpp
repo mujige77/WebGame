@@ -179,6 +179,8 @@ void GcSequenceDockable::ChangeSequence(GcMediateObjectMessage* pMessage)
 			mpsCurrentObject->GetActor()->GetSequence( sequenceInfo->GetSequenceID(), gnSequence );
 		}
 		GnAssert( gnSequence );
+		if( gnSequence == NULL )
+			return;
 		gtSequence->SetSequence( gnSequence );
 		gtSequence->SetFileName( sequenceInfo->GetFileName() );
 		mpsCurrentObject->AddGtSequence( sequenceInfo->GetSequenceID(), gtSequence );
@@ -228,9 +230,9 @@ void GcSequenceDockable::OnBtNewtemplate()
 	Gt2DSequence* sequence = GtObjectNew<Gt2DSequence>::Create();
 	Gn2DSequence* gnSequence = GtObjectNew<Gn2DSequence>::Create();
 	sequence->SetSequence( gnSequence );
-	sequence->SetModifed( true );
+	sequence->SetModifed( true );	
+	sheet->SetModifyMode( mpsCurrentObject->GetType() );
 	sheet->SetObject( mpsCurrentObject, sequence );
-	sheet->SetModifyMode( 0 );
 	INT_PTR ret = editorSheetDlg->DoModal();
 	if(  ret == IDOK )
 	{

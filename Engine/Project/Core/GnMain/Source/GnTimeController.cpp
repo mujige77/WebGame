@@ -3,20 +3,19 @@
 
 GnImplementRootRTTI(GnTimeController);
 
-GnTimeController::GnTimeController() : mpTarget(NULL)
+GnTimeController::GnTimeController() : mpTarget( NULL ), mIsMeshSteram( true )
 {
-	SetLoop( true );
+	mCycleType = LOOP;
+	mPlayFlags = PLAY;
 }
 
 GnTimeController::~GnTimeController()
 {
 }
 
-void GnTimeController::Start(float fTime)
+void GnTimeController::Start()
 {
 	mPlayFlags = PLAY;
-	mStartTime = fTime;
-	mAccumulateDeltaTime = fTime;
 }
 
 void GnTimeController::Stop()
@@ -26,50 +25,58 @@ void GnTimeController::Stop()
 
 bool GnTimeController::SetTargetObject(GnObjectForm* pObject)
 {
-	if( pObject  == NULL )
+	if( pObject == NULL )
 	{
 		mpTarget = NULL;
 		return true;
 	}
-	GnAssert(mTargetName.Exists());
-	mpTarget = pObject->GetObjectByName(mTargetName);
-	if( mpTarget == NULL )
-		return false;
-
-	mpTarget->SetControllers( this );
+	
+	mpTarget = pObject;
+	mpTarget->SetTimeController( this );
 	return true;
 }
 
-GnImplementCreateObject(GnTimeController);
+void GnTimeController::Playing(float fTime)
+{
+	mPlayFlags = PLAYING;
+	mStartTime = fTime;
+	mAccumulateDeltaTime = 0.0f;
+}
+
+
 void GnTimeController::LoadStream(GnObjectStream* pStream)
 {
-	GnObject::LoadStream( pStream );
-	pStream->LoadFixedString( mTargetName );
+	GnObject::LoadStream( pStream );	
+	pStream->LoadEnumStream( mCycleType );
+
 	pStream->LoadLinkID(); // mpsNext;
+	pStream->LoadLinkID(); // mpTarget;
 }
 
 void GnTimeController::LinkObject(GnObjectStream* pStream)
 {
 	GnObject::LinkObject( pStream );
 	mpsNext = (GnTimeController*)pStream->GetObjectFromLinkID();
+
+	mpTarget = (GnObjectForm*)pStream->GetObjectFromLinkID();
 }
 
 void GnTimeController::SaveStream(GnObjectStream* pStream)
 {
 	GnObject::SaveStream( pStream );
-	pStream->SaveFixedString( mTargetName );
+	pStream->SaveEnumStream( mCycleType );
 
 	GnTimeController* control = mpsNext;
 	if( control && control->IsStreamable() == false )
 		control = control->GetNext();
-
+	
 	pStream->SaveLinkID( control );
+	pStream->SaveLinkID( mpTarget );
 }
 
 void GnTimeController::RegisterSaveObject(GnObjectStream* pStream)
 {
-	GnObject::RegisterSaveObject( pStream );
-	pStream->RegisterFixedString( mTargetName );
+	GnObject::RegisterSaveObject( pStream );	
 
 	if( mpsNext )
 		mpsNext->RegisterSaveObject( pStream );

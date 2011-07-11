@@ -69,6 +69,8 @@ GtObject* GtObjectFactory::GetObject(const gtchar* pcName)
 
 void GtObjectFactory::SaveObjects(bool bRemoveAll)
 {
+	if( GtToolSettings::GetScalePercent() != 100 )
+		return;
 	IterObjectMap iter = mObjects.begin();
 	while( iter != mObjects.end() )
 	{

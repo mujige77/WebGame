@@ -16,7 +16,7 @@ public:
 		int mAniKeyIndex;
 	};
 private:
-	Gt2DSequencePtr mpsSequence;
+	Gt2DSequence* mpsSequence;
 	GnAnimationKeyManager* mpAniKeyManager;
 	int mAniKeyIndex;
 	GnMemberSlot1<GcAnimationKeyPropEntity, GcPropertyGridProperty*> mUpdateEventSlot;

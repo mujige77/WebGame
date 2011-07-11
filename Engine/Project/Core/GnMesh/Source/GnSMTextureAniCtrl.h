@@ -33,7 +33,7 @@ public:
 	virtual void SetAniInfo(gtuint uiIndex, GnTextureProperty* pTexture, float fStartTime, float fEndTime);	
 	virtual bool ReCreate(gtuint uiNumAni, bool bSaveAniData);	
 
-	virtual void Start(float fTime);
+	virtual void Playing(float fTime);
 	virtual void Stop();
 
 	inline TextureAni* GetAniInfo(gtuint uiIndex){

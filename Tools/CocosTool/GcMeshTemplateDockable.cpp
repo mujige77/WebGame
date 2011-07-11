@@ -1,21 +1,21 @@
+// GcMeshTemplateDockable.cpp : 구현 파일입니다.
+//
 
 #include "stdafx.h"
 #include "CocosTool.h"
-#include "GcActorTemplateDockable.h"
+#include "GcMeshTemplateDockable.h"
 #include "GcNewObjectDlg.h"
 #include "ActorMacro.h"
 
-
-GcActorTemplateDockable::GcActorTemplateDockable(void)
+GcMeshTemplateDockable::GcMeshTemplateDockable()
 {
 }
 
-
-GcActorTemplateDockable::~GcActorTemplateDockable(void)
+GcMeshTemplateDockable::~GcMeshTemplateDockable()
 {
 }
 
-void GcActorTemplateDockable::ReciveNotiyfiMessage(WPARAM wParam, LPARAM lParam)
+void GcMeshTemplateDockable::ReciveNotiyfiMessage(WPARAM wParam, LPARAM lParam)
 {
 	if( wParam == ID_CTRL_TEMPLATELIST )
 	{
@@ -55,58 +55,53 @@ void GcActorTemplateDockable::ReciveNotiyfiMessage(WPARAM wParam, LPARAM lParam)
 					GcObjectMessage info;
 					info.mpObject = NULL;
 					info.mpSender = this;
-					SendMediateMessage( GTMG_SELECTOBJECT, &info );
-				}
-				else if( mListCtrl.GetItemCount() )
-				{
-					GcSequenceMessage sequenceMsg;
-					sequenceMsg .mpObject = NULL;
-					sequenceMsg .mpSender = this;
-					sequenceMsg .mpSequenceInfo = NULL;
-					SendMediateMessage( GTMG_SELECTSEQUENCE, &sequenceMsg );
-				}				
+					SendMediateMessage( GTMG_SELECT2DOBJECT, &info );
+				}		
 			}
 			break;
 		}
 	}
 }
 
-Gt2DActor* GcActorTemplateDockable::GetActorObject(CString itemText)
+Gt2DObject* GcMeshTemplateDockable::GetActorObject(CString itemText)
 {
 	GtConvertString strName = itemText.GetString();
-	Gt2DActor* object = (Gt2DActor*)GetObjectFactory()->GetObject( itemText );
+	Gt2DObject* object = GnDynamicCast( Gt2DObject, GetObjectFactory()->GetObject( itemText ) );
 	if(  object == NULL )
 	{
-		object = (Gt2DActor*)GetObjectFactory()->CreateObject( Gt2DActor::OBJECT_TYPE, itemText );
+		object = (Gt2DObject*)GetObjectFactory()->CreateObject( Gt2DObject::OBJECT_TYPE, itemText );
 	}
 	GnAssert( object );
 	object->SetObjectName( strName.GetAciiString() );
 	return object;
 }
 
-void GcActorTemplateDockable::SelectItem(int iIndex)
+void GcMeshTemplateDockable::SelectItem(int iIndex)
 {
 	CCSize s = CCDirector::sharedDirector()->getWinSize();
 	if( mpsCurrentObject )
 	{
 		switch( mpsCurrentObject->GetType() )
 		{
-		case Gt2DActor::OBJECT_TYPE:
+		case Gt2DObject::OBJECT_TYPE:
 			{
-				Gt2DActor* object = (Gt2DActor*)((GtObject*)mpsCurrentObject);
-				object->GetActor()->StopAnimation();
+				Gt2DObject* object = GnDynamicCast( Gt2DObject, mpsCurrentObject );				
 				GnLayer* state = GetSceneManager()->GetMainGameLayer();
-				state->RemoveChild( object->GetActor()->GetRootNode() );
+				state->RemoveChild( object->Get2DMeshObjecct() );
 				SendMediateMessage( GTMG_REDRAW, NULL );
 			}
-
+			break;
+		default:
+			return;
 		}
 	}
 	CString itemText = mListCtrl.GetItemText( iIndex, 0 );
-	Gt2DActor* object = GetActorObject(itemText);
+	Gt2DObject* object = GnDynamicCast( Gt2DObject, GetActorObject( itemText ) );
 	if( object == NULL )
 		return;
 
+	TemplateListData data = GetTemplateListData( iIndex );
+	object->Set2DObjectType( data.mObjectType );
 	mpsCurrentObject = object;
 	if( object->IsNewItem() == false )
 	{
@@ -119,10 +114,10 @@ void GcActorTemplateDockable::SelectItem(int iIndex)
 	GcObjectMessage info;
 	info.mpObject = object;
 	info.mpSender = this;
-	SendMediateMessage( GTMG_SELECTOBJECT, &info );
+	SendMediateMessage( GTMG_SELECT2DOBJECT, &info );
 }
 
-void GcActorTemplateDockable::DoNewTemplate()
+void GcMeshTemplateDockable::DoNewTemplate()
 {
 	GcNewObjectDlg dlg;
 	if( dlg.DoModal() == IDCANCEL )
@@ -132,11 +127,12 @@ void GcActorTemplateDockable::DoNewTemplate()
 	if( itemName.GetLength() <= 0 )
 		return;
 
+	int type = dlg.GetObjectType();
 	GtObject* object = GetActorObject( itemName );
 	GnAssert( object );
 	object->SetNewItem( true );
 
-	AddItem( itemName, Gt2DObject::OBJECT_TYPE, true );
+	AddItem( itemName, type, true );
 
 	GcObjectMessage info;
 	info.mpObject = object;
@@ -144,12 +140,12 @@ void GcActorTemplateDockable::DoNewTemplate()
 	SendMediateMessage( GTMG_NEWOBJECT, &info );
 }
 
-void GcActorTemplateDockable::DoDelTemplate()
+void GcMeshTemplateDockable::DoDelTemplate()
 {
 
 }
 
-void GcActorTemplateDockable::DoOpenTemplate()
+void GcMeshTemplateDockable::DoOpenTemplate()
 {
 
 }

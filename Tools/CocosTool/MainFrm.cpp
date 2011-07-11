@@ -27,14 +27,16 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWndEx)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_WM_CREATE()
-	ON_COMMAND(ID_VIEW_CAPTION_BAR, &CMainFrame::OnViewCaptionBar)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_CAPTION_BAR, &CMainFrame::OnUpdateViewCaptionBar)
-	ON_COMMAND(ID_TOOLS_OPTIONS, &CMainFrame::OnOptions)
+	ON_COMMAND(IDC_VIEW_CAPTION_BAR, &CMainFrame::OnViewCaptionBar)
+	ON_UPDATE_COMMAND_UI(IDC_VIEW_CAPTION_BAR, &CMainFrame::OnUpdateViewCaptionBar)
+	ON_COMMAND(IDC_TOOLS_OPTIONS, &CMainFrame::OnOptions)
 	ON_COMMAND(IDC_SAVE_OBJECTSTATE, &CMainFrame::OnSaveObjectState)
 	ON_COMMAND(ID_VIEW_SEQUENCEDOCKABLE, &CMainFrame::OnViewSequencedockable)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SEQUENCEDOCKABLE, &CMainFrame::OnUpdateViewSequencedockable)
-	ON_COMMAND(ID_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnViewOutlookvisible)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnUpdateViewOutlookvisible)
+	ON_COMMAND(IDC_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnViewOutlookvisible)
+	ON_UPDATE_COMMAND_UI(IDC_VIEW_OUTLOOKVISIBLE, &CMainFrame::OnUpdateViewOutlookvisible)
+	ON_COMMAND(ID_VIEW_2DOBJECTVISIBLE, &CMainFrame::OnView2DObjectvisible)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_2DOBJECTVISIBLE, &CMainFrame::OnUpdateView2DObjectvisible)
 END_MESSAGE_MAP()
 
 // CMainFrame 생성/소멸
@@ -220,15 +222,21 @@ BOOL CMainFrame::CreateDockableBar()
 	DWORD dwStyle = WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN 
 		| CBRS_LEFT | CBRS_FLOAT_MULTI;	
 	if (!mSequenceDockable.Create( _T("Sequence") , this, CRect(0, 0, 200, 200), TRUE
-		, ID_VIEW_SEQUENCEDOCKABLE, dwStyle) )
+		, ID_WINDOW_SEQUENCEDOCKABLE, dwStyle) )
 	{
 		TRACE0("속성 창을 만들지 못했습니다.\n");
 		return false; // 만들지 못했습니다.
 	}
-
 	mSequenceDockable.EnableDocking(CBRS_ALIGN_ANY);
-	
 
+	if (!m2DObjectDockable.Create( _T("2DObject"), this, CRect(0, 0, 200, 200), TRUE
+		, ID_WINDOW_2DOBJECTDOCKABLE, dwStyle) )
+	{
+		TRACE0("속성 창을 만들지 못했습니다.\n");
+		return false; // 만들지 못했습니다.
+	}
+	m2DObjectDockable.EnableDocking(CBRS_ALIGN_ANY);	
+	
 	if (!mSequenceModifyDockable.Create (_T("Source Code"), this, CRect (0, 0, 150, 150),
 		TRUE /* Has gripper */, ID_VIEW_SEQUENCEMODIFYDOCKABLE,
 		WS_CHILD | WS_VISIBLE | CBRS_BOTTOM | CBRS_FLOAT_MULTI,
@@ -240,6 +248,7 @@ BOOL CMainFrame::CreateDockableBar()
 
 	DockPane( &mSequenceModifyDockable );
 	DockPane( &mSequenceDockable );
+	DockPane( &m2DObjectDockable );
 	
 	return true;
 }
@@ -291,24 +300,47 @@ void CMainFrame::OnUpdateViewCaptionBar(CCmdUI* pCmdUI)
 
 void CMainFrame::OnViewSequencedockable()
 {
-	mSequenceDockable.ShowWindow(mSequenceDockable.IsVisible() ? SW_HIDE : SW_SHOW);
+	//mSequenceDockable.ShowWindow(mSequenceDockable.IsVisible() ? SW_HIDE : SW_SHOW);
+	mSequenceDockable.ShowPane( mSequenceDockable.IsVisible() ? SW_HIDE : SW_SHOW, TRUE,TRUE );
 	RecalcLayout(FALSE);
 }
 
 void CMainFrame::OnUpdateViewSequencedockable(CCmdUI *pCmdUI)
 {
-	pCmdUI->SetCheck(mSequenceDockable.IsVisible());
+	if( mSequenceDockable.IsVisible() )
+		pCmdUI->SetCheck( 1 );
+	else
+		pCmdUI->SetCheck( 0 );
 }
 
 void CMainFrame::OnViewOutlookvisible()
 {
-	m_wndNavigationBar.ShowWindow(m_wndNavigationBar.IsVisible() ? SW_HIDE : SW_SHOW);
+	//m_wndNavigationBar.ShowWindow(m_wndNavigationBar.IsVisible() ? SW_HIDE : SW_SHOW);
+	m_wndNavigationBar.ShowPane( m_wndNavigationBar.IsVisible() ? SW_HIDE : SW_SHOW, TRUE,TRUE );
 	RecalcLayout(FALSE);
 }
 
 void CMainFrame::OnUpdateViewOutlookvisible(CCmdUI *pCmdUI)
 {
-	pCmdUI->SetCheck(m_wndNavigationBar.IsVisible());
+	if( m_wndNavigationBar.IsVisible() )
+		pCmdUI->SetCheck( 1 );
+	else
+		pCmdUI->SetCheck( 0 );
+}
+
+void CMainFrame::OnView2DObjectvisible()
+{
+	//m2DObjectDockable.ShowWindow( m2DObjectDockable.IsVisible() ? SW_HIDE : SW_SHOW );
+	m2DObjectDockable.ShowPane( m2DObjectDockable.IsVisible() ? SW_HIDE : SW_SHOW, TRUE,TRUE );
+	RecalcLayout(FALSE);
+}
+
+void CMainFrame::OnUpdateView2DObjectvisible(CCmdUI *pCmdUI)
+{
+	if( m2DObjectDockable.IsVisible() )
+		pCmdUI->SetCheck( 1 );
+	else
+		pCmdUI->SetCheck( 0 );
 }
 
 void CMainFrame::OnOptions()
@@ -327,11 +359,16 @@ BOOL CMainFrame::DestroyWindow()
 	info.mpSender = this;
 	SendMediateMessage( GTMG_SELECTOBJECT, &info );
 
+	GcMediateObjectMessage msg;
+	bool destroy = true;
+	msg.mTempMessage = &destroy;
+	SendMediateMessage( GTMG_DESTORY, &msg );
+
 	if( CFrameWndEx::DestroyWindow() == false )
 		return false;
 
 	GetObjectFactory()->RemvoeAllObject();
-	//SendMediateMessage( GTMG_DESTORY, NULL );	
+		
 	GtToolEBM::ShutdownEBM();
 
 	// 마지막으로 루프 안시켜 주면 뻑남
@@ -358,8 +395,17 @@ void CMainFrame::ReceiveMediateMessage(gtuint messageIndex, GcMediateObjectMessa
 
 void CMainFrame::OnSaveObjectState()
 {
-	GetObjectFactory()->SaveObjects( true );
-	if( mpObject )
-		GetObjectFactory()->AddObject( mpObject );
+	if( GtToolSettings::GetScalePercent() != 100 )
+	{
+		::MessageBox( NULL, _T( "스케일이 100이 아니면 저장 할 수 없습니다." ),
+			_T("Warring"), MB_OK );
+	}
+	else
+	{
+		GetObjectFactory()->SaveObjects( true );
+		if( mpObject )
+			GetObjectFactory()->AddObject( mpObject );
+	}
 	m_wndTemplateTasksPane.GetTemplateList().OnSaveObjectstate();
+	m_wndTemplateTasksPane.GetObjectTemplateList().OnSaveObjectstate();
 }

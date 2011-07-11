@@ -4,11 +4,11 @@
 #include "GcMediateObject.h"
 #include "GcPropertyGridCtrl.h"
 #include "GcExtraDataPropEntity.h"
-// GcActorExtraDataDlg 대화 상자입니다.
+// GcExtraDataDlg 대화 상자입니다.
 
-class GcActorExtraDataDlg : public CDialogEx
+class GcExtraDataDlg : public CDialogEx
 {
-	DECLARE_DYNAMIC(GcActorExtraDataDlg)
+	DECLARE_DYNAMIC(GcExtraDataDlg)
 public:
 	enum { IDD = IDD_GCACTOREVENTDLG };
 
@@ -19,10 +19,11 @@ protected:
 	GcPropertyGridCtrl mActorEventProp;
 	CStatic mActorEventPropLocation;
 	GcExtraDataPropEntity mExtraDataPropEntity;
+	CString mListName;
 
 public:
-	GcActorExtraDataDlg(CWnd* pParent = NULL);
-	virtual ~GcActorExtraDataDlg();
+	GcExtraDataDlg(CWnd* pParent = NULL);
+	virtual ~GcExtraDataDlg();
 	void ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObject);
 
 protected:

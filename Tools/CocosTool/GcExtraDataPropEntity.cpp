@@ -55,7 +55,7 @@ bool GcExtraDataPropEntity::Init()
 	mpPropExtraIntGroup->SetData( MSG_EXTRA_INT );
 	mpPropExtraIntGroup->SubscribeToUpdateEvent( &mUpdateEventSlot );
 	pGroup->AddSubItem( mpPropExtraIntGroup );
-	mpUseGridProperty[PROP_EXTRA_INT] = pProp;
+	mpUseGridProperty[PROP_EXTRA_INT] = mpPropExtraIntGroup;
 	return true;
 }
 
@@ -74,7 +74,7 @@ bool GcExtraDataPropEntity::ParseToEntity(EntityData* pData)
 	{
 		ParsePostion( mCurrentModifyExtraData );
 	}
-	else if( mCurrentModifyExtraData->GetType() == GExtraData::EXTRA_EFFECT )
+	else if( mCurrentModifyExtraData->GetType() == GExtraData::EXTRA_EFFECT_POSITIONID )
 	{
 		ParseInt( mCurrentModifyExtraData );
 	}
