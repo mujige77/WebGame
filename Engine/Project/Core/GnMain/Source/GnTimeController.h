@@ -57,10 +57,10 @@ public:
 		return true;
 	}
 	inline void SetIsMeshStreamble(bool val) {
-
+		mIsMeshSteram = val;
 	}
 	inline bool IsMeshStreamble() const {
-
+		return mIsMeshSteram;
 	}
 	inline eCycleType GetCycleType() {
 		return mCycleType;

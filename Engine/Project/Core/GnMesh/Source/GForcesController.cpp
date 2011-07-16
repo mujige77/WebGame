@@ -5,6 +5,8 @@
 #include "GCollectComponentHeader.h"
 #include "GActionStand.h"
 #include "GActionAttack.h"
+#include "GActionDamage.h"
+#include "GActionAttackCheck.h"
 
 GForcesController::GForcesController()
 {
@@ -23,7 +25,15 @@ GForcesController* GForcesController::Create(const gchar* pcID, guint32 uiLevel)
 		return NULL;
 	}
 	return controller;
-} 
+}
+
+bool GForcesController::InitController()
+{
+	mCallbackActorEventSlot.Initialize( this, &GForcesController::ActorCallbackFunc );
+	GetActor()->SetCallbackEvent( &mCallbackActorEventSlot );
+	return true;
+}
+
 bool GForcesController::InitInfoCompenent(const gchar* pcID, guint32 uiLevel)
 {
 	GInfoForcesBasic* pInfo = GnNew GInfoForcesBasic();
@@ -45,10 +55,27 @@ bool GForcesController::InitActionComponents()
 	moveAction->SetMoveRangeX( info->GetMoveRangeX() );
 	moveAction->SetMoveRight( true );
 	
-	GAction* action = GnNew GActionStand( this );
-	SetActionComponent( action->GetActionType(), action );
-
-	action = GnNew GActionAttack( this );
-	SetActionComponent( action->GetActionType(), action );
+	GetGameEnvironment()->CreateActorControllerBasicAction( this );
 	return true;
+}
+
+void GForcesController::ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent)
+{
+	GnAssert( pEvent );
+	if( pEvent == NULL )
+		return;
+	
+	if( pEvent->GetEventType() == Gn2DActor::TimeEvent::ANIKEY )
+	{
+		if( pEvent->GetSequenceID() == GAction::ANI_ATTACK )
+			SetAttack( pEvent->GetSequenceID() );
+		return;
+	}
+	else if( pEvent->GetEventType() == Gn2DActor::TimeEvent::END_SEQUENCE )
+	{
+		if( pEvent->GetSequenceID() == GAction::ANI_ATTACK )
+			SetEndAttack();
+		if( pEvent->GetSequenceID() == GAction::ANI_DIE )
+			SetEndDie();
+	}
 }

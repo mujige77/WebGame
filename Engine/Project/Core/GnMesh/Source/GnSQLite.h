@@ -1,7 +1,7 @@
 #ifndef __Core__GnSQLite__
 #define __Core__GnSQLite__
 
-#if ( GNUSE_OS == PLATFORM_IOS )
+#if ( GNUSE_PLATFORM == PLATFORM_IOS )
 #include "/usr/include/sqlite3.h"
 #else
 typedef int sqlite3;

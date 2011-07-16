@@ -10,7 +10,7 @@ public:
 	};
 	enum eExtraType
 	{
-		EXTRA_EFFECT_POSITION,
+		EXTRA_DAMAGE_POSITION,
 		EXTRA_EFFECT_POSITIONID,
 	};
 };

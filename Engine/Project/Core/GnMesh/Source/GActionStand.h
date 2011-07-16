@@ -12,8 +12,7 @@ public:
 	inline gtint GetActionType() {
 		return ACTION_STAND;
 	}
-	inline void AttachCompentToController() {
-		GetController()->AddCurrentAction( this );
+	inline void AttachActionToController() {
 		GetController()->GetActor()->SetTargetAnimation( ANI_STAND );
 	};
 };

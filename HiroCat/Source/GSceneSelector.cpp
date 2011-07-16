@@ -41,6 +41,11 @@ GScene* GSceneSelector::CreateScene(gtuint uiStage)
 	GGameScene* scene = new GGameScene();
 	do
 	{
+//		char = GetFullPath( "template.lst" );
+//		GnFile* file = GnFile::GetFile( fileName.c_str(), GnFile::READ_ACSII, 256 );
+//		if( file == NULL )
+//			break;	
+		
 		if( scene->CreateBackgroundLayer( "./Data/Background/BG_01.png" ) == false )
 			break;
 		

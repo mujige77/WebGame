@@ -1,7 +1,7 @@
 #include "GnSystemPCH.h"
 #include "GnLog.h"
 
-const gtuint gMaxDebugMessageLength = 256;
+const gtuint gMaxDebugMessageLength = 512;
 
 static GNFORCEINLINE void LineCheck(gtchar* message, gsize& messageLength)
 {

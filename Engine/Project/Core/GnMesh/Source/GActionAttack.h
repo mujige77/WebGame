@@ -4,53 +4,31 @@
 
 class GActionAttack : public GAction
 {
-private:
-	gtuint mEnableAttackCount;
-	gtuint mAttackAniIndex;
-	gtuint mNumAttackLine;
-	GnTPrimitiveArray<GActorController*> mAttackToActors;
+	GnDeclareFlags(gushort);
+	enum
+	{
+		MASK_WAITATTACKANI = 0x000004, // Sended attack meassage, wait end attack animation
+	};
 
+private:
+	GnTPrimitiveArray<GActorController*> mAttackToActors;
 	
 public:
 	GActionAttack(GActorController* pController);
-	bool CollisionCheck(GActorController* pCheckAttackActor);
-	void SendToAttackActors();
+	void Reset();
 	
 public:
-	inline void AttachCompentToController()	{
-		GetController()->AddCurrentAction( this );
+	inline void AttachActionToController()	{
 		GetController()->GetActor()->SetTargetAnimation( ANI_ATTACK );
 	}
 	inline gtint GetActionType() {
 		return ACTION_ATTACK;
 	}
-public:
-	inline gtuint GetEnableAttackCount() {
-		return mEnableAttackCount;
+	inline bool IsWaitEndAttackAni() {
+		return GetBit( MASK_WAITATTACKANI );
 	}
-	inline void SetEnableAttackCount(gtuint val) {
-		mEnableAttackCount = val;
-	}
-	inline gtuint GetAttackAniIndex() {
-		return mAttackAniIndex;
-	}
-	inline void SetAttackAniIndex(gtuint val) {
-		mAttackAniIndex = val;
-	}
-	inline void SetAttackLine(gtuint uiAttackLine) {
-		mNumAttackLine = uiAttackLine;
-	}
-	inline gtuint GetAttackLine() {
-		return mNumAttackLine;
-	}
-	inline void AddAttackActor(GActorController* pAttackActor) {
-		mAttackToActors.Add( pAttackActor );
-	}
-	inline gtuint GetAttackActorCount() {
-		return mAttackToActors.GetSize();
-	}
-	inline bool IsMoreAttack() {
-		return mAttackToActors.GetSize() >= GetEnableAttackCount();
+	inline void SetIsWaitEndAttackAni(bool val) {
+		SetBit( val, MASK_WAITATTACKANI );
 	}
 };
 

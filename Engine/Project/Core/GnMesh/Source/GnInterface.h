@@ -6,31 +6,34 @@ class GnInterface : public GnSmartObject
 	GnDeclareFlags(guint32);
 	enum
 	{
-		MASK_PUSH = 0x000001,
-		MASK_HOVER = 0x000002,
-		MASK_DISABLE = 0x000004,
-		MASK_CANTPUSH = 0x000008, 
+		MASK_HOVER = 0x000001,
+		MASK_DISABLE = 0x000002,
+		MASK_CANTPUSH = 0x000004, 
+		MASK_ENABLEPUSHMOVE = 0x000008,
 	};
 	
 protected:
 	GnFRect mRect;
 	GnVector2 mPosition;
 	GnInterfaceNode mParentUseNode;
+	gtuint mPushCount;
+	Gn2DMeshObjectPtr mpsDefaultMesh;
 	
 public:
 	GnInterface();
+	bool CreateDefaultImage(const gchar* pcImageName);
 	
 public:
 	virtual bool Push(float fPointX, float fPointY);
 	virtual void Pushup(float fPointX, float fPointY);
+	virtual bool PushMove(float fPointX, float fPointY);
 	
-public:
 	virtual inline void AddChild(GnInterface* pChild) {}
 	virtual inline void Update(float fDeltaTime) {}
 	virtual inline gtuint GetChildrenSize() {
 		return 0;
 	}
-	inline virtual GnInterface* GetChild(gtuint uiIndex) {
+	virtual inline GnInterface* GetChild(gtuint uiIndex) {
 		return NULL;
 	}
 	virtual inline void SetIsCantPush(bool val) {
@@ -40,15 +43,22 @@ public:
 		SetBit( val, MASK_DISABLE );
 	}
 public:
+	GNFORCEINLINE bool IfUseCheckCollision(float fPointX, float fPointY)
+	{
+		if( IsDisable() || IsCantPush() )
+			return false;	
+		
+		if( mRect.ContainsPoint(fPointX, fPointY) == false )
+			return false;
+		
+		return true;
+	}
 	inline GnInterfaceNode* GetParentUseNode()
 	{
 		return &mParentUseNode;
 	}
 	inline bool IsPush() {
-		return GetBit( MASK_PUSH );
-	}
-	inline void SetIsPush(bool val) {
-		SetBit( val, MASK_PUSH );
+		return GetPushCount() != 0;
 	}
 	inline bool IsHover() {
 		return GetBit( MASK_HOVER );
@@ -61,7 +71,24 @@ public:
 	}
 	inline bool IsDisable() {
 		return GetBit( MASK_DISABLE );
-	}	
+	}
+	inline bool IsEnablePushMove() {
+		return GetBit( MASK_ENABLEPUSHMOVE );
+	}
+	inline void SetIsEnablePushMove(bool val) {
+		SetBit( val, MASK_ENABLEPUSHMOVE );
+	}
+	inline gtuint GetPushCount() {
+		return mPushCount;
+	}
+	inline gtuint AddPushCount() {
+		return ++mPushCount;
+	}
+	inline gtuint SubPushCount() {
+		if( mPushCount > 0 )
+			--mPushCount;
+		return mPushCount;
+	}
 	inline GnFRect& GetRect() {
 		return mRect;
 	}
@@ -91,9 +118,14 @@ public:
 		GnVector2 ret( size.width, size.height );
 		return ret;
 	}
-	
 protected:
-	virtual void SetPosition(GnVector2& cPos) = 0;
+	void AddMeshToParentNode(Gn2DMeshObject* pChild);
+	void AddToParentNode(GnInterfaceNode* pNode);
+protected:
+	virtual inline void SetPosition(GnVector2& cPos) {
+		if( mpsDefaultMesh )
+			mpsDefaultMesh->SetPosition( cPos );
+	};
 	
 protected:
 	inline void SetContentSize(float fWidth, float fHeight) {

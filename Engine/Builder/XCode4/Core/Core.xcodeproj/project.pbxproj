@@ -16,6 +16,8 @@
 		210F61D913BAB1B900D546B9 /* GMainGameMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 210F61D713BAB1B000D546B9 /* GMainGameMove.h */; };
 		210F61DA13BAB1B900D546B9 /* GMainGameMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F61D513BAB1A000D546B9 /* GMainGameMove.cpp */; };
 		210F61DC13BAE29D00D546B9 /* GCollectComponentHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */; };
+		211046BD13D035BD003CF0FB /* GnIProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 211046BC13D035BD003CF0FB /* GnIProgressBar.h */; };
+		211046C013D035CB003CF0FB /* GnIProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211046BF13D035CB003CF0FB /* GnIProgressBar.cpp */; };
 		212FB7F413B5D04D00F2F597 /* GInfoEnemyBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 212FB7F313B5D04C00F2F597 /* GInfoEnemyBasic.h */; };
 		212FB7F613B5D06400F2F597 /* GInfoEnemyBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212FB7F513B5D06400F2F597 /* GInfoEnemyBasic.cpp */; };
 		213787E713BBED200025E1CC /* GnICoolTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 213787E613BBED200025E1CC /* GnICoolTime.h */; };
@@ -53,6 +55,14 @@
 		2164978913B763260023E03A /* GUserController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2164978713B763260023E03A /* GUserController.h */; };
 		2164978B13B763CC0023E03A /* GUserCtlrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2164978A13B763CC0023E03A /* GUserCtlrManager.cpp */; };
 		2164978D13B763D60023E03A /* GUserCtlrManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2164978C13B763D60023E03A /* GUserCtlrManager.h */; };
+		2182A22E13CAD1D000D71952 /* GExtraData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2182A22813CAD1D000D71952 /* GExtraData.cpp */; };
+		2182A22F13CAD1D000D71952 /* GExtraData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2182A22913CAD1D000D71952 /* GExtraData.h */; };
+		2182A23013CAD1D000D71952 /* Gn2DMeshData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2182A22A13CAD1D000D71952 /* Gn2DMeshData.cpp */; };
+		2182A23113CAD1D000D71952 /* Gn2DMeshData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2182A22B13CAD1D000D71952 /* Gn2DMeshData.h */; };
+		2182A23213CAD1D000D71952 /* Gn2DTextureAniCtlr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2182A22C13CAD1D000D71952 /* Gn2DTextureAniCtlr.cpp */; };
+		2182A23313CAD1D000D71952 /* Gn2DTextureAniCtlr.h in Headers */ = {isa = PBXBuildFile; fileRef = 2182A22D13CAD1D000D71952 /* Gn2DTextureAniCtlr.h */; };
+		2182A23613CAD21800D71952 /* GnExtraData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2182A23413CAD21800D71952 /* GnExtraData.cpp */; };
+		2182A23713CAD21800D71952 /* GnExtraData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2182A23513CAD21800D71952 /* GnExtraData.h */; };
 		21881F2A13C015F500BBE5B6 /* GActionAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 21881F2913C015F500BBE5B6 /* GActionAttack.h */; };
 		21881F2D13C0160300BBE5B6 /* GActionAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21881F2C13C0160300BBE5B6 /* GActionAttack.cpp */; };
 		21881F3213C072AA00BBE5B6 /* GActionStand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21881F3013C0644F00BBE5B6 /* GActionStand.cpp */; };
@@ -67,6 +77,8 @@
 		2190931413B975CC0016F301 /* GnInterfacePCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 2190931313B975CC0016F301 /* GnInterfacePCH.h */; };
 		2190931613B99D780016F301 /* GLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2190931513B99D780016F301 /* GLayer.cpp */; };
 		2190931B13B9B57A0016F301 /* GnIInputEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2190931913B9B5710016F301 /* GnIInputEvent.h */; };
+		2196F95C13CDA523009D581E /* GActionDamage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2196F95B13CDA522009D581E /* GActionDamage.cpp */; };
+		2196F95F13CDA53A009D581E /* GActionDamage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2196F95E13CDA539009D581E /* GActionDamage.h */; };
 		219E90C113B20BB600F800FE /* GInfoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219E90C013B20BB600F800FE /* GInfoBasic.cpp */; };
 		21A66B0113B21A3700E839A0 /* GnGamePCH.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A66B0013B21A3700E839A0 /* GnGamePCH.h */; };
 		21A66B0713B229F700E839A0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21A66B0613B229F700E839A0 /* libsqlite3.dylib */; };
@@ -80,6 +92,10 @@
 		21BECB9813BC56D600C5355C /* GMainGameEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BECB9713BC56D600C5355C /* GMainGameEnvironment.h */; };
 		21C957DB13AADCBC00978181 /* GnTSimpleArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C957DA13AADCBC00978181 /* GnTSimpleArray.h */; };
 		21C957E313AB2BFD00978181 /* GnPathUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C957E213AB2BFD00978181 /* GnPathUtil.h */; };
+		21D2FAA713CF18A400B81589 /* GEnergyBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D2FAA613CF18A400B81589 /* GEnergyBar.h */; };
+		21D2FAA813CF18AE00B81589 /* GEnergyBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D2FAA413CF189600B81589 /* GEnergyBar.cpp */; };
+		21D2FB0313CF2A1C00B81589 /* GnINumberLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D2FB0213CF2A1C00B81589 /* GnINumberLabel.h */; };
+		21D2FB0513CF2A2A00B81589 /* GnINumberLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D2FB0413CF2A2900B81589 /* GnINumberLabel.cpp */; };
 		21D56B1013A9F294004893C2 /* GFileLIst.h in Headers */ = {isa = PBXBuildFile; fileRef = 2161AA3813A9D77D002CE952 /* GFileLIst.h */; };
 		21D56B1113A9F29C004893C2 /* GFileList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2161AA3A13A9D79F002CE952 /* GFileList.cpp */; };
 		21D7FDE213A1F9F500CE0D46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */; };
@@ -287,6 +303,10 @@
 		21E01BE813BD910E002EBB55 /* GInterfaceLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E01BE413BD910E002EBB55 /* GInterfaceLayer.h */; };
 		21E01BF213BD9450002EBB55 /* GMainGameInterfaceLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E01BF013BD944B002EBB55 /* GMainGameInterfaceLayer.h */; };
 		21E01BF313BD9450002EBB55 /* GMainGameInterfaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E01BEE13BD943B002EBB55 /* GMainGameInterfaceLayer.cpp */; };
+		21E91BA713CEA3D200641F22 /* GActionDie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */; };
+		21E91BA813CEA3D200641F22 /* GActionDie.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AF5AA413CE8A4400EBF785 /* GActionDie.h */; };
+		21E91BAC13CEBA6400641F22 /* GActionAttackCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E91BAB13CEBA6400641F22 /* GActionAttackCheck.cpp */; };
+		21E91BAE13CEBA8400641F22 /* GActionAttackCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E91BAD13CEBA8300641F22 /* GActionAttackCheck.h */; };
 		21ECFFAB13B2AEEA00D3F12E /* GActorInfoDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ECFFAA13B2AEEA00D3F12E /* GActorInfoDatabase.cpp */; };
 		21ECFFAD13B2AF0900D3F12E /* GActorInfoDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 21ECFFA713B2AED400D3F12E /* GActorInfoDatabase.h */; };
 		21ECFFB213B2CC0800D3F12E /* GnPathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ECFFB013B2CC0800D3F12E /* GnPathUtil.cpp */; };
@@ -327,6 +347,8 @@
 		210F61D513BAB1A000D546B9 /* GMainGameMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameMove.cpp; sourceTree = "<group>"; };
 		210F61D713BAB1B000D546B9 /* GMainGameMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMainGameMove.h; sourceTree = "<group>"; };
 		210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCollectComponentHeader.h; sourceTree = "<group>"; };
+		211046BC13D035BD003CF0FB /* GnIProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnIProgressBar.h; sourceTree = "<group>"; };
+		211046BF13D035CB003CF0FB /* GnIProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnIProgressBar.cpp; sourceTree = "<group>"; };
 		212FB7F313B5D04C00F2F597 /* GInfoEnemyBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInfoEnemyBasic.h; sourceTree = "<group>"; };
 		212FB7F513B5D06400F2F597 /* GInfoEnemyBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInfoEnemyBasic.cpp; sourceTree = "<group>"; };
 		213787E613BBED200025E1CC /* GnICoolTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnICoolTime.h; sourceTree = "<group>"; };
@@ -366,6 +388,14 @@
 		2164978713B763260023E03A /* GUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUserController.h; sourceTree = "<group>"; };
 		2164978A13B763CC0023E03A /* GUserCtlrManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUserCtlrManager.cpp; sourceTree = "<group>"; };
 		2164978C13B763D60023E03A /* GUserCtlrManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUserCtlrManager.h; sourceTree = "<group>"; };
+		2182A22813CAD1D000D71952 /* GExtraData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GExtraData.cpp; sourceTree = "<group>"; };
+		2182A22913CAD1D000D71952 /* GExtraData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GExtraData.h; sourceTree = "<group>"; };
+		2182A22A13CAD1D000D71952 /* Gn2DMeshData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DMeshData.cpp; sourceTree = "<group>"; };
+		2182A22B13CAD1D000D71952 /* Gn2DMeshData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DMeshData.h; sourceTree = "<group>"; };
+		2182A22C13CAD1D000D71952 /* Gn2DTextureAniCtlr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gn2DTextureAniCtlr.cpp; sourceTree = "<group>"; };
+		2182A22D13CAD1D000D71952 /* Gn2DTextureAniCtlr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gn2DTextureAniCtlr.h; sourceTree = "<group>"; };
+		2182A23413CAD21800D71952 /* GnExtraData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnExtraData.cpp; sourceTree = "<group>"; };
+		2182A23513CAD21800D71952 /* GnExtraData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnExtraData.h; sourceTree = "<group>"; };
 		21881F2913C015F500BBE5B6 /* GActionAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionAttack.h; sourceTree = "<group>"; };
 		21881F2C13C0160300BBE5B6 /* GActionAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionAttack.cpp; sourceTree = "<group>"; };
 		21881F2E13C0641500BBE5B6 /* GActionStand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionStand.h; sourceTree = "<group>"; };
@@ -380,6 +410,8 @@
 		2190931313B975CC0016F301 /* GnInterfacePCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnInterfacePCH.h; sourceTree = "<group>"; };
 		2190931513B99D780016F301 /* GLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLayer.cpp; sourceTree = "<group>"; };
 		2190931913B9B5710016F301 /* GnIInputEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnIInputEvent.h; sourceTree = "<group>"; };
+		2196F95B13CDA522009D581E /* GActionDamage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionDamage.cpp; sourceTree = "<group>"; };
+		2196F95E13CDA539009D581E /* GActionDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionDamage.h; sourceTree = "<group>"; };
 		219E90C013B20BB600F800FE /* GInfoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInfoBasic.cpp; sourceTree = "<group>"; };
 		21A66B0013B21A3700E839A0 /* GnGamePCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnGamePCH.h; sourceTree = "<group>"; };
 		21A66B0613B229F700E839A0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -387,12 +419,18 @@
 		21A66B1313B245FB00E839A0 /* GnPlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnPlatformConfig.h; sourceTree = "<group>"; };
 		21AE915713B3100500AB2CCC /* GInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInfo.h; sourceTree = "<group>"; };
 		21AE915913B312EF00AB2CCC /* Ginfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ginfo.cpp; sourceTree = "<group>"; };
+		21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionDie.cpp; sourceTree = "<group>"; };
+		21AF5AA413CE8A4400EBF785 /* GActionDie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionDie.h; sourceTree = "<group>"; };
 		21BECB9013BC568400C5355C /* GGameEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameEnvironment.h; sourceTree = "<group>"; };
 		21BECB9313BC568C00C5355C /* GGameEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GGameEnvironment.cpp; sourceTree = "<group>"; };
 		21BECB9513BC56C900C5355C /* GMainGameEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameEnvironment.cpp; sourceTree = "<group>"; };
 		21BECB9713BC56D600C5355C /* GMainGameEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMainGameEnvironment.h; sourceTree = "<group>"; };
 		21C957DA13AADCBC00978181 /* GnTSimpleArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnTSimpleArray.h; sourceTree = "<group>"; };
 		21C957E213AB2BFD00978181 /* GnPathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnPathUtil.h; sourceTree = "<group>"; };
+		21D2FAA413CF189600B81589 /* GEnergyBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GEnergyBar.cpp; sourceTree = "<group>"; };
+		21D2FAA613CF18A400B81589 /* GEnergyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEnergyBar.h; sourceTree = "<group>"; };
+		21D2FB0213CF2A1C00B81589 /* GnINumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnINumberLabel.h; sourceTree = "<group>"; };
+		21D2FB0413CF2A2900B81589 /* GnINumberLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnINumberLabel.cpp; sourceTree = "<group>"; };
 		21D7FDD313A1F8BA00CE0D46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		21D7FDE113A1F9F500CE0D46 /* libGnSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGnSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D7FDE513A1F9F500CE0D46 /* GnSystem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GnSystem-Prefix.pch"; sourceTree = "<group>"; };
@@ -603,6 +641,8 @@
 		21E01BE413BD910E002EBB55 /* GInterfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInterfaceLayer.h; sourceTree = "<group>"; };
 		21E01BEE13BD943B002EBB55 /* GMainGameInterfaceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameInterfaceLayer.cpp; sourceTree = "<group>"; };
 		21E01BF013BD944B002EBB55 /* GMainGameInterfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMainGameInterfaceLayer.h; sourceTree = "<group>"; };
+		21E91BAB13CEBA6400641F22 /* GActionAttackCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionAttackCheck.cpp; sourceTree = "<group>"; };
+		21E91BAD13CEBA8300641F22 /* GActionAttackCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionAttackCheck.h; sourceTree = "<group>"; };
 		21ECFFA713B2AED400D3F12E /* GActorInfoDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActorInfoDatabase.h; sourceTree = "<group>"; };
 		21ECFFAA13B2AEEA00D3F12E /* GActorInfoDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActorInfoDatabase.cpp; sourceTree = "<group>"; };
 		21ECFFB013B2CC0800D3F12E /* GnPathUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnPathUtil.cpp; sourceTree = "<group>"; };
@@ -641,8 +681,10 @@
 		215F230F13B202FA003FF8CD /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				2182A22813CAD1D000D71952 /* GExtraData.cpp */,
+				2182A22913CAD1D000D71952 /* GExtraData.h */,
 				215F231113B203DB003FF8CD /* Actors */,
-				215F231013B203BE003FF8CD /* Scene&Layer */,
+				215F231013B203BE003FF8CD /* Scene&Layer&GameInterface */,
 				21E01BDB13BD5C88002EBB55 /* GMainGameInterface.cpp */,
 				21E01BD913BD5C7A002EBB55 /* GMainGameInterface.h */,
 				21E01BD713BD5C6C002EBB55 /* GInterface.cpp */,
@@ -664,9 +706,11 @@
 			path = ../../../../Project/Core/GnMesh/Source;
 			sourceTree = "<group>";
 		};
-		215F231013B203BE003FF8CD /* Scene&Layer */ = {
+		215F231013B203BE003FF8CD /* Scene&Layer&GameInterface */ = {
 			isa = PBXGroup;
 			children = (
+				21D2FAA413CF189600B81589 /* GEnergyBar.cpp */,
+				21D2FAA613CF18A400B81589 /* GEnergyBar.h */,
 				21E01BEE13BD943B002EBB55 /* GMainGameInterfaceLayer.cpp */,
 				21E01BF013BD944B002EBB55 /* GMainGameInterfaceLayer.h */,
 				21E01BE313BD910E002EBB55 /* GInterfaceLayer.cpp */,
@@ -678,7 +722,7 @@
 				215F22FE13B1FD44003FF8CD /* GScene.cpp */,
 				215F22FF13B1FD44003FF8CD /* GScene.h */,
 			);
-			name = "Scene&Layer";
+			name = "Scene&Layer&GameInterface";
 			sourceTree = "<group>";
 		};
 		215F231113B203DB003FF8CD /* Actors */ = {
@@ -706,6 +750,7 @@
 		215F231213B20A18003FF8CD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */,
 				21AE915913B312EF00AB2CCC /* Ginfo.cpp */,
 				21AE915713B3100500AB2CCC /* GInfo.h */,
 				219E90C013B20BB600F800FE /* GInfoBasic.cpp */,
@@ -724,7 +769,12 @@
 				21881F2E13C0641500BBE5B6 /* GActionStand.h */,
 				21881F2C13C0160300BBE5B6 /* GActionAttack.cpp */,
 				21881F2913C015F500BBE5B6 /* GActionAttack.h */,
-				210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */,
+				21E91BAB13CEBA6400641F22 /* GActionAttackCheck.cpp */,
+				21E91BAD13CEBA8300641F22 /* GActionAttackCheck.h */,
+				2196F95B13CDA522009D581E /* GActionDamage.cpp */,
+				2196F95E13CDA539009D581E /* GActionDamage.h */,
+				21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */,
+				21AF5AA413CE8A4400EBF785 /* GActionDie.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -747,6 +797,8 @@
 		219092FE13B96E400016F301 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				211046BF13D035CB003CF0FB /* GnIProgressBar.cpp */,
+				211046BC13D035BD003CF0FB /* GnIProgressBar.h */,
 				2190931913B9B5710016F301 /* GnIInputEvent.h */,
 				2190930D13B973330016F301 /* GnInterfaceGroup.cpp */,
 				2190930B13B973270016F301 /* GnInterfaceGroup.h */,
@@ -756,6 +808,8 @@
 				213787E613BBED200025E1CC /* GnICoolTime.h */,
 				2190930113B96E8E0016F301 /* GnIButton.cpp */,
 				219092FF13B96E730016F301 /* GnIButton.h */,
+				21D2FB0413CF2A2900B81589 /* GnINumberLabel.cpp */,
+				21D2FB0213CF2A1C00B81589 /* GnINumberLabel.h */,
 				2190931113B975580016F301 /* GnInterfaceHeader.h */,
 				2190931313B975CC0016F301 /* GnInterfacePCH.h */,
 			);
@@ -938,6 +992,8 @@
 		21D7FE6513A1FB3A00CE0D46 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2182A23413CAD21800D71952 /* GnExtraData.cpp */,
+				2182A23513CAD21800D71952 /* GnExtraData.h */,
 				21D7FE6613A1FB3A00CE0D46 /* Gn2DBackBuffer.cpp */,
 				21D7FE6713A1FB3A00CE0D46 /* Gn2DBackBuffer.h */,
 				21D7FE6813A1FB3A00CE0D46 /* Gn2DTransform.cpp */,
@@ -1019,6 +1075,10 @@
 			isa = PBXGroup;
 			children = (
 				21C957E413AB2C0F00978181 /* Platform */,
+				2182A22A13CAD1D000D71952 /* Gn2DMeshData.cpp */,
+				2182A22B13CAD1D000D71952 /* Gn2DMeshData.h */,
+				2182A22C13CAD1D000D71952 /* Gn2DTextureAniCtlr.cpp */,
+				2182A22D13CAD1D000D71952 /* Gn2DTextureAniCtlr.h */,
 				21D7FF1713A1FB4900CE0D46 /* GnGameState.cpp */,
 				21D7FF1813A1FB4900CE0D46 /* GnGameState.h */,
 				21D7FEF513A1FB4900CE0D46 /* Gg2DCollision.cpp */,
@@ -1192,6 +1252,7 @@
 				21D7FEF113A1FB3A00CE0D46 /* GnTransform.h in Headers */,
 				21D7FEF213A1FB3A00CE0D46 /* GnVector2.h in Headers */,
 				21D7FEF313A1FB3A00CE0D46 /* GnVector3.h in Headers */,
+				2182A23713CAD21800D71952 /* GnExtraData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1280,6 +1341,15 @@
 				21881F2A13C015F500BBE5B6 /* GActionAttack.h in Headers */,
 				21881F3313C072AA00BBE5B6 /* GActionStand.h in Headers */,
 				21462E9213C0EE0300AEA3B7 /* GCurrentActorInfo.h in Headers */,
+				2182A22F13CAD1D000D71952 /* GExtraData.h in Headers */,
+				2182A23113CAD1D000D71952 /* Gn2DMeshData.h in Headers */,
+				2182A23313CAD1D000D71952 /* Gn2DTextureAniCtlr.h in Headers */,
+				2196F95F13CDA53A009D581E /* GActionDamage.h in Headers */,
+				21E91BA813CEA3D200641F22 /* GActionDie.h in Headers */,
+				21E91BAE13CEBA8400641F22 /* GActionAttackCheck.h in Headers */,
+				21D2FAA713CF18A400B81589 /* GEnergyBar.h in Headers */,
+				21D2FB0313CF2A1C00B81589 /* GnINumberLabel.h in Headers */,
+				211046BD13D035BD003CF0FB /* GnIProgressBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,6 +1541,7 @@
 				21D7FEEE13A1FB3A00CE0D46 /* GnTimeController.cpp in Sources */,
 				21D7FEF013A1FB3A00CE0D46 /* GnTransform.cpp in Sources */,
 				213787F013BC0FD40025E1CC /* GnColor.cpp in Sources */,
+				2182A23613CAD21800D71952 /* GnExtraData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,6 +1621,15 @@
 				21E01BF313BD9450002EBB55 /* GMainGameInterfaceLayer.cpp in Sources */,
 				21881F2D13C0160300BBE5B6 /* GActionAttack.cpp in Sources */,
 				21881F3213C072AA00BBE5B6 /* GActionStand.cpp in Sources */,
+				2182A22E13CAD1D000D71952 /* GExtraData.cpp in Sources */,
+				2182A23013CAD1D000D71952 /* Gn2DMeshData.cpp in Sources */,
+				2182A23213CAD1D000D71952 /* Gn2DTextureAniCtlr.cpp in Sources */,
+				2196F95C13CDA523009D581E /* GActionDamage.cpp in Sources */,
+				21E91BA713CEA3D200641F22 /* GActionDie.cpp in Sources */,
+				21E91BAC13CEBA6400641F22 /* GActionAttackCheck.cpp in Sources */,
+				21D2FAA813CF18AE00B81589 /* GEnergyBar.cpp in Sources */,
+				21D2FB0513CF2A2A00B81589 /* GnINumberLabel.cpp in Sources */,
+				211046C013D035CB003CF0FB /* GnIProgressBar.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1700,6 +1780,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_FILE32API,
+					GL_GLEXT_PROTOTYPES,
+					TARGET_OS_IPHONE,
 					"DEBUG=1",
 					"$(inherited)",
 					GNDEBUG,
@@ -1724,7 +1807,12 @@
 				DSTROOT = /tmp/GnMesh.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = GNRELEASE;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_FILE32API,
+					GL_GLEXT_PROTOTYPES,
+					TARGET_OS_IPHONE,
+					GNRELEASE,
+				);
 				HEADER_SEARCH_PATHS = (
 					"../../../../SDK/include/cocos2d-x/cocos2dx",
 					"../../../../SDK/include/cocos2d-x/cocos2dx/platform",
@@ -1792,7 +1880,12 @@
 				DSTROOT = /tmp/GnMesh.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GnMesh/GnMesh-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = GNLOG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_FILE32API,
+					GL_GLEXT_PROTOTYPES,
+					TARGET_OS_IPHONE,
+					GNLOG,
+				);
 				HEADER_SEARCH_PATHS = (
 					"../../../../SDK/include/cocos2d-x/cocos2dx",
 					"../../../../SDK/include/cocos2d-x/cocos2dx/platform",

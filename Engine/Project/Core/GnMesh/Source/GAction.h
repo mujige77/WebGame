@@ -21,6 +21,9 @@ public:
 		ACTION_MOVE,
 		ACTION_STAND,
 		ACTION_ATTACK,
+		ACTION_ATTACKCHECK,
+		ACTION_DAMAGE,
+		ACTION_DIE,
 		ACTION_MAX,
 	};
 private:
@@ -39,12 +42,15 @@ public:
 	inline GActorController* GetController() {
 		return mpController;
 	}
-	inline virtual bool IsEnableMove() {
-		return true;
-	}
+
 
 public:
-	virtual void AttachCompentToController() = 0;
+	virtual void AttachActionToController() = 0;
+	virtual inline void DetachActionToController() {		
+	};
+	 virtual inline bool IsEnableMove() {
+		return true;
+	}
 };
 
 #endif

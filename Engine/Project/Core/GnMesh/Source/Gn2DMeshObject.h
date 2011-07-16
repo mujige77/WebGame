@@ -15,7 +15,7 @@ public:
 
 protected:
 	Gn2DMeshObject* mpParent;	
-	GnReal2DMesh*mpMesh;
+	GnReal2DMesh* mpMesh;
 	Gn2DAVDataPtr mpsAVData;
 	GnVector2 mOriginalPosition;
 
@@ -25,6 +25,7 @@ public:
 	static Gn2DMeshObject* CreateFromTextureFile(const gchar* pcFilePath);
 	static Gn2DMeshObject* Create(bool bUseGn2DMeshData);
 	static Gn2DMeshObject* Create(const gchar* pcFilePath, bool bUseGn2DMeshData);
+	static Gn2DMeshObject* CreateFullPath(const gchar* pcFullPath, bool bUseGn2DMeshData);
 	
 	void SetMesh(GnReal2DMesh* pMesh);
 	void SetAVData(Gn2DAVData* val);
@@ -80,11 +81,14 @@ public:
 
 		return GnVector2( pos.x + size.width, pos.y + size.height );;
 	}
-	inline float GetAlpha() {
+	inline guchar GetAlpha() {
 		return mpMesh->getOpacity();
 	}
 	inline void SetAlpha(float val) {
 		mpMesh->setOpacity( (GLubyte)(val * 255) );
+	}
+	inline void SetAlpha(guchar val) {
+		mpMesh->setOpacity( val );
 	}
 	inline void SetColor(GnColor cColor) {
 		mpMesh->setColor( ccc3( (GLubyte)(cColor.r * 255), (GLubyte)(cColor.g * 255.0f)
@@ -103,6 +107,14 @@ public:
 	inline GnVector2 GetSize() {
 		CCSize size = mpMesh->getContentSize();
 		return GnVector2( size.width, size.height );
+	}
+	inline gint32 GetZOrder() {
+		return mpMesh->getZOrder();
+	}
+	inline GnVector2 GetFlipCenter() {
+		if( GetAVData() )
+			return GetAVData()->GetImageCenter();
+		return GnVector2( 0.0f, 0.0f );
 	}
 
 protected:

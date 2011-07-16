@@ -26,7 +26,7 @@ static inline void StartupEBM()
 	GnMainEBM::StartupEBM();
 	GnMeshEBM::StartupEBM();
 	
-	gFilePath = GetFullPath( "./Data" );
+	gFilePath = GetFullPath( "Data" );
 	gFilePath += "/";
 	GnTexture::SetTextureWorkPath( gFilePath.c_str() );
 	GnSystem::SetWorkDirectory( gFilePath.c_str() );

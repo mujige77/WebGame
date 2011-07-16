@@ -13,6 +13,11 @@ public:
 		GnAnimationKey::eKeyType mKeyType;
 		guint32 mNumKey;
 		GnAnimationKey* mAnimationKeys;
+		
+	public:
+		inline GnAnimationKey* GetAniKey() {
+			return mAnimationKeys;
+		}
 	};
 
 private:
@@ -22,7 +27,13 @@ public:
 	GnAnimationKeyManager(){};
 	virtual ~GnAnimationKeyManager();
 
-
+public:
+	gtuint GetAnimationKeySize() {
+		return mAnimationKeys.GetSize();
+	}
+	AniKey* GetAnimationKey(gtuint uiIndex){
+		return &mAnimationKeys.GetAt( uiIndex );
+	}
 
 	// 툴 때문에 만든 것임
 public:

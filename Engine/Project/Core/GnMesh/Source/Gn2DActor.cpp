@@ -38,13 +38,13 @@ Gn2DActor* Gn2DActor::Create(GnActorTool* pActorTool, GnObjectStream& stream, bo
 	return pActor;
 }
 Gn2DActor::Gn2DActor() : mpsActorTool(NULL), mpsRootNode(NULL), mpCurrentSequence(NULL)
-	, mpCallbackEventSlot( NULL )
+	, mpCallbackEventSlot( NULL ), mSendedAniKeyEvent( 5 )
 {
 
 }
 Gn2DActor::Gn2DActor(GnActorTool* pActorTool, Gn2DMeshObject* pRootObject) : mpsActorTool(pActorTool)
 	, mpsRootNode(pRootObject), mpCurrentSequence(NULL), mSequenceAccumulateDeltaTime( 0.0f )
-	, mpCallbackEventSlot( NULL )
+, mpCallbackEventSlot( NULL ), mSendedAniKeyEvent( 5 )
 {
 }
 
@@ -86,12 +86,43 @@ void Gn2DActor::Update(float fDeltaTime)
 					, mpCurrentSequence->GetEndTime() );
 				mpCallbackEventSlot->ReceiveSignal( &mTimeEvent );
 			}
-			if( mpCurrentSequence->IsLoop() )
-				mpCurrentSequence->Start( 0.0f );
 			
 			mSequenceAccumulateDeltaTime = 0.0f;
+			if( mpCurrentSequence->IsLoop() )
+			{
+				mpCurrentSequence->Start( 0.0f );
+			}
+			mSendedAniKeyEvent.RemoveAll();
+		}
+		else
+		{
+			UpdateTimeEvent( mSequenceAccumulateDeltaTime );
 		}
 	}
+}
+
+void Gn2DActor::UpdateTimeEvent(float fAccumTime)
+{
+	if( mpCallbackEventSlot == NULL )
+		return;
+	
+	GnAnimationKeyManager* aniKeyMng = mpCurrentSequence->GetAnimationKeyManager();
+	for ( gtuint i = 0; i < aniKeyMng->GetAnimationKeySize(); i++ )
+	{
+		GnAnimationKeyManager::AniKey* key = aniKeyMng->GetAnimationKey( i );
+		if( mSendedAniKeyEvent.Find( key ) != -1 )
+			continue;
+		GnAnimationKey* aniKey = key->GetAniKey();
+		if( aniKey->GetKeyTime() <= fAccumTime )
+		{
+			mSendedAniKeyEvent.Add( key );
+			mTimeEvent.SetTimeEvent( TimeEvent::ANIKEY, mCurrentID, mSequenceAccumulateDeltaTime
+									, mpCurrentSequence->GetEndTime() );
+			mTimeEvent.SetEventData( (void*)key );
+			mpCallbackEventSlot->ReceiveSignal( &mTimeEvent );
+		}
+	}
+	
 }
 
 bool Gn2DActor::SetTargetAnimation(guint32 uiID)
@@ -186,8 +217,12 @@ bool Gn2DActor::AddSequence(GnActorTool::SequenceInfo* pInfo, GnObjectStream& st
 	
 	Gn2DSequence* sequence = CreateSequenceFromFile( stream, pInfo->GetSequenceID() );
 	if( sequence == NULL )
+	{
+		stream.Close();
 		return false;
+	}
 	
+	stream.Close();	
 	ChangeSequence( pInfo->GetSequenceID(), sequence );
 	return true;
 }
@@ -198,7 +233,9 @@ Gn2DSequence* Gn2DActor::CreateSequenceFromFile(GnObjectStream& stream, guint32 
 	{
 		Gn2DSequence* sequence = GnDynamicCast( Gn2DSequence, stream.GetObject( i ) );
 		if( sequence && sequence->GetID() == uiID )
+		{
 			return sequence;
+		}
 	}
 	return NULL;
 }

@@ -1252,7 +1252,7 @@
 					"$(SRCROOT)/cocos2d-x/cocos2dx",
 					"$(SRCROOT)/cocos2d-x",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1273,7 +1273,7 @@
 					"$(SRCROOT)/cocos2d-x/cocos2dx",
 					"$(SRCROOT)/cocos2d-x",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1354,6 +1354,7 @@
 				2148B5F713A3204C00E0BD1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

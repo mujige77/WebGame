@@ -1,7 +1,7 @@
 #include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GActorCtlrManager.h"
-#include "GActionAttack.h"
+#include "GActionAttackCheck.h"
 GActorCtlrManager::GActorCtlrManager(GLayer* pLayer) : mpActorLayer( pLayer )
 {
 }
@@ -17,9 +17,8 @@ void GActorCtlrManager::Update(float fDeltaTime)
 		GActorController* actorCtlr = mActors.GetAt( i );
 		if( actorCtlr->IsDestory() )
 		{
-			mActors.RemoveAtAndFill( i );
+			RemoveAndDeleteActorCtlr( i );
 			--i;
-			GnDelete actorCtlr;
 		}
 		else
 		{
@@ -45,19 +44,56 @@ void GActorCtlrManager::Update(float fDeltaTime)
 //	pActorController->Start( postion );
 //}
 
-void GActorCtlrManager::CollisionCheck(GActorCtlrManager* pCheckCtlrManager)
+void GActorCtlrManager::ProcessAttack(GActorCtlrManager* pCheckCtlrManager)
 {
 	for ( gtuint i = 0; i < GetActorCtlrSize(); i++)
 	{
 		GActorController* actor = GetActorCtlr( i );
-		GActionAttack* attack = (GActionAttack*)actor->GetActionComponent( GAction::ACTION_ATTACK );
-		if( attack && attack->GetAttackActorCount() == 0 )
+		GActionAttackCheck* attackCheck = (GActionAttackCheck*)actor->GetCurrentAction( GAction::ACTION_ATTACKCHECK );
+		if( attackCheck )
 		{
-			for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
+			if( attackCheck->IsEnableAttack() )
 			{
-				if( attack->CollisionCheck( pCheckCtlrManager->GetActorCtlr( j ) ) && attack->IsMoreAttack() )
-					break;
+				if( SendAttackToEnemy( attackCheck, pCheckCtlrManager ) > 0 )
+					actor->RemoveCurrentAction( attackCheck->GetActionType() );
+			}
+			else if( attackCheck->IsReadyAttack() == false )
+			{
+				CollisionCheck( attackCheck, pCheckCtlrManager );
 			}
 		}
 	}
+}
+
+void GActorCtlrManager::CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager)
+{
+	for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
+	{
+		if( pAttackCheck->CollisionCheck( pCheckCtlrManager->GetActorCtlr( j ) ) )
+		{
+			pAttackCheck->SetIsReadyAttack( true );
+			break;
+		}
+	}	
+}
+gtuint GActorCtlrManager::SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager)
+{
+	gtuint numAttackCtrl = 0;
+	GActorController* attacksCtrl[GActionAttackCheck::MAX_ATTCK_COUNT] = { NULL, };
+	for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
+	{
+		GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
+		if( pAttackCheck->CollisionCheck( checkCtrl ) )
+		{
+			attacksCtrl[numAttackCtrl++] = checkCtrl;
+			if( pAttackCheck->GetEnableAttackCount() <= numAttackCtrl )
+				break;
+		}
+	}
+	
+	for( gtuint i = 0; i < numAttackCtrl; i++ )
+	{
+		attacksCtrl[i]->ReceiveAttack( pAttackCheck->GetController() );
+	}
+	return numAttackCtrl;
 }

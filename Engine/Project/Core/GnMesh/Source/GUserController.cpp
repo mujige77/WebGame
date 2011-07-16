@@ -5,6 +5,8 @@
 #include "GCollectComponentHeader.h"
 #include "GActionStand.h"
 #include "GActionAttack.h"
+#include "GActionDamage.h"
+#include "GActionAttackCheck.h"
 
 GUserController* GUserController::Create(const gchar* pcID, guint32 uiLevel)
 {
@@ -18,6 +20,13 @@ GUserController* GUserController::Create(const gchar* pcID, guint32 uiLevel)
 		return NULL;
 	}
 	return controller;
+}
+
+bool GUserController::InitController()
+{
+	mCallbackActorEventSlot.Initialize( this, &GUserController::ActorCallbackFunc );
+	GetActor()->SetCallbackEvent( &mCallbackActorEventSlot );
+	return true;
 }
 
 bool GUserController::InitInfoCompenent(const gchar* pcID, guint32 uiLevel)
@@ -41,17 +50,58 @@ bool GUserController::InitActionComponents()
 	moveAction->SetMoveRangeX( info->GetMoveRangeX() );
 	moveAction->SetNumLine( 0 );
 	
-	GAction* action = GnNew GActionStand( this );
-	SetActionComponent( action->GetActionType(), action );
-	
-	action = GnNew GActionAttack( this );
-	SetActionComponent( action->GetActionType(), action );
+	GetGameEnvironment()->CreateActorControllerBasicAction( this );
 	return true;
 }
 
 void GUserController::Start()
 {
 	GActorController::Start();
-	RemoveAllCurrentComponets();
-	GetActionComponent( GAction::ACTION_STAND )->AttachCompentToController();
+	RemoveAllCurrentAction();
+	AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
+}
+
+void GUserController::ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent)
+{
+	GnAssert( pEvent );
+	if( pEvent == NULL )
+		return;
+	
+	if( pEvent->GetEventType() == Gn2DActor::TimeEvent::ANIKEY )
+	{
+		if( pEvent->GetSequenceID() == GAction::ANI_ATTACK )
+			SetAttack( pEvent->GetSequenceID() );
+		return;
+	}
+	else if( pEvent->GetEventType() == Gn2DActor::TimeEvent::END_SEQUENCE )
+	{
+		if( pEvent->GetSequenceID() == GAction::ANI_ATTACK )
+			SetEndAttack();
+		if( pEvent->GetSequenceID() == GAction::ANI_DIE )
+			SetEndDie();
+	}
+}
+
+void GUserController::MoveStopCheck()
+{
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	if( attackCheck && attackCheck->IsReadyAttack() )
+	{
+		GetGameEnvironment()->RemoveBasicCurrentAction( this );
+		AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
+		return;
+	}
+	
+	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
+	if( move )
+	{
+		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
+		{
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
+			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )
+				AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
+		}
+		SetPosition( GetMovePosition() );
+	}
 }

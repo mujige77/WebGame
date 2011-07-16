@@ -8,6 +8,7 @@ class GAction;
 
 class GActorController : public GnMemoryObject
 {
+	friend class GGameEnvironment;
 	GnDeclareFlags( guint32 );
 	enum
 	{
@@ -25,7 +26,17 @@ private:
 	GnVector2 mStrides;
 	GnVector2 mMovePosition;
 	
-	
+#ifdef GNDEBUG
+	GLayer* mpDegubLayer;
+public:
+	GLayer* GetDebugLayer() {
+		return mpDegubLayer;
+	}
+	void SetDebugLayer(GLayer* pDebugLayer)	{
+		mpDegubLayer = pDebugLayer;
+	}
+#endif
+		
 protected:
 	static void GetFullActorFilePath(const gchar* pcID, gstring& pcOutPath);
 	
@@ -38,8 +49,10 @@ public:
 	void RemoveAllActionComponets();
 	bool IsEnableMove();
 	void AddCurrentAction(GAction* pComponent);
+	void RemoveCurrentAction(gtuint uiIndex);
+	void RemoveAllCurrentAction();
 	void ReceiveAttack(GActorController* pFromActor);
-		
+	
 public:
 	virtual inline void SetPosition(GnVector2& pos) {
 		GetMesh()->SetPosition( pos );
@@ -48,12 +61,7 @@ public:
 
 	
 public:
-	inline void RemoveAllCurrentComponets() {
-		mCurrentActions.RemoveAll();
-	}
-	inline void RemoveCurrentComponent(gtuint uiIndex) {
-		mCurrentActions.SetAt( uiIndex, NULL );
-	}
+	
 	inline gtuint GetCurrentActionCount() {
 		return mCurrentActions.GetSize();
 	}
@@ -89,13 +97,18 @@ public:
 	}
 
 protected:
-	bool LoadActor(const gchar* pcFilePath);
-	void MoveStopCheck();
+	bool LoadActor(const gchar* pcFilePath);	
+	void SetAttack(guint32 uiSequenceID);
+	void SetEndAttack();
+	void SetEndDie();
 	
 protected:
+	virtual void MoveStopCheck();
+	virtual void CallbackTimeEvent(Gn2DActor::TimeEvent* pTimeEvent);
+	virtual bool InitController() = 0;
 	virtual bool InitActionComponents() = 0;
 	virtual bool InitInfoCompenent(const gchar* pcID, guint32 uiLevel) = 0;
-	virtual void CallbackTimeEvent(Gn2DActor::TimeEvent* pTimeEvent);
+	virtual void ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent) = 0;
 	
 protected:
 	inline void SetInfoComponent(gtuint uiIndex, GInfo* pVal) {

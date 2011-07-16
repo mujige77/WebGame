@@ -12,6 +12,7 @@ public:
 	void RemoveChild(GnInterface* pObject);
 	
 public:
+	virtual inline void Update(float fTime) {};
 	virtual inline void MoveLayer(float fDeltaX, float fDeltaY){};
 	
 public:

@@ -18,18 +18,8 @@ void GActionMove::Update(float fDeltaTime)
 	GetController()->SetMovePosition( movePos );
 }
 
-void GActionMove::SetMove(gtuint uiType, bool bCleanMove)
+void GActionMove::SetMove(gtuint uiType)
 {
-	if( bCleanMove )
-	{
-		SetMoveLeft( false );
-		SetMoveRight( false );
-		SetMoveUp( false );
-		SetMoveDown( false );
-		mMoveVector.x = 0.0f;
-		mMoveVector.y = 0.0f;
-	}
-	
 	switch ( uiType )
 	{
 		case MOVELEFT:
@@ -56,5 +46,29 @@ void GActionMove::SetMove(gtuint uiType, bool bCleanMove)
 			SetMoveDown( true );
 		}
 		break;
+	}
+}
+
+void GActionMove::SetMoveX(bool bLeft, bool bRight)
+{		
+	if( bRight && bLeft == false )
+	{
+		SetMove( MOVERIGHT );
+	}
+	else if( bLeft && bRight == false )
+	{
+		SetMove( MOVELEFT );
+	}
+}
+
+void GActionMove::SetMoveY(bool bUp, bool bDown)
+{
+	if( bUp && bDown == false )
+	{
+		SetMove( MOVEUP );
+	}
+	else if( bDown && bUp == false )
+	{
+		SetMove( MOVEDOWN );
 	}
 }

@@ -31,38 +31,47 @@ void GLayer::RemoveChild(GnInterface* pObject)
 }
 
 void GLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
-{
-	CCSetIterator it = pTouches->begin();
-	CCTouch* touch = (CCTouch*)(*it);
-	CCPoint touchPoint = touch->locationInView( touch->view() );
-
-
-	for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
+{	
+	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
 	{
-		GnInterface* child = mInterfaceChildren.GetAt( i );
-		child->Push( touchPoint.x, touchPoint.y );
+		CCTouch* touch = (CCTouch*)(*it);
+		CCPoint touchPoint = touch->locationInView( touch->view() );
+		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mInterfaceChildren.GetAt( i );
+			if( child->Push( touchPoint.x, touchPoint.y ) )
+			{
+				break;
+			}
+		}
 	}
 }
 
 void GLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 {
-//	CCSetIterator it = pTouches->begin();
-//	CCTouch* touch = (CCTouch*)(*it);
-//	
-//	CCPoint touchPoint = touch->locationInView( touch->view() );
-//	if( mBackgroundRect.ContainsPoint( (gint)touchPoint.x, (gint)touchPoint.y ) == false )
-//		return;
+	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
+	{
+		CCTouch* touch = (CCTouch*)(*it);
+		CCPoint touchPoint = touch->locationInView( touch->view() );
+		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mInterfaceChildren.GetAt( i );
+			child->PushMove( touchPoint.x, touchPoint.y );
+		}
+	}
 }
 
 void GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 {
-	CCSetIterator it = pTouches->begin();
-	CCTouch* touch = (CCTouch*)(*it);
-	CCPoint touchPoint = touch->locationInView( touch->view() );
-	for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
+	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
 	{
-		GnInterface* child = mInterfaceChildren.GetAt( i );
-		child->Pushup( touchPoint.x, touchPoint.y );
+		CCTouch* touch = (CCTouch*)(*it);
+		CCPoint touchPoint = touch->locationInView( touch->view() );
+		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mInterfaceChildren.GetAt( i );
+			child->Pushup( touchPoint.x, touchPoint.y );
+		}
 	}
 }
 
@@ -91,7 +100,11 @@ void GDrawActorController::Draw()
 	}
 	
 	Gn2DSequence* attackSequence = NULL;
-	GnVerify( mpController->GetActor()->GetSequence( 3, attackSequence ) );
+	if( mpController->GetActor()->GetSequence( 3, attackSequence ) == false )
+	{
+		GnLogA( "Failed Load AttackSquence");
+		return;
+	}
 	Gn2DAVData* avDataAttack = attackSequence->GetAVData();
 	if( avDataAttack->GetCollisionCount() > 1 )
 	{

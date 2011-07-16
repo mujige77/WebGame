@@ -1,6 +1,7 @@
 #include "GnMeshPCH.h"
 #include "Gn2DMeshObject.h"
 #include "Gn2DMeshData.h"
+
 GnImplementRTTI( Gn2DMeshObject, GnObjectForm );
 Gn2DMeshObject::Gn2DMeshObject(GnReal2DMesh* pMesh) : mpMesh( pMesh ), mpParent( NULL )
 {
@@ -22,7 +23,7 @@ Gn2DMeshObject* Gn2DMeshObject::CreateFromTextureFile(const gchar* pcFilePath)
 	{
 		mesh = CCSprite::spriteWithFile( pcFilePath );
 		if( mesh == NULL )
-			return NULL;	
+			return NULL;
 	}
 	mesh->retain();
 	Gn2DMeshObject* meshObject = GnNew Gn2DMeshObject( mesh );
@@ -45,13 +46,17 @@ Gn2DMeshObject* Gn2DMeshObject::Create(bool bUseGn2DMeshData)
 
 Gn2DMeshObject* Gn2DMeshObject::Create(const gchar* pcFilePath, bool bUseGn2DMeshData)
 {
-	GnObjectStream stream;	
 	gchar gmFullFilePath[GN_MAX_PATH] = { 0, };
 	GnStrcpy( gmFullFilePath, GnSystem::GetWorkDirectory(), sizeof(gmFullFilePath) );
 	GnStrcat( gmFullFilePath, pcFilePath, sizeof(gmFullFilePath) );
+	return CreateFullPath( gmFullFilePath, bUseGn2DMeshData );
+}
 
+Gn2DMeshObject* Gn2DMeshObject::CreateFullPath(const gchar* pcFullPath, bool bUseGn2DMeshData)
+{
+	GnObjectStream stream;	
 	Gn2DMeshObject* meshObject = NULL;
-	if( stream.Load( gmFullFilePath ) )
+	if( stream.Load( pcFullPath ) )
 	{
 		meshObject = (Gn2DMeshObject*)stream.GetObject( 0 );
 		if( bUseGn2DMeshData )
@@ -90,7 +95,7 @@ void Gn2DMeshObject::AttachParent(Gn2DMeshObject* pParent)
 
 void Gn2DMeshObject::SetScale(float val)
 {
-	mpMesh->setScale( val * GetGameState()->GetGameScale() );
+	mpMesh->setScale( val );
 }
 
 void Gn2DMeshObject::SetPosition(GnVector2 val)
@@ -129,7 +134,8 @@ void Gn2DMeshObject::SetFlipX(bool val)
 		{			
 			GetAVData()->FlipX( val, GetOriginalPosition().x );
 		}
-	}	
+	}
+	
 	//if( mpsAVData )
 	//{
 	//	if( mpMesh->isFlipX() )

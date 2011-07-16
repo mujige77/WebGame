@@ -102,9 +102,9 @@ bool GGameScene::InitEnvironment()
 }
 void GGameScene::Update(float fDeltaTime)
 {
-	for ( gtuint i = 0 ; i < MAX_CTLRMANAGER ; i++)
+	for ( gtuint i = 0 ; i < MAX_LAYER ; i++)
 	{
-		mActorManage[i]->Update( fDeltaTime );
+		mLayers[i]->Update( fDeltaTime );
 	}
 	
 	for ( gtuint i = 0 ; i < MAX_CTLRMANAGER ; i++)
@@ -113,8 +113,12 @@ void GGameScene::Update(float fDeltaTime)
 		{
 			if( i == j )
 				continue;
-			mActorManage[i]->CollisionCheck( mActorManage[j] );
-
+			mActorManage[i]->ProcessAttack( mActorManage[j] );
+			
 		}
+	}
+	for ( gtuint i = 0 ; i < MAX_CTLRMANAGER ; i++)
+	{
+		mActorManage[i]->Update( fDeltaTime );
 	}
 }

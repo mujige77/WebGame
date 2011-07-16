@@ -9,6 +9,7 @@ private:
 	Gn2DMeshObjectPtr mpsBlindMesh;
 	Gn2DMeshObjectPtr mpsCoolTimeMesh;
 	float mCoolTime;
+	float mAcumtime;
 	
 public:
 	static GnICoolTime* Create(float fWidth, float fHeight);

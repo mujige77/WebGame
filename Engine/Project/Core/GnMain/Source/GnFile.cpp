@@ -22,9 +22,9 @@ GnFile* GnFile::GetFile(const gchar* strFileName, eOpenMode eMode, gtuint uiBuff
 		"rb",
 		"wb",
 		"ab",
-		"r+",
-		"w+",
-		"a+"
+		"r",
+		"w",
+		"a"
 	};
 	FILE* file = NULL;
 #ifdef WIN32

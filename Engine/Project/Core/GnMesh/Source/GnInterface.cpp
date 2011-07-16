@@ -2,29 +2,56 @@
 #include "GnInterfacePCH.h"
 #include "GnInterface.h"
 
-GnInterface::GnInterface()
+GnInterface::GnInterface() : mPushCount( 0 )
 {
-	SetIsPush( false );
 	SetIsHover( false );
 	SetIsCantPush( false );
 	SetIsDisable( false );	
+	SetIsEnablePushMove( false );
+	mParentUseNode.retain();
 }
 
 bool GnInterface::Push(float fPointX, float fPointY)
 {
-	if( IsDisable() || IsCantPush() )
-		return false;
-	
-	if( mRect.ContainsPoint(fPointX, fPointY) == false )
-	{
-		SetIsPush( false );
-		return false;
-	}
-
-	SetIsPush( true );
+	AddPushCount();
 	return true;
 }
+
 void GnInterface::Pushup(float fPointX, float fPointY)
 {
-	SetIsPush( false );
+	SubPushCount();
+}
+
+bool GnInterface::PushMove(float fPointX, float fPointY)
+{
+	if( IfUseCheckCollision( fPointX, fPointY ) == false )
+		return false;
+	
+	return true;
+}
+
+void GnInterface::AddMeshToParentNode(Gn2DMeshObject *pChild)
+{
+	GetParentUseNode()->addChild( pChild->GetMesh(), 0 );
+}
+
+void GnInterface::AddToParentNode(GnInterfaceNode* pNode)
+{
+	GetParentUseNode()->addChild( pNode, 0 );
+}
+
+bool GnInterface::CreateDefaultImage(const gchar* pcImageName)
+{
+	if( pcImageName == NULL )
+		mpsDefaultMesh = Gn2DMeshObject::Create( false );
+	else
+		mpsDefaultMesh = Gn2DMeshObject::CreateFromTextureFile( pcImageName );
+	
+	if( mpsDefaultMesh == NULL )
+		return  false;
+	
+	SetContentSize( mpsDefaultMesh->GetSize().x, mpsDefaultMesh->GetSize().y );
+	AddMeshToParentNode( mpsDefaultMesh );
+	SetPosition( GetPosition() );
+	return true;
 }

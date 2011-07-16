@@ -2,7 +2,8 @@
 #include "GnGamePCH.h"
 #include "GMainGameEnvironment.h"
 #include "GMainGameMove.h"
-#include "GActionAttack.h"
+#include "GActionAttackCheck.h"
+
 
 
 GMainGameEnvironment* GMainGameEnvironment::Create()
@@ -78,9 +79,9 @@ void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr,
 		numLine = rand() % GetLineCount();
 	}
 
-	GActionAttack* attack = (GActionAttack*)pActorCtlr->GetActionComponent( GAction::ACTION_ATTACK );
-	if( attack )
-		attack->SetAttackLine( numLine );
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)pActorCtlr->GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	if( attackCheck )
+		attackCheck->SetAttackLine( numLine );
 
 	GMainGameMove* moveAction = (GMainGameMove*)pActorCtlr->GetActionComponent( GAction::ACTION_MOVE );
 	moveAction->SetNumLine( numLine );

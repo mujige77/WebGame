@@ -1,6 +1,6 @@
 #include "HiroCatApplication.h"
 #include "cocos2d.h"
-#include "HelloWorldScene.h"
+//#include "HelloWorldScene.h"
 #include "GGameEBM.h"
 #include "GSceneSelector.h"
 #include "CCDirector.h"

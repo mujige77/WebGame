@@ -16,7 +16,6 @@ class GGameScene : public GScene
 	enum eLayerZorder
 	{
 		BACKGROUND_ZORDER = 99,
-		INTERFACE_ZORDER = 100,
 	};
 	enum eLayerType
 	{

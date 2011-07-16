@@ -33,13 +33,14 @@ public:
 	
 public:
 	virtual void Update(float fDeltaTime);
-	virtual void SetMove(gtuint uiType, bool bCleanMove);
+	virtual void SetMove(gtuint uiType);
+	virtual void SetMoveX(bool bLeft, bool bRight);
+	virtual void SetMoveY(bool bUp, bool bDown);
 	virtual inline gtint GetActionType() {
 		return ACTION_MOVE;
 	}
-	inline void AttachCompentToController()
+	inline void AttachActionToController()
 	{
-		GetController()->AddCurrentAction( this );
 		GetController()->GetActor()->SetTargetAnimation( ANI_WALK );
 	}
 public:
@@ -87,6 +88,14 @@ public:
 	}
 	inline void SetActorLayer(GLayer* pActorLayer) {
 		mpActorLayer = pActorLayer;
+	}	
+	GNFORCEINLINE void CleanMove() {
+		SetMoveLeft( false );
+		SetMoveRight( false );
+		SetMoveUp( false );
+		SetMoveDown( false );
+		mMoveVector.x = 0.0f;
+		mMoveVector.y = 0.0f;
 	}
 protected:
 	inline GLayer* GetActorLayer() {

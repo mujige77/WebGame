@@ -30,7 +30,7 @@
 #import "RootViewController.h"
 
 #include "HiroCatDirector.h"
-#include "HelloWorldScene.h"
+//#include "HelloWorldScene.h"
 #include "GGameEBM.h"
 
 @implementation AppController
@@ -48,15 +48,16 @@ static HiroCatApplication s_sharedApplication;
     EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
 										pixelFormat: kEAGLColorFormatRGBA8
 										depthFormat: GL_DEPTH_COMPONENT16_OES
-								 preserveBackbuffer: NO
-                                                                                 sharegroup:nil
-                                                                          multiSampling:NO
-                                                                    numberOfSamples:0];
+										preserveBackbuffer: NO
+										sharegroup:nil
+                                        multiSampling:NO
+                                        numberOfSamples:0];
     
     // Use RootViewController manage EAGLView 
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
     viewController.wantsFullScreenLayout = YES;
     viewController.view = __glView;
+	[__glView setMultipleTouchEnabled:YES];
 
     // Set RootViewController to window
     window.rootViewController = viewController;

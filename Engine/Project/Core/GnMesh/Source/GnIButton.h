@@ -1,44 +1,73 @@
 #ifndef __Core__GnIButton__
 #define __Core__GnIButton__
 
-class GnICoolTime;
+class GnIProgressBar;
 class GnIButton : public GnInterface
 {
+	GnDeclareFlags(gushort);
+	
+public:
+	enum
+	{
+		MASK_DEABLE_CANTPUSH_BLIND = 0x0001,
+		MASK_ENABLE_COOLTIME = 0x0002,
+	};
 public:
 	enum eButtonType
 	{
 		TYPE_NORMAL,
 		TYPE_PUSH,
 		TYPE_DISABLE,
+		TYPE_PROGRESSBACK,
+		TYPE_PROGRESS,
 		TYPE_MAX,
 	};
 	
-public:
-	Gn2DMeshObjectPtr mpsNormalMesh;
+protected:
 	Gn2DMeshObjectPtr mpsPushMesh;
 	Gn2DMeshObjectPtr mpsDisableMesh;
-	GnICoolTime* mpCoolTime;
+	GnIProgressBar* mpProgressTime;
 	GnSimpleString mMeshNames[TYPE_MAX];
-	float mCantPushTime;
 	
 public:
 	GnIButton(const gchar* pcDefaultImage, const gchar* pcClickImage = NULL
 		, const gchar* pcDisableImage = NULL, eButtonType eDefaultType = TYPE_NORMAL);
 	virtual ~GnIButton();
-	
-	bool CreateNormalImage(const gchar* pcImageName);
 	bool CreateClickImage(const gchar* pcImageName);
 	bool CreateDisableImage(const gchar* pcImageName);
-public:
+	void SetCoolTime(float fTime);
 
 public:
+	inline bool IsDisableCantpushBlind() {
+		return GetBit( MASK_DEABLE_CANTPUSH_BLIND );
+	}
+	inline void SetIsDisableCantpushBlind(bool val) {
+		return SetBit( val, MASK_DEABLE_CANTPUSH_BLIND );
+	}
+	inline bool IsEnableCoolTime() {
+		return GetBit( MASK_ENABLE_COOLTIME );
+	}
+	inline void SetIsEnableCoolTime(bool val) {
+		if( val && mpProgressTime == NULL )
+			CreateProgressBar();
+		return SetBit( val, MASK_ENABLE_COOLTIME );
+	}
+	inline void SetProgressBarFileName(const gchar* pcProgressBackFileName, const gchar* pcProgressFileName) {
+		mMeshNames[TYPE_PROGRESSBACK] = pcProgressBackFileName;
+		mMeshNames[TYPE_PROGRESS] = pcProgressFileName;
+	}
+public:
+	virtual void Update(float fTime);
 	virtual bool Push(float fPointX, float fPointY);
 	virtual void Pushup(float fPointX, float fPointY);
+	virtual bool PushMove(float fPointX, float fPointY);
 	virtual void SetIsDisable(bool val);
 	virtual void SetIsCantPush(bool val);
 	
 protected:
-	void AddMeshToParentNode(Gn2DMeshObject* pChild);
+	void CreateProgressBar();
+	
+protected:
 	void SetPosition(GnVector2& cPos);
 	void SetVisibleNormal(bool val);
 };

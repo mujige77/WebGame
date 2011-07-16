@@ -8,8 +8,11 @@ private:
 	GnTObjectArray<GnInterfacePtr> mChildren;
 	
 public:
-	virtual bool Push(float fPointX, float fPointY);
-	virtual void Pushup(float fPointX, float fPointY);
+	bool Push(float fPointX, float fPointY);
+	void Pushup(float fPointX, float fPointY);
+	bool PushMove(float fPointX, float fPointY);
+	void Update(float fDeltaTime);
+	
 	virtual void AddChild(GnInterface* pChild)
 	{
 		mChildren.Add( pChild );
@@ -25,7 +28,7 @@ public:
 	inline void SubscribeClickedEvent(GnBaseSlot2<GnInterface*, GnIInputEvent*>* pSlot) {
 		mSignal.Subscribe( pSlot );
 	}
-protected:
+protected:	
 	virtual void SetPosition(GnVector2& cPos);
 };
 

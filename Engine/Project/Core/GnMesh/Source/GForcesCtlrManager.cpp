@@ -9,6 +9,7 @@
 
 GForcesCtlrManager::GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer)
 	: GActorCtlrManager( pActorLayer ), mpInterfaceLayer( (GInterfaceLayer*)pInterfaceLayer )
+	, mCreateForcesInputEvent( this, &GForcesCtlrManager::CreateForces )
 {
 	
 }
@@ -20,7 +21,6 @@ void GForcesCtlrManager::Update(float fDeltaTime)
 
 void GForcesCtlrManager::Init()
 {
-	mCreateForcesInputEvent.Initialize( this, &GForcesCtlrManager::CreateForces );
 	mpButtonGroup = mpInterfaceLayer->CreateInterface( (gtuint)GInterfaceLayer::UI_MAIN_FORCESBUTTONS,
 		&mCreateForcesInputEvent );
 }
@@ -33,7 +33,7 @@ void GForcesCtlrManager::CreateForces(GnInterface* pInterface, GnIInputEvent* pE
 	const gchar* idName = NULL;
 	for ( gtuint i = 0; i < GInterfaceLayer::FORCESBT_NUM; i++ )
 	{
-		if( mpButtonGroup->GetChild( i )  == pInterface )
+		if( mpButtonGroup->GetChild( i ) == pInterface )
 		{
 			gtuint numID = GetActorIndex( i );
 			idName = GetFileList()->GetForcesFileName( numID );
@@ -48,15 +48,10 @@ void GForcesCtlrManager::CreateForces(GnInterface* pInterface, GnIInputEvent* pE
 	if( controller )
 	{
 		GetGameEnvironment()->SetStartPositionToActor( controller, 0 );
-		GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
-		move->SetMove(GActionMove::MOVERIGHT, true);
-		move->SetActorLayer( GetActorLayer() );
-		AddActorCtlr( controller );
+		GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
 		
-#ifdef GNDEBUG
-		GnSingleDrawPrimitiveslayer* pLayer = new GnSingleDrawPrimitiveslayer();
-		pLayer->GetDrawObject()->SetController( controller );
-		GetActorLayer()->addChild( pLayer, 500 );
-#endif
+		GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
+		move->SetMove( GActionMove::MOVERIGHT );		
+		AddActorCtlr( controller );
 	}
 }

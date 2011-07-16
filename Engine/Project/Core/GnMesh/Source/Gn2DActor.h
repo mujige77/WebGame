@@ -9,16 +9,28 @@ public:
 	class TimeEvent
 	{
 	public:
+		friend class Gn2DActor;
 		enum eType
 		{
 			END_SEQUENCE,
+			ANIKEY,
 		};
-	public:
+	private:
 		eType mEventType;
 		guint32 mSequenceID;
 		float mCurrentTime;
 		float mEventTime;
 		void* mpEventData;
+	public:
+		eType GetEventType() {
+			return mEventType;
+		}
+		guint32 GetSequenceID() {
+			return mSequenceID;
+		}
+		inline void* GetEvnetData() {
+			return mpEventData;
+		};
 	protected:
 		GNFORCEINLINE void SetTimeEvent(eType eEvent, guint32 uiSequenceID, float fCurrentTime
 			, float fEventTime) {
@@ -27,10 +39,9 @@ public:
 			mCurrentTime = fCurrentTime;
 			mEventTime = fEventTime;			
 		}
-		inline void SetData(void* pData) {
+		inline void SetEventData(void* pData) {
 			mpEventData = pData;
-		}
-		friend class Gn2DActor;
+		}		
 	};
 	
 protected:
@@ -46,6 +57,7 @@ protected:
 	float mSequenceAccumulateDeltaTime;
 	GnBaseSlot1<TimeEvent*>* mpCallbackEventSlot;
 	TimeEvent mTimeEvent;
+	GnTPrimitiveSet<GnAnimationKeyManager::AniKey*> mSendedAniKeyEvent;
 	
 public:
 	Gn2DActor();
@@ -56,6 +68,7 @@ public:
 
 	virtual ~Gn2DActor();
 	void Update(float fDeltaTime);
+	void UpdateTimeEvent(float fAccumTime);
 	
 	bool SetTargetAnimation(guint32 uiID);
 	void StopAnimation();
@@ -71,7 +84,7 @@ public:
 	void ChangeSequence(guint32 uiID, Gn2DSequence* pSequences);
 
 	void ChangeRootNode(GnObjectForm* pRootNode);
-
+public:
 	inline bool GetSequence(guint32 uiID, Gn2DSequence*& pSequences) {
 		return mpSequences.GetAt(uiID, pSequences);
 	}
@@ -97,6 +110,9 @@ public:
 	}
 	inline void SetCallbackEvent(GnBaseSlot1<TimeEvent*>* pEventSlot) {
 		mpCallbackEventSlot = pEventSlot;
+	}
+	inline Gn2DSequence* GetCurrentSequence() {
+		return mpCurrentSequence;
 	}
 protected:
 	Gn2DActor(GnActorTool* pActorTool, Gn2DMeshObject* pRootObject);

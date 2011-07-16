@@ -9,9 +9,9 @@ GMainGameMove::GMainGameMove(GActorController* pController) : GActionMove( pCont
 	mBeforeHorizontalDirection = MOVE_MAX;
 }
 
-void GMainGameMove::SetMove(gtuint uiType, bool bCleanMove)
+void GMainGameMove::SetMove(gtuint uiType)
 {
-	GActionMove::SetMove( uiType, bCleanMove );
+	GActionMove::SetMove( uiType );
 	if( MOVEUP > uiType )
 	{
 		if( mBeforeVerticalDirection == uiType )

@@ -1,3 +1,4 @@
+#include "GExtraData.h"
 #include "GGameEnvironment.h"
 #include "GnInterfaceHeader.h"
 #include "GAccumulationTimeEvent.h"
@@ -5,4 +6,3 @@
 #include "GAction.h"
 #include "GInfo.h"
 #include "GActorCtlrManager.h"
-#include "GExtraData.h"

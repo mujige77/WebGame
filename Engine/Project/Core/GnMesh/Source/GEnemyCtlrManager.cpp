@@ -17,7 +17,7 @@ void GEnemyCtlrManager::Update(float fDeltaTime)
 	
 	if( mNewEnemyTimeEvent.UpdateEvent( fDeltaTime ) )
 	{
-		mNewEnemyTimeEvent.Reset( 10.0f );
+		mNewEnemyTimeEvent.Reset( 5.0f );
 		CreateEnemy();
 	}
 }
@@ -31,10 +31,11 @@ void GEnemyCtlrManager::CreateEnemy()
 	
 	GEnemyController* controller = GEnemyController::Create( idName, 1 );
 	GetGameEnvironment()->SetStartPositionToActor( controller, 1 );
-	GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
-	move->SetMove(GActionMove::MOVELEFT, true);
-	move->SetActorLayer( GetActorLayer() );
+	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
 	
+	GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
+	move->SetMove( GActionMove::MOVELEFT );
+		
 //	Gn2DSequence* attackSequence = NULL;
 //	GnVerify( controller->GetActor()->GetSequence( GAction::ACTION_ATTACK
 //		, attackSequence ) );
@@ -46,10 +47,4 @@ void GEnemyCtlrManager::CreateEnemy()
 
 	
 	AddActorCtlr( controller );
-	
-#ifdef GNDEBUG
-	GnSingleDrawPrimitiveslayer* pLayer = new GnSingleDrawPrimitiveslayer();
-	pLayer->GetDrawObject()->SetController( controller );
-	GetActorLayer()->addChild( pLayer, 500 );
-#endif
 }

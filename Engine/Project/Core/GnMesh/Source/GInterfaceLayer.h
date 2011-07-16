@@ -24,6 +24,7 @@ public:
 		BT_C8,
 		BT_C9,
 		BT_C10,
+		BT_C11,
 		FORCESBT_NUM
 	};
 	enum eUiType
@@ -35,10 +36,10 @@ public:
 	
 public:
 	GInterfaceLayer();
-	virtual GnInterfaceGroup* CreateInterface(gtuint uiIndex
-		, GnBaseSlot2<GnInterface*, GnIInputEvent*>* pSlot) = 0;
 	
 public:
+	virtual GnInterfaceGroup* CreateInterface(gtuint uiIndex
+		, GnBaseSlot2<GnInterface*, GnIInputEvent*>* pSlot) = 0;
 	virtual void Create(CCSprite* pSprite);
 };
 #endif

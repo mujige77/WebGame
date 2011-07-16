@@ -4,10 +4,13 @@
 #include "GAction.h"
 #include "GInfoBasic.h"
 #include "GActionAttack.h"
+#include "GActionAttackCheck.h"
+#include "GActionDie.h"
 
 void GActorController::GetFullActorFilePath(const gchar* pcID, gstring& pcOutPath)
 {
 	pcOutPath = GnSystem::GetWorkDirectory();
+	pcOutPath += "Actor/";
 	pcOutPath += pcID;
 	pcOutPath += "/";
 	pcOutPath += pcID;
@@ -20,24 +23,22 @@ GActorController::GActorController()
 
 GActorController::~GActorController()
 {
-	
 	RemoveAllInfoComponets();
 	RemoveAllActionComponets();
-	RemoveAllCurrentComponets();
 }
 
 bool GActorController::Init(const gchar* pcActorFilePath, const gchar* pcID, guint32 uiLevel)
 {
 	SetIsDestory( false );
-//	RemoveAllInfoComponets();
-//	RemoveAllActionComponets();
-//	RemoveAllCurrentComponets();
 	mInfoComponents.SetSize( GInfo::INFO_MAX );
 	mActionComponents.SetSize( GAction::ACTION_MAX );
 	mCurrentActions.SetSize( GAction::ACTION_MAX );
 	
 	if( LoadActor( pcActorFilePath ) == false )
 		return false ;
+	
+	if( InitController() == false )
+		return false;
 	
 	if( InitInfoCompenent( pcID, uiLevel ) == false )
 		return false;
@@ -50,16 +51,17 @@ bool GActorController::Init(const gchar* pcActorFilePath, const gchar* pcID, gui
 
 void GActorController::Update(float fDeltaTime)
 {	
-	mpsActor->Update( fDeltaTime );
-	mpsActor->GetRootNode()->Update( fDeltaTime );
 	for( gtuint i = 0 ; i < mCurrentActions.GetSize() ; i++ )
 	{
 		GAction* action = mCurrentActions.GetAt( i );
 		if( action )
 			action->Update( fDeltaTime );
 	}
-	
+
 	MoveStopCheck();
+	
+	mpsActor->Update( fDeltaTime );
+	mpsActor->GetRootNode()->Update( fDeltaTime );
 }
 
 void GActorController::RemoveAllInfoComponets()
@@ -97,16 +99,46 @@ bool GActorController::IsEnableMove()
 
 void GActorController::AddCurrentAction(GAction* pComponent)
 {
+	pComponent->AttachActionToController();
 	mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );
+}
+
+void GActorController::RemoveCurrentAction(gtuint uiIndex)
+{
+	GAction* action = mCurrentActions.GetAt( uiIndex );
+	if( action )
+		action->DetachActionToController();
+	mCurrentActions.SetAt( uiIndex, NULL );
+}
+
+void GActorController::RemoveAllCurrentAction()
+{
+	for( gtuint i = 0; i < mCurrentActions.GetSize(); i++ )
+	{
+		RemoveCurrentAction( i );
+	}
 }
 
 void GActorController::ReceiveAttack(GActorController* pFromActor)
 {
 	GInfoBasic* fromActorBasic = (GInfoBasic*)pFromActor->GetInfoComponent( GInfo::INFO_BASIC );
 	mCurrentInfo.SetHP( mCurrentInfo.GetHP() - (gint32)fromActorBasic->GetStrength() );
-	if( mCurrentInfo.GetHP() )
+	if( mCurrentInfo.GetHP() > 0 )
 	{
-		
+		GAction* damage = GetCurrentAction( GAction::ACTION_DAMAGE );
+		if( damage )
+			return;
+		damage = GetActionComponent( GAction::ACTION_DAMAGE );
+		GnAssert( damage );
+		if( damage )
+		{
+			AddCurrentAction( damage );
+		}
+	}
+	else
+	{
+		RemoveAllCurrentAction();
+		AddCurrentAction( GetActionComponent( GAction::ACTION_DIE ) );
 	}
 }
 
@@ -115,7 +147,8 @@ void GActorController::Start()
 	GInfoBasic* basic = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
 	mCurrentInfo.SetHP( basic->GetHP() );
 	
-	GetActionComponent( GAction::ACTION_MOVE )->AttachCompentToController();
+	AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
+	AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
 }
 
 bool GActorController::LoadActor(const gchar *pcFilePath)
@@ -128,36 +161,75 @@ bool GActorController::LoadActor(const gchar *pcFilePath)
 	return true;
 }
 
+void GActorController::SetAttack(guint32 uiSequenceID)
+{
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetCurrentAction( GAction::ACTION_ATTACKCHECK );
+	if( attackCheck == NULL )
+		return;
+
+	attackCheck->SetIsEnableAttack( true );
+}
+
+void GActorController::SetEndAttack()
+{
+	GAction* action = GetCurrentAction( GAction::ACTION_DIE );
+	if( action )
+		return;
+	
+	GetGameEnvironment()->RemoveBasicCurrentAction( this );
+	action = GetActionComponent( GAction::ACTION_STAND );
+	AddCurrentAction( action );
+	action = GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	AddCurrentAction( action );
+}
+
+void GActorController::SetEndDie()
+{
+
+}
+
 void GActorController::MoveStopCheck()
 {
-	GActionAttack* attack = (GActionAttack*)GetActionComponent( GAction::ACTION_ATTACK );
-	if( attack && attack->GetAttackActorCount() )
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	if( attackCheck && attackCheck->IsReadyAttack() )
 	{
-		RemoveAllCurrentComponets();
-		attack->AttachCompentToController();
+		GetGameEnvironment()->RemoveBasicCurrentAction( this );
+		AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
 		return;
 	}
 	
-	GAction* move = mCurrentActions.GetAt( GAction::ACTION_MOVE );
+	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
 		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
 		{
-			RemoveAllCurrentComponets();
-			GetActionComponent( GAction::ACTION_STAND )->AttachCompentToController();			
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
+			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )
+				AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
 		}
 		SetPosition( GetMovePosition() );
+	}
+	else
+	{
+		GAction* action = GetCurrentAction( GAction::ACTION_STAND );
+		if( action && GetGameEnvironment()->CorrectMove( GetMovePosition() ) )
+		{
+			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
+			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )
+				AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
+		}
 	}
 }
 
 void GActorController::CallbackTimeEvent(Gn2DActor::TimeEvent* pTimeEvent)
 {
-	if( pTimeEvent->mEventType == Gn2DActor::TimeEvent::END_SEQUENCE )
+	if( pTimeEvent->GetEventType() == Gn2DActor::TimeEvent::END_SEQUENCE )
 	{
-		if( pTimeEvent->mSequenceID == GAction::ANI_ATTACK )
+		if( pTimeEvent->GetSequenceID() == GAction::ANI_ATTACK )
 		{
-			RemoveAllCurrentComponets();
-			GetActionComponent( GAction::ACTION_STAND )->AttachCompentToController();
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
 		}
 	}
 }

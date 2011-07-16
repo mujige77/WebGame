@@ -18,8 +18,10 @@ GnMemoryObject* GFileList::Create()
 
 GFileList::GFileList()
 {
-	std::string fileName = GetFullPath( "template.lst", "./" );
-	GnVerify( LoadFile( fileName.c_str() ) );
+	char name[512] = {0,};
+	GnStrcpy( name, GetFullPath( "template.lst" ), 512);
+	GnVerify( LoadFile( name ) );
+
 }
 
 bool GFileList::LoadFile(const gchar *pcFilePath)
@@ -30,8 +32,22 @@ bool GFileList::LoadFile(const gchar *pcFilePath)
 		
 	ReadList( file, "ForcesList", mForcesNames );
 	ReadList( file, "EnemyList", mEnemyNames );
+	ReadList( file, "EffectList", mEffectNames );
 	file->Destory();
 	return true; 
+}
+
+bool GFileList::GetFullEffectName(gtuint uiIndex, gstring& outString)
+{
+	const gchar* name = GetEffectName( uiIndex );
+	if( name == NULL )
+		return false;
+	
+	gchar fullPath[GN_MAX_PATH] = { 0, };
+	const char* workDir = GnSystem::GetWorkDirectory();
+	GnSprintf( fullPath, sizeof(fullPath), "%sEffect/%s/%s.gm", workDir, name, name );
+	outString = fullPath;
+	return true;
 }
 
 void GFileList::ReadList(GnFile* pFile, const gchar* firstName, GnTPrimitiveDeleteMap<gtuint, gchar*>& names)
@@ -71,6 +87,7 @@ void GFileList::AddListFromFile(gchar* buffer, GnTPrimitiveDeleteMap<gtuint, gch
 	sscanf_s( buffer, "%c%d", tempString, &numID );
 #endif
 	gchar* fileName = GnFile::CopyAsciiFileString(buffer);
-	//GnStrcat(fileName, ".gat", len);
 	names.Insert( numID, fileName );
 }
+
+const gchar* GetFullEffectName(gtuint uiIndex);

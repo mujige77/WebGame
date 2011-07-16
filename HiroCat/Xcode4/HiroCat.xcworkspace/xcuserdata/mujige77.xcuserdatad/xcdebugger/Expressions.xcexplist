@@ -9,6 +9,20 @@
          contextName = "GnTArray&lt;GnTMallocInterface&lt;GInfo*&gt;, GInfo*&gt;::SetSize(unsigned int, unsigned short):GnTArray.h">
       </ContextState>
       <ContextState
+         contextName = "cocos2d::CCNode::setContentSize(cocos2d::CCSize):CCNode.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "cocos2d::CCNode::nodeToParentTransform():CCNode.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_tAnchorPointInPixels">
+            </PersistentString>
+            <PersistentString
+               value = "m_tPositionInPixels">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GEnemyController::Create(char const*):GEnemyController.cpp">
       </ContextState>
       <ContextState

@@ -23,7 +23,6 @@
 		21CDBAD013A4B57600BEF1DA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBACF13A4B57600BEF1DA /* OpenGLES.framework */; };
 		21CDBB0113A4B72B00BEF1DA /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21CDBAFE13A4B72B00BEF1DA /* AppController.mm */; };
 		21CDBB0213A4B72B00BEF1DA /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21CDBB0013A4B72B00BEF1DA /* RootViewController.mm */; };
-		21CDBB0B13A4B75C00BEF1DA /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21CDBB0813A4B75C00BEF1DA /* HelloWorldScene.cpp */; };
 		21CDBB1513A4B77400BEF1DA /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CDBB0F13A4B77400BEF1DA /* CloseNormal.png */; };
 		21CDBB1613A4B77400BEF1DA /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CDBB1013A4B77400BEF1DA /* CloseSelected.png */; };
 		21CDBB1713A4B77400BEF1DA /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 21CDBB1113A4B77400BEF1DA /* HelloWorld.png */; };
@@ -103,8 +102,6 @@
 		21CDBAFE13A4B72B00BEF1DA /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = SOURCE_ROOT; };
 		21CDBAFF13A4B72B00BEF1DA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = SOURCE_ROOT; };
 		21CDBB0013A4B72B00BEF1DA /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = SOURCE_ROOT; };
-		21CDBB0813A4B75C00BEF1DA /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = HelloWorldScene.cpp; path = ../../Source/HelloWorldScene.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		21CDBB0913A4B75C00BEF1DA /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = ../../Source/HelloWorldScene.h; sourceTree = "<group>"; };
 		21CDBB0D13A4B77400BEF1DA /* app.config.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.config.txt; sourceTree = "<group>"; };
 		21CDBB0F13A4B77400BEF1DA /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		21CDBB1013A4B77400BEF1DA /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
@@ -250,8 +247,6 @@
 				218B717713A8D92F00730D9F /* HiroCatDirector.h */,
 				21E1822C13A8826D00025FA4 /* HiroCatApplication.h */,
 				21E1822D13A8826D00025FA4 /* HiroCatApplication.mm */,
-				21CDBB0813A4B75C00BEF1DA /* HelloWorldScene.cpp */,
-				21CDBB0913A4B75C00BEF1DA /* HelloWorldScene.h */,
 			);
 			name = HiroCat;
 			sourceTree = "<group>";
@@ -372,7 +367,6 @@
 			files = (
 				21CDBB0113A4B72B00BEF1DA /* AppController.mm in Sources */,
 				21CDBB0213A4B72B00BEF1DA /* RootViewController.mm in Sources */,
-				21CDBB0B13A4B75C00BEF1DA /* HelloWorldScene.cpp in Sources */,
 				21E426BD13A6267100ECD28F /* GStartScene.cpp in Sources */,
 				218961FA13A6D9290074237B /* GGameScene.cpp in Sources */,
 				2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */,
@@ -440,6 +434,7 @@
 					GNLOG,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = (
 					../../SDK/include,
@@ -452,6 +447,7 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
@@ -538,15 +534,16 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
 				ORDER_FILE = "";
 				OTHER_LDFLAGS = (
-					"../../SDK/bin/Debug-iphonesimulator/libCocos2d.a",
-					"../../SDK/bin/Debug-iphonesimulator/libGnSystem.a",
-					"../../SDK/bin/Debug-iphonesimulator/libGnMain.a",
-					"../../SDK/bin/Debug-iphonesimulator/libGnMesh.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libCocos2d.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnSystem.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnMain.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnMesh.a",
 				);
 				OTHER_TEST_FLAGS = "";
 				PRELINK_LIBS = "";
@@ -571,6 +568,7 @@
 					GNRELEASE,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				HEADER_SEARCH_PATHS = (
 					../../SDK/include,
@@ -583,15 +581,16 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
 				ORDER_FILE = "";
 				OTHER_LDFLAGS = (
-					"../../SDK/bin/Release-iphonesimulator/libCocos2d.a",
-					"../../SDK/bin/Release-iphonesimulator/libGnSystem.a",
-					"../../SDK/bin/Release-iphonesimulator/libGnMain.a",
-					"../../SDK/bin/Release-iphonesimulator/libGnMesh.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libCocos2d.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnSystem.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnMain.a",
+					"../../SDK/bin/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/libGnMesh.a",
 				);
 				OTHER_TEST_FLAGS = "";
 				PRELINK_LIBS = "";

@@ -48,7 +48,7 @@
 #       endif // if (__GNUC__ >= 4)
 #   endif // #ifndef GNFORCEINLINE
 
-#   define  GNNOOP ((void)0)
+#   define  GNNOOP
 
 #endif // defined(WIN32)
 

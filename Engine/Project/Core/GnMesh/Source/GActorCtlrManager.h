@@ -4,6 +4,7 @@
 #include "GActorController.h"
 
 class GActorInfoDatabase;
+class GActionAttackCheck;
 class GActorCtlrManager : public GnMemoryObject
 {
 	GnTPrimitiveArray<GActorController*> mActors;
@@ -17,10 +18,10 @@ public:
 	GActorCtlrManager(GLayer* pLayer);
 	virtual ~GActorCtlrManager();
 	//void SetStartPostion(GActorController* pActorController, gtuint uiDirection, gtuint uiAttackLine);
-	
+
 public:
 	virtual void Update(float fDeltaTime);
-	virtual void CollisionCheck(GActorCtlrManager* pCheckCtlrManager);
+	virtual void ProcessAttack(GActorCtlrManager* pCheckCtlrManager);
 					   
 public:
 	inline void AddActorCtlr(GActorController* pActorCtlr) {
@@ -28,6 +29,16 @@ public:
 			, (int)(GetGameState()->GetGameHeight() - pActorCtlr->GetPosition().y) );
 		mActors.Add( pActorCtlr );
 	};
+	GNFORCEINLINE void RemoveAndDeleteActorCtlr(gtuint uiIndex) {
+		GActorController* actorCtlr = mActors.GetAt( uiIndex );
+		mActors.RemoveAtAndFill( uiIndex );
+		GetActorLayer()->RemoveChild( actorCtlr->GetMesh() );
+#ifdef GNDEBUG
+		if( actorCtlr->GetDebugLayer() )
+			GetActorLayer()->removeChild( actorCtlr->GetDebugLayer(), true );
+#endif
+		GnDelete actorCtlr;
+	}
 	inline GActorController* GetActorCtlr(gtuint uiIndex)	{
 		return mActors.GetAt( uiIndex );
 	}
@@ -46,6 +57,10 @@ public:
 	inline GLayer* GetActorLayer() {
 		return mpActorLayer;
 	}
+	
+protected:
+	virtual void CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
+	virtual gtuint SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
 };
 
 #endif

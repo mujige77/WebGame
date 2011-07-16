@@ -21,7 +21,7 @@ public:
 	}
 	
 public:
-	virtual void SetMove(gtuint uiType, bool bCleanMove);
+	virtual void SetMove(gtuint uiType);
 	
 };
 
