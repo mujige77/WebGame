@@ -25,8 +25,9 @@ public:
 	
 public:
 	virtual bool Push(float fPointX, float fPointY);
-	virtual void Pushup(float fPointX, float fPointY);
+	virtual bool Pushup(float fPointX, float fPointY);
 	virtual bool PushMove(float fPointX, float fPointY);
+	virtual void PushUp();
 	
 	virtual inline void AddChild(GnInterface* pChild) {}
 	virtual inline void Update(float fDeltaTime) {}

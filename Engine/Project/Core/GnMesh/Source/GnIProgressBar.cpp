@@ -1,4 +1,4 @@
-//
+	//
 //  GnIProgressBar.cpp
 //  Core
 //
@@ -16,11 +16,11 @@ GnIProgressBar* GnIProgressBar::Create(eProgressType eType, const gchar* pcBackI
 	
 	Gn2DMeshObject* backMesh = NULL;
 	if( pcBackImageName )
-		backMesh = Gn2DMeshObject::Create( pcBackImageName );
+		backMesh = Gn2DMeshObject::CreateFromTextureFile( pcBackImageName );
 
 	Gn2DMeshObject* progressMesh = NULL;
 	if( pcProgressImagaeName )
-		progressMesh = Gn2DMeshObject::Create( pcBackImageName );
+		progressMesh = Gn2DMeshObject::CreateFromTextureFile( pcProgressImagaeName );
 	
 	if( backMesh == NULL && progressMesh == NULL )
 		return NULL;
@@ -42,7 +42,7 @@ GnIProgressBar* GnIProgressBar::Create(eProgressType eType, const gchar* pcBackI
 		tempMesh = Gn2DMeshObject::Create( false );
 		tempMesh->GetMesh()->setTextureRect( CCRectMake(0, 0, tempSize.x, tempSize.y) );
 		tempMesh->SetColor( GnColor::Black );
-		tempMesh->SetAlpha( 0.5f );	
+		tempMesh->SetAlpha( 0.5f );
 	}
 	
 	GnIProgressBar* coolTime = GnNew GnIProgressBar( eType, backMesh, progressMesh );
@@ -71,11 +71,13 @@ GnIProgressBar::GnIProgressBar(eProgressType eType, Gn2DMeshObject* pBackMesh, G
 {
 	GetParentUseNode()->addChild( pBackMesh->GetMesh(), 0);
 	mpsDefaultMesh = pBackMesh;
-	mpsDefaultMesh->SetVisible( false );
+	pBackMesh->SetVisible( false );
+	pBackMesh->SetScale( 1.0f );
 	
 	GetParentUseNode()->addChild( pProgress->GetMesh(), 1 );
     mpsProgressMesh = pProgress;
-	mpsProgressMesh->SetVisible( false );
+	pProgress->SetVisible( false );
+	pProgress->SetScale( 1.0f );
 	
 	GnVector2 size = mpsProgressMesh->GetSize();	
 	mProgressWidth = size.x;

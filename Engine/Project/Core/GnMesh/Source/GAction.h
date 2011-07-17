@@ -24,6 +24,7 @@ public:
 		ACTION_ATTACKCHECK,
 		ACTION_DAMAGE,
 		ACTION_DIE,
+		ACTION_GAGE,
 		ACTION_MAX,
 	};
 private:
@@ -48,8 +49,11 @@ public:
 	virtual void AttachActionToController() = 0;
 	virtual inline void DetachActionToController() {		
 	};
-	 virtual inline bool IsEnableMove() {
+	virtual inline bool IsEnableMove() {
 		return true;
+	}
+	virtual inline bool IsStopAction() {
+		return false;
 	}
 };
 

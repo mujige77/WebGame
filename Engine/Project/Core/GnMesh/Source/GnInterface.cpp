@@ -17,9 +17,13 @@ bool GnInterface::Push(float fPointX, float fPointY)
 	return true;
 }
 
-void GnInterface::Pushup(float fPointX, float fPointY)
+bool GnInterface::Pushup(float fPointX, float fPointY)
 {
-	SubPushCount();
+	if( IsPush() == false || IfUseCheckCollision( fPointX, fPointY ) == false )
+		return false;
+	
+	PushUp();
+	return true;
 }
 
 bool GnInterface::PushMove(float fPointX, float fPointY)
@@ -28,6 +32,11 @@ bool GnInterface::PushMove(float fPointX, float fPointY)
 		return false;
 	
 	return true;
+}
+
+void GnInterface::PushUp()
+{
+	SubPushCount();
 }
 
 void GnInterface::AddMeshToParentNode(Gn2DMeshObject *pChild)

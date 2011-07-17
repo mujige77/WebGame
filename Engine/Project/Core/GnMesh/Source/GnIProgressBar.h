@@ -63,7 +63,7 @@ public:
 	inline ePlayPlag GetPlayPlag() {
 		return mPlayPlag;
 	}
-	inline void SetVisibleBlind(bool bVal) {
+	inline void SetVisibleBackground(bool bVal) {
 		mpsDefaultMesh->SetVisible( bVal );
 	}
 	inline void SetBlindColor(GnColor cColor) {

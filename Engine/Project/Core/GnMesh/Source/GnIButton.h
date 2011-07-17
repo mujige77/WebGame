@@ -59,8 +59,8 @@ public:
 public:
 	virtual void Update(float fTime);
 	virtual bool Push(float fPointX, float fPointY);
-	virtual void Pushup(float fPointX, float fPointY);
 	virtual bool PushMove(float fPointX, float fPointY);
+	virtual void PushUp();
 	virtual void SetIsDisable(bool val);
 	virtual void SetIsCantPush(bool val);
 	

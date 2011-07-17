@@ -70,7 +70,8 @@ void GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
 		{
 			GnInterface* child = mInterfaceChildren.GetAt( i );
-			child->Pushup( touchPoint.x, touchPoint.y );
+			if( child->Pushup( touchPoint.x, touchPoint.y ) )
+				break;
 		}
 	}
 }

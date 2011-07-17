@@ -24,7 +24,7 @@ protected:
 	GnICoolTime(Gn2DMeshObject* pBlindMesh, Gn2DMeshObject* pCoolTimeMesh);
 	
 public:
-	inline void SetVisibleBlind(bool bVal) {
+	inline void SetVisibleBackground(bool bVal) {
 		mpsBlindMesh->SetVisible( bVal );
 	}
 	inline void SetBlindColor(GnColor cColor) {

@@ -20,6 +20,35 @@ GActionDamage::~GActionDamage()
 	RemoveMeshParent();
 	if( mpMeshObject )
 		GnDelete mpMeshObject;
+
+}
+
+GnVector2ExtraData* GActionDamage::CreateDamageEffect()
+{
+	GnVector2ExtraData* pos = (GnVector2ExtraData*)
+	GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
+	if( pos )
+	{	
+		if( mpMeshObject == NULL )
+		{
+			gstring fullName;
+			if( GetFileList()->GetFullEffectName( pos->GetID(), fullName ) )
+			{
+				mpMeshObject = Gn2DMeshObject::CreateFullPath( fullName.c_str(), true );
+				if( mpMeshObject == NULL )
+				{
+					SetEffectIndexDamage();
+					return NULL;
+				}
+			}
+			else
+			{
+				SetEffectIndexDamage();
+				return NULL;
+			}
+		}
+	}
+	return pos;
 }
 
 void GActionDamage::Update(float fTime)
@@ -49,50 +78,30 @@ void GActionDamage::Update(float fTime)
 
 void GActionDamage::AttachActionToController()
 {
-	GnVector2ExtraData* pos = (GnVector2ExtraData*)
-	GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
-	if( pos )
-	{	
-		if( mpMeshObject == NULL )
-		{
-			gstring fullName;
-			if( GetFileList()->GetFullEffectName( pos->GetID(), fullName ) )
-			{
-				mpMeshObject = Gn2DMeshObject::CreateFullPath( fullName.c_str(), true );
-				if( mpMeshObject == NULL )
-				{
-					SetEffectIndexDamage();
-					return;
-				}
-			}
-			else
-			{
-				SetEffectIndexDamage();
-				return;
-			}
-		}
-		
+	GnVector2ExtraData* posExtraData = CreateDamageEffect();
+	if( posExtraData )
+	{
 		GnVector2 effectPos;
-		if( GetController()->GetMesh()->GetFlipX() )
+		//if( GetController()->GetMesh()->GetFlipX() )
+		//{
+			//effectPos = posExtraData->GetValueVector2() - GetController()->GetMesh()->GetFlipCenter();
+		//	effectPos += GetController()->GetMesh()->GetPosition();
+		//}
+		//else
 		{
-			effectPos = pos->GetValueVector2() - GetController()->GetMesh()->GetFlipCenter();
-			effectPos += GetController()->GetMesh()->GetPosition();
-		}
-		else
-		{
-			effectPos = GetController()->GetMesh()->GetPosition() + pos->GetValueVector2();
+			effectPos = GetController()->GetMesh()->GetPosition() + posExtraData->GetValueVector2();
 		}
 		
 		RemoveMeshParent();
 		mpMeshObject->SetPosition( effectPos );
-		GetActorLayer()->AddChild( mpMeshObject, GetController()->GetMesh()->GetZOrder() + 1 );
+		if( mpMeshObject->GetMesh()->getParent() == NULL )
+			GetActorLayer()->AddChild( mpMeshObject, GetController()->GetMesh()->GetZOrder() + 1 );
 	}
 	else
 	{
 		SetEffectIndexDamage();
 		return;
 	}
-	
 	
 	GnTimeController* ctrl = mpMeshObject->GetTimeControllers();
 	GnAssert( ctrl );

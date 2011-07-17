@@ -19,7 +19,11 @@ GnIButton::GnIButton(const gchar* pcDefaultImage, const gchar* pcClickImage
 			
 			GnVerify( CreateDefaultImage( pcDefaultImage ) );
 			if( pcClickImage )
+			{
 				GnVerify( CreateClickImage( pcClickImage ) );
+				if( mpsPushMesh )
+					mpsPushMesh->SetVisible( false );
+			}
 			mMeshNames[TYPE_DISABLE] = pcDisableImage;
 		}
 		break;
@@ -89,35 +93,32 @@ bool GnIButton::Push(float fPointX, float fPointY)
 		if( mpProgressTime )
 			mpProgressTime->Start();
 	}
-//	if( mpsPushMesh )
-//	{
-//		mpsDefaultMesh->SetVisible( false );
-//		mpsPushMesh->SetVisible( true );
-//	}
+	if( mpsPushMesh )
+	{
+		mpsDefaultMesh->SetVisible( false );
+		mpsPushMesh->SetVisible( true );
+	}
 //	else
 //		mpsDefaultMesh->SetColor( GnColor( 0.0f, 1.0f, 0.0f ) );
 	return true;
-}
-void GnIButton::Pushup(float fPointX, float fPointY)
-{
-	GnInterface::Pushup(fPointX, fPointY);
-	if( IsPush() == false )
-	{
-		
-	}
-//	if( mpsPushMesh )
-//	{
-//		mpsDefaultMesh->SetVisible( true );
-//		mpsPushMesh->SetVisible( false );
-//	}
-//	else
-//		mpsDefaultMesh->SetColor( GnColor( 1.0f, 1.0f, 1.0f ) );
-	
 }
 
 bool GnIButton::PushMove(float fPointX, float fPointY)
 {
 	return GnInterface::PushMove( fPointX, fPointY );
+}
+
+void GnIButton::PushUp()
+{
+	GnInterface::PushUp();
+	if( IsPush() == false )
+	{
+	}
+	if( mpsPushMesh )
+	{
+		mpsDefaultMesh->SetVisible( true );
+		mpsPushMesh->SetVisible( false );
+	}
 }
 
 void GnIButton::SetIsDisable(bool val)
@@ -146,7 +147,7 @@ void GnIButton::SetIsCantPush(bool val)
 	if( mpProgressTime == NULL )
 		CreateProgressBar();
 	if( mpProgressTime )
-		mpProgressTime->SetVisibleBlind( val );
+		mpProgressTime->SetVisibleBackground( val );
 }
 
 void GnIButton::CreateProgressBar()

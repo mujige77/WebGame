@@ -111,7 +111,8 @@ void GGameScene::Update(float fDeltaTime)
 	{
 		for( gtuint j = 0 ; j < MAX_CTLRMANAGER ; j++)
 		{
-			if( i == j )
+			if( i == j || ( i == USER_CTLRMANAGER && j == FORCES_CTLRMANAGER )
+			   || ( j == USER_CTLRMANAGER && i == FORCES_CTLRMANAGER ) )
 				continue;
 			mActorManage[i]->ProcessAttack( mActorManage[j] );
 			

@@ -84,14 +84,6 @@ void GUserController::ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent)
 
 void GUserController::MoveStopCheck()
 {
-	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
-	if( attackCheck && attackCheck->IsReadyAttack() )
-	{
-		GetGameEnvironment()->RemoveBasicCurrentAction( this );
-		AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
-		return;
-	}
-	
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
@@ -103,5 +95,18 @@ void GUserController::MoveStopCheck()
 				AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
 		}
 		SetPosition( GetMovePosition() );
+	}
+	else
+	{
+		GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
+		if( attackCheck && attackCheck->IsReadyAttack() )
+		{
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
+			return;
+		}
+		
+		if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )
+			AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
 	}
 }

@@ -9,8 +9,9 @@ private:
 	
 public:
 	bool Push(float fPointX, float fPointY);
-	void Pushup(float fPointX, float fPointY);
+	bool Pushup(float fPointX, float fPointY);
 	bool PushMove(float fPointX, float fPointY);
+	void PushUp();
 	void Update(float fDeltaTime);
 	
 	virtual void AddChild(GnInterface* pChild)

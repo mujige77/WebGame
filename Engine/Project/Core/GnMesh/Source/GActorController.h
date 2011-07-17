@@ -61,7 +61,6 @@ public:
 
 	
 public:
-	
 	inline gtuint GetCurrentActionCount() {
 		return mCurrentActions.GetSize();
 	}
@@ -94,6 +93,9 @@ public:
 	}
 	inline void SetMovePosition(GnVector2& cPosition) {
 		mMovePosition = cPosition;
+	}
+	inline GCurrentActorInfo* GetCurrentInfo() {
+		return &mCurrentInfo;
 	}
 
 protected:

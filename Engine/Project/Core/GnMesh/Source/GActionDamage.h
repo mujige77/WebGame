@@ -11,6 +11,7 @@
 
 #include "GAction.h"
 
+class GnIProgressBar;
 class GActionDamage : public GAction
 {
 private:
@@ -22,6 +23,7 @@ private:
 public:
 	GActionDamage(GActorController* pController);
 	virtual ~ GActionDamage();
+	GnVector2ExtraData* CreateDamageEffect();
 	
 public:
 	void Update(float fTime);

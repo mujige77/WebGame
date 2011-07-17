@@ -8,6 +8,7 @@
 #include "GActionDamage.h"
 #include "GActionAttackCheck.h"
 #include "GActionDie.h"
+#include "GActionGage.h"
 
 GGameEnvironment* GGameEnvironment::mpSingleton = NULL;
 
@@ -32,6 +33,8 @@ void GGameEnvironment::InitActorControllerAction(GLayer* pActorLayer, GActorCont
 	move->SetActorLayer( pActorLayer );
 	GActionDamage* damage = (GActionDamage*)pActorCtrl->GetActionComponent( GAction::ACTION_DAMAGE );
 	damage->SetActorLayer( pActorLayer );
+	GActionGage* gage = (GActionGage*)pActorCtrl->GetActionComponent( GAction::ACTION_GAGE );
+	gage->SetActorLayer( pActorLayer );
 	
 #ifdef GNDEBUG
 //	GnSingleDrawPrimitiveslayer* pLayer = new GnSingleDrawPrimitiveslayer();
@@ -50,6 +53,7 @@ void GGameEnvironment::CreateActorControllerBasicAction(GActorController* pActor
 	CreateActionToActorController<GActionDamage>( pActorCtrl );
 	CreateActionToActorController<GActionAttackCheck>( pActorCtrl );
 	CreateActionToActorController<GActionDie>( pActorCtrl );
+	CreateActionToActorController<GActionGage>( pActorCtrl );
 }
 
 template<class T>

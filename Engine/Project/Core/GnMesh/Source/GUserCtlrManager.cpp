@@ -17,7 +17,8 @@ GUserCtlrManager::~GUserCtlrManager()
 
 void GUserCtlrManager::Update(float fDeltaTime)
 {
-	mpUserCtlr->Update( fDeltaTime );
+	GActorCtlrManager::Update( fDeltaTime );
+	//mpUserCtlr->Update( fDeltaTime );
 	UpdateBackgroundLayer();
 }
 
@@ -50,32 +51,31 @@ void GUserCtlrManager::Init()
 	GetGameState()->SetGameScale( DEFAULT_SCALE );
 	mpUserCtlr = GUserController::Create( "C1", 1 );
 	GetGameState()->SetGameScale( saveScale );
+	AddActorCtlr( mpUserCtlr );
 	
 	GActionMove* move = (GActionMove*)mpUserCtlr->GetActionComponent( GAction::ACTION_MOVE );
 	GetGameEnvironment()->UserMove( move );
 	GetGameEnvironment()->SetStartPositionToActor( mpUserCtlr, 0 );
-	GetActorLayer()->AddChild( mpUserCtlr->GetMesh()
-		, (gint)(GetGameState()->GetGameHeight() - mpUserCtlr->GetMesh()->GetPosition().y) );
-	move->SetActorLayer( GetActorLayer() );
+	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), mpUserCtlr );	
 	
 	mMoveInputEvent.Initialize( this, &GUserCtlrManager::Move );
 	
 	
-	mButtons[GActionMove::MOVELEFT] = GnNew GnIButton( "Controll/14_247.png", NULL, NULL );
+	mButtons[GActionMove::MOVELEFT] = GnNew GnIButton( "Controll/14_247.png", "Controll/14_247 on.png", NULL );
 	float pointX = 14;
 	float pointY = 247;
 	GnVector2 vec = mButtons[GActionMove::MOVELEFT]->GetContentSize();	
 	mButtons[GActionMove::MOVELEFT]->SetUIPoint( pointX, pointY );	
 	mButtons[GActionMove::MOVELEFT]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
 	
-    mButtons[GActionMove::MOVERIGHT] = GnNew GnIButton( "Controll/58_247.png", NULL, NULL );
+    mButtons[GActionMove::MOVERIGHT] = GnNew GnIButton( "Controll/58_247.png", "Controll/58_247 on.png", NULL );
 	pointX = 58;
 	pointY = 247;
 	vec = mButtons[GActionMove::MOVERIGHT]->GetContentSize();
 	mButtons[GActionMove::MOVERIGHT]->SetUIPoint( pointX, pointY );
 	mButtons[GActionMove::MOVERIGHT]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
 	
-    mButtons[GActionMove::MOVEUP] = GnNew GnIButton( "Controll/37_223.png", NULL, NULL );	
+    mButtons[GActionMove::MOVEUP] = GnNew GnIButton( "Controll/37_223.png", "Controll/37_223 on.png", NULL );	
 	pointX = 37;
 	pointY = 223;
 	vec = mButtons[GActionMove::MOVEUP]->GetContentSize();
@@ -83,7 +83,7 @@ void GUserCtlrManager::Init()
 	mButtons[GActionMove::MOVEUP]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
 	
 
-	mButtons[GActionMove::MOVEDOWN] = GnNew GnIButton( "Controll/38_268.png", NULL, NULL );
+	mButtons[GActionMove::MOVEDOWN] = GnNew GnIButton( "Controll/38_268.png", "Controll/38_268 on.png", NULL );
 	pointX = 37;
 	pointY = 268;
 	vec = mButtons[GActionMove::MOVEDOWN]->GetContentSize();

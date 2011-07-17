@@ -6,6 +6,7 @@
 #include "GActionAttack.h"
 #include "GActionAttackCheck.h"
 #include "GActionDie.h"
+#include "GActionGage.h"
 
 void GActorController::GetFullActorFilePath(const gchar* pcID, gstring& pcOutPath)
 {
@@ -55,7 +56,11 @@ void GActorController::Update(float fDeltaTime)
 	{
 		GAction* action = mCurrentActions.GetAt( i );
 		if( action )
+		{
 			action->Update( fDeltaTime );
+			if( action->IsStopAction() )
+				RemoveCurrentAction( action->GetActionType() );
+		}		
 	}
 
 	MoveStopCheck();
@@ -131,9 +136,18 @@ void GActorController::ReceiveAttack(GActorController* pFromActor)
 		damage = GetActionComponent( GAction::ACTION_DAMAGE );
 		GnAssert( damage );
 		if( damage )
-		{
 			AddCurrentAction( damage );
+
+		GActionGage* gage = (GActionGage*)GetCurrentAction( GAction::ACTION_GAGE );
+		if( gage == NULL )
+		{
+			gage = (GActionGage*)GetActionComponent( GAction::ACTION_GAGE );
+			GnAssert( gage );
+			if( gage )
+				AddCurrentAction( gage );
 		}
+		GInfoBasic* thisInfo = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
+		gage->SetGagePercent( (float)GetCurrentInfo()->GetHP() / (float)thisInfo->GetHP() * 100.0f );
 	}
 	else
 	{

@@ -18,6 +18,8 @@
 		210F61DC13BAE29D00D546B9 /* GCollectComponentHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */; };
 		211046BD13D035BD003CF0FB /* GnIProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 211046BC13D035BD003CF0FB /* GnIProgressBar.h */; };
 		211046C013D035CB003CF0FB /* GnIProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211046BF13D035CB003CF0FB /* GnIProgressBar.cpp */; };
+		2119962C13D27655008753B4 /* GActionGage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2119962B13D27655008753B4 /* GActionGage.h */; };
+		2119962F13D2766D008753B4 /* GActionGage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2119962E13D2766D008753B4 /* GActionGage.cpp */; };
 		212FB7F413B5D04D00F2F597 /* GInfoEnemyBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = 212FB7F313B5D04C00F2F597 /* GInfoEnemyBasic.h */; };
 		212FB7F613B5D06400F2F597 /* GInfoEnemyBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212FB7F513B5D06400F2F597 /* GInfoEnemyBasic.cpp */; };
 		213787E713BBED200025E1CC /* GnICoolTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 213787E613BBED200025E1CC /* GnICoolTime.h */; };
@@ -349,6 +351,8 @@
 		210F61DB13BAE29C00D546B9 /* GCollectComponentHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCollectComponentHeader.h; sourceTree = "<group>"; };
 		211046BC13D035BD003CF0FB /* GnIProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnIProgressBar.h; sourceTree = "<group>"; };
 		211046BF13D035CB003CF0FB /* GnIProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnIProgressBar.cpp; sourceTree = "<group>"; };
+		2119962B13D27655008753B4 /* GActionGage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionGage.h; sourceTree = "<group>"; };
+		2119962E13D2766D008753B4 /* GActionGage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionGage.cpp; sourceTree = "<group>"; };
 		212FB7F313B5D04C00F2F597 /* GInfoEnemyBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInfoEnemyBasic.h; sourceTree = "<group>"; };
 		212FB7F513B5D06400F2F597 /* GInfoEnemyBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInfoEnemyBasic.cpp; sourceTree = "<group>"; };
 		213787E613BBED200025E1CC /* GnICoolTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnICoolTime.h; sourceTree = "<group>"; };
@@ -773,6 +777,8 @@
 				21E91BAD13CEBA8300641F22 /* GActionAttackCheck.h */,
 				2196F95B13CDA522009D581E /* GActionDamage.cpp */,
 				2196F95E13CDA539009D581E /* GActionDamage.h */,
+				2119962E13D2766D008753B4 /* GActionGage.cpp */,
+				2119962B13D27655008753B4 /* GActionGage.h */,
 				21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */,
 				21AF5AA413CE8A4400EBF785 /* GActionDie.h */,
 			);
@@ -1350,6 +1356,7 @@
 				21D2FAA713CF18A400B81589 /* GEnergyBar.h in Headers */,
 				21D2FB0313CF2A1C00B81589 /* GnINumberLabel.h in Headers */,
 				211046BD13D035BD003CF0FB /* GnIProgressBar.h in Headers */,
+				2119962C13D27655008753B4 /* GActionGage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1630,6 +1637,7 @@
 				21D2FAA813CF18AE00B81589 /* GEnergyBar.cpp in Sources */,
 				21D2FB0513CF2A2A00B81589 /* GnINumberLabel.cpp in Sources */,
 				211046C013D035CB003CF0FB /* GnIProgressBar.cpp in Sources */,
+				2119962F13D2766D008753B4 /* GActionGage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
