@@ -3,7 +3,7 @@
 
 class GnStream;
 class GnAnimationKey;
-#define GnDeclareAnimationStream \
+#define GnDeclareRootAnimationStream \
 public: \
 	typedef GnStream StreamType; \
 	static int RegisterStream(); \
@@ -11,7 +11,12 @@ public: \
 	virtual void SaveStream(GnStream* pStream); \
 protected: \
 	static GnAnimationKey* LoadFromStream(GnStream* pStream, guint32 numKey ); \
-	static void SaveToStream(GnStream* pStream, guint32 numKey, GnAnimationKey* pKeys )
+	static void SaveToStream(GnStream* pStream, guint32 numKey, GnAnimationKey* pKeys)
+
+#define GnDeclareAnimationStream \
+GnDeclareRootAnimationStream; \
+public: \
+	static void Destroy(GnAnimationKey* pKeys); \
 
 #define GnRegsterAnimationKeyStream(classname) \
 	static int classname##RegsterAnimationKeyReturn = classname::RegisterStream()
@@ -24,7 +29,12 @@ protected: \
 			return 0; \
 		RegLoadFunction(type, classname::LoadFromStream); \
 		RegSaveFunction(type, classname::SaveToStream); \
+		RegDestroyFunction(type, classname::Destroy); \
 		return 1; \
+	} \
+	void classname::Destroy(GnAnimationKey* pKeys) \
+	{ \
+		classname* thisKey = (classname*)pKeys; \
+		GnDelete[] thisKey; \
 	}
-
 #endif // GNANIMATIONKEYMACRO_H

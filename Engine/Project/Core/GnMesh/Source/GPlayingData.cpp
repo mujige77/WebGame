@@ -1,9 +1,24 @@
-//
-//  GUserInfo.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 7. 29..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
+#include "GnGamePCH.h"
+#include "GPlayingData.h"
 
-#include <iostream>
+GPlayingData::GPlayingData() :  mLastClearStage( 0 ), mModeLevel( eNormal )
+	, mMoneyCount( 0 ), mStarCount( 0 )
+{
+	
+}
+
+void GPlayingData::LoadStream(GnStream* pStream)
+{
+	pStream->LoadStream( mModeLevel );
+	pStream->LoadStream( mLastClearStage );
+	pStream->LoadStream( mMoneyCount );
+	pStream->LoadStream( mStarCount );
+}
+
+void GPlayingData::SaveStream(GnStream* pStream)
+{
+	pStream->SaveStream( mModeLevel );
+	pStream->SaveStream( mLastClearStage );
+	pStream->SaveStream( mMoneyCount );
+	pStream->SaveStream( mStarCount );
+}

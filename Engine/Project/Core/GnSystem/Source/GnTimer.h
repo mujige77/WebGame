@@ -2,27 +2,26 @@
 #define __GnSystem__GnTimer__
 GNSYSTEM_ENTRY float GnGetTicks();
 
-class GNSYSTEM_ENTRY GnTimer : public GnMemoryObject
+class GNSYSTEM_ENTRY GnTimer
 {
+private:
+    float mPerTime;
+	// Acumulate Time 
+	float mAcumTime;
+	
 public:
     GnTimer();
-    void Reset();
-    
-    
-	//원하는 타임을 얻기 위해 메프레임 업데이트 한다.
-	// sce = 누적된 타임
+    bool Update(float sec);
+
 	
-    bool Update(float sec);    
-    inline bool Update();
+public:
+	inline void Reset()	{
+		mAcumTime = 0.0f;
+	};
+	inline void SetPercentTime(float fPerTime) {
+		mPerTime = fPerTime;
+	}
 	
-    inline float getDelta();
-    
-private:
-	
-    // 이전 프레임과 현재 프레임의 시간차
-    float mDeltaTime;
-    // 마지막 업데이트 타임
-    float mLastTime;
 };
 
 

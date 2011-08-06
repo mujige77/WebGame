@@ -2,14 +2,18 @@
 #include "GnGamePCH.h"
 #include "GScene.h"
 
-void GScene::onEnter()
-{
-	//CCTouchDispatcher::sharedDispatcher()->addTargetedDelegate(this, 0, true);
-	CCScene::onEnter();
-}
+const gchar* GScene::SCENENAME_START = "StartScene";
+const gchar* GScene::SCENENAME_STATE = "StateScene";;
+const gchar* GScene::SCENENAME_SELECTSTAGE = "SelectStageScene";
+const gchar* GScene::SCENENAME_GAME = "GameScene";
 
-void GScene::onExit()
+gstring GScene::mChangeSceneName;
+
+void GScene::SetChangeSceneName(const gchar* pcName)
 {
-	//CCTouchDispatcher::sharedDispatcher()->removeDelegate(this);
-	CCScene::onExit();
+	mChangeSceneName = pcName;
+}
+gstring& GScene::GetChangeSceneName()
+{
+	return mChangeSceneName;
 }

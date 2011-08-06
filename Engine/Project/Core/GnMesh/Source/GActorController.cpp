@@ -215,7 +215,7 @@ void GActorController::MoveStopCheck()
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
-		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
+		if( GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) == false )
 		{
 			GetGameEnvironment()->RemoveBasicCurrentAction( this );
 			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
@@ -227,7 +227,7 @@ void GActorController::MoveStopCheck()
 	else
 	{
 		GAction* action = GetCurrentAction( GAction::ACTION_STAND );
-		if( action && GetGameEnvironment()->CorrectMove( GetMovePosition() ) )
+		if( action && GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) )
 		{
 			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
 			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2102220713DA7A4C003B68D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2102220613DA7A4C003B68D5 /* libsqlite3.dylib */; };
+		212527DF13E3DA6700BF800B /* GStateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212527DE13E3DA6700BF800B /* GStateScene.cpp */; };
 		212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */; };
-		212FB7F013B5C33F00F2F597 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */; };
-		2168BB1113A8556900DED246 /* GMediateMoveState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2168BB1013A8556900DED246 /* GMediateMoveState.cpp */; };
-		2168BB1413A8566E00DED246 /* GMediate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2168BB1313A8566E00DED246 /* GMediate.cpp */; };
+		2164AE0213DD65AA007617BE /* GSelectStageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */; };
 		2176019413A4E5A600A85384 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 2176019313A4E5A600A85384 /* Data */; };
 		218961FA13A6D9290074237B /* GGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218961F913A6D9280074237B /* GGameScene.cpp */; };
 		2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189620213A719FA0074237B /* GSceneSelector.cpp */; };
@@ -72,12 +72,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2102220613DA7A4C003B68D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		212527DD13E3DA5D00BF800B /* GStateScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStateScene.h; sourceTree = "<group>"; };
+		212527DE13E3DA6700BF800B /* GStateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStateScene.cpp; sourceTree = "<group>"; };
 		212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ActorInfo.sqlite; sourceTree = "<group>"; };
-		212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		2168BB0F13A8555F00DED246 /* GMediateMoveState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMediateMoveState.h; sourceTree = "<group>"; };
-		2168BB1013A8556900DED246 /* GMediateMoveState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GMediateMoveState.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
-		2168BB1213A855B400DED246 /* GMediate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMediate.h; sourceTree = "<group>"; };
-		2168BB1313A8566E00DED246 /* GMediate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GMediate.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		2164AE0013DD659C007617BE /* GSelectStageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectStageScene.h; sourceTree = "<group>"; };
+		2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GSelectStageScene.cpp; sourceTree = "<group>"; };
 		2176019313A4E5A600A85384 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		217601D613A5048900A85384 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../../Engine/Builder/XCode4/Core/Core.xcodeproj; sourceTree = "<group>"; };
 		218961F813A6D91B0074237B /* GGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameScene.h; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		21CDBACB13A4B57600BEF1DA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		21CDBACD13A4B57600BEF1DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		21CDBACF13A4B57600BEF1DA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		21CDBAD313A4B57600BEF1DA /* HiroCat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HiroCat-Info.plist"; path = "../Xcode4/HiroCat/HiroCat-Info.plist"; sourceTree = "<group>"; };
+		21CDBAD313A4B57600BEF1DA /* HiroCat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; lineEnding = 0; name = "HiroCat-Info.plist"; path = "../Xcode4/HiroCat/HiroCat-Info.plist"; sourceTree = "<group>"; };
 		21CDBAD513A4B57600BEF1DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21CDBAD913A4B57600BEF1DA /* HiroCat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HiroCat-Prefix.pch"; sourceTree = "<group>"; };
 		21CDBAFD13A4B72B00BEF1DA /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = SOURCE_ROOT; };
@@ -121,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212FB7F013B5C33F00F2F597 /* libsqlite3.dylib in Frameworks */,
+				2102220713DA7A4C003B68D5 /* libsqlite3.dylib in Frameworks */,
 				21CDBB2813A4BBAA00BEF1DA /* libz.dylib in Frameworks */,
 				21CDBB2613A4BB9800BEF1DA /* libxml2.dylib in Frameworks */,
 				21CDBAC813A4B57600BEF1DA /* UIKit.framework in Frameworks */,
@@ -167,8 +167,8 @@
 		21CDBAC613A4B57600BEF1DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				212FB7EF13B5C33F00F2F597 /* libsqlite3.dylib */,
 				21CDBB2713A4BBAA00BEF1DA /* libz.dylib */,
+				2102220613DA7A4C003B68D5 /* libsqlite3.dylib */,
 				21CDBB2513A4BB9800BEF1DA /* libxml2.dylib */,
 				21CDBAC713A4B57600BEF1DA /* UIKit.framework */,
 				21CDBAC913A4B57600BEF1DA /* Foundation.framework */,
@@ -203,16 +203,16 @@
 		21CDBB0513A4B75C00BEF1DA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2168BB1313A8566E00DED246 /* GMediate.cpp */,
-				2168BB1213A855B400DED246 /* GMediate.h */,
-				2168BB1013A8556900DED246 /* GMediateMoveState.cpp */,
-				2168BB0F13A8555F00DED246 /* GMediateMoveState.h */,
 				2189620213A719FA0074237B /* GSceneSelector.cpp */,
 				218961FF13A706AF0074237B /* GSceneSelector.h */,
 				218961F913A6D9280074237B /* GGameScene.cpp */,
 				218961F813A6D91B0074237B /* GGameScene.h */,
 				21E426BB13A6267000ECD28F /* GStartScene.cpp */,
 				21E426BC13A6267000ECD28F /* GStartScene.h */,
+				212527DE13E3DA6700BF800B /* GStateScene.cpp */,
+				212527DD13E3DA5D00BF800B /* GStateScene.h */,
+				2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */,
+				2164AE0013DD659C007617BE /* GSelectStageScene.h */,
 				21C89C5213A5F3FC00507155 /* GamePCH.h */,
 				21C89C5313A5F61A00507155 /* GGameEBM.h */,
 			);
@@ -370,10 +370,10 @@
 				21E426BD13A6267100ECD28F /* GStartScene.cpp in Sources */,
 				218961FA13A6D9290074237B /* GGameScene.cpp in Sources */,
 				2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */,
-				2168BB1113A8556900DED246 /* GMediateMoveState.cpp in Sources */,
-				2168BB1413A8566E00DED246 /* GMediate.cpp in Sources */,
 				21E1822E13A8826D00025FA4 /* HiroCatApplication.mm in Sources */,
 				218B717913A8D96C00730D9F /* HiroCatDirector.cpp in Sources */,
+				2164AE0213DD65AA007617BE /* GSelectStageScene.cpp in Sources */,
+				212527DF13E3DA6700BF800B /* GStateScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,7 +413,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -435,7 +435,8 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../SDK/include,
 					"../../SDK/include/cocos2d-x/cocos2dx/",
@@ -447,7 +448,7 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
@@ -456,6 +457,7 @@
 				OTHER_TEST_FLAGS = "";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
@@ -477,12 +479,12 @@
 					"$(inherited)",
 					GNDEBUG,
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -500,7 +502,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -512,6 +514,7 @@
 			buildSettings = {
 				EXECUTABLE_PREFIX = "";
 				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HiroCat/HiroCat-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -522,7 +525,8 @@
 					GNDEBUG,
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
-				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../SDK/include,
 					"../../SDK/include/cocos2d-x/cocos2dx/",
@@ -534,7 +538,7 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
@@ -548,7 +552,9 @@
 				OTHER_TEST_FLAGS = "";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "armv6 armv7 i386";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -569,7 +575,8 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = YES;
+				GCC_VERSION = 4.2;
 				HEADER_SEARCH_PATHS = (
 					../../SDK/include,
 					"../../SDK/include/cocos2d-x/cocos2dx/",
@@ -581,7 +588,7 @@
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				INFOPLIST_FILE = "HiroCat/HiroCat-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "../../SDK/bin/Debug-iphonesimulator";
 				New_Setting = "";
@@ -595,7 +602,9 @@
 				OTHER_TEST_FLAGS = "";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "armv6 armv7";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};

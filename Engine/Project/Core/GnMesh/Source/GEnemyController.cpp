@@ -8,6 +8,7 @@
 #include "GActionAttack.h"
 #include "GActionDamage.h"
 #include "GActionAttackCheck.h"
+#include "GActorInfoDatabase.h"
 
 GEnemyController::GEnemyController()
 {
@@ -52,8 +53,9 @@ bool GEnemyController::InitActionComponents()
 
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRangeX() );
-
+	moveAction->SetMoveRangeX( info->GetMoveRange() );
+	moveAction->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
+	
 	GetGameEnvironment()->CreateActorControllerBasicAction( this );
 	return true;
 }

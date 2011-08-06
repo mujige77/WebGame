@@ -71,7 +71,7 @@ static GNFORCEINLINE const gwchar* GnWStrcat(gwchar* GNRESTRICT pStr1, const gwc
 #endif // #ifdef __GNUC__
 }
 
-static GNSYSTEM_ENTRY GNFORCEINLINE gint GnWSprintf(gwchar* GNRESTRICT buffer, gsize bufferSize, const gwchar* GNRESTRICT format
+static GNSYSTEM_ENTRY gint GnWSprintf(gwchar* GNRESTRICT buffer, gsize bufferSize, const gwchar* GNRESTRICT format
 	, ...)
 {
 #ifdef __GNUC__

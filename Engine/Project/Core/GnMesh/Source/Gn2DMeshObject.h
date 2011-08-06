@@ -18,6 +18,7 @@ protected:
 	GnReal2DMesh* mpMesh;
 	Gn2DAVDataPtr mpsAVData;
 	GnVector2 mOriginalPosition;
+	GnVector2 mMeshSize;
 
 public:		
 	virtual ~Gn2DMeshObject();
@@ -105,8 +106,11 @@ public:
 		return mpMesh->isFlipX();
 	}
 	inline GnVector2 GetSize() {
-		CCSize size = mpMesh->getContentSize();
-		return GnVector2( size.width, size.height );
+		return mMeshSize;
+	}
+	inline void SetSize(GnVector2 cSize) {
+		mpMesh->setContentSize( CCSizeMake( cSize.x, cSize.y ) );
+		mMeshSize = cSize;
 	}
 	inline gint32 GetZOrder() {
 		return mpMesh->getZOrder();
@@ -120,6 +124,8 @@ public:
 protected:
 	Gn2DMeshObject(GnReal2DMesh* pMesh);
 	void SetVectorExtraDataScale();
-
+	void SetVectorExtraDataFlipX();
+	void Create2DAVData(GnVector2 cSize);
+	void SetRootMeshFromTextureAniCtlr();
 };
 #endif // GNSMELEMENT_H

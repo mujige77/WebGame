@@ -18,4 +18,8 @@ inline static void GetFullPathFromWorkPath(const gchar* pcFileNamem, gstring& ou
 	outString = fullPath;	
 }
 
+inline static void GetWriteablePath(const gchar* pcFileName, gstring& outPath) {
+	outPath = CCFileUtils::getWriteablePath();
+	outPath += pcFileName;
+}
 #endif

@@ -9,6 +9,13 @@
 #ifndef Core_GSelectStageBGLayer_h
 #define Core_GSelectStageBGLayer_h
 
-
+class GSelectStageBGLayer : public GLayer
+{
+public:
+	static GSelectStageBGLayer* CreateBackground();
+	
+public:
+	bool InitBackground();
+};
 
 #endif

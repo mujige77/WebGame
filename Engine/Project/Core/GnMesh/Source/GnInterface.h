@@ -3,6 +3,7 @@
 
 class GnInterface : public GnSmartObject
 {
+	GnDeclareRootRTTI(GnInterface);
 	GnDeclareFlags(guint32);
 	enum
 	{
@@ -21,12 +22,14 @@ protected:
 	
 public:
 	GnInterface();
+	GnInterface(const gchar* pcImageName);
 	bool CreateDefaultImage(const gchar* pcImageName);
 	
 public:
 	virtual bool Push(float fPointX, float fPointY);
-	virtual bool Pushup(float fPointX, float fPointY);
+	virtual bool PushUp(float fPointX, float fPointY);
 	virtual bool PushMove(float fPointX, float fPointY);
+	virtual void Push();
 	virtual void PushUp();
 	
 	virtual inline void AddChild(GnInterface* pChild) {}
@@ -43,6 +46,16 @@ public:
 	virtual inline void SetIsDisable(bool val) {
 		SetBit( val, MASK_DISABLE );
 	}
+	virtual inline void SetPosition(GnVector2& cPos) {
+		if( mpsDefaultMesh )
+			mpsDefaultMesh->SetPosition( cPos );
+		mPosition = cPos;
+	};
+	virtual inline void SetAlpha(guchar ucAlpha) {
+		if( mpsDefaultMesh )
+			mpsDefaultMesh->SetAlpha( ucAlpha );
+	}
+	
 public:
 	GNFORCEINLINE bool IfUseCheckCollision(float fPointX, float fPointY)
 	{
@@ -57,6 +70,9 @@ public:
 	inline GnInterfaceNode* GetParentUseNode()
 	{
 		return &mParentUseNode;
+	}
+	inline Gn2DMeshObject* GetDefaultMesh() {
+		return mpsDefaultMesh;
 	}
 	inline bool IsPush() {
 		return GetPushCount() != 0;
@@ -114,19 +130,31 @@ public:
 		mPosition.y = GetGameState()->GetGameHeight() - fPointY - size.height;
 		SetPosition( mPosition );
 	}
+	inline GnVector2 GetUIPoint() {
+		CCSize size = GetParentUseNode()->getContentSize();
+		size.width /= 2;
+		size.height /= 2;
+		GnVector2 outUIPoint( mPosition.x - size.width, GetGameState()->GetGameHeight()
+			- mPosition.y - size.height );
+		return outUIPoint;
+	}
 	inline GnVector2 GetContentSize() {
 		CCSize size = GetParentUseNode()->getContentSize();
 		GnVector2 ret( size.width, size.height );
 		return ret;
 	}
+	inline bool IsVisible() {
+		return GetParentUseNode()->getIsVisible();
+	}
+	inline void SetIsVisible(bool val) {
+		GetParentUseNode()->setIsVisible( val );
+	}
+
+	
 protected:
 	void AddMeshToParentNode(Gn2DMeshObject* pChild);
 	void AddToParentNode(GnInterfaceNode* pNode);
-protected:
-	virtual inline void SetPosition(GnVector2& cPos) {
-		if( mpsDefaultMesh )
-			mpsDefaultMesh->SetPosition( cPos );
-	};
+	void AddInterfaceToParentNode(GnInterface* pInterface);
 	
 protected:
 	inline void SetContentSize(float fWidth, float fHeight) {

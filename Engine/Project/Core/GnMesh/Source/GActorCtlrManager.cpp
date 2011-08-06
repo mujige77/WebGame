@@ -2,12 +2,25 @@
 #include "GnGamePCH.h"
 #include "GActorCtlrManager.h"
 #include "GActionAttackCheck.h"
-GActorCtlrManager::GActorCtlrManager(GLayer* pLayer) : mpActorLayer( pLayer )
+#include "GInfoBasic.h"
+
+GActorCtlrManager::GActorCtlrManager(GLayer* pLayer, GCastle* pCastle) : mpActorLayer( pLayer )
+	, mpCastle( pCastle )
 {
 }
 
 GActorCtlrManager::~GActorCtlrManager()
 {
+	for( gtuint i = 0; i < mActors.GetSize(); i++ )
+	{
+		GActorController* actorCtlr = mActors.GetAt( i );
+		GetActorLayer()->RemoveChild( actorCtlr->GetMesh() );
+#ifdef GNDEBUG
+		if( actorCtlr->GetDebugLayer() )
+			GetActorLayer()->removeChild( actorCtlr->GetDebugLayer(), true );
+#endif
+		GnDelete actorCtlr;
+	}
 }
 
 void GActorCtlrManager::Update(float fDeltaTime)
@@ -26,23 +39,6 @@ void GActorCtlrManager::Update(float fDeltaTime)
 		}
 	}
 }
-
-//void GActorCtlrManager::SetStartPostion(GActorController* pActorController
-//	, gtuint uiDirection , gtuint uiAttackLine)
-//{
-//	static const gtint rendLinePosX = 10;
-//	static gtint rendLine = rendLinePosX;
-//	if( rendLine == rendLinePosX )
-//		rendLine = 0;
-//	else if( rendLine == 0 )
-//		rendLine = -rendLinePosX;
-//	else
-//		rendLine = rendLinePosX;
-//	
-//	GnVector2 postion = GetGameEnvironment()->GetStartPosition( uiDirection, uiAttackLine );
-//	postion.y += (float)rendLine;
-//	pActorController->Start( postion );
-//}
 
 void GActorCtlrManager::ProcessAttack(GActorCtlrManager* pCheckCtlrManager)
 {
@@ -67,9 +63,13 @@ void GActorCtlrManager::ProcessAttack(GActorCtlrManager* pCheckCtlrManager)
 
 void GActorCtlrManager::CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager)
 {
+	if( pCheckCtlrManager->GetCastle() && CastleCollisionCheck( pAttackCheck, pCheckCtlrManager->GetCastle() ) )
+		pAttackCheck->SetIsReadyAttack( true );
+
 	for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
 	{
-		if( pAttackCheck->CollisionCheck( pCheckCtlrManager->GetActorCtlr( j ) ) )
+		GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
+		if( CollisionCheck( pAttackCheck, checkCtrl ) )
 		{
 			pAttackCheck->SetIsReadyAttack( true );
 			break;
@@ -78,22 +78,66 @@ void GActorCtlrManager::CollisionCheck(GActionAttackCheck* pAttackCheck, GActorC
 }
 gtuint GActorCtlrManager::SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager)
 {
-	gtuint numAttackCtrl = 0;
-	GActorController* attacksCtrl[GActionAttackCheck::MAX_ATTCK_COUNT] = { NULL, };
-	for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
+	gtuint totalNumAttackCtrl = 0;
+	GCastle* castle = pCheckCtlrManager->GetCastle();
+	if( castle && CastleCollisionCheck( pAttackCheck, castle ) )
 	{
-		GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
-		if( pAttackCheck->CollisionCheck( checkCtrl ) )
+		GInfoBasic* fromActorBasic = 
+			(GInfoBasic*)pAttackCheck->GetController()->GetInfoComponent( GInfo::INFO_BASIC );
+		castle->ReceveAttack( (gint32)fromActorBasic->GetStrength() );
+		++totalNumAttackCtrl;
+	}
+		
+	gtuint enableAttackCount = pAttackCheck->GetEnableAttackCount() - totalNumAttackCtrl;
+	if( enableAttackCount )
+	{
+		gtuint numAttackCtrl = 0;
+		GActorController* attacksCtrl[GActionAttackCheck::MAX_ATTCK_COUNT] = { NULL, };
+		for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
 		{
-			attacksCtrl[numAttackCtrl++] = checkCtrl;
-			if( pAttackCheck->GetEnableAttackCount() <= numAttackCtrl )
-				break;
+			GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
+			if( CollisionCheck( pAttackCheck, checkCtrl ) )
+			{
+				attacksCtrl[numAttackCtrl++] = checkCtrl;
+				if( enableAttackCount <= numAttackCtrl )
+					break;
+			}
 		}
+		
+		for( gtuint i = 0; i < numAttackCtrl; i++ )
+		{
+			attacksCtrl[i]->ReceiveAttack( pAttackCheck->GetController() );
+		}
+		totalNumAttackCtrl += numAttackCtrl;
 	}
+	return totalNumAttackCtrl;
+}
+
+bool GActorCtlrManager::CollisionCheck(GActionAttackCheck* pAttackCheck, GActorController* pCheckCtrl)
+{
+	if( pCheckCtrl->GetCurrentAction( GAction::ACTION_DIE ) )
+		return false;
+	GActionAttackCheck* checkAttack = 
+	(GActionAttackCheck*)pCheckCtrl->GetActionComponent( GAction::ACTION_ATTACKCHECK );
 	
-	for( gtuint i = 0; i < numAttackCtrl; i++ )
-	{
-		attacksCtrl[i]->ReceiveAttack( pAttackCheck->GetController() );
-	}
-	return numAttackCtrl;
+	if( checkAttack == NULL )
+		return false;
+	Gn2DAVData* avData = pCheckCtrl->GetMesh()->GetAVData();
+	if( avData == NULL )
+		return false;
+	Gn2DAVData::CollisionRect& rect	= avData->GetCollisionRect( 0 );
+	if( pAttackCheck->CollisionCheck( checkAttack->GetAttackLine(), rect.mRect ) )
+		return true;
+	
+	return false;
+}
+
+bool GActorCtlrManager::CastleCollisionCheck(GActionAttackCheck* pAttackCheck, GCastle* pCheckCastel)
+{
+	if( pAttackCheck->CollisionCheck( 0, pCheckCastel->GetBottomBodyRect() ) )
+		return true;
+	if( pAttackCheck->CollisionCheck( 1, pCheckCastel->GetTopBodyRect() ) )
+		return true;
+	
+	return false;
 }

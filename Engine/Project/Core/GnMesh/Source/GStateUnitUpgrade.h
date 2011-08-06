@@ -9,6 +9,11 @@
 #ifndef Core_GStateUnitUpgrade_h
 #define Core_GStateUnitUpgrade_h
 
-
+class GStateUnitUpgrade {
+	
+	
+public:
+	
+};
 
 #endif

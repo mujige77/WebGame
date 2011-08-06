@@ -14,7 +14,6 @@ Gn2DMeshObject::~Gn2DMeshObject()
 
 Gn2DMeshObject* Gn2DMeshObject::CreateFromTextureFile(const gchar* pcFilePath)
 {
-	
 	gchar textureWorkPath[GN_MAX_PATH] = { 0, };
 	GnStrcpy( textureWorkPath, GnSystem::GetWorkDirectory(), sizeof(textureWorkPath) );
 	GnStrcat( textureWorkPath, pcFilePath, sizeof(textureWorkPath) );
@@ -28,6 +27,9 @@ Gn2DMeshObject* Gn2DMeshObject::CreateFromTextureFile(const gchar* pcFilePath)
 	mesh->retain();
 	Gn2DMeshObject* meshObject = GnNew Gn2DMeshObject( mesh );
 	meshObject->GetMesh()->setScale( GetGameState()->GetGameScale() );
+	meshObject->Create2DAVData( meshObject->GetSize() );
+	CCSize size = mesh->getContentSize();
+	meshObject->mMeshSize = GnVector2( size.width, size.height );
 	return meshObject;
 }
 
@@ -41,6 +43,7 @@ Gn2DMeshObject* Gn2DMeshObject::Create(bool bUseGn2DMeshData)
 
 	meshObject->GetMesh()->setScale( GetGameState()->GetGameScale() );
 	meshObject->SetVisible( true );
+	meshObject->mMeshSize = GnVector2( 0.0f, 0.0f );
 	return meshObject;
 }
 
@@ -66,12 +69,16 @@ Gn2DMeshObject* Gn2DMeshObject::CreateFullPath(const gchar* pcFullPath, bool bUs
 		meshObject->GetMesh()->setScale( GetGameState()->GetGameScale() );
 		meshObject->SetVisible( true );
 	}
+	meshObject->SetRootMeshFromTextureAniCtlr();
+	meshObject->Create2DAVData( meshObject->GetSize() );
 	return meshObject;
 }
 
 void Gn2DMeshObject::SetMesh(GnReal2DMesh* pMesh)
 {
 	mpMesh = pMesh;
+	CCSize size = pMesh->getContentSize();
+	mMeshSize = GnVector2( size.width, size.height );
 }
 
 void Gn2DMeshObject::SetAVData(Gn2DAVData* val)
@@ -122,6 +129,11 @@ void Gn2DMeshObject::SetPosition(GnVector2 val)
 
 void Gn2DMeshObject::SetFlipX(bool val)
 {
+	if( GetFlipX() != val )
+	{
+		SetVectorExtraDataFlipX();
+	}
+	
 	mpMesh->setFlipX( val );
 	SetPosition( GetOriginalPosition() );
 	if( GetAVData() )
@@ -217,4 +229,61 @@ void Gn2DMeshObject::SetVectorExtraDataScale()
 			point[1] *= GetGameState()->GetGameScale();
 		}		
 	}
+}
+
+void Gn2DMeshObject::SetVectorExtraDataFlipX()
+{
+	if( GetAVData() && GetAVData()->GetCollisionCount() )
+	{
+		float* point;
+		GnVector2ExtraData* vector2Extra;
+		for( gtuint i = 0; i < GetExtraDataSize(); i++ )
+		{		
+			vector2Extra = GnDynamicCast( GnVector2ExtraData, GetExtraData( i ) );
+			if( vector2Extra )
+			{
+				Gn2DAVData::CollisionRect& baseRect = GetAVData()->GetCollisionRect( 0 );
+				float flip = baseRect.mRect.GetWidth();
+				point = vector2Extra->GetValue();
+				point[0] = flip - point[0];
+				vector2Extra->SetValue( point );	
+			}
+		}
+	}
+}
+
+void Gn2DMeshObject::Create2DAVData(GnVector2 cSize)
+{
+	mpsAVData = GnNew Gn2DAVData();
+	GnFRect collisionRect( 0.0f, 0.0f, cSize.x, cSize.y );
+	mpsAVData->AddCollisionRect( 0, collisionRect );
+	
+	cSize = GnVector2( 0.5f, 0.5f );
+	mpsAVData->SetImageCenter( cSize );
+	mpsAVData->SetAnchorPoint( cSize );
+}
+
+void Gn2DMeshObject::SetRootMeshFromTextureAniCtlr()
+{
+	GnTimeController* ctrl = GetTimeControllers();
+	while ( ctrl )
+	{
+		Gn2DTextureAniCtlr* tex = GnDynamicCast( Gn2DTextureAniCtlr, ctrl );
+		if( tex )
+		{
+			Gn2DTextureAniCtlr::TextureAniInfo* aniInfo = tex->GetAniInfos()->GetAt( 0 );
+			if( aniInfo == NULL || aniInfo->GetMesh() == NULL )
+			{
+				tex->CreateData();
+				Gn2DTextureAniCtlr::TextureAniInfo* aniInfo = tex->GetAniInfos()->GetAt( 0 );
+				if( aniInfo == NULL || aniInfo->GetMesh() == NULL )					
+					break;
+				
+				GnReal2DMesh* aniMesh = aniInfo->GetMesh();
+				CCSize size = aniMesh->getContentSize();
+				mMeshSize = GnVector2( size.width, size.height );
+			}
+		}
+		ctrl = ctrl->GetNext();
+	}	
 }

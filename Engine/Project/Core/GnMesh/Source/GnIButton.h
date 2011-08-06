@@ -4,13 +4,14 @@
 class GnIProgressBar;
 class GnIButton : public GnInterface
 {
-	GnDeclareFlags(gushort);
-	
+	GnDeclareRTTI;
+	GnDeclareFlags(gushort);	
 public:
 	enum
 	{
 		MASK_DEABLE_CANTPUSH_BLIND = 0x0001,
 		MASK_ENABLE_COOLTIME = 0x0002,
+		MASK_HIDE_PUSHDEFAULTBUTTON = 0x0004,
 	};
 public:
 	enum eButtonType
@@ -38,6 +39,17 @@ public:
 	void SetCoolTime(float fTime);
 
 public:
+	virtual void Update(float fTime);
+	virtual bool Push(float fPointX, float fPointY);
+	virtual bool PushMove(float fPointX, float fPointY);
+	virtual void Push();
+	virtual void PushUp();
+	virtual void SetIsDisable(bool val);
+	virtual void SetIsCantPush(bool val);
+	virtual void SetPosition(GnVector2& cPos);
+	virtual void SetAlpha(guchar ucAlpha);
+
+public:
 	inline bool IsDisableCantpushBlind() {
 		return GetBit( MASK_DEABLE_CANTPUSH_BLIND );
 	}
@@ -56,19 +68,17 @@ public:
 		mMeshNames[TYPE_PROGRESSBACK] = pcProgressBackFileName;
 		mMeshNames[TYPE_PROGRESS] = pcProgressFileName;
 	}
-public:
-	virtual void Update(float fTime);
-	virtual bool Push(float fPointX, float fPointY);
-	virtual bool PushMove(float fPointX, float fPointY);
-	virtual void PushUp();
-	virtual void SetIsDisable(bool val);
-	virtual void SetIsCantPush(bool val);
+	inline bool IsHidePushDefaultButton() {
+		return GetBit( MASK_HIDE_PUSHDEFAULTBUTTON );
+	}
+	inline void SetIsHidePushDefaultButton(bool val) {
+		return SetBit( val, MASK_HIDE_PUSHDEFAULTBUTTON );
+	}
 	
 protected:
 	void CreateProgressBar();
 	
 protected:
-	void SetPosition(GnVector2& cPos);
 	void SetVisibleNormal(bool val);
 };
 

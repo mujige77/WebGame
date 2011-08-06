@@ -28,12 +28,12 @@ void GEnergyBar::Init(gint32 iMax, float fFillTime)
 	mAcumTime = 0.0f;
 	
 	gstring fullPath;
-	GetFullPathFromWorkPath( "Controll/Number.png", fullPath );
+	GetFullPathFromWorkPath( "Controll/integer.png", fullPath );
 
-	mLabelCurrentEnergy.Init( "000", fullPath.c_str(), 16, 24, '.' );
+	mLabelCurrentEnergy.Init( "000", fullPath.c_str(), 12, 14, '.' );
 	mLabelCurrentEnergy.SetMaxDigit( 3, "%03d" );
 	SetCurrentEnergy( 0 );
-	mLabelMaxEnergy.Init( "000", fullPath.c_str(), 16, 24, '.' );
+	mLabelMaxEnergy.Init( "000", fullPath.c_str(), 12, 14, '.' );
 	mLabelMaxEnergy.SetMaxDigit( 3, "%03d" );
 	SetMaxEnergy( iMax );
 	
@@ -59,7 +59,9 @@ void GEnergyBar::SetPosition(GnVector2& cPos)
 	GnIButton::SetPosition( cPos );
 
 	cPos.x -= GetContentSize().x / 2.0f;
+	cPos.x += 22.0f;
+	cPos.y += 12.0f;
 	mLabelCurrentEnergy.SetPosition( cPos );
 	cPos.y -= 20;
-	mLabelMaxEnergy.SetPosition( cPos );	
+	mLabelMaxEnergy.SetPosition( cPos );
 }

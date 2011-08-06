@@ -9,18 +9,19 @@ void GLayer::AddChild(GnInterface* pObject)
 
 void GLayer::AddChild(GnInterface* pObject, int iZOrder)
 {
-	if( pObject->GetChildrenSize() == 0 ) 
-	{
+//	if( pObject->GetChildrenSize() == 0 ) 
+//	{
 		addChild( pObject->GetParentUseNode(), iZOrder );
-	}
-	else
-	{
-		for ( gtuint i = 0 ; i < pObject->GetChildrenSize(); i++ )
-		{
-			GnInterface* child = pObject->GetChild( i );
-			addChild( child->GetParentUseNode(), iZOrder++ );
-		}			
-	}
+//	}
+//	else
+//	{
+//		
+//		for ( gtuint i = 0 ; i < pObject->GetChildrenSize(); i++ )
+//		{
+//			GnInterface* child = pObject->GetChild( i );
+//			addChild( child->GetParentUseNode(), iZOrder++ );
+//		}
+//	}
 	mInterfaceChildren.Add( pObject );
 
 }
@@ -70,7 +71,7 @@ void GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
 		{
 			GnInterface* child = mInterfaceChildren.GetAt( i );
-			if( child->Pushup( touchPoint.x, touchPoint.y ) )
+			if( child->PushUp( touchPoint.x, touchPoint.y ) )
 				break;
 		}
 	}

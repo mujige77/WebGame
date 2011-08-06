@@ -9,6 +9,26 @@
 #ifndef __Core__GnITabPage__
 #define __Core__GnITabPage__
 
+#include "GnInterfaceGroup.h"
 
-
+class GnITabPage : public GnInterfaceGroup
+{
+	GnDeclareRTTI;
+private:
+	gtuint mNumTabPage;
+	
+public:
+	inline gtuint GetNumTabPage() {
+		return mNumTabPage;
+	}
+	inline void SetNumTabPage(gtuint uiNum) {
+		mNumTabPage = uiNum;
+	}
+//	virtual void AddChild(GnInterface* pChild)
+//	{
+//		GnInterfaceGroup::AddChild( pChild );
+//		GetParentUseNode()->addChild( pChild->GetParentUseNode() );
+//	}
+};
+GnSmartPointer(GnITabPage);
 #endif

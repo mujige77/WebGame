@@ -8,6 +8,7 @@
 
 #include "GnMeshPCH.h"
 #include "GnSQLiteQuery.h"
+#include "sqlite3.h"
 
 GnSQLiteQuery::GnSQLiteQuery(sqlite3_stmt* pStatement, bool bEof)
 	: mpStatement( pStatement ), mEof( bEof )

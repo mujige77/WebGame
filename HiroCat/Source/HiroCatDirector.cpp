@@ -10,6 +10,8 @@
 #include "CCAutoreleasePool.h"
 #include "platform/platform.h"
 #include "GSceneSelector.h"
+#include "GGameEBM.h"
+#include "GMainGameEnvironment.h"
 // should we afford 4 types of director ??
 // I think HiroCatDirector is enough
 // so we now only support HiroCatDirector
@@ -28,14 +30,17 @@ void HiroCatDirector::mainLoop(void)
 {	
 	if (m_bPurgeDirecotorInNextLoop)
 	{
+		GSceneSelector::GetSingleton()->ReleaseScene();
+		GMainGameEnvironment::Destory();
 		purgeDirector();
+		ShoutdownEBM();
         m_bPurgeDirecotorInNextLoop = false;
 	}
 	else if (! m_bInvalid)
  	{
 		calculateDeltaTime();
-		GScene* pScene = GSceneSelector::GetSingleton()->GetCurrentScene(); 
-		pScene->Update( m_fDeltaTime );
+		
+		GSceneSelector::GetSingleton()->Update( m_fDeltaTime );
 		
  		drawScene();		
  		// release the objects

@@ -1,13 +1,9 @@
 #ifndef __Core__GnSQLiteQuery__
 #define __Core__GnSQLiteQuery__
 
-#if ( GNUSE_OS == FLATFORM_IOS )
-#include "/usr/include/sqlite3.h"
-#else
-typedef int sqlite3_stmt;
-#define  SQLITE_NULL 0
-#endif
 
+
+class sqlite3_stmt;
 class GnSQLiteQuery
 {
 private:

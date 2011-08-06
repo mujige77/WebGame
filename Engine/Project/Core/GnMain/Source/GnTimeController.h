@@ -39,6 +39,10 @@ public:
 	GnTimeController();
 	virtual ~GnTimeController();
 
+	static void SetCycleType(GnTimeController::eCycleType eType, GnObjectForm* pObject);
+	static void StartTimeControllers(GnObjectForm* pObject);
+	static void StopTimeControllers(GnObjectForm* pObject);
+	static bool IsAllStopControllers(GnObjectForm* pObject);
 protected:
 
 public:
@@ -46,6 +50,7 @@ public:
 	virtual void Start();
 	virtual void Stop();	
 	virtual bool SetTargetObject(GnObjectForm* pObject);
+	
 public:
 	inline  GnTimeController* GetNext() {
 		return mpsNext;

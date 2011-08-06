@@ -2,6 +2,8 @@
 #include "GnInterfacePCH.h"
 #include "GnInterface.h"
 
+GnImplementRootRTTI(GnInterface);
+
 GnInterface::GnInterface() : mPushCount( 0 )
 {
 	SetIsHover( false );
@@ -11,13 +13,26 @@ GnInterface::GnInterface() : mPushCount( 0 )
 	mParentUseNode.retain();
 }
 
+GnInterface::GnInterface(const gchar* pcImageName) : mPushCount( 0 )
+{
+	SetIsHover( false );
+	SetIsCantPush( false );
+	SetIsDisable( false );	
+	SetIsEnablePushMove( false );
+	mParentUseNode.retain();
+	CreateDefaultImage( pcImageName );
+}
+
 bool GnInterface::Push(float fPointX, float fPointY)
 {
-	AddPushCount();
+	if( IfUseCheckCollision( fPointX, fPointY ) == false )
+		return false;
+
+	Push();
 	return true;
 }
 
-bool GnInterface::Pushup(float fPointX, float fPointY)
+bool GnInterface::PushUp(float fPointX, float fPointY)
 {
 	if( IsPush() == false || IfUseCheckCollision( fPointX, fPointY ) == false )
 		return false;
@@ -34,6 +49,11 @@ bool GnInterface::PushMove(float fPointX, float fPointY)
 	return true;
 }
 
+void GnInterface::Push()
+{
+	AddPushCount();
+}
+
 void GnInterface::PushUp()
 {
 	SubPushCount();
@@ -47,6 +67,11 @@ void GnInterface::AddMeshToParentNode(Gn2DMeshObject *pChild)
 void GnInterface::AddToParentNode(GnInterfaceNode* pNode)
 {
 	GetParentUseNode()->addChild( pNode, 0 );
+}
+
+void GnInterface::AddInterfaceToParentNode(GnInterface* pInterface)
+{
+	GetParentUseNode()->addChild( pInterface->GetParentUseNode(), 0 );
 }
 
 bool GnInterface::CreateDefaultImage(const gchar* pcImageName)

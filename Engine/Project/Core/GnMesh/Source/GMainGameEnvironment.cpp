@@ -19,7 +19,10 @@ GMainGameEnvironment* GMainGameEnvironment::Create()
 void GMainGameEnvironment::Destory()
 {
 	if( mpSingleton )
+	{
 		GnDelete mpSingleton;
+		mpSingleton = NULL;
+	}
 }
 
 GMainGameEnvironment* GMainGameEnvironment::GetSingleton()
@@ -27,23 +30,44 @@ GMainGameEnvironment* GMainGameEnvironment::GetSingleton()
 	return (GMainGameEnvironment*)mpSingleton;
 }
 
+bool GMainGameEnvironment::SetStage(gtuint uiNumStage)
+{
+	if( GGameEnvironment::SetStage( uiNumStage ) == false )
+		return false;
+	
+	float top = GetStageInfo()->GetInterfaceSize().y + 5.0f;
+	float bottom = top + ( GetStageInfo()->GetLineHeight() * GetStageInfo()->GetNumLine() ) - 10.0f;
+	
+	SetEnableMoveRect( GnFRect( 0.0f, top, GetStageInfo()->GetBackgroundSize().x
+		, bottom ) );
+	
+	float basePosition = GetStageInfo()->GetInterfaceSize().y + 3.0f;
+	for( gtuint i = 0 ; i < GetStageInfo()->GetNumLine() ; i++ )
+	{
+		GMainGameEnvironment::GetSingleton()->AddLine( basePosition + 
+			( GetStageInfo()->GetLineHeight() * (float)i ) );
+	}
+	
+	GMainGameEnvironment::GetSingleton()->SetMoveRangeY( GetStageInfo()->GetLineHeight() );
+	return true;
+}
+
 void GMainGameEnvironment::Reset()
 {
 	mLines.RemoveAll();
 }
 
-bool GMainGameEnvironment::CorrectMove(GnVector2& cPosition)
+bool GMainGameEnvironment::CorrectMoveX(float& fPositionX)
 {
 	bool ret = true;
-	if( mEnableMoveRect.ContainsPointX( cPosition.x ) == false )
+	if( mEnableMoveRect.ContainsPointX( fPositionX ) == false )
 	{
-		if( cPosition.x <= mEnableMoveRect.left )
-			cPosition.x = mEnableMoveRect.left;
+		if( fPositionX <= mEnableMoveRect.left )
+			fPositionX = mEnableMoveRect.left;
 		else
-			cPosition.x = mEnableMoveRect.right;
+			fPositionX = mEnableMoveRect.right;
 		ret = false;
 	}
-	
 //	gtuint size = mLines.GetSize();
 //	float maxLinePos = mLines.GetAt( size - 1 );
 //	float minLinePos = mLines.GetAt( 0 );
@@ -59,23 +83,38 @@ bool GMainGameEnvironment::CorrectMove(GnVector2& cPosition)
 //	}
 	return ret;
 }
+
+bool GMainGameEnvironment::CorrectMoveY(float& fPositionY)
+{
+	bool ret = true;
+	if( mEnableMoveRect.ContainsPointY( fPositionY ) == false )
+	{
+		if( fPositionY <= mEnableMoveRect.top )
+			fPositionY = mEnableMoveRect.top;
+		else
+			fPositionY = mEnableMoveRect.bottom;
+		ret = false;
+	}
+	return ret;
+}
+
 void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr, gtuint uiDirection)
 {
 	
-	static const gtint rendLinePosX = 10;
+	static gtint rendLinePosX = GetStageInfo()->GetLineHeight() / 3;
 	static gtint rendLine = rendLinePosX;
 	if( rendLine == rendLinePosX )
-		rendLine = 0;
+		rendLine = rendLinePosX + rendLinePosX;
 	else if( rendLine == 0 )
-		rendLine = -rendLinePosX;
-	else
 		rendLine = rendLinePosX;
+	else
+		rendLine = 0;
 	
 	guint numLine = GetNumUserLine();
-	GnVector2 pos( mEnableMoveRect.left, 0.0f );
+	GnVector2 pos( 0.0f, 0.0f );
 	if( uiDirection == 1 )
 	{
-		pos.x = mEnableMoveRect.right;
+		pos.x = GetStageInfo()->GetBackgroundSize().x;
 		numLine = rand() % GetLineCount();
 	}
 
@@ -85,15 +124,18 @@ void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr,
 
 	GMainGameMove* moveAction = (GMainGameMove*)pActorCtlr->GetActionComponent( GAction::ACTION_MOVE );
 	moveAction->SetNumLine( numLine );
-	moveAction->SetMoveRangeY( mMoveRangeY );
 	
-	pos.y = GetLine( numLine ) + rendLine;
+	pos.y = GetLine( numLine ) + (float)rendLine;
 	pActorCtlr->SetPosition( pos );
 	pActorCtlr->Start();
 }
 
-void GMainGameEnvironment::UserMove(GAction* pMoveAction)
+void GMainGameEnvironment::UserMove(GActorController* pActorCtlr)
 {
-	GMainGameMove* moveAction = (GMainGameMove*)pMoveAction;
+	GMainGameMove* moveAction = (GMainGameMove*)pActorCtlr->GetActionComponent( GAction::ACTION_MOVE );
 	SetNumUserLine( moveAction->GetNumLine() );
+	
+	GActionAttackCheck* attackCheck
+	= (GActionAttackCheck*)pActorCtlr->GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	attackCheck->SetAttackLine( moveAction->GetNumLine() );
 }

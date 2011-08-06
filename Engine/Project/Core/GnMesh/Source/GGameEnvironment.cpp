@@ -17,6 +17,13 @@ GGameEnvironment* GGameEnvironment::GetSingleton()
 	return mpSingleton;
 }
  
+bool GGameEnvironment::SetStage(gtuint uiNumStage)
+{
+	if( GStageInfo::GetStageInfo( 1, mStageInfo ) == false )
+		return false;
+	
+	return true;
+}
 
 void GGameEnvironment::RemoveBasicCurrentAction(GActorController* pCtrl)
 {

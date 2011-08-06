@@ -52,7 +52,7 @@
 #include "GnLog.h"
 #include "GnPath.h"
 #include "GnSingletonManager.h"
-
+#include "GnTimer.h"
 namespace GnSystem
 {
 	GNSYSTEM_ENTRY void SetWorkDirectory(const gchar* pcVal);

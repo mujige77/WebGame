@@ -9,27 +9,44 @@
 #ifndef __HiroCat__GBackgroundSelcetor__
 #define __HiroCat__GBackgroundSelcetor__
 #include "GnSingletonManager.h"
+//#include "GGameScene.h"
+//#include "GStartScene.h"
 
 class GScene;
+class GGameScene;
+class GStartScene;
+class GStateScene;
+class GSelectStageScene;
+
 class GSceneSelector : public GnMemoryObject
 {
 	GnDeclareSingleton(GSceneSelector);
 private:
 	static const guint DEFAULT_ZORDER = 100;
 	GScene* mpCurrentScene;
+	GStartScene* mpStartScene;
+	GStateScene* mpStateScene;
+	GSelectStageScene* mpSelectStageScene;
+	GGameScene* mpGameScene;	
 	
 public:
+	GSceneSelector();
 	void RunApplication();
+	void Update(float fTime);
+	void ReleaseScene();
 	
 public:
 	inline GScene* GetCurrentScene() {
 		return mpCurrentScene;
 	};
 	
-protected:
+private:
+	void ChangeSceneCheck();
 	void SetUseActorFile();
-	GScene* CreateScene(gtuint uiStage);
-	void CreateEnvironment(gtuint uiStage);
+	GScene* CreateGameScene();
+	GScene* CreateStartScene();
+	GScene* CreateStateScene();
+	GScene* CreateSelectStageScene();
 };
 
 #endif

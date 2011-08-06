@@ -41,6 +41,7 @@ GnIProgressBar* GnIProgressBar::Create(eProgressType eType, const gchar* pcBackI
 	{
 		tempMesh = Gn2DMeshObject::Create( false );
 		tempMesh->GetMesh()->setTextureRect( CCRectMake(0, 0, tempSize.x, tempSize.y) );
+		tempMesh->SetSize( GnVector2( tempSize.x, tempSize.y ) );
 		tempMesh->SetColor( GnColor::Black );
 		tempMesh->SetAlpha( 0.5f );
 	}
@@ -53,11 +54,13 @@ GnIProgressBar* GnIProgressBar::Create(eProgressType eType, float fWidth, float 
 {
 	Gn2DMeshObject* backMesh = Gn2DMeshObject::Create( false );
     backMesh->GetMesh()->setTextureRect( CCRectMake(0, 0, fWidth, fHeight) );
+	backMesh->SetSize( GnVector2( fWidth, fHeight ) );
     backMesh->SetColor( GnColor::Black );
 	backMesh->SetAlpha( 0.5f );
 	
     Gn2DMeshObject* progressMesh = Gn2DMeshObject::Create( false );
     progressMesh->GetMesh()->setTextureRect( CCRectMake(0, 0, fWidth, fHeight) );
+	progressMesh->SetSize( GnVector2( fWidth, fHeight ) );
     progressMesh->SetColor( GnColor::Black );
 	progressMesh->SetAlpha( 0.5f );
 	
@@ -82,6 +85,8 @@ GnIProgressBar::GnIProgressBar(eProgressType eType, Gn2DMeshObject* pBackMesh, G
 	GnVector2 size = mpsProgressMesh->GetSize();	
 	mProgressWidth = size.x;
 	mProgressHeight = size.y;
+
+	GetParentUseNode()->setContentSize( mpsDefaultMesh->GetMesh()->getContentSize() );
 }
 
 void GnIProgressBar::SetProgressPercent(gtuint uiPercent)

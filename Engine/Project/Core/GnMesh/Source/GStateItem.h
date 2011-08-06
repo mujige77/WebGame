@@ -9,6 +9,11 @@
 #ifndef Core_GStateItem_h
 #define Core_GStateItem_h
 
-
+class GStateItem {
+	
+	
+public:
+	
+};
 
 #endif

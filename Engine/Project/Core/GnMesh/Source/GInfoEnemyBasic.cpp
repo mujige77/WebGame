@@ -1,6 +1,7 @@
 #include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GInfoEnemyBasic.h"
+#include "GnSQLiteQuery.h"
 
 void GInfoEnemyBasic::LoadDataFromQuery(GnSQLiteQuery *pQuery)
 {

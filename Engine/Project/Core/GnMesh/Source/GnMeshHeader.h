@@ -10,7 +10,7 @@ typedef CCNode GnInterfaceNode;
 #include "GnSMManager.h"
 #include "GnAnimation.h"
 #include "Gn2DTextureAni.h"
-#include "Gn2DTextureAni.h"
+#include "Gn2DTextureAniCtlr.h"
 #include "Gn2DAVData.h"
 #include "Gn2DMeshObject.h"
 #include "Gn2DNode.h"

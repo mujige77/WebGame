@@ -71,8 +71,7 @@ void Gn2DTextureAniCtlr::RegisterSaveObject(GnObjectStream* pStream)
 }
 
 Gn2DTextureAniCtlr::Gn2DTextureAniCtlr() : mpCurrentAni( NULL )
-{	
-	CreateData();
+{
 }
 
 Gn2DTextureAniCtlr::~Gn2DTextureAniCtlr()
@@ -82,8 +81,7 @@ Gn2DTextureAniCtlr::~Gn2DTextureAniCtlr()
 
 bool Gn2DTextureAniCtlr::CreateData()
 {
-	CCMutableArray<CCSpriteFrame*> animFrames( mInfos.GetSize() );		
-	float aniTime = 0.1f;
+	CCMutableArray<CCSpriteFrame*> animFrames( mInfos.GetSize() );
 	for( gtuint i = 0 ; i < mInfos.GetSize() ; i++ )
 	{
 		TextureAniInfo* info = mInfos.GetAt( i );

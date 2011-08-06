@@ -9,6 +9,18 @@
 #ifndef __Core__GCastleEnemy__
 #define __Core__GCastleEnemy__
 
+#include "GCastle.h"
 
+class GIconGage;
+class GCastleEnemy : public GCastle
+{
+public:
+	static GCastleEnemy* CreateCastle(GLayer* pInterfaceLayer, GLayer* pCastleLayer
+		, GStageInfo* pStageInfo, GStageInfo::GCastleFiles* pFiles
+		, GStageInfo::GCastlePositions* pPositions);
+	
+protected:
+	static bool CreateCastleGage(GLayer* pInterfaceLayer, GIconGage& cOutGage);
+};
 
 #endif

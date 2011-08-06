@@ -5,7 +5,13 @@
 #include "GActionMove.h"
 #include <GFileList.h>
 
-GEnemyCtlrManager::GEnemyCtlrManager(GLayer* pLayer) : GActorCtlrManager( pLayer )
+GEnemyCtlrManager* GEnemyCtlrManager::CreateActorCtlrManager(GLayer* pLayer, GCastle* pCastle)
+{
+	GEnemyCtlrManager* ctlrManager = GnNew GEnemyCtlrManager( pLayer, pCastle );
+	return ctlrManager;
+}
+
+GEnemyCtlrManager::GEnemyCtlrManager(GLayer* pLayer, GCastle* pCastle) : GActorCtlrManager( pLayer, pCastle )
 {
 	srand( 10000 );
 	mNewEnemyTimeEvent.Reset( 1.0f );

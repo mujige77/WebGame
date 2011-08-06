@@ -21,3 +21,4 @@
 /Tools/GnToolLib/Log
 HiroCat/Resource/ActorInfo.sqlite
 *.DS_Store
+HiroCat/Resource/StageInfo.sqlite

@@ -8,12 +8,39 @@
 
 #ifndef __HiroCat__GStartScene__
 #define __HiroCat__GStartScene__
-#include "GScene.h"
 
+class GnITabCtrl;
 class GStartScene : public GScene
 {
+	enum
+	{
+		MAX_PLAYER = 3,
+	};
+private:
+	GLayer* mpInterfaceLayer;
+	GLayer* mpBackgroundLayer;
+	GnITabCtrl* mpTab;
+	GnMemberSlot2<GStartScene, GnInterface*, GnIInputEvent*> mInputEvent;
+	
 public:
+	GStartScene();
 	virtual ~GStartScene();
+	
+public:
+	static GStartScene* CreateStartScene();
+	bool CreateInterface();
+	bool CreateBackground();
+	
+public:
+	virtual const gchar* GetSceneName();
+	
+protected:
+	void InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
+	
+private:
+	void InputNewTabButton(gtuint uiNumButton);
+	void InputLoadTabButton(gtuint uiNumButton);
+	void SetLoadTabButton();
 };
 
 #endif

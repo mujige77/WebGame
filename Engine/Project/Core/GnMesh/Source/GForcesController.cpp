@@ -7,7 +7,7 @@
 #include "GActionAttack.h"
 #include "GActionDamage.h"
 #include "GActionAttackCheck.h"
-
+#include "GActorInfoDatabase.h"
 GForcesController::GForcesController()
 {
 	
@@ -52,7 +52,8 @@ bool GForcesController::InitActionComponents()
 	
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRangeX() );
+	moveAction->SetMoveRangeX( info->GetMoveRange() );
+	moveAction->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
 	moveAction->SetMoveRight( true );
 	
 	GetGameEnvironment()->CreateActorControllerBasicAction( this );

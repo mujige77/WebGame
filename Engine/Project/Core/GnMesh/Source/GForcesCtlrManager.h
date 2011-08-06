@@ -13,13 +13,15 @@ private:
 	GnMemberSlot2<GForcesCtlrManager, GnInterface*, GnIInputEvent*> mCreateForcesInputEvent;
 	
 public:
-	GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
+	static GForcesCtlrManager* CreateActorCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer
+		, GCastle* pCastle = NULL);
 	
 public:
 	void Update(float fDeltaTime);
 	void Init();
 	
 protected:
+	GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer, GCastle* pCastle = NULL);
 	void CreateForces(GnInterface* pInterface, GnIInputEvent* pEvent);
 
 };

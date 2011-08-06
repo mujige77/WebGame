@@ -28,7 +28,7 @@ void* GnDebugAllocator::Allocate(gsize& sizeInBytes, gsize& alignment,
 	void* memory =  mActualAlloctor->Allocate(sizeInBytes, alignment, eventType, provideAccurateSizeOnDeallocate,
 		pcFile, iLine, allocateFunction);
 
-#if WIN32	
+//#if WIN32	
 	GnAllocUnit unit;
 	unit.mpMeomry = memory;
 	unit.mAllocSize = sizeInBytes;
@@ -36,7 +36,7 @@ void* GnDebugAllocator::Allocate(gsize& sizeInBytes, gsize& alignment,
 	unit.mFileLine = iLine;	
 	GnStrcpy( unit.maFunctionName, allocateFunction, sizeof( unit.maFunctionName ) );	
 	mpAllocList.insert(std::make_pair(memory, unit));	
-#endif //
+//#endif //
 		
 	return memory;
 }
@@ -44,9 +44,9 @@ void* GnDebugAllocator::Allocate(gsize& sizeInBytes, gsize& alignment,
 void GnDebugAllocator::Deallocate(void* pvMemory, GnMemoryEventType eEventType, 
 	gsize stSizeInBytes)
 {
-#if WIN32	
+//#if WIN32	
 	mpAllocList.erase(pvMemory);
-#endif //
+//#endif //
 	mActualAlloctor->Deallocate(pvMemory, eEventType, stSizeInBytes);
 }
 
@@ -83,7 +83,7 @@ void GnDebugAllocator::Initialize()
 
 void GnDebugAllocator::Shutdown()
 {
-#ifdef WIN32
+//#ifdef WIN32
 	std::map<void*, GnAllocUnit>::iterator iter = mpAllocList.begin();
 	while(iter != mpAllocList.end())
 	{
@@ -96,7 +96,7 @@ void GnDebugAllocator::Shutdown()
 			item.mFileLine );
 		++iter;
 	}
-#endif // WIN32
+//#endif // WIN32
 }
 
 bool GnDebugAllocator::VerifyAddress(const void* pvMemory)

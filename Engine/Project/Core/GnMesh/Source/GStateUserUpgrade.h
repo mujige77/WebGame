@@ -9,6 +9,9 @@
 #ifndef Core_GStateUserUpgrade_h
 #define Core_GStateUserUpgrade_h
 
-
+class GStateUserUpgrade {	
+public:
+	
+};
 
 #endif

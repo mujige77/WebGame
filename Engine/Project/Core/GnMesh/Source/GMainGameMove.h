@@ -23,6 +23,8 @@ public:
 public:
 	virtual void SetMove(gtuint uiType);
 	
+private:
+	void SetCurrentLine();
 };
 
 #endif

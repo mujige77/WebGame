@@ -13,7 +13,6 @@
 #include <GnMeshHeader.h>
 #include <GnGameHeader.h>
 #include <cocos2d.h>
-#include "GMediate.h"
 using namespace cocos2d;
 
 #endif

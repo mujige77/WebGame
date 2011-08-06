@@ -1,15 +1,16 @@
 #ifndef __Core__GnSQLite__
 #define __Core__GnSQLite__
 
-#if ( GNUSE_PLATFORM == PLATFORM_IOS )
-#include "/usr/include/sqlite3.h"
-#else
-typedef int sqlite3;
-#endif
-
 #include "GnSQLiteQuery.h"
 
-class GnSQLite{
+class sqlite3;
+class GnSQLite
+{
+	enum
+	{
+		GNSQLITE_SUCCESS = 0,
+		GNSQLITE_ROW = 100,
+	};
 private:
 	sqlite3* mpDatabase;
 	
@@ -19,7 +20,8 @@ public:
 	gint Open(const gchar* pcFileName);
 	void Close();
 	GnSQLiteSingleQuery ExecuteSingleQuery(const gchar* pcQuery);
-
+	int Execute(const char* pcQuery);
+	
 protected:
 	int Query(const gchar* pcquery, sqlite3_stmt*& pRetState);
 };

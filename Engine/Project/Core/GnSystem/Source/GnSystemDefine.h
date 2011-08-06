@@ -219,19 +219,23 @@ GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicDecrement(guint32& ui32Value)
 
 static GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicIncrement(gint32& i32Value)
 {
-	return __sync_fetch_and_add((glong*)&i32Value, 1);
+	__sync_fetch_and_add((glong*)&i32Value, 1);
+	return i32Value;
 }
 static GNSYSTEM_ENTRY GNFORCEINLINE gint32 GnAtomicDecrement(gint32& i32Value)
 {
-	return __sync_fetch_and_sub ((glong*)&i32Value, 1);
+	__sync_fetch_and_sub ((glong*)&i32Value, 1);
+	return i32Value;
 }
 static GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicIncrement(guint32& ui32Value)
 {
-	return __sync_fetch_and_add((gulong*)&ui32Value, 1);
+	__sync_fetch_and_add((gulong*)&ui32Value, 1);
+	return ui32Value;
 }
 static GNSYSTEM_ENTRY GNFORCEINLINE guint32 GnAtomicDecrement(guint32& ui32Value)
 {
-	return __sync_fetch_and_sub((gulong*)&ui32Value, 1);
+	__sync_fetch_and_sub((gulong*)&ui32Value, 1);
+	return ui32Value;
 }
 #endif // WIN32
 

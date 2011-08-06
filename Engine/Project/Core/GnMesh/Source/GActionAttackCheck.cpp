@@ -14,14 +14,9 @@ GActionAttackCheck::GActionAttackCheck(GActorController* pController) : GAction(
 {
 }
 
-bool GActionAttackCheck::CollisionCheck(GActorController* pCheckAttackActor)
+bool GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect)
 {
-	if( pCheckAttackActor->GetCurrentAction( GAction::ACTION_DIE ) )
-		return false;
-	
-	GActionAttackCheck* checkAttack = (GActionAttackCheck*)pCheckAttackActor->GetActionComponent(
-		GAction::ACTION_ATTACKCHECK );
-	if( checkAttack == NULL || GetAttackLine() != checkAttack->GetAttackLine() )
+	if( GetAttackLine() != uiAttackLine )
 		return false;
 	
 	
@@ -35,23 +30,19 @@ bool GActionAttackCheck::CollisionCheck(GActorController* pCheckAttackActor)
 		return false;
 	}
 	
-	Gn2DAVData* avData = pCheckAttackActor->GetMesh()->GetAVData();
-	if( avData == NULL )
-		return false;
-	Gn2DAVData::CollisionRect& rect	= avData->GetCollisionRect( 0 );
-	
+
 	attackAvData->Move( GetController()->GetMesh()->GetOriginalPosition() );
 	if( GetController()->GetMesh()->GetFlipX() )
 	{
 		attackAvData->FlipX( true, GetController()->GetMesh()->GetOriginalPosition().x );
 		Gn2DAVData::CollisionRect attackRect = attackAvData->GetCollisionRect( 1 );
-		if( rect.mRect.ContainsRectWidth( attackRect.mRect ) == false )
+		if( attackRect.mRect.ContainsRectWidth( bodyRect ) == false )
 			return false;
 	}
 	else
 	{
 		Gn2DAVData::CollisionRect attackRect = attackAvData->GetCollisionRect( 1 );
-		if( attackRect.mRect.ContainsRectWidth( rect.mRect ) == false )
+		if( attackRect.mRect.ContainsRectWidth( bodyRect ) == false )
 			return false;
 	}
 	

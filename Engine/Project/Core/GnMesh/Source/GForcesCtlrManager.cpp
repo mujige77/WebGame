@@ -3,12 +3,19 @@
 #include "GForcesCtlrManager.h"
 #include "GForcesController.h"
 #include <GFileList.h>
-#include "GnInterfaceGroup.h"
 #include "GInterfaceLayer.h"
 #include "GCollectComponentHeader.h"
 
-GForcesCtlrManager::GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer)
-	: GActorCtlrManager( pActorLayer ), mpInterfaceLayer( (GInterfaceLayer*)pInterfaceLayer )
+GForcesCtlrManager* GForcesCtlrManager::CreateActorCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer
+		, GCastle* pCastle)
+{
+	GForcesCtlrManager* ctlrManager = GnNew GForcesCtlrManager(pActorLayer, pInterfaceLayer
+		, pCastle);
+	return ctlrManager;
+}
+
+GForcesCtlrManager::GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer, GCastle* pCastle)
+	: GActorCtlrManager( pActorLayer, pCastle ), mpInterfaceLayer( (GInterfaceLayer*)pInterfaceLayer )
 	, mCreateForcesInputEvent( this, &GForcesCtlrManager::CreateForces )
 {
 	

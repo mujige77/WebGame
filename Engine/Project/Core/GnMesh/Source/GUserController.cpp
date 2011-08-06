@@ -7,6 +7,7 @@
 #include "GActionAttack.h"
 #include "GActionDamage.h"
 #include "GActionAttackCheck.h"
+#include "GActorInfoDatabase.h"
 
 GUserController* GUserController::Create(const gchar* pcID, guint32 uiLevel)
 {
@@ -47,7 +48,8 @@ bool GUserController::InitActionComponents()
 	
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRangeX() );
+	moveAction->SetMoveRangeX( info->GetMoveRange() );
+	moveAction->SetMoveRangeY( info->GetMoveRange() );
 	moveAction->SetNumLine( 0 );
 	
 	GetGameEnvironment()->CreateActorControllerBasicAction( this );
@@ -87,7 +89,10 @@ void GUserController::MoveStopCheck()
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
-		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
+		GnVector2& movePos = GetMovePosition();
+		bool moveX = GetGameEnvironment()->CorrectMoveX( movePos.x );
+		bool moveY = GetGameEnvironment()->CorrectMoveY( movePos.y );
+		if( moveX == false && moveY == false )
 		{
 			GetGameEnvironment()->RemoveBasicCurrentAction( this );
 			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );

@@ -3,9 +3,9 @@
 
 #ifdef GN_MEMORY_DEBUGGER
 
-#ifdef WIN32
+//#ifdef WIN32
 #include <map>
-#endif // WIN32
+//#endif // WIN32
 
 class GnAllocUnit 
 {
@@ -63,9 +63,9 @@ public:
 protected:
 	bool mCheckArrayOverruns;
 	GnAllocator* mActualAlloctor;
-#ifdef WIN32
+//#ifdef WIN32
 	std::map<void*, GnAllocUnit> mpAllocList;
-#endif // WIN32	
+//#endif // WIN32	
 };
 
 #endif // GN_MEMORY_DEBUGGER

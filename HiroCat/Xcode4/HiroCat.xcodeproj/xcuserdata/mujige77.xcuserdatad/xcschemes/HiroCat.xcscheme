@@ -52,7 +52,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Log"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "YES">
       <BuildableProductRunnable>
          <BuildableReference

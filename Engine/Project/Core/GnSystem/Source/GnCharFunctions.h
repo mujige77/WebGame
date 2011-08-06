@@ -73,7 +73,7 @@ static GNFORCEINLINE const gchar* GnStrcat(gchar* GNRESTRICT pStr1, const gchar*
 #endif // #ifdef __GNUC__
 }
 
-static GNFORCEINLINE gint GnSprintf(gchar* GNRESTRICT buffer, gsize bufferSize, const gchar* GNRESTRICT format, ...)
+static gint GnSprintf(gchar* GNRESTRICT buffer, gsize bufferSize, const gchar* GNRESTRICT format, ...)
 {
 	va_list args;
 	va_start( args, format );

@@ -9,6 +9,13 @@
 #ifndef Core_GStateBGLayer_h
 #define Core_GStateBGLayer_h
 
-
+class GStateBGLayer : public GLayer
+{
+public:
+	static GStateBGLayer* CreateBackground();
+	
+public:
+	bool InitBackground();
+};
 
 #endif

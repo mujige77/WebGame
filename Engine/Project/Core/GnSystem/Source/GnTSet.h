@@ -20,24 +20,24 @@
 // Note that there is an additional template argument, TAlloc.
 // This class must declare static functions matching the following prototypes:
 //
-//      static T* Allocate(unsigned int uiNumElements)
+//      static T* Allocate(gtuint uiNumElements)
 //      static void Deallocate(T* pArray)
 
 template <class T, class TAlloc> class GnTSet  : public GnMemoryObject
 {
 public:
-    GnTSet(unsigned int uiInitialSize = 0);
+    GnTSet(gtuint uiInitialSize = 0);
     ~GnTSet();
 
-    unsigned int GetSize() const;
+    gtuint GetSize() const;
     T *GetBase() const;
-    const T& GetAt(unsigned int uiIndex) const;
-    T& GetAt(unsigned int uiIndex);
-    unsigned int Add(const T& element);
-    unsigned int AddUnique(const T& element); // Slow. Use with caution.
-    void RemoveAt(unsigned int uiIndex);
-    void OrderedRemoveAt(unsigned int uiIndex); // Preserve order.
-    void ReplaceAt(unsigned int uiIndex, const T& element);
+    const T& GetAt(gtuint uiIndex) const;
+    T& GetAt(gtuint uiIndex);
+    gtuint Add(const T& element);
+    gtuint AddUnique(const T& element); // Slow. Use with caution.
+    void RemoveAt(gtuint uiIndex);
+    void OrderedRemoveAt(gtuint uiIndex); // Preserve order.
+    void ReplaceAt(gtuint uiIndex, const T& element);
     void RemoveAll();
     int Find(const T& element) const; // Slow. Use with caution.
     
@@ -45,19 +45,19 @@ public:
     void Realloc();
 
     // This method clamp the size to being >= m_uiUsed.
-    void Realloc(unsigned int uiNewSize);
+    void Realloc(gtuint uiNewSize);
 
     // This method will reallocate only if the new size is greater than
     // the size already allocated.
-    void ReallocNoShrink(unsigned int uiNewSize);
+    void ReallocNoShrink(gtuint uiNewSize);
 
     // Get the maximum number of items before a reallocation
     // is forced.
-    unsigned int GetAllocationSize() const;
+    gtuint GetAllocationSize() const;
 protected: 
     T *m_pBase;
-    unsigned int m_uiAlloced;
-    unsigned int m_uiUsed;
+    gtuint m_uiAlloced;
+    gtuint m_uiUsed;
 
 private:
     // To prevent an application from inadvertently causing the compiler to
@@ -71,22 +71,22 @@ private:
 template <class T> class GnTObjectSet : public GnTSet<T, GnTNewInterface<T> >
 {
 public:
-    GnTObjectSet(unsigned int uiInitialSize = 0);
+    GnTObjectSet(gtuint uiInitialSize = 0);
 };
 
 template <class T> class GnTPrimitiveSet :public GnTSet<T, GnTMallocInterface<T> >
 {
 public:
-    GnTPrimitiveSet(unsigned int uiInitialSize = 0);
+    GnTPrimitiveSet(gtuint uiInitialSize = 0);
 };
 
 
-typedef GnTPrimitiveSet<unsigned int> GnUnsignedIntSet;
+typedef GnTPrimitiveSet<gtuint> GnUnsignedIntSet;
 typedef GnTPrimitiveSet<unsigned short> GnUnsignedShortSet;
 typedef GnTPrimitiveSet<float> GnFloatSet;
 
 template <class T, class TAlloc> inline
-	GnTSet<T,TAlloc>::GnTSet(unsigned int uiInitialSize)
+	GnTSet<T,TAlloc>::GnTSet(gtuint uiInitialSize)
 {
 	if (uiInitialSize > 0)
 	{
@@ -106,12 +106,12 @@ template <class T, class TAlloc> inline GnTSet<T,TAlloc>::~GnTSet()
 	TAlloc::Deallocate(m_pBase);
 }
 
-template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::GetSize() const
+template <class T, class TAlloc> inline gtuint GnTSet<T,TAlloc>::GetSize() const
 {
 	return m_uiUsed;
 }
 
-template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::GetAllocationSize() const
+template <class T, class TAlloc> inline gtuint GnTSet<T,TAlloc>::GetAllocationSize() const
 {
 	return m_uiAlloced;
 }
@@ -121,20 +121,20 @@ template <class T, class TAlloc> inline T* GnTSet<T,TAlloc>::GetBase() const
 	return m_pBase;
 }
 
-template <class T, class TAlloc> inline const T& GnTSet<T,TAlloc>::GetAt(unsigned int uiIndex) const
+template <class T, class TAlloc> inline const T& GnTSet<T,TAlloc>::GetAt(gtuint uiIndex) const
 {
 	GnAssert(uiIndex < m_uiUsed);
 	return m_pBase[uiIndex];
 }
 
-template <class T, class TAlloc> inline T& GnTSet<T,TAlloc>::GetAt(unsigned int uiIndex)
+template <class T, class TAlloc> inline T& GnTSet<T,TAlloc>::GetAt(gtuint uiIndex)
 {
 	GnAssert(uiIndex < m_uiUsed);
 	return m_pBase[uiIndex];
 }
 
 
-template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::Add(const T& element)
+template <class T, class TAlloc> inline gtuint GnTSet<T,TAlloc>::Add(const T& element)
 {
 	GnAssert(m_uiUsed <= m_uiAlloced);
 
@@ -149,7 +149,7 @@ template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::Add(const
 	return m_uiUsed - 1;
 }
 
-template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::AddUnique(const T& element)
+template <class T, class TAlloc> inline gtuint GnTSet<T,TAlloc>::AddUnique(const T& element)
 {
 	GnAssert(m_uiUsed <= m_uiAlloced);
 
@@ -160,7 +160,7 @@ template <class T, class TAlloc> inline unsigned int GnTSet<T,TAlloc>::AddUnique
 	}
 	else
 	{
-		return (unsigned int) iFind;
+		return (gtuint) iFind;
 	}
 }
 
@@ -168,7 +168,7 @@ template <class T, class TAlloc> inline int GnTSet<T,TAlloc>::Find(const T& elem
 {
 	GnAssert(m_uiUsed <= m_uiAlloced);
 
-	unsigned int i;
+	gtuint i;
 
 	for (i = 0; i < m_uiUsed; i++)
 	{
@@ -177,18 +177,18 @@ template <class T, class TAlloc> inline int GnTSet<T,TAlloc>::Find(const T& elem
 	}
 	return -1;
 }
-template <class T, class TAlloc> inline void GnTSet<T,TAlloc>::RemoveAt(unsigned int uiIndex)
+template <class T, class TAlloc> inline void GnTSet<T,TAlloc>::RemoveAt(gtuint uiIndex)
 {
 	GnAssert(uiIndex < m_uiUsed);
 
 	m_pBase[uiIndex] = m_pBase[--m_uiUsed];
 }
 
-template <class T, class TAlloc> inline void GnTSet<T,TAlloc>::OrderedRemoveAt(unsigned int uiIndex)
+template <class T, class TAlloc> inline void GnTSet<T,TAlloc>::OrderedRemoveAt(gtuint uiIndex)
 {
 	GnAssert(uiIndex < m_uiUsed);
 
-	for (unsigned int ui = uiIndex; ui < m_uiUsed - 1; ui++)
+	for (gtuint ui = uiIndex; ui < m_uiUsed - 1; ui++)
 	{
 		m_pBase[ui] = m_pBase[ui + 1];
 	}
@@ -196,7 +196,7 @@ template <class T, class TAlloc> inline void GnTSet<T,TAlloc>::OrderedRemoveAt(u
 }
 
 template <class T, class TAlloc>
-inline void GnTSet<T,TAlloc>::ReplaceAt(unsigned int uiIndex, const T& element)
+inline void GnTSet<T,TAlloc>::ReplaceAt(gtuint uiIndex, const T& element)
 {
 	if (uiIndex >= m_uiUsed)
 	{
@@ -219,7 +219,7 @@ inline void GnTSet<T,TAlloc>::Realloc()
 }
 
 template <class T, class TAlloc>
-inline void GnTSet<T,TAlloc>::ReallocNoShrink(unsigned int uiNewSize)
+inline void GnTSet<T,TAlloc>::ReallocNoShrink(gtuint uiNewSize)
 {
 	if (uiNewSize <= m_uiAlloced)
 		return;
@@ -227,7 +227,7 @@ inline void GnTSet<T,TAlloc>::ReallocNoShrink(unsigned int uiNewSize)
 }
 
 template <class T, class TAlloc>
-inline void GnTSet<T,TAlloc>::Realloc(unsigned int uiNewSize)
+inline void GnTSet<T,TAlloc>::Realloc(gtuint uiNewSize)
 {
 	if (uiNewSize < m_uiUsed)
 		uiNewSize = m_uiUsed;
@@ -235,7 +235,7 @@ inline void GnTSet<T,TAlloc>::Realloc(unsigned int uiNewSize)
 	if (uiNewSize != m_uiAlloced)
 	{
 		T *pNewBase;
-		unsigned int i;
+		gtuint i;
 
 		if (uiNewSize > 0)
 		{
@@ -259,13 +259,13 @@ inline void GnTSet<T,TAlloc>::Realloc(unsigned int uiNewSize)
 }
 
 template <class T>
-inline GnTObjectSet<T>::GnTObjectSet(unsigned int uiInitialSize)
+inline GnTObjectSet<T>::GnTObjectSet(gtuint uiInitialSize)
 	: GnTSet<T, GnTNewInterface<T> >(uiInitialSize)
 {
 }
 
 template <class T>
-inline GnTPrimitiveSet<T>::GnTPrimitiveSet(unsigned int uiInitialSize) 
+inline GnTPrimitiveSet<T>::GnTPrimitiveSet(gtuint uiInitialSize) 
 	: GnTSet<T, GnTMallocInterface<T> >(uiInitialSize)
 {
 }

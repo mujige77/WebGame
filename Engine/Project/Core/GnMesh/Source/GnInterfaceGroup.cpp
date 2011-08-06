@@ -2,15 +2,27 @@
 #include "GnInterfacePCH.h"
 #include "GnInterfaceGroup.h"
 
+GnImplementRTTI(GnInterfaceGroup, GnInterface);
 bool GnInterfaceGroup::Push(float fPointX, float fPointY)
 {
 	if( IfUseCheckCollision( fPointX, fPointY ) == false )
+	{
+		for ( gtuint i = 0; i < mPersonalChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mPersonalChildren.GetAt( i );
+			if( child->IsVisible() && child->Push( fPointX, fPointY ) )
+			{
+				GnIInputEvent event(GnIInputEvent::PUSH, fPointX, fPointY);
+				mSignal.EmitSignal( child, &event );
+			}
+		}
 		return false;
+	}
 	
 	for ( gtuint i = 0; i < GetChildrenSize() ; i++ )
 	{
 		GnInterface* child = GetChild( i );
-		if( child->IfUseCheckCollision( fPointX, fPointY ) && child->Push( fPointX, fPointY ) )
+		if( child->IsVisible() && child->Push( fPointX, fPointY ) )
 		{
 			GnIInputEvent event(GnIInputEvent::PUSH, fPointX, fPointY);
 			mSignal.EmitSignal( child, &event );
@@ -20,10 +32,22 @@ bool GnInterfaceGroup::Push(float fPointX, float fPointY)
 	AddPushCount();
 	return true;
 }
-bool GnInterfaceGroup::Pushup(float fPointX, float fPointY)
+
+bool GnInterfaceGroup::PushUp(float fPointX, float fPointY)
 {
-	if( GnInterface::Pushup( fPointX, fPointY ) == false )
+	if( GnInterface::PushUp( fPointX, fPointY ) == false )
+	{
+		for ( gtuint i = 0; i < mPersonalChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mPersonalChildren.GetAt( i );
+			if( child->IsVisible() && child->PushUp( fPointX, fPointY ) )
+			{
+				GnIInputEvent event(GnIInputEvent::PUSHUP, fPointX, fPointY);
+				mSignal.EmitSignal( child, &event );
+			}
+		}
 		return false;
+	}
 	
 	return true;
 }
@@ -35,6 +59,16 @@ bool GnInterfaceGroup::PushMove(float fPointX, float fPointY)
 	
 	if( IfUseCheckCollision( fPointX, fPointY ) == false )
 	{
+		for ( gtuint i = 0; i < mPersonalChildren.GetSize(); i++ )
+		{
+			GnInterface* child = mPersonalChildren.GetAt( i );
+			if( child->IsVisible() && child->PushMove( fPointX, fPointY ) )
+			{
+				GnIInputEvent event(GnIInputEvent::PUSH, fPointX, fPointY);
+				mSignal.EmitSignal( child, &event );
+			}
+		}
+		
 		if( IsPush() )
 			PushUp();
 		return false;
@@ -62,7 +96,7 @@ bool GnInterfaceGroup::PushMove(float fPointX, float fPointY)
 		}
 		else
 		{
-			if( child->IsPush() == false )
+			if( child->IsVisible() && child->IsPush() == false )
 			{
 				child->Push( fPointX, fPointY );
 				GnIInputEvent event(GnIInputEvent::PUSH, fPointX, fPointY);
@@ -101,6 +135,16 @@ void GnInterfaceGroup::Update(float fDeltaTime)
 		GnInterface* child = GetChild( i );
 		child->Update( fDeltaTime );
 	}
+}
+
+void GnInterfaceGroup::SetAlpha(guchar ucAlpha)
+{
+	GnInterface::SetAlpha( ucAlpha );
+	for( gtuint i = 0; i < GetChildrenSize() ; i++ )
+	{
+		GnInterface* child = GetChild( i );
+		child->SetAlpha( ucAlpha );
+	}	
 }
 
 void GnInterfaceGroup::SetPosition(GnVector2& cPos)

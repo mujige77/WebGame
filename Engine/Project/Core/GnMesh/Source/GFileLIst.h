@@ -3,15 +3,17 @@
 
 class GFileList : public GnMemoryObject
 {
-	static GFileList* mpSingleton;
+private:
+	GnDeclareSingleton(GFileList);
 	GnTPrimitiveDeleteMap<gtuint, gchar*> mEnemyNames;
 	GnTPrimitiveDeleteMap<gtuint, gchar*> mForcesNames;
 	GnTPrimitiveDeleteMap<gtuint, gchar*> mEffectNames;
 	
 public:
 	GFileList();
-	static GFileList* GetSingleton();
-	static GnMemoryObject* Create();
+	~GFileList();
+//	static GFileList* GetSingleton();
+//	static GnMemoryObject* Create();
 	
 public:
 	bool LoadFile(const gchar* pcFilePath);
@@ -39,6 +41,7 @@ private:
 	void ReadList(GnFile* pFile, const gchar* firstName, GnTPrimitiveDeleteMap<gtuint, gchar*>& names);
 	void AddListFromFile(gchar* buffer, GnTPrimitiveDeleteMap<gtuint, gchar*>& names);
 };
+
 
 #define GetFileList GFileList::GetSingleton
 

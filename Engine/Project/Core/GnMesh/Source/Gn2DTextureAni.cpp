@@ -43,6 +43,7 @@ void Gn2DTextureAni::LoadStream(GnObjectStream* pStream)
 		info->LoadStream( pStream );
 		mInfos.SetAt( i, info );
 	}
+	CreateData();
 }
 
 void Gn2DTextureAni::LinkObject(GnObjectStream* pStream)

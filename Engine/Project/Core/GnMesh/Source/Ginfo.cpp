@@ -1,7 +1,7 @@
 #include "GnMeshPCH.h"
 #include "GnGamePCH.h"
 #include "GInfo.h"
-
+#include "GActorInfoDatabase.h"
 
 
 bool GInfo::LoadDataFromSql(const gchar* pcID, const guint32 uiLevel, GnSQLite* pSql)

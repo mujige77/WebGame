@@ -2,7 +2,7 @@
 #include "GnGamePCH.h"
 #include "GFileList.h"
 
-
+//GnImplementSingleton(GFileList);
 GFileList* GFileList::mpSingleton = CreateSingletonObjects(GFileList);
 
 GFileList* GFileList::GetSingleton()
@@ -16,12 +16,23 @@ GnMemoryObject* GFileList::Create()
 	return mpSingleton;
 }
 
+void GFileList::Destroy(GnMemoryObject *pThisObject)
+{
+	if( mpSingleton )
+		GnDelete mpSingleton;	
+}
+
 GFileList::GFileList()
 {
 	char name[512] = {0,};
 	GnStrcpy( name, GetFullPath( "template.lst" ), 512);
 	GnVerify( LoadFile( name ) );
 
+}
+
+GFileList::~GFileList()
+{
+	
 }
 
 bool GFileList::LoadFile(const gchar *pcFilePath)
@@ -89,5 +100,3 @@ void GFileList::AddListFromFile(gchar* buffer, GnTPrimitiveDeleteMap<gtuint, gch
 	gchar* fileName = GnFile::CopyAsciiFileString(buffer);
 	names.Insert( numID, fileName );
 }
-
-const gchar* GetFullEffectName(gtuint uiIndex);

@@ -11,7 +11,15 @@ GnAnimationKeyManager::~GnAnimationKeyManager()
 {
 	for( gtuint i = 0 ; i < mAnimationKeys.GetSize() ; i++ )
 	{
-		GnDelete[] mAnimationKeys.GetAt( i ).mAnimationKeys;
+		AniKey& key = mAnimationKeys.GetAt( i );
+		
+		GnAnimationKey::DestroyFunction funcDestroy
+			= GnAnimationKey::GetDestroyFunction( (GnAnimationKey::eKeyType)key.mKeyType );
+//		if( key.mNumKey > 1 )
+		
+		funcDestroy( key.mAnimationKeys );
+//		else
+//			GnDelete key.mAnimationKeys;
 	}
 }
 

@@ -76,30 +76,18 @@ float GnGetTicks()
 
 GnTimer::GnTimer()
 {
+	mPerTime = 0.00001f;
     Reset();
 }
 
-void GnTimer::Reset()
+bool GnTimer::Update(float fPerSec)
 {
-    mDeltaTime = 0.0f;
-    mLastTime = 0.0f;
+	mAcumTime += fPerSec;
+	if( mAcumTime / mPerTime >= 1.0f )
+	{
+		Reset();
+		return true;
+	}
+	
+	return false;
 }
-
-bool GnTimer::Update(float sec)
-{
-    mDeltaTime = sec - mLastTime;
-    mLastTime = sec;
-    
-    return true;
-}
-
-inline bool GnTimer::Update()
-{
-    return Update(GnGetTicks());
-}
-
-inline float GnTimer::getDelta()
-{
-    return mDeltaTime;
-}
-

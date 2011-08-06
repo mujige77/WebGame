@@ -16,7 +16,7 @@ public:
 private:
 	gint32 mHP;
 	guint32 mStrength;
-	float mMoveRangeX;
+	float mMoveRange;
 	
 public:
 	virtual void LoadDataFromQuery(GnSQLiteQuery* pQuery);
@@ -37,11 +37,11 @@ public:
 	inline void SetStrength(guint32 val) {
 		mStrength = val;
 	}
-	inline void SetMoveRangeX(float val) {
-		mMoveRangeX = val;
+	inline void SetMoveRange(float val) {
+		mMoveRange = val;
 	}
-	inline float GetMoveRangeX() {
-		return mMoveRangeX;
+	inline float GetMoveRange() {
+		return mMoveRange;
 	}
 
 };

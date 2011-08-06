@@ -4,26 +4,31 @@
 #include "GActorCtlrManager.h"
 
 class GnIButton;
+class GnInterfaceGroup;
+class GInterfaceLayer;
 class GUserCtlrManager : public GActorCtlrManager
 {
 	static const gtuint NUM_BUTTON = 4;
 
 private:
-	GLayer* mpInterfaceLayer;
+	GInterfaceLayer* mpInterfaceLayer;
 	GActorController* mpUserCtlr;
-	GnIButton* mButtons[NUM_BUTTON];
+	GnInterfaceGroup* mpButtonGroup;
 	GnMemberSlot2<GUserCtlrManager, GnInterface*, GnIInputEvent*> mMoveInputEvent;
 	
 public:
-	GUserCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
+	static GUserCtlrManager* CreateActorCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
+	
+public:
 	virtual ~GUserCtlrManager();
 	
 public:
 	void Update(float fDeltaTime);
 	void Init();
 	void Move(GnInterface* pInterface, GnIInputEvent* pEvent);
-	
+	gint32 GetUserCurrentHP();
 protected:
+	GUserCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
 	void UpdateBackgroundLayer();
 
 };

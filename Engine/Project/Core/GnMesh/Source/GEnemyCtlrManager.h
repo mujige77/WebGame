@@ -11,10 +11,12 @@ private:
 	GAccumulationTimeEvent mNewEnemyTimeEvent;	
 	
 public:
-	GEnemyCtlrManager(GLayer* pLayer);
+	static GEnemyCtlrManager* CreateActorCtlrManager(GLayer* pLayer, GCastle* pCastle = NULL);
+
 	void Update(float fDeltaTime);
 	
 protected:
+	GEnemyCtlrManager(GLayer* pLayer, GCastle* pCastle = NULL);
 	void CreateEnemy();
 	
 protected:

@@ -1,8 +1,8 @@
 #ifndef __Core__GInfo__
 #define __Core__GInfo__
 
-#include "GActorInfoDatabase.h"
-
+class GnSQLite;
+class GnSQLiteQuery;
 class GInfo : public GnMemoryObject
 {
 public:

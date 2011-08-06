@@ -3,12 +3,15 @@
 #include "GnIButton.h"
 #include "GnIProgressBar.h"
 
+GnImplementRTTI(GnIButton, GnInterface);
+
 GnIButton::GnIButton(const gchar* pcDefaultImage, const gchar* pcClickImage
 	, const gchar* pcDisableImage, GnIButton::eButtonType eDefaultType)
 	: mpProgressTime(NULL)
 {
 	SetIsEnableCoolTime( false );
 	SetIsDisableCantpushBlind( false );
+	SetIsHidePushDefaultButton( true );
 	switch( (gint)eDefaultType )
 	{
 	case TYPE_NORMAL:			
@@ -24,15 +27,30 @@ GnIButton::GnIButton(const gchar* pcDefaultImage, const gchar* pcClickImage
 				if( mpsPushMesh )
 					mpsPushMesh->SetVisible( false );
 			}
-			mMeshNames[TYPE_DISABLE] = pcDisableImage;
+			if( pcDisableImage )
+			{
+				CreateDisableImage( pcDisableImage );
+				if( mpsDisableMesh )
+					mpsDisableMesh->SetVisible( false );
+			}
 		}
 		break;
 	case TYPE_DISABLE:
 		{
 			GnVerify( CreateDisableImage( pcDisableImage ) );
 			SetIsDisable( true );
-			mMeshNames[TYPE_NORMAL] = pcDefaultImage;
-			mMeshNames[TYPE_PUSH] = pcClickImage;
+			if( pcDefaultImage )
+			{
+				CreateDefaultImage( pcDefaultImage );
+				if( mpsDefaultMesh )
+					mpsDefaultMesh->SetVisible( false );
+			}
+			if( pcClickImage )
+			{
+				CreateClickImage( pcClickImage );
+				if( mpsPushMesh )
+					mpsPushMesh->SetVisible( false );
+			}
 		}
 		break;
 	default:
@@ -84,22 +102,10 @@ void GnIButton::Update(float fTime)
 
 bool GnIButton::Push(float fPointX, float fPointY)
 {
-	if( GnInterface::Push(fPointX, fPointY) == false 
-	   || ( mpProgressTime && mpProgressTime->GetPlayPlag() == GnIProgressBar::PLAY ) )
+	if( ( mpProgressTime && mpProgressTime->GetPlayPlag() == GnIProgressBar::PLAY ) || 
+	   GnInterface::Push(fPointX, fPointY) == false )
 	   return false;
 	
-	if( IsEnableCoolTime() )
-	{
-		if( mpProgressTime )
-			mpProgressTime->Start();
-	}
-	if( mpsPushMesh )
-	{
-		mpsDefaultMesh->SetVisible( false );
-		mpsPushMesh->SetVisible( true );
-	}
-//	else
-//		mpsDefaultMesh->SetColor( GnColor( 0.0f, 1.0f, 0.0f ) );
 	return true;
 }
 
@@ -108,6 +114,23 @@ bool GnIButton::PushMove(float fPointX, float fPointY)
 	return GnInterface::PushMove( fPointX, fPointY );
 }
 
+void GnIButton::Push()
+{
+	GnInterface::Push();
+	if( IsEnableCoolTime() )
+	{
+		if( mpProgressTime )
+			mpProgressTime->Start();
+	}
+	if( mpsPushMesh )
+	{
+		if( IsHidePushDefaultButton() )
+			mpsDefaultMesh->SetVisible( false );
+		mpsPushMesh->SetVisible( true );
+	}
+	//	else
+	//		mpsDefaultMesh->SetColor( GnColor( 0.0f, 1.0f, 0.0f ) );
+}
 void GnIButton::PushUp()
 {
 	GnInterface::PushUp();
@@ -125,13 +148,7 @@ void GnIButton::SetIsDisable(bool val)
 {
 	GnInterface::SetIsDisable( val );
 	if( mpsDisableMesh == NULL )
-	{
-		if( mMeshNames[TYPE_DISABLE].Exists() == false )
-			return;
-		if( CreateDisableImage( mMeshNames[TYPE_DISABLE] ) == false )
-			return;
-	}
-	GnAssert( mpsDisableMesh );
+		return;
 	
 	SetVisibleNormal( !val );
 	mpsDisableMesh->SetVisible( val );
@@ -150,20 +167,6 @@ void GnIButton::SetIsCantPush(bool val)
 		mpProgressTime->SetVisibleBackground( val );
 }
 
-void GnIButton::CreateProgressBar()
-{
-	GnAssert( mpsDefaultMesh || mpsDisableMesh );
-	GnAssert( mpProgressTime == NULL );
-	if( ( mpsDefaultMesh || mpsDisableMesh ) )
-	{
-		Gn2DMeshObject* baseMesh = mpsDefaultMesh ? mpsDefaultMesh : mpsDisableMesh;
-		GnVector2 size = baseMesh->GetSize();
-		mpProgressTime = GnIProgressBar::Create( GnIProgressBar::eVerticalFromTop, size.x, size.y );
-		GetParentUseNode()->addChild( mpProgressTime->GetParentUseNode(), 1 );
-		mpProgressTime->SetPosition( GetPosition() );
-	}
-}
-
 void GnIButton::SetPosition(GnVector2& cPos)
 {
 	GnInterface::SetPosition( cPos );
@@ -175,17 +178,40 @@ void GnIButton::SetPosition(GnVector2& cPos)
 		mpProgressTime->SetPosition( cPos);
 }
 
+void GnIButton::SetAlpha(guchar ucAlpha)
+{
+	GnInterface::SetAlpha( ucAlpha );
+	if( mpsPushMesh )
+		mpsPushMesh->SetAlpha( ucAlpha );
+	if( mpsDisableMesh )
+		mpsDisableMesh->SetAlpha( ucAlpha );
+}
+
+void GnIButton::CreateProgressBar()
+{
+	GnAssert( mpsDefaultMesh || mpsDisableMesh );
+	GnAssert( mpProgressTime == NULL );
+	if( ( mpsDefaultMesh || mpsDisableMesh ) )
+	{
+		Gn2DMeshObject* baseMesh = mpsDefaultMesh ? mpsDefaultMesh : mpsDisableMesh;
+		GnVector2 size = baseMesh->GetSize();
+		mpProgressTime = GnIProgressBar::Create( GnIProgressBar::eHorizontalFromLeft, size.x, size.y );
+		GetParentUseNode()->addChild( mpProgressTime->GetParentUseNode(), 1 );
+		mpProgressTime->SetPosition( GetPosition() );
+	}
+}
+
 void GnIButton::SetVisibleNormal(bool val)
 {
 	if( val )
 	{
-		if( mpsDefaultMesh == NULL )
-		{
-			if( mMeshNames[TYPE_NORMAL].Exists() )
-				CreateDefaultImage( mMeshNames[TYPE_NORMAL] );
-			if( mMeshNames[TYPE_PUSH].Exists() )
-				CreateClickImage( mMeshNames[TYPE_PUSH] );
-		}
+//		if( mpsDefaultMesh == NULL )
+//		{
+//			if( mMeshNames[TYPE_NORMAL].Exists() )
+//				CreateDefaultImage( mMeshNames[TYPE_NORMAL] );
+//			if( mMeshNames[TYPE_PUSH].Exists() )
+//				CreateClickImage( mMeshNames[TYPE_PUSH] );
+//		}
 		
 		GnAssert( mpsDefaultMesh );
 		if( mpsDefaultMesh )

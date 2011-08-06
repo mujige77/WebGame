@@ -33,7 +33,7 @@ private:
 	
 public:
 	GActionAttackCheck(GActorController* pController);
-	bool CollisionCheck(GActorController* pCheckAttackActor);
+	bool CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect);
 	
 public:
 	inline gtuint GetAttackAniIndex() {

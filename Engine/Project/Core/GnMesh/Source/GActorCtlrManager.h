@@ -5,19 +5,20 @@
 
 class GActorInfoDatabase;
 class GActionAttackCheck;
-class GActorCtlrManager : public GnMemoryObject
+class GCastle;
+class GActorCtlrManager : public GnSmartObject
 {
 	GnTPrimitiveArray<GActorController*> mActors;
 	GnTPrimitiveArray<gtuint> mActorIDs;
 	GLayer* mpActorLayer;
+	GCastle* mpCastle;
 
 protected:
 	static const gtuint msNumAttackLine = 2;
 	
 public:
-	GActorCtlrManager(GLayer* pLayer);
+	GActorCtlrManager(GLayer* pLayer, GCastle* pCastle = NULL);
 	virtual ~GActorCtlrManager();
-	//void SetStartPostion(GActorController* pActorController, gtuint uiDirection, gtuint uiAttackLine);
 
 public:
 	virtual void Update(float fDeltaTime);
@@ -57,10 +58,15 @@ public:
 	inline GLayer* GetActorLayer() {
 		return mpActorLayer;
 	}
-	
+	inline GCastle* GetCastle() {
+		return mpCastle;
+	}
 protected:
 	virtual void CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
 	virtual gtuint SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
+	bool CollisionCheck(GActionAttackCheck* pAttackCheck, GActorController* pCheckCtrl);
+	bool CastleCollisionCheck(GActionAttackCheck* pAttackCheck, GCastle* pCheckCastel);
 };
 
+GnSmartPointer(GActorCtlrManager);
 #endif

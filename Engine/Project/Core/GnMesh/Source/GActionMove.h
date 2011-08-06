@@ -42,6 +42,7 @@ public:
 	inline void AttachActionToController()
 	{
 		GetController()->GetActor()->SetTargetAnimation( ANI_WALK );
+		GetController()->GetActor()->Update( 0.0f );
 	}
 public:
 	inline GnVector2& GetMoveRange() {

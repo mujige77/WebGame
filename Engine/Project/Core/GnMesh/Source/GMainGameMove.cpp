@@ -26,9 +26,9 @@ void GMainGameMove::SetMove(gtuint uiType)
 	{
 		if( GetMoveUp() )
 		{
-			if( mNumLine < GMainGameEnvironment::GetSingleton()->GetLineCount() - 1 )
-			{
-				++mNumLine;
+//			if( mNumLine < GMainGameEnvironment::GetSingleton()->GetLineCount() - 1 )
+//			{
+//				++mNumLine;
 				GnVector2 movePos = GetController()->GetPosition();
 				movePos.y += GetMoveVector().y;
 				GetController()->SetPosition( movePos );
@@ -37,14 +37,14 @@ void GMainGameMove::SetMove(gtuint uiType)
 					GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
 						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
 				}
-			}
-			SetMoveUp( false );
+//			}
+//			SetMoveUp( false );
 		}
 		else
 		{
-			if( mNumLine > 0 )
-			{
-				--mNumLine;
+//			if( mNumLine > 0 )
+//			{
+//				--mNumLine;
 				GnVector2 movePos = GetController()->GetPosition();
 				movePos.y += GetMoveVector().y;
 				GetController()->SetPosition( movePos );
@@ -54,9 +54,26 @@ void GMainGameMove::SetMove(gtuint uiType)
 						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
 				}
 					
-			}
-			SetMoveDown( false );			
+//			}
+//			SetMoveDown( false );			
 		}
-		mMoveVector.y = 0;
+		SetCurrentLine();
+//		mMoveVector.y = 0;
+	}
+	//GMainGameEnvironment::GetSingleton()->GetLine(  )
+}
+
+void GMainGameMove::SetCurrentLine()
+{
+	GMainGameEnvironment* env = GMainGameEnvironment::GetSingleton();
+	float lineHeight = env->GetStageInfo()->GetLineHeight();
+	GnVector2 movePos = GetController()->GetPosition();
+	for( gtuint i = 0 ; i < env->GetLineCount() ; i++ )
+	{
+		float line = env->GetLine( i );
+		if( line < movePos.y && lineHeight + line > movePos.y )
+		{
+			mNumLine = i;
+		}
 	}
 }

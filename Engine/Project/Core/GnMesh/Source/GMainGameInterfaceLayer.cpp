@@ -3,7 +3,7 @@
 #include "GMainGameInterfaceLayer.h"
 #include "GnIButton.h"
 #include "GEnergyBar.h"
-#include "GnInterfaceGroup.h"
+#include "GnIProgressBar.h"
 
 GMainGameInterfaceLayer::GMainGameInterfaceLayer() : mForcesButtonInfos( GInterfaceLayer::FORCESBT_NUM )
 	, mpForcesButtonGroup( NULL ), mpForcesEnergyBar( NULL )
@@ -34,6 +34,11 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateInterface(gtuint uiIndex
 			pGroup = CreateMainSkillButtons();
 		}
 		break;
+		case UI_MAIN_OTHERUI:
+		{
+			pGroup = CreateMainMenu();
+		}
+		break;
 	}
 	
 	if( pGroup )
@@ -51,10 +56,83 @@ void GMainGameInterfaceLayer::Update(float fTime)
 	UpdateButtonState();
 }
 
+GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainMenu()
+{
+//	GnInterface* menus[MAINMENU_NUM];
+//	GnInterface* menu;
+//	GnIProgressBar* gageBar;
+//	
+//	gageBar = GnIProgressBar::Create(GnIProgressBar::eHorizontalFromRight
+//		, "Controll/19_6 back.png", "Controll/19_6 progress.png");
+//	if( gageBar )
+//	{
+//		gageBar->SetVisibleProgress( true );
+//		gageBar->SetVisibleBackground( true );
+//	}																																		  
+//	menu = GnNew GnInterface();
+//	menu->CreateDefaultImage( "Controll/0_0.png" );
+//	float pointX = 0;
+//	float pointY = 0;
+//	GnVector2 vec = menu->GetContentSize();	
+//	menu->SetUIPoint( pointX, pointY );	
+//	menu->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+//	menus[FORCES_PROGRESSICON] = menu;	
+	
+	GnInterfaceGroup* group = GnNew GnInterfaceGroup();
+	
+	GnIButton* buttons = NULL;
+	buttons = GnNew GnIButton( "Controll/454_0.png", NULL, NULL );
+	SetUIPosition( buttons, 454.0f, 0.0f );
+	group->AddChild( buttons );
+	group->AddPersonalChild( buttons );
+	
+	AddChild( group, 1 );
+	return group;
+}
+
 GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainController()
 {
-	GnInterfaceGroup* group = NULL;
-	return group;
+	GnIButton* buttons[MOVE_NUM];
+	buttons[MOVELEFT] = GnNew GnIButton( "Controll/3_247.png", "Controll/3_247 on.png", NULL );
+	float pointX = 3;
+	float pointY = 247;
+	GnVector2 vec = buttons[MOVELEFT]->GetContentSize();	
+	buttons[MOVELEFT]->SetUIPoint( pointX, pointY );	
+	buttons[MOVELEFT]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+	
+    buttons[MOVERIGHT] = GnNew GnIButton( "Controll/58_247.png", "Controll/58_247 on.png", NULL );
+	pointX = 58;
+	pointY = 247;
+	vec = buttons[MOVERIGHT]->GetContentSize();
+	buttons[MOVERIGHT]->SetUIPoint( pointX, pointY );
+	buttons[MOVERIGHT]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+	
+    buttons[MOVEUP] = GnNew GnIButton( "Controll/37_223.png", "Controll/37_223 on.png", NULL );	
+	pointX = 37;
+	pointY = 223;
+	vec = buttons[MOVEUP]->GetContentSize();
+	buttons[MOVEUP]->SetUIPoint( pointX, pointY );
+	buttons[MOVEUP]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+	
+	
+	buttons[MOVEDOWN] = GnNew GnIButton( "Controll/38_268.png", "Controll/38_268 on.png", NULL );
+	pointX = 37;
+	pointY = 268;
+	vec = buttons[MOVEDOWN]->GetContentSize();
+	buttons[MOVEDOWN]->SetUIPoint( pointX, pointY );
+	buttons[MOVEDOWN]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+	
+	
+	GnInterfaceGroup* pGroup = GnNew GnInterfaceGroup();
+	pGroup->SetIsEnablePushMove( true );
+	pGroup->SetRect( 0.5f, 219.0f, 0.5f+115.0f, 219.0f+104.0f );
+	for (gtuint i = 0; i < MOVE_NUM ; i++ )
+	{
+		pGroup->AddChild( buttons[i] );
+	}
+	
+	AddChild( pGroup, 1 );
+	return pGroup;
 }
 
 GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainForcesButtons()
@@ -153,7 +231,11 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainForcesButtons()
 		pGroup->AddChild( buttons[i] );
 	}
 	
-	AddChild( pGroup, 1 );
+	GnInterface* energyBarLine = GnNew GnInterface( "Controll/309_288.png" );
+	SetUIPosition( energyBarLine, 309.0f, 288.0f );
+	pGroup->AddChild( energyBarLine );
+	
+	AddChild( pGroup, 1 );	
 	
 	SetForcesButtonInfo( buttons );
 	return pGroup;
@@ -161,6 +243,10 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainForcesButtons()
 GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainSkillButtons()
 {
 	GnInterfaceGroup* group = NULL;
+	
+//	GnInterface* energyBarLine = GnNew GnInterface( "Controll/309_288.png" );
+//	SetUIPosition( energyBarLine, 425.0f, 288.0f );
+//	group->AddChild( energyBarLine );
 	return group;
 }
 

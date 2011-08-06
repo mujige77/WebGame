@@ -62,6 +62,7 @@ public:
 	virtual void Update(float fTime);
 	
 protected:
+	GnInterfaceGroup* CreateMainMenu();
 	GnInterfaceGroup* CreateMainController();
 	GnInterfaceGroup* CreateMainForcesButtons();
 	GnInterfaceGroup* CreateMainSkillButtons();

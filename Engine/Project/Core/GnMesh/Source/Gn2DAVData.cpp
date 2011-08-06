@@ -100,8 +100,8 @@ void Gn2DAVData::FlipX(bool bFlip, float postionX)
 			CollisionRect& currentRect =  mCollisionRects.GetAt( i );
 			CollisionRect rect = mOriginalCollisionRects.GetAt( i );
 			float rectAnchor =  baseRect.mRect.left + baseRect.mRect.right;
-			rect.mRect = GnFRect( postionX - rect.mRect.left + rectAnchor, currentRect.mRect.top
-				, postionX - rect.mRect.right + rectAnchor, currentRect.mRect.bottom );
+			rect.mRect = GnFRect( postionX - rect.mRect.right + rectAnchor, currentRect.mRect.top
+				, postionX - rect.mRect.left + rectAnchor, currentRect.mRect.bottom );
 			mCollisionRects.SetAt( i, rect );
 		}
 	}

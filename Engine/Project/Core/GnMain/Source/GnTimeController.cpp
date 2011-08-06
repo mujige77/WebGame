@@ -3,6 +3,52 @@
 
 GnImplementRootRTTI(GnTimeController);
 
+void GnTimeController::SetCycleType(GnTimeController::eCycleType eType, GnObjectForm *pObject)
+{
+	GnTimeController* ctrl = pObject->GetTimeControllers();
+	GnAssert( ctrl );
+	while ( ctrl )
+	{
+		ctrl->SetCycleType( eType );
+		ctrl = ctrl->GetNext();
+	}
+}
+
+void GnTimeController::StartTimeControllers(GnObjectForm* pObject)
+{
+	GnTimeController* ctrl = pObject->GetTimeControllers();
+	GnAssert( ctrl );
+	while ( ctrl )
+	{
+		ctrl->Start();
+		ctrl = ctrl->GetNext();
+	}	
+}
+
+void GnTimeController::StopTimeControllers(GnObjectForm* pObject)
+{
+	GnTimeController* ctrl = pObject->GetTimeControllers();
+	GnAssert( ctrl );
+	while ( ctrl )
+	{
+		ctrl->Stop();
+		ctrl = ctrl->GetNext();
+	}	
+}
+
+bool GnTimeController::IsAllStopControllers(GnObjectForm* pObject)
+{
+	GnTimeController* ctrl = pObject->GetTimeControllers();
+	GnAssert( ctrl );
+	while ( ctrl )
+	{
+		if( ctrl->GetPlayFlags() == PLAY )
+			return false;
+		ctrl = ctrl->GetNext();
+	}	
+	return true;
+}
+
 GnTimeController::GnTimeController() : mpTarget( NULL ), mIsMeshSteram( true )
 {
 	mCycleType = LOOP;

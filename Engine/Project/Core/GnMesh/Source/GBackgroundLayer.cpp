@@ -31,7 +31,7 @@ void GBackgroundLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
    float moveX = touchPoint.x - mLastBackgroundMovePostion.x; 	
    mLastBackgroundMovePostion = touchPoint;
 
-   MoveLayer( moveX * 5.0f, 0.0f );   
+   MoveLayer( moveX * 1.0f, 0.0f );   
 }
 
 void GBackgroundLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)

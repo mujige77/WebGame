@@ -31,8 +31,8 @@ private:
 	GActorController* mpController;
 	
 public:
-	 GAction(GActorController* pController);
-	
+	GAction(GActorController* pController);
+	virtual inline ~GAction() {}
 public:
 	virtual void Update(float fTime);
 	virtual inline gtint GetActionType() {
