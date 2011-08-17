@@ -12,6 +12,7 @@ public:
 		MASK_DEABLE_CANTPUSH_BLIND = 0x0001,
 		MASK_ENABLE_COOLTIME = 0x0002,
 		MASK_HIDE_PUSHDEFAULTBUTTON = 0x0004,
+		MASK_HIDE_PUSHUPCLICKBUTTON = 0x0008,
 	};
 public:
 	enum eButtonType
@@ -48,7 +49,7 @@ public:
 	virtual void SetIsCantPush(bool val);
 	virtual void SetPosition(GnVector2& cPos);
 	virtual void SetAlpha(guchar ucAlpha);
-
+	virtual void SetVisibleNormal(bool val);
 public:
 	inline bool IsDisableCantpushBlind() {
 		return GetBit( MASK_DEABLE_CANTPUSH_BLIND );
@@ -74,12 +75,15 @@ public:
 	inline void SetIsHidePushDefaultButton(bool val) {
 		return SetBit( val, MASK_HIDE_PUSHDEFAULTBUTTON );
 	}
+	inline bool IsHidePushUpClickButton() {
+		return GetBit( MASK_HIDE_PUSHUPCLICKBUTTON );
+	}
+	inline void SetIsHidePushUpClickButton(bool val) {
+		return SetBit( val, MASK_HIDE_PUSHUPCLICKBUTTON );
+	}
 	
 protected:
 	void CreateProgressBar();
-	
-protected:
-	void SetVisibleNormal(bool val);
 };
 
 #endif

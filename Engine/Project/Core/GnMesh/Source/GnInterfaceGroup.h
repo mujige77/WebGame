@@ -10,26 +10,33 @@ private:
 	GnTObjectArray<GnInterfacePtr> mPersonalChildren; // Personal Push Check
 	
 public:
+	GnInterfaceGroup();
+public:
 	bool PushUp(float fPointX, float fPointY);
 	bool PushMove(float fPointX, float fPointY);
 	void PushUp();
 	void Update(float fDeltaTime);	
 
-public:
 	virtual bool Push(float fPointX, float fPointY);
-	
 	virtual void SetAlpha(guchar ucAlpha);
+	virtual void SetPosition(GnVector2& cPos);
 	
 	virtual void AddChild(GnInterface* pChild)
 	{
 		mChildren.Add( pChild );
 		GetParentUseNode()->addChild( pChild->GetParentUseNode() );
-	}	
+	}
+	virtual void AddChild(GnInterface* pChild, gint32 iZorder)
+	{
+		mChildren.Add( pChild );
+		GetParentUseNode()->addChild( pChild->GetParentUseNode(), iZorder );
+	}
 	virtual void RemoveChild(GnInterface* pChild)
 	{
-		mChildren.Remove( pChild );
-		mPersonalChildren.Remove( pChild );
-		GetParentUseNode()->addChild( pChild->GetParentUseNode() );
+		GnInterfacePtr ptrChild = pChild;
+		GetParentUseNode()->removeChild( ptrChild->GetParentUseNode(), true );
+		mPersonalChildren.RemoveAndFill( ptrChild );
+		mChildren.RemoveAndFill( ptrChild );
 	}
 	virtual gtuint GetChildrenSize() {
 		return mChildren.GetSize();
@@ -45,9 +52,8 @@ public:
 	inline void AddPersonalChild(GnInterface* pChild) {
 		mPersonalChildren.Add( pChild );
 	}
-
-protected:	
-	virtual void SetPosition(GnVector2& cPos);
+protected:
+	bool PushChild(GnInterface* pChild, float fPointX, float fPointY);
 };
 
 #endif

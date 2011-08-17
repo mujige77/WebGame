@@ -95,7 +95,7 @@ const char* GnSQLiteTable::FieldValue(int nField)
 		return NULL;
 	}
 	
-	int nIndex = (mnCurrentRow*mnCols) + mnCols + nField;
+	int nIndex = ( mnCurrentRow * mnCols ) + mnCols + nField;
 	return mpaszResults[nIndex];
 }
 
@@ -110,7 +110,7 @@ const char* GnSQLiteTable::FieldValue(const char* szField)
 		{
 			if (strcmp(szField, mpaszResults[nField]) == 0)
 			{
-				int nIndex = (mnCurrentRow*mnCols) + mnCols + nField;
+				int nIndex = ( mnCurrentRow * mnCols ) + mnCols + nField;
 				return mpaszResults[nIndex];
 			}
 		}
@@ -135,7 +135,7 @@ int GnSQLiteTable::GetIntField(int nField, int nNullValue/*=0*/)
 
 int GnSQLiteTable::GetIntField(const char* szField, int nNullValue/*=0*/)
 {
-	if ( FieldIsNull(szField))
+	if ( FieldIsNull( szField ) )
 	{
 		return nNullValue;
 	}
@@ -148,13 +148,13 @@ int GnSQLiteTable::GetIntField(const char* szField, int nNullValue/*=0*/)
 
 double GnSQLiteTable::GetFloatField(int nField, double fNullValue/*=0.0*/)
 {
-	if ( FieldIsNull(nField))
+	if ( FieldIsNull( nField ) )
 	{
 		return fNullValue;
 	}
 	else
 	{
-		return atof( FieldValue(nField) );
+		return atof( FieldValue( nField ) );
 	}
 }
 

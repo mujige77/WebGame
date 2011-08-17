@@ -10,11 +10,14 @@
 		2102220713DA7A4C003B68D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2102220613DA7A4C003B68D5 /* libsqlite3.dylib */; };
 		212527DF13E3DA6700BF800B /* GStateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212527DE13E3DA6700BF800B /* GStateScene.cpp */; };
 		212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */; };
+		2132815D13F02CC200DA1EB8 /* UserHaveItem.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 2132815C13F02CC200DA1EB8 /* UserHaveItem.sqlite */; };
 		2164AE0213DD65AA007617BE /* GSelectStageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */; };
 		2176019413A4E5A600A85384 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 2176019313A4E5A600A85384 /* Data */; };
 		218961FA13A6D9290074237B /* GGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218961F913A6D9280074237B /* GGameScene.cpp */; };
 		2189620313A719FA0074237B /* GSceneSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2189620213A719FA0074237B /* GSceneSelector.cpp */; };
 		218B717913A8D96C00730D9F /* HiroCatDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218B717813A8D96C00730D9F /* HiroCatDirector.cpp */; };
+		21BEEF4F13EE658A0045AF23 /* ItemInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 21BEEF4D13EE658A0045AF23 /* ItemInfo.sqlite */; };
+		21BEEF5013EE658A0045AF23 /* StageInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 21BEEF4E13EE658A0045AF23 /* StageInfo.sqlite */; };
 		21C957EE13AB4DFF00978181 /* template.lst in Resources */ = {isa = PBXBuildFile; fileRef = 21C957ED13AB4DFF00978181 /* template.lst */; };
 		21CDBAC813A4B57600BEF1DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBAC713A4B57600BEF1DA /* UIKit.framework */; };
 		21CDBACA13A4B57600BEF1DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CDBAC913A4B57600BEF1DA /* Foundation.framework */; };
@@ -76,6 +79,7 @@
 		212527DD13E3DA5D00BF800B /* GStateScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStateScene.h; sourceTree = "<group>"; };
 		212527DE13E3DA6700BF800B /* GStateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStateScene.cpp; sourceTree = "<group>"; };
 		212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ActorInfo.sqlite; sourceTree = "<group>"; };
+		2132815C13F02CC200DA1EB8 /* UserHaveItem.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserHaveItem.sqlite; sourceTree = "<group>"; };
 		2164AE0013DD659C007617BE /* GSelectStageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectStageScene.h; sourceTree = "<group>"; };
 		2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GSelectStageScene.cpp; sourceTree = "<group>"; };
 		2176019313A4E5A600A85384 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		2189620213A719FA0074237B /* GSceneSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GSceneSelector.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		218B717713A8D92F00730D9F /* HiroCatDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HiroCatDirector.h; path = ../../Source/HiroCatDirector.h; sourceTree = "<group>"; };
 		218B717813A8D96C00730D9F /* HiroCatDirector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = HiroCatDirector.cpp; path = ../../Source/HiroCatDirector.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		21BEEF4D13EE658A0045AF23 /* ItemInfo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ItemInfo.sqlite; sourceTree = "<group>"; };
+		21BEEF4E13EE658A0045AF23 /* StageInfo.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StageInfo.sqlite; sourceTree = "<group>"; };
 		21C89C5213A5F3FC00507155 /* GamePCH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePCH.h; sourceTree = "<group>"; };
 		21C89C5313A5F61A00507155 /* GGameEBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameEBM.h; sourceTree = "<group>"; };
 		21C957ED13AB4DFF00978181 /* template.lst */ = {isa = PBXFileReference; fileEncoding = 7; lastKnownFileType = text; path = template.lst; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 				2176019313A4E5A600A85384 /* Data */,
 				21C957ED13AB4DFF00978181 /* template.lst */,
 				212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */,
+				21BEEF4D13EE658A0045AF23 /* ItemInfo.sqlite */,
+				21BEEF4E13EE658A0045AF23 /* StageInfo.sqlite */,
+				2132815C13F02CC200DA1EB8 /* UserHaveItem.sqlite */,
 				21CDBAD413A4B57600BEF1DA /* InfoPlist.strings */,
 				21CDBAD313A4B57600BEF1DA /* HiroCat-Info.plist */,
 				21CDBB0D13A4B77400BEF1DA /* app.config.txt */,
@@ -355,6 +364,9 @@
 				2176019413A4E5A600A85384 /* Data in Resources */,
 				21C957EE13AB4DFF00978181 /* template.lst in Resources */,
 				212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */,
+				21BEEF4F13EE658A0045AF23 /* ItemInfo.sqlite in Resources */,
+				21BEEF5013EE658A0045AF23 /* StageInfo.sqlite in Resources */,
+				2132815D13F02CC200DA1EB8 /* UserHaveItem.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +471,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "armv6 armv7";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -604,7 +617,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = "armv6 armv7 i386";
 				WARNING_LDFLAGS = "";
 				WRAPPER_EXTENSION = app;
 			};

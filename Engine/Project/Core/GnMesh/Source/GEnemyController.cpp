@@ -53,10 +53,7 @@ bool GEnemyController::InitActionComponents()
 
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRange() );
-	moveAction->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
-	
-	GetGameEnvironment()->CreateActorControllerBasicAction( this );
+	moveAction->SetMoveRangeX( info->GetMoveSpeed() );
 	return true;
 }
 

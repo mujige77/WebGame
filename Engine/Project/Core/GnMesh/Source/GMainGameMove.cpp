@@ -9,6 +9,12 @@ GMainGameMove::GMainGameMove(GActorController* pController) : GActionMove( pCont
 	mBeforeHorizontalDirection = MOVE_MAX;
 }
 
+void GMainGameMove::Update(float fDeltaTime)
+{
+	GActionMove::Update( fDeltaTime );
+	SetCurrentLine();
+}
+
 void GMainGameMove::SetMove(gtuint uiType)
 {
 	GActionMove::SetMove( uiType );
@@ -57,7 +63,6 @@ void GMainGameMove::SetMove(gtuint uiType)
 //			}
 //			SetMoveDown( false );			
 		}
-		SetCurrentLine();
 //		mMoveVector.y = 0;
 	}
 	//GMainGameEnvironment::GetSingleton()->GetLine(  )
@@ -71,9 +76,10 @@ void GMainGameMove::SetCurrentLine()
 	for( gtuint i = 0 ; i < env->GetLineCount() ; i++ )
 	{
 		float line = env->GetLine( i );
-		if( line < movePos.y && lineHeight + line > movePos.y )
+		if( line <= movePos.y && lineHeight + line >= movePos.y )
 		{
 			mNumLine = i;
+			break;
 		}
 	}
 }

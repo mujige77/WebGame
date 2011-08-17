@@ -13,24 +13,34 @@
 
 GnITabCtrl* GnITabCtrl::CreateTabCtrl(const gchar* pcBackgroundImage, float fSizeX, float fSizeY)
 {
-	Gn2DMeshObject* backgroundMesh = Gn2DMeshObject::CreateFromTextureFile( pcBackgroundImage );
-	if( backgroundMesh == NULL )
-		return NULL;
-		
+	Gn2DMeshObject* backgroundMesh = NULL;
+	backgroundMesh = Gn2DMeshObject::CreateFromTextureFile( pcBackgroundImage );
 	GnITabCtrl* tabCtrl = GnNew GnITabCtrl( backgroundMesh );
 	GnVector2 size = backgroundMesh->GetSize();
-	tabCtrl->SetContentSize( size.x, size.y + fSizeY );
+	tabCtrl->SetContentSize( size.x, size.y );
+	tabCtrl->mDefaultButtonSize = GnVector2( fSizeX, fSizeY );
 	return tabCtrl;
 }
 
+GnITabCtrl* GnITabCtrl::CreateTabCtrl(float fTabBackgroundSizeX, float fTabBackgroundSizeY
+	, float fTabButtonSizeX, float fTabButtonSizeY)
+{
+	GnITabCtrl* tabCtrl = GnNew GnITabCtrl( NULL );
+	tabCtrl->SetContentSize( fTabBackgroundSizeX, fTabBackgroundSizeY );
+	tabCtrl->mDefaultButtonSize = GnVector2( fTabButtonSizeX, fTabButtonSizeY );
+	return tabCtrl;	
+}
 GnITabCtrl::GnITabCtrl(Gn2DMeshObject* pcBackgroundMesh) : mpTabButtons( NULL )
 	, mTabButtonPushEvent( this, &GnITabCtrl::PushTabButton ), mNumActiveTab( -1 )
 {
 	mpTabButtons = GnNew GnInterfaceGroup();
-	mpTabButtons->SubscribeClickedEvent( &mTabButtonPushEvent );
-	mpsDefaultMesh = pcBackgroundMesh;
-	AddChild( mpTabButtons );
-	AddMeshToParentNode( pcBackgroundMesh );
+	mpTabButtons->SubscribeClickedEvent( &mTabButtonPushEvent );	
+	AddChild( mpTabButtons, INTERFACE_ZORDER + 1 );
+	if( pcBackgroundMesh )
+	{
+		mpsDefaultMesh = pcBackgroundMesh;
+		AddMeshToParentNode( pcBackgroundMesh, INTERFACE_ZORDER - 1 );
+	}
 }
 
 void GnITabCtrl::AddTabCreateButtonImage(GnITabPage* pTabPage, const gchar* pcDefaultButtonImage
@@ -40,10 +50,13 @@ void GnITabCtrl::AddTabCreateButtonImage(GnITabPage* pTabPage, const gchar* pcDe
 	pTabPage->SetIsVisible( false );
 	pTabPage->SetNumTabPage( mpTabButtons->GetChildrenSize() );
 	GnITabButton* button = GnNew GnITabButton( pTabPage, pcDefaultButtonImage, pcClickButtonImage );
-	SetTabButtonPosition( GetStartTabButtonPosition() );
-	mpTabButtons->AddChild( button );
+	
+	mpTabButtons->AddChild( button, INTERFACE_ZORDER +1 );
 	mTabPages.Add( pTabPage );
-	AddChild( pTabPage );
+	AddChild( pTabPage, INTERFACE_ZORDER - 1 );
+	pTabPage->SetPosition( GetPosition() );
+	pTabPage->SetRect( GetRect() );
+	SetTabButtonPosition( GetStartTabButtonPosition() );
 	
 	for ( gtuint i = 0; i < mSignalSet.GetSize(); i++ )
 	{
@@ -74,6 +87,15 @@ void GnITabCtrl::SetActiveTab(gtint iNumActive)
 
 void GnITabCtrl::SetPosition(GnVector2& cPos)
 {
+	if( GetDefaultMesh() == NULL )
+	{
+		for ( gtuint i = 0; i < GetChildrenSize(); i++ )
+		{
+			GnITabPage* tabPage = GnDynamicCast( GnITabPage, GetChild( i ) );
+			if( tabPage )
+				tabPage->SetPosition( cPos );
+		}
+	}
 	GnInterface::SetPosition( cPos );
 	SetTabButtonPosition( GetStartTabButtonPosition() );
 }
@@ -100,13 +122,12 @@ void GnITabCtrl::SubscribeClickedEvent(GnBaseSlot2<GnInterface*, GnIInputEvent*>
 }
 
 GnVector2 GnITabCtrl::GetStartTabButtonPosition()
-{	
-	Gn2DMeshObject* backgroundMesh = GetDefaultMesh();
-	GnVector2 backSize = backgroundMesh->GetSize();
-	GnVector2 tabPos = backgroundMesh->GetPosition();
+{
+	GnVector2 backSize = GetContentSize();
+	GnVector2 tabPos = GetPosition();
 	backSize *= 0.5f;
-	tabPos.x -= backSize.x - 10.0f;
-	tabPos.y += backSize.y;
+	tabPos.x = tabPos.x - backSize.x + mDefaultButtonSize.x;
+	tabPos.y += ( backSize.y + ( mDefaultButtonSize.y ) );
 	return tabPos;
 }
 

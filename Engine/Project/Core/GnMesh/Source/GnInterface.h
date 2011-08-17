@@ -19,7 +19,7 @@ protected:
 	GnInterfaceNode mParentUseNode;
 	gtuint mPushCount;
 	Gn2DMeshObjectPtr mpsDefaultMesh;
-	
+	gint32 mTegID;
 public:
 	GnInterface();
 	GnInterface(const gchar* pcImageName);
@@ -33,7 +33,11 @@ public:
 	virtual void PushUp();
 	
 	virtual inline void AddChild(GnInterface* pChild) {}
+	virtual inline void AddChild(GnInterface* pChild, gint32 iZorder) {}
+	virtual inline void RemoveChild(GnInterface* pChild){}
+
 	virtual inline void Update(float fDeltaTime) {}
+	virtual inline void SetVisibleNormal(bool val) {}
 	virtual inline gtuint GetChildrenSize() {
 		return 0;
 	}
@@ -59,7 +63,7 @@ public:
 public:
 	GNFORCEINLINE bool IfUseCheckCollision(float fPointX, float fPointY)
 	{
-		if( IsDisable() || IsCantPush() )
+		if( IsVisible() == false || IsDisable() || IsCantPush() )
 			return false;	
 		
 		if( mRect.ContainsPoint(fPointX, fPointY) == false )
@@ -135,7 +139,7 @@ public:
 		size.width /= 2;
 		size.height /= 2;
 		GnVector2 outUIPoint( mPosition.x - size.width, GetGameState()->GetGameHeight()
-			- mPosition.y - size.height );
+							 - mPosition.y - size.height );
 		return outUIPoint;
 	}
 	inline GnVector2 GetContentSize() {
@@ -149,12 +153,20 @@ public:
 	inline void SetIsVisible(bool val) {
 		GetParentUseNode()->setIsVisible( val );
 	}
-
+	inline gint32 GetTegID() {
+		return mTegID;
+	}
+	inline void SetTegID(gint32 iID) {
+		mTegID = iID;
+	}
 	
 protected:
 	void AddMeshToParentNode(Gn2DMeshObject* pChild);
 	void AddToParentNode(GnInterfaceNode* pNode);
 	void AddInterfaceToParentNode(GnInterface* pInterface);
+	void AddMeshToParentNode(Gn2DMeshObject* pChild, gtint iZorder);
+	void AddToParentNode(GnInterfaceNode* pNode, gtint iZorder);
+	void AddInterfaceToParentNode(GnInterface* pInterface, gtint iZorder);
 	
 protected:
 	inline void SetContentSize(float fWidth, float fHeight) {

@@ -9,14 +9,23 @@ public:
 	enum eColumnType
 	{
 		COL_HP = 3,
-		COL_STRENGTH = 5,
-		COL_MOVERANGE = 6,
+		COL_STRENGTH = 4,
+		COL_MOVESPEED = 5,
+		COL_ATTACKSPEED,
+		COL_ATTACKTYPE,
+		COL_ATTACKCOUNT,
+		COL_LISEHP,
+		COL_LISEPOWER,
+		COL_LISESPEED,
 		COL_MAX,
 	};
 private:
 	gint32 mHP;
 	guint32 mStrength;
-	float mMoveRange;
+	float mMoveSpeed;
+	float mAttackSpeed;
+	gint32 mAttackType;
+	guint32 mAttackCount;
 	
 public:
 	virtual void LoadDataFromQuery(GnSQLiteQuery* pQuery);
@@ -37,13 +46,30 @@ public:
 	inline void SetStrength(guint32 val) {
 		mStrength = val;
 	}
-	inline void SetMoveRange(float val) {
-		mMoveRange = val;
+	inline void SetMoveSpeed(float val) {
+		mMoveSpeed = val;
 	}
-	inline float GetMoveRange() {
-		return mMoveRange;
+	inline float GetMoveSpeed() {
+		return mMoveSpeed;
 	}
-
+	inline float GetAttackSpeed() {
+		return mAttackSpeed;
+	}
+	inline void SetAttackSpeed(float val) {
+		mAttackSpeed = val;
+	}
+	inline gint32 GetAttackType() {
+		return mAttackType;
+	}
+	inline void SetAttackType(gint32 val) {
+		mAttackType = val;
+	}
+	inline guint32 GetAttackCount() {
+		return mAttackCount;
+	}
+	inline void SetAttackCount(guint32 val) {
+		mAttackCount = val;
+	}
 };
 
 #endif

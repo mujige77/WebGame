@@ -22,3 +22,5 @@
 HiroCat/Resource/ActorInfo.sqlite
 *.DS_Store
 HiroCat/Resource/StageInfo.sqlite
+HiroCat/Resource/ItemInfo.sqlite
+HiroCat/Resource/UserHaveItem.sqlite

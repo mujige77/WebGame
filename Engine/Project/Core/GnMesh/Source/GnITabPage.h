@@ -18,6 +18,11 @@ private:
 	gtuint mNumTabPage;
 	
 public:
+	GnITabPage(const gchar* pcBackgroundName = NULL);
+	virtual ~GnITabPage(){}
+	
+	void SetBackground(const gchar* pcBackgroundName);
+public:
 	inline gtuint GetNumTabPage() {
 		return mNumTabPage;
 	}

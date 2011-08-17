@@ -43,8 +43,8 @@ public:
 	
 private:
 	gtuint mNumStage;
-	gtuint mNumLine;
 	float mLineHeight;
+	GnTObjectArray<GnFRect> mLineRects;
 	bool mUseCastleFile;
 	GCastleFiles mEnemyCastleFiles;
 	GCastleFiles mForcesCastleFiles;
@@ -83,10 +83,13 @@ public:
 		return mBackgroundSize;
 	}
 	inline gtuint GetNumLine() {
-		return mNumLine;
+		return mLineRects.GetSize();
 	}
 	inline float GetLineHeight() {
 		return mLineHeight;
+	}
+	inline GnFRect GetLineRect(gtuint uiLine) {
+		return mLineRects.GetAt( uiLine );
 	}
 	
 protected:

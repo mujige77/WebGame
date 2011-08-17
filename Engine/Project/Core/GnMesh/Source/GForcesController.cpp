@@ -52,11 +52,8 @@ bool GForcesController::InitActionComponents()
 	
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRange() );
-	moveAction->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
+	moveAction->SetMoveRangeX( info->GetMoveSpeed() );	
 	moveAction->SetMoveRight( true );
-	
-	GetGameEnvironment()->CreateActorControllerBasicAction( this );
 	return true;
 }
 

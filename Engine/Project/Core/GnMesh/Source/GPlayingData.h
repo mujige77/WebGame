@@ -1,23 +1,25 @@
 #ifndef Core_GUserPlayingData_h
 #define Core_GUserPlayingData_h
 
+#include "GGameDefine.h"
+
 class GPlayingData : public GnMemoryObject
 {
 	GnDeclareDataStream;
 public:
-	enum eModeLevel
+	struct ModeInfo
 	{
-		eEasy,
-		eNormal,
-		eHard,
+		bool mEnableMode;
+		guint32 mModeLevel; // 0 easy, 1 normal, 2 hard		
+		guint32 mLastClearStage;
 	};
 	
 public:
 	GnSimpleString mPlayerName;
-	guint32 mLastClearStage; //
-	guint32 mModeLevel; // 0 easy, 1 normal, 2 hard
+	GnTPrimitiveArray<ModeInfo> mModeInfos;
 	guint32 mMoneyCount;
 	guint32 mStarCount;
+	eModeLevel mCurrentMode;
 	
 public:
 	GPlayingData();
@@ -29,17 +31,11 @@ public:
 	inline const gchar* GetPlayerName() {
 		return mPlayerName;
 	}
-	inline guint32 GetLastCrearStage() {
-		return mLastClearStage;
+	inline ModeInfo& GetModeInfo(eModeLevel eLevel) {
+		return mModeInfos.GetAt( eLevel );
 	}
-	inline void SetLastCrearStage(guint32 val) {
-		mLastClearStage = val;
-	}
-	inline guint32 GetModeLevel() {
-		return mModeLevel;
-	}
-	inline void SetModeLevel(guint32 val) {
-		mModeLevel = val;
+	inline void SetModeInfo(eModeLevel eLevel, ModeInfo cInfo) {
+		mModeInfos.SetAt( eLevel, cInfo );
 	}
 	inline guint32 GetMoneyCount() {
 		return mMoneyCount;
@@ -50,8 +46,18 @@ public:
 	inline guint32 GetStarCount() {
 		return mStarCount;
 	}
-	inline void SetStartCount(guint32 val) {
+	inline void SetStarCount(guint32 val) {
 		mStarCount = val;
+	}
+	inline void SetCurrentMode(eModeLevel val) {
+		GnAssert( val != eMaxMode );
+		mCurrentMode = val;
+	}
+	inline eModeLevel GetCurrentMode() {
+		return mCurrentMode;
+	}
+	inline ModeInfo& GetCurrentModeInfo() {
+		return mModeInfos.GetAt( mCurrentMode );
 	}
 };
 

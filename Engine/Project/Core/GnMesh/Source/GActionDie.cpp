@@ -20,7 +20,7 @@ void GActionDie::Update(float fTime)
 {
 	Gn2DSequence* sequence = GetController()->GetActor()->GetCurrentSequence();
 	//GnAssert( sequence->IsLoop() == false );
-	if( sequence->IsStop() )
+	if( sequence && sequence->IsStop() )
 	{
 		mAcumTime += fTime;
 		gint alpha = 255 - ( (mAcumTime / mAlphaTime) * 255 );

@@ -9,11 +9,11 @@
 #include "GnInterfacePCH.h"
 #include "GnIListCtrlItem.h"
 
-GnImplementRTTI(GnIListCtrlItem, GnInterface);
+GnImplementRTTI(GnIListCtrlItem, GnIButton);
 
 GnIListCtrlItem::GnIListCtrlItem(const gchar* pcDefaultImage, const gchar* pcClickImage
 	, const gchar* pcDisableImage, eButtonType eDefaultType) : GnIButton( pcDefaultImage, pcClickImage
-	, pcDisableImage, eDefaultType )
+	, pcDisableImage, eDefaultType ), mEmptyItem( false )
 {
 	
 }
@@ -24,12 +24,12 @@ GnIListCtrlItem::~GnIListCtrlItem()
 
 bool GnIListCtrlItem::PushUp(float fPointX, float fPointY)
 {
-	return false;
+	return GnInterface::PushUp( fPointX, fPointY );
 }
 
 bool GnIListCtrlItem::PushMove(float fPointX, float fPointY)
 {
-	return false;
+	return GnIButton::PushMove( fPointX, fPointY );
 }
 
 void GnIListCtrlItem::Push()

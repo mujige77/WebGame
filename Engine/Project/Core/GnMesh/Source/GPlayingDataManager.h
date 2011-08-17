@@ -10,7 +10,9 @@
 #define Core_GPlayingDataManager_h
 
 #include "GPlayingData.h"
+#include "GUserHaveItem.h"
 
+class GUserHaveItem;
 class GPlayingDataManager : public GnMemoryObject
 {
 	GnDeclareSingleton(GPlayingDataManager);
@@ -18,15 +20,18 @@ private:
 	static const gchar* mscPlayingDataName;
 	
 private:
-	GnTPrimitiveSet<GPlayingData*> mPlayingDatas;
+	GnTPrimitiveArray<GPlayingData*> mPlayingDatas;
 	GPlayingData* mPlayingPlayerData;
+	GUserHaveItem mPlayingItemData;
 	
 public:
 	void SaveData();
 	void LoadData();
-	GPlayingData* CreatePlayingData(guint32 uiModeLevel);
+	GPlayingData* CreatePlayingData();
+	void DeletePlayingData(gtuint uiIndex);
 	void AddPlayingData(GPlayingData* pData);
 	bool SetPlayingPlayerData(gtuint uiIndex);
+	
 public:
 	inline guint32 GetPlayingDataCount() {
 		return (guint32)mPlayingDatas.GetSize();
@@ -36,6 +41,9 @@ public:
 	}
 	inline GPlayingData* GetPlayingPlayerData() {
 		return mPlayingPlayerData;
+	}
+	inline GUserHaveItem* GetPlayingHaveItem() {
+		return &mPlayingItemData;
 	}
 //	inline GPlayingData* GetPlayingData(const gchar* pcName) {
 //		GPlayingData* outData = NULL;

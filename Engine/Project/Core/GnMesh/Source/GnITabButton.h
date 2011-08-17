@@ -25,7 +25,7 @@ public:
 	virtual bool PushMove(float fPointX, float fPointY);
 	virtual void Push();
 	virtual void PushUp();
-	
+	virtual void SetVisibleNormal(bool val){};
 public:
 	inline GnITabPage* GetTabPage() {
 		return mpTabPage;

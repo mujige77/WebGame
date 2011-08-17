@@ -38,9 +38,9 @@ protected:
 	void InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
 	
 private:
-	void InputNewTabButton(gtuint uiNumButton);
+	void InputSelectModeTabButton(gtuint uiNumButton);
 	void InputLoadTabButton(gtuint uiNumButton);
-	void SetLoadTabButton();
+	void SetSelectModeTabButton();
 };
 
 #endif

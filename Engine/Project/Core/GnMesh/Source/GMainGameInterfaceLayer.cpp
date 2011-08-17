@@ -4,6 +4,7 @@
 #include "GnIButton.h"
 #include "GEnergyBar.h"
 #include "GnIProgressBar.h"
+#include "GGameDefine.h"
 
 GMainGameInterfaceLayer::GMainGameInterfaceLayer() : mForcesButtonInfos( GInterfaceLayer::FORCESBT_NUM )
 	, mpForcesButtonGroup( NULL ), mpForcesEnergyBar( NULL )
@@ -252,20 +253,29 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainSkillButtons()
 
 bool GMainGameInterfaceLayer::SetForcesButtonInfo(GnIButton** ppButtons)
 {
-	for (gtuint i = 0; i < FORCESBT_NUM ; i++ )
+	gstring filename = GetFullPath( "ItemInfo.sqlite" );
+	GnSQLite sqlite( filename.c_str() );
+	for (gtuint i = 0; i < FORCESBT_NUM - 1 ; i++ )
 	{
-		ppButtons[i]->SetIsCantPush( true );
-		if( BT_C11 != i )
+		GnSQLiteQuery query = sqlite.ExecuteSingleQuery( "SELECT * FROM MainGameItem WHERE idx=%d",
+			i + INDEX_UNIT + 1 );
+		if( query.IsEof() )
 		{
-			ppButtons[i]->SetIsDisableCantpushBlind( false );
-			ppButtons[i]->SetIsEnableCoolTime( true );
-			ppButtons[i]->SetCoolTime( (float)i * 0.5f + 0.1f );
+			GnLogA( "error execute query - getting UnitButton %d", i + INDEX_UNIT + 1 );
+			continue;
 		}
+		
+		float energy = query.GetFloatField( 1 );
+		float cooltime = query.GetFloatField( 2 );
+		ppButtons[i]->SetIsCantPush( true );
+		ppButtons[i]->SetIsDisableCantpushBlind( false );
+		ppButtons[i]->SetIsEnableCoolTime( true );
+		ppButtons[i]->SetCoolTime( cooltime );
+		
 		ButtonInfo& btInfo = mForcesButtonInfos.GetAt( i );
 		btInfo.SetButton( ppButtons[i] );
-		btInfo.SetCanPushEnergy( i * 5 );
-		btInfo.SetCoolTime( (float)i * 0.5f );
-		
+		btInfo.SetCanPushEnergy( energy );
+		btInfo.SetCoolTime( cooltime );
 	}
 	return true;
 }

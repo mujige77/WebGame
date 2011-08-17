@@ -24,14 +24,14 @@ void GnIListCtrl::SetSize(gtuint uiNumColumn, gtuint uiNumRow)
 	{
 		mListItems.SetAt( i, new GnTObjectArray<GnIListCtrlItemPtr>( uiNumRow ) );		
 	}
-	mNumColumn = uiNumColumn;
-	mNumRow = uiNumRow;
+	mColumnSize = uiNumColumn;
+	mRowSize = uiNumRow;
 }
 
 void GnIListCtrl::AddColumn()
 {
-	mListItems.Add( new GnTObjectArray<GnIListCtrlItemPtr>( mNumRow ) );
-	mNumColumn = mListItems.GetSize();
+	mListItems.Add( new GnTObjectArray<GnIListCtrlItemPtr>( mRowSize ) );
+	mColumnSize = mListItems.GetSize();
 }
 
 void GnIListCtrl::AddRow()
@@ -41,36 +41,95 @@ void GnIListCtrl::AddRow()
 		GnTObjectArray<GnIListCtrlItemPtr>* column = mListItems.GetAt( i );
 		column->Add( NULL );
 	}
-	mNumRow = mListItems.GetAt( 0 )->GetSize();
+	mRowSize = mListItems.GetAt( 0 )->GetSize();
 }
 
 void GnIListCtrl::SetItem(gtuint uiCol, gtuint uiRow, GnIListCtrlItem* pItem)
 {
-	if( uiCol >= mNumColumn || uiRow >= mNumRow )
+	if( uiCol >= mColumnSize || uiRow >= mRowSize )
 		return;
 	
-	GnTObjectArray<GnIListCtrlItemPtr>* column = mListItems.GetAt( uiCol );
-	GnIListCtrlItem* exitsItem = column->GetAt( uiRow );
+	GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( uiCol );
+	GnIListCtrlItem* exitsItem = columns->GetAt( uiRow );
 	if( exitsItem )
 		RemoveChild( exitsItem );
-
-	float pointX = mStartUIPosition.x + ( mColumnGab * uiCol );
-	float pointY = mStartUIPosition.y + ( mRowGab * uiRow );
+	columns->SetAt( uiRow, pItem );
 	
-	pItem->SetCell( uiCol, uiRow );
-	SetUIPosition( pItem, pointX, pointY );
-	column->SetAt( uiRow, pItem );
-	AddChild( pItem );
+	SetItemCell( uiCol, uiRow, pItem );	
+}
+
+void GnIListCtrl::AddItem(GnIListCtrlItem* pItem)
+{
+	for( gtuint i = 0; i < mListItems.GetSize(); i++ )
+	{
+		GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( i );
+		for ( gtuint j = 0 ; j < columns->GetSize(); j++ )
+		{
+			GnIListCtrlItem* item = columns->GetAt( j );
+			if( item == NULL )
+			{
+				++mItemCount;
+				SetItem( i, j, pItem );
+				return;
+			}
+			else if( item->IsEmptyItem() )
+			{
+				++mItemCount;
+				SetItem( i, j, pItem );
+				return;
+			}
+		}
+	}
+	
+	++mItemCount;
+	AddRow();	
+	GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( 0 );
+	const gtuint numRow = columns->GetSize() - 1;
+	SetItem( 0, numRow, pItem );
+	
+}
+
+GnIListCtrlItemPtr GnIListCtrl::RemoveItem(GnIListCtrlItem* pItem)
+{
+	return RemoveItem( pItem->GetNumColumn(), pItem->GetNumRow(), pItem );
+}
+
+GnIListCtrlItemPtr GnIListCtrl::RemoveItem(gtuint uiCol, gtuint uiRow, GnIListCtrlItem* pItem)
+{
+	if( uiCol >= mColumnSize || uiRow >= mRowSize )
+		return NULL;
+	
+	--mItemCount;
+	GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( uiCol );
+	GnIListCtrlItemPtr exitsItem = columns->GetAt( uiRow );
+	if( exitsItem )
+		RemoveChild( exitsItem );
+	
+	GnIListCtrlItem* emptyItem = NULL;
+	if( mEmptyItemFileName.Exists() )
+	{
+		emptyItem = GnNew GnIListCtrlItem( mEmptyItemFileName );
+		emptyItem->SetIsDisableCantpushBlind( true );
+		emptyItem->SetIsCantPush( true );
+		emptyItem->SetIsEmptyItem( true );
+		SetItem( uiCol, uiRow, emptyItem );
+		//emptyItem->SetPosition( pItem->GetPosition() );
+		
+	}
+	else
+		columns->SetAt( uiRow,  NULL );
+	
+	return exitsItem;
 }
 
 void GnIListCtrl::MoveX(float fMove)
 {
 	for( gtuint i = 0; i < mListItems.GetSize(); i++ )
 	{
-		GnTObjectArray<GnIListCtrlItemPtr>* column = mListItems.GetAt( i );
-		for ( gtuint j = 0 ; j < column->GetSize(); j++ )
+		GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( i );
+		for ( gtuint j = 0 ; j < columns->GetSize(); j++ )
 		{
-			GnIListCtrlItem* exitsItem = column->GetAt( j );
+			GnIListCtrlItem* exitsItem = columns->GetAt( j );
 			if( exitsItem == NULL )
 				continue;
 			
@@ -84,21 +143,158 @@ void GnIListCtrl::MoveX(float fMove)
 
 void GnIListCtrl::MoveY(float fMove)
 {
+	bool setMovePosition = false;
 	for( gtuint i = 0; i < mListItems.GetSize(); i++ )
 	{
-		GnTObjectArray<GnIListCtrlItemPtr>* column = mListItems.GetAt( i );
-		for ( gtuint j = 0 ; j < column->GetSize(); j++ )
+		GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( i );
+		for ( gtuint j = 0 ; j < columns->GetSize(); j++ )
 		{
-			GnIListCtrlItem* exitsItem = column->GetAt( j );
+			GnIListCtrlItem* exitsItem = columns->GetAt( j );
 			if( exitsItem == NULL )
 				continue;
 			
 			GnVector2 uiPoint = exitsItem->GetUIPoint();
-			uiPoint.y += fMove;
-			mMovePosition.y += fMove;
-			SetUIPosition( exitsItem, uiPoint.x, uiPoint.y );
+			SetUIPosition( exitsItem, uiPoint.x, uiPoint.y + fMove);
 			
+			if( setMovePosition == false )
+			{
+				setMovePosition = true;
+				SetMovedPositionY( j, exitsItem->GetUIPoint() );
+			}
 		}
+	}
+}
+
+bool GnIListCtrl::Push(float fPointX, float fPointY)
+{
+	mLasterMovePosition = GnVector2( fPointX, fPointY );
+	return GnInterfaceGroup::Push( fPointX, fPointY );
+}
+
+void GnIListCtrl::PushUp()
+{
+	GnInterfaceGroup::PushUp();
+	if( mMoveType == eMoveUpDown )
+	{
+		if( mListItems.GetSize() )
+		{
+			GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( 0 );
+			if( columns->GetSize() )
+			{
+				GnIListCtrlItem* exitsItem = columns->GetAt( 0 );
+				if( exitsItem )
+				{
+					GnVector2 uiPoint = exitsItem->GetUIPoint();								
+					mRevisionPosition = GnVector2( 0, uiPoint.y - GetRect().top );
+					if( mRevisionPosition.y >= 0 )
+					{
+						mRevisionDelta = -5.0f;
+						mIsRevision = eMoveUpDown;
+					}
+				}
+				if( mIsRevision != eNone )
+					return;
+				
+				gtint checkRow = columns->GetSize() - mViewRowSize;
+				if( checkRow < 0 )
+					checkRow = 0;
+				
+				exitsItem = columns->GetAt( checkRow );
+				if( exitsItem )
+				{
+					GnVector2 uiPoint = exitsItem->GetUIPoint();								
+					mRevisionPosition = GnVector2( 0, GetRect().top - uiPoint.y );
+					if( mRevisionPosition.y >= 0 )
+					{
+						mIsRevision = eMoveUpDown;
+						mRevisionDelta = 5.0f;
+					}
+				}
+			}		
+		}
+	}
+	else if( mMoveType == eMoveLeftRight )
+	{
+	}
+}
+
+bool GnIListCtrl::PushMove(float fPointX, float fPointY)
+{
+	if( mMoveType == eMoveUpDown )
+	{
+		float move = fPointY - mLasterMovePosition.y;
+		MoveY( move );
+	}
+	else if( mMoveType == eMoveLeftRight )
+	{
+		float move = fPointX - mLasterMovePosition.x;
+		MoveX( move );
+	}
+	mLasterMovePosition = GnVector2( fPointX, fPointY );
+	return GnInterfaceGroup::PushMove( fPointX, fPointY );
+}
+
+void GnIListCtrl::Update(float fTime)
+{
+	if( mIsRevision == eMoveUpDown )
+	{
+		if( mTimer.Update( fTime ) )
+		{
+			float revision = 0.0f;
+			if( mRevisionDelta < 0 )
+			{
+				revision = mRevisionPosition.y + mRevisionDelta;
+				if( revision < 0.0f )
+				{
+					revision = -mRevisionPosition.y;
+					mIsRevision = eNone;
+				}
+				else
+				{
+					revision = mRevisionDelta;
+					mRevisionPosition.y += mRevisionDelta;
+				}
+			}
+			else
+			{
+				revision = mRevisionPosition.y - mRevisionDelta;
+				if( revision < 0.0f )
+				{
+					revision = mRevisionPosition.y;
+					mIsRevision = eNone;
+				}
+				else
+				{
+					revision = mRevisionDelta;
+					mRevisionPosition.y -= mRevisionDelta;
+				}
+			}			
+			
+			bool setMovePosition = false;
+			for( gtuint i = 0; i < mListItems.GetSize(); i++ )
+			{
+				GnTObjectArray<GnIListCtrlItemPtr>* column = mListItems.GetAt( i );
+				for ( gtuint j = 0 ; j < column->GetSize(); j++ )
+				{
+					GnIListCtrlItem* exitsItem = column->GetAt( j );
+					if( exitsItem == NULL )
+						continue;
+					
+					GnVector2 uiPoint = exitsItem->GetUIPoint();
+					SetUIPosition( exitsItem, uiPoint.x, uiPoint.y + revision );
+					
+					if( setMovePosition == false )
+					{
+						setMovePosition = true;
+						SetMovedPositionY( j, exitsItem->GetUIPoint() );
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		
 	}
 }
 
@@ -109,5 +305,29 @@ void GnIListCtrl::Init(GnVector2 cStartUIPosition, gtuint uiNumColumn, gtuint ui
 	mMovePosition = GnVector2( 0.0f, 0.0f );
 	mColumnGab = fColumnGab;
 	mRowGab = fRowGab;
+	mMoveType = eNone;
+	mIsRevision = eNone;
+	mItemCount = 0;
+	mTimer.SetPercentTime( 0.0001f );
 	SetSize( uiNumColumn, uiNumRow );
+}
+
+void GnIListCtrl::SetItemCell(gtuint uiCol, gtuint uiRow, GnIListCtrlItem* pItem)
+{
+	float pointX = GetBasePositionX( uiCol );
+	float pointY = GetBasePositionY( uiRow );
+	
+	pItem->SetCell( uiCol, uiRow );
+	SetUIPosition( pItem, pointX, pointY );
+	
+	GnVector2 uiPoint = pItem->GetUIPoint() + mMovePosition;
+	SetUIPosition( pItem, uiPoint.x, uiPoint.y );
+	
+	AddChild( pItem );
+}
+
+void GnIListCtrl::SetMovedPositionY(gtuint uiRow, GnVector2 cCurrentUIPosition)
+{
+	float pointY = GetBasePositionY( uiRow );
+	mMovePosition.y = cCurrentUIPosition.y - pointY;
 }

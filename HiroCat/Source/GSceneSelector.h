@@ -47,6 +47,7 @@ private:
 	GScene* CreateStartScene();
 	GScene* CreateStateScene();
 	GScene* CreateSelectStageScene();
+	void CreatePlayingData();
 };
 
 #endif

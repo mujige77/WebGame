@@ -15,7 +15,7 @@ GStartBackgroundLayer* GStartBackgroundLayer::CreateBackground()
 bool GStartBackgroundLayer::InitBackground()
 {
 	gstring fileName;
-	GetFullPathFromWorkPath( "StartScene/0_0.PNG", fileName );
+	GetFullPathFromWorkPath( "StartScene/0_60.png", fileName );
 	GnReal2DMesh* mesh = GnReal2DMesh::spriteWithFile( fileName.c_str() );
 	mesh->setPosition( CCPointMake( GetGameState()->GetGameWidth() / 2
 		, GetGameState()->GetGameHeight() / 2 ) );
@@ -32,44 +32,60 @@ bool GStartBackgroundLayer::InitBackground()
 
 bool GStartBackgroundLayer::InitClouds()
 {
-	float centerX = GetGameState()->GetGameWidth() / 2;
-	float centerY = GetGameState()->GetGameHeight() * 0.1f;
+	float centerX = GetGameState()->GetGameWidth();
 	
-	for ( gtuint i = 0; i < NUM_CLOUD; i++)
-	{
-		gchar fileName[64] = { 0, };
-		GnSprintf( fileName, sizeof( fileName ), "StartScene/%d.png", i + 1 );
-		gstring fullPath;
-		GetFullPathFromWorkPath( fileName, fullPath );
-		mpCloudsMeshs[i] = GnReal2DMesh::spriteWithFile( fullPath.c_str() );		
-		mpCloudsMeshs[i]->setPosition( CCPointMake( centerX * i, centerY ) );
-		CCFiniteTimeAction*  action = CCSequence::actions(
-			CCMoveBy::actionWithDuration( 45.0f + ( 20.0f * i ) , CCPointMake( -GetGameState()->GetGameWidth() * i, 0 ) ),
-			CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), 
-			NULL );
-		mpCloudsMeshs[i]->runAction( action );
-		addChild( mpCloudsMeshs[i], 1 + i );
-	}	
+//	for ( gtuint i = 0; i < NUM_CLOUD; i++)
+//	{
+//		gchar fileName[64] = { 0, };
+//		GnSprintf( fileName, sizeof( fileName ), "StartScene/%d.png", i + 1 );
+//		gstring fullPath;
+//		GetFullPathFromWorkPath( fileName, fullPath );
+//		mpCloudsMeshs[i] = GnReal2DMesh::spriteWithFile( fullPath.c_str() );		
+//		CCSize size = mpCloudsMeshs[i]->getContentSize();
+//		mpCloudsMeshs[i]->setPosition( CCPointMake( centerX * i, size.height * 0.5f ) );
+//		CCFiniteTimeAction*  action = CCSequence::actions(
+//			CCMoveBy::actionWithDuration( 10444.0f + ( 100.0f * ( NUM_CLOUD - i ) ) , CCPointMake( -GetGameState()->GetGameWidth() * i, 0 ) ),
+//			CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), 
+//			NULL );
+//		mpCloudsMeshs[i]->runAction( action );
+//		addChild( mpCloudsMeshs[i], 1 + i );
+//	}	
 
+	gstring fullPath;
+	GetFullPathFromWorkPath( "StartScene/5.png", fullPath );
+	GnReal2DMesh* mesh = GnReal2DMesh::spriteWithFile( fullPath.c_str() );
+	CCSize size = mesh->getContentSize();
+	mesh->setPosition( CCPointMake( centerX, size.height * 0.5f ) );
+		CCFiniteTimeAction*  action = CCSequence::actions(
+		CCMoveBy::actionWithDuration( 304.0f , CCPointMake( -GetGameState()->GetGameWidth(), 0 ) ),
+		CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), NULL );
+	mesh->runAction( action );
+	addChild( mesh, 1 );
 	return true;
 }
 
 void GStartBackgroundLayer::CloudActionCallback(CCNode* pSender)
 {
 	float startX = GetGameState()->GetGameWidth() + GetGameState()->GetGameWidth();
-	float centerY = GetGameState()->GetGameHeight() * 0.1f;	
-	
-	for ( gtuint i = 0; i < NUM_CLOUD; i++ )
-	{
-		if( mpCloudsMeshs[i] == pSender )
-		{
-			CCFiniteTimeAction*  action = CCSequence::actions(
-				CCMoveBy::actionWithDuration( 45.0f + ( 20.0f * i ) , CCPointMake( -startX * 1.5f, 0.0f ) ),
-				CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), 
-				NULL );
-			mpCloudsMeshs[i]->setPosition( CCPointMake( startX, centerY ) );
-			mpCloudsMeshs[i]->runAction( action );
-		}
-	}
+	GnReal2DMesh* mesh = (GnReal2DMesh*)pSender;
+	CCSize size = mesh->getContentSize();
+	mesh->setPosition( CCPointMake( startX, size.height * 0.5f ) );
+	CCFiniteTimeAction*  action = CCSequence::actions(
+		CCMoveBy::actionWithDuration( 304.0f , CCPointMake( -GetGameState()->GetGameWidth(), 0 ) ),
+		CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), NULL );
+	mesh->runAction( action );
+//	for ( gtuint i = 0; i < NUM_CLOUD; i++ )
+//	{
+//		if( mpCloudsMeshs[i] == pSender )
+//		{
+//			CCFiniteTimeAction*  action = CCSequence::actions(
+//				CCMoveBy::actionWithDuration( 10444.0f + ( 100.0f * ( NUM_CLOUD - i ) ) , CCPointMake( -startX * 1.5f, 0.0f ) ),
+//				CCCallFunc::actionWithTarget( this, callfunc_selector( GStartBackgroundLayer::CloudActionCallback ) ), 
+//				NULL );
+//			CCSize size = mpCloudsMeshs[i]->getContentSize();
+//			mpCloudsMeshs[i]->setPosition( CCPointMake( startX, size.height * 0.5f ) );
+//			mpCloudsMeshs[i]->runAction( action );
+//		}
+//	}
 	
 }

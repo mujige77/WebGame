@@ -72,6 +72,7 @@ GnIProgressBar::GnIProgressBar(eProgressType eType, Gn2DMeshObject* pBackMesh, G
 	: mAcumtime(0.0f), mProgressType( eType )
 	, mProgressTime( 0.0f ), mPlayPlag( GnIProgressBar::STOP )
 {
+	SetIsCantPush( true );
 	GetParentUseNode()->addChild( pBackMesh->GetMesh(), 0);
 	mpsDefaultMesh = pBackMesh;
 	pBackMesh->SetVisible( false );
@@ -122,7 +123,7 @@ void GnIProgressBar::ProgressFromLeft(float fSize)
 {
 	float size = mProgressWidth - ( mProgressWidth * fSize );
 	GnVector2 CurrentPos = mOriginalPosition;
-	CurrentPos.x = mOriginalPosition.x + size;
+	CurrentPos.x = mOriginalPosition.x + ( size / 2 );
 	mpsProgressMesh->SetPosition( CurrentPos );
 	mpsProgressMesh->GetMesh()->setScaleX( fSize );
 }
@@ -140,7 +141,7 @@ void GnIProgressBar::ProgressFromTop(float fSize)
 {
 	float size = mProgressHeight - ( mProgressHeight * fSize );
 	GnVector2 CurrentPos = mOriginalPosition;
-	CurrentPos.y = mOriginalPosition.y - size;
+	CurrentPos.y = mOriginalPosition.y - ( size / 2 );
 	mpsProgressMesh->SetPosition( CurrentPos );
 	mpsProgressMesh->GetMesh()->setScaleY(fSize);
 }
@@ -164,7 +165,7 @@ void GnIProgressBar::Update(float fDeltaTime)
 			mAcumtime = 0.0f;
 			Stop();
 		}
-		SetProgressPercent( 100 * mAcumtime / mProgressTime );
+		SetProgressPercent( 100 * ( mAcumtime / ( mProgressTime ) ) );
 	}
 }
 

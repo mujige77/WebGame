@@ -36,11 +36,13 @@ void GEnemyCtlrManager::CreateEnemy()
 	
 	
 	GEnemyController* controller = GEnemyController::Create( idName, 1 );
+	GetGameEnvironment()->CreateActorControllerBasicAction( controller );
 	GetGameEnvironment()->SetStartPositionToActor( controller, 1 );
 	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
 	
 	GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
 	move->SetMove( GActionMove::MOVELEFT );
+	move->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
 		
 //	Gn2DSequence* attackSequence = NULL;
 //	GnVerify( controller->GetActor()->GetSequence( GAction::ACTION_ATTACK

@@ -19,6 +19,9 @@ void GPlayingDataManager::SaveData()
 		return;
 	
 	GnStream dataStream;
+	dataStream.SetFileVersion( PLAYINGDATA_MAJOR_VERSION, PLAYINGDATA_MINOR_VERSION
+		, PLAYINGDATA_PATCH_VERSION, PLAYINGDATA_INTERNAL_VERSION );
+	
 	gstring fullPath;
 	GetWriteablePath( mscPlayingDataName, fullPath );
 	if( dataStream.Save( fullPath.c_str() ) == false )
@@ -68,11 +71,22 @@ void GPlayingDataManager::LoadData()
 	}
 }
 
-GPlayingData* GPlayingDataManager::CreatePlayingData(guint32 uiModeLevel)
+GPlayingData* GPlayingDataManager::CreatePlayingData()
 {
 	GPlayingData* data = GnNew GPlayingData();
-	data->SetModeLevel( uiModeLevel );
+	data->SetStarCount( 50 );
+	data->SetMoneyCount( 5000 );	
 	return data;
+}
+
+void GPlayingDataManager::DeletePlayingData(gtuint uiIndex)
+{
+	GPlayingData* data = GetPlayingData( uiIndex );
+	if( data == NULL )
+		return;
+	
+	mPlayingDatas.RemoveAndFill( data );
+	mPlayingItemData.SetPlayerName( mPlayingPlayerData->GetPlayerName() );	
 }
 
 void GPlayingDataManager::AddPlayingData(GPlayingData* pData)
@@ -80,12 +94,15 @@ void GPlayingDataManager::AddPlayingData(GPlayingData* pData)
 	gchar name[10] = { 0, };
 	GnSprintf( name, sizeof( name ), "playing%d", GetPlayingDataCount() );
 	AddPlayingData( name, pData );
+	mPlayingItemData.CreateHaveItem( name );
 }
 
 bool GPlayingDataManager::SetPlayingPlayerData(gtuint uiIndex)
 {
 	mPlayingPlayerData = GetPlayingData( uiIndex );
-	if( mPlayingPlayerData )
-		return true;
-	return false;
+	if( mPlayingPlayerData == NULL )
+		return false;
+	
+	mPlayingItemData.SetPlayerName( mPlayingPlayerData->GetPlayerName() );
+	return true;
 }

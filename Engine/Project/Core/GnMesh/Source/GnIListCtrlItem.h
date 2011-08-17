@@ -13,7 +13,7 @@ class GnIListCtrlItem : public GnIButton
 {
 	GnDeclareRTTI;
 private:
-//	gint32 mItemIndex;
+	bool mEmptyItem;
 	guint32 mNumRow;
 	guint32 mNumColumn;
 	
@@ -29,12 +29,6 @@ public:
 	virtual void PushUp();
 
 public:
-//	inline void SetItemIndex(gint32 val) {
-//		mItemIndex = val;
-//	}
-//	inline gint32 GetItemIndex() {
-//		return mItemIndex;
-//	}
 	inline void SetCell(guint32 uiCol, guint32 uiRow) {
 		mNumColumn = uiCol;
 		mNumRow = uiRow;
@@ -44,6 +38,12 @@ public:
 	}
 	inline guint32 GetNumColumn() {
 		return mNumColumn;
+	}
+	inline bool IsEmptyItem() {
+		return mEmptyItem;
+	}
+	inline void SetIsEmptyItem(bool val) {
+		mEmptyItem = val;
 	}
 };
 

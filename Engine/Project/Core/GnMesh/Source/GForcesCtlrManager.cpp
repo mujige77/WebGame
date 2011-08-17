@@ -54,10 +54,13 @@ void GForcesCtlrManager::CreateForces(GnInterface* pInterface, GnIInputEvent* pE
 	GForcesController* controller = GForcesController::Create( idName, 1 );
 	if( controller )
 	{
+		GetGameEnvironment()->CreateActorControllerBasicAction( controller );
 		GetGameEnvironment()->SetStartPositionToActor( controller, 0 );
-		GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
+		GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );		
+		
 		
 		GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
+		move->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
 		move->SetMove( GActionMove::MOVERIGHT );		
 		AddActorCtlr( controller );
 	}

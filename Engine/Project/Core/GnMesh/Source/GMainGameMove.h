@@ -21,6 +21,7 @@ public:
 	}
 	
 public:
+	virtual void Update(float fDeltaTime);
 	virtual void SetMove(gtuint uiType);
 	
 private:

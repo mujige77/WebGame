@@ -27,7 +27,8 @@ void GSceneSelector::RunApplication()
 
 	pDirector->setAnimationInterval(1.0 / 60);	
 	
-	GPlayingDataManager::GetSingleton()->LoadData();
+	
+	CreatePlayingData();
 	
 	GScene* gameScene = CreateStartScene();
 	if( gameScene )
@@ -85,7 +86,8 @@ void GSceneSelector::ChangeSceneCheck()
 					if( mpGameScene->IsWinGame() )
 					{
 						GPlayingData* playing = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
-						playing->SetLastCrearStage( playing->GetLastCrearStage() + 1 );
+						GPlayingData::ModeInfo& info = playing->GetCurrentModeInfo();
+						info.mLastClearStage += 1;
 						GPlayingDataManager::GetSingleton()->SaveData();
 					}
 				}
@@ -177,7 +179,7 @@ GScene* GSceneSelector::CreateStateScene()
 GScene* GSceneSelector::CreateSelectStageScene()
 {
 	GPlayingData* playData = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
-	mpSelectStageScene = GSelectStageScene::CreateScene( playData->GetLastCrearStage() );
+	mpSelectStageScene = GSelectStageScene::CreateScene( playData->GetCurrentModeInfo().mLastClearStage );
 	
 	if( mpSelectStageScene == NULL)
 		return NULL;
@@ -216,16 +218,30 @@ void GSceneSelector::ReleaseScene()
 		mpGameScene = NULL;
 		GetGameState()->SetGameScale( 1.0 );
 	}
+}
 
+void GSceneSelector::CreatePlayingData()
+{
+	gstring fullPath;
+	GetWriteablePath( USER_HAVEDATA_FILENAME, fullPath );
+	if( GnFileUtil::ExitsFile( fullPath.c_str() ) == false )
+	{
+		GnVerify( GnFileUtil::FileCopy( GetFullPath( USER_HAVEDATA_FILENAME ), fullPath.c_str() ) );
+	}
 	
-//	if( mpStartScene && mpCurrentScene->GetSceneName() == mpStartScene->GetSceneName() )
-//		mpStartScene = NULL;
-//	if( mpStateScene && mpCurrentScene->GetSceneName() == mpStateScene->GetSceneName() )
-//		mpStateScene = NULL;
-//	if( mpSelectStageScene && mpCurrentScene->GetSceneName() == mpSelectStageScene->GetSceneName() )
-//		mpSelectStageScene = NULL;
-//	if( mpGameScene && mpCurrentScene->GetSceneName() == mpGameScene->GetSceneName() )
-//		mpGameScene = NULL;
-//	mpCurrentScene->release();
+	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();
+	playingDataManager->LoadData();
 	
+	guint32 curCount = playingDataManager->GetPlayingDataCount();
+	GPlayingData* data = NULL;
+	if( curCount == 0 )
+	{
+		data = playingDataManager->CreatePlayingData();
+		playingDataManager->AddPlayingData( data );
+		playingDataManager->SaveData();
+	}
+	else
+		data = playingDataManager->GetPlayingData( 0 );
+	
+	playingDataManager->SetPlayingPlayerData( 0 );
 }

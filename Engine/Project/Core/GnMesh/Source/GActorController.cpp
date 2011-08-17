@@ -104,8 +104,11 @@ bool GActorController::IsEnableMove()
 
 void GActorController::AddCurrentAction(GAction* pComponent)
 {
-	pComponent->AttachActionToController();
-	mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );
+	if( pComponent )
+	{
+		pComponent->AttachActionToController();
+		mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );	
+	}
 }
 
 void GActorController::RemoveCurrentAction(gtuint uiIndex)
@@ -190,7 +193,8 @@ void GActorController::SetEndAttack()
 	if( action )
 		return;
 	
-	GetGameEnvironment()->RemoveBasicCurrentAction( this );
+	if( GetGameEnvironment() )
+		GetGameEnvironment()->RemoveBasicCurrentAction( this );
 	action = GetActionComponent( GAction::ACTION_STAND );
 	AddCurrentAction( action );
 	action = GetActionComponent( GAction::ACTION_ATTACKCHECK );

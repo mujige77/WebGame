@@ -19,6 +19,8 @@ typedef CCNode GnInterfaceNode;
 #include "Gn2DActor.h"
 
 #include "GnPathUtil.h"
+#include "GnSQLite.h"
+#include "GnFileUtil.h"
 
 #include "GnGameState.h"
 #include "GnAnimationKey.h"

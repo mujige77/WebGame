@@ -24,7 +24,7 @@ void GSelectStageUILayer::CreateListCtrlItem(guint32 uiLastStage)
 				//	gtuint col =( uiNumItem / 3 ) % NUM_COLUMN;
 				//	row = uiNumItem % NUM_ROW;	
 				// guint32 numCurrentItem = ( i * numPageItem ) + ( ( j * numRow ) + k );
-				guint32 numCurrentItem = ( i * numPageItem ) + ( ( k * numRow ) + j );
+				guint32 numCurrentItem = ( i * numPageItem ) + ( ( k * numColumn ) + j );
 				GnIListCtrlItem* item = NULL;
 				if( uiLastStage < numCurrentItem )
 					item = CreateListCtrlItem( 0, false );
@@ -83,11 +83,11 @@ GnInterfaceGroup* GSelectStageUILayer::CreateSelectStageButtons()
 	GnIButton* buttons = NULL;
 	GnInterface* label = NULL;
 	// add buttons
-	buttons = GnNew GnIButton( "StageScene/44_22.png", NULL, NULL );
+	buttons = GnNew GnIButton( "StageScene/44_22.png", "StageScene/44_22 a.png", NULL );
 	SetUIPosition( buttons, 44.0f, 22.0f );
 	group->AddChild( buttons );
 	
-	buttons = GnNew GnIButton( "StageScene/361_22.png", NULL, NULL );
+	buttons = GnNew GnIButton( "StageScene/361_22.png", "StageScene/361_22 a.png", NULL );
 	SetUIPosition( buttons, 361.0f, 22.0f );
 	group->AddChild( buttons );
 	

@@ -28,6 +28,7 @@ void GUserCtlrManager::Update(float fDeltaTime)
 {
 	GActorCtlrManager::Update( fDeltaTime );
 
+	GetGameEnvironment()->UserMove( mpUserCtlr );
 	UpdateBackgroundLayer();
 }
 
@@ -40,7 +41,7 @@ void GUserCtlrManager::UpdateBackgroundLayer()
 		GActionMove* move = (GActionMove*)mpUserCtlr->GetCurrentAction( GAction::ACTION_MOVE );
 		if( move == NULL )
 			return;
-		
+	
 		if( move->GetMoveLeft() )
 		{
 			CCSize bgSize = GetActorLayer()->getContentSize();
@@ -62,6 +63,7 @@ void GUserCtlrManager::Init()
 	GetGameState()->SetGameScale( saveScale );
 	AddActorCtlr( mpUserCtlr );
 	
+	GetGameEnvironment()->CreateActorControllerBasicAction( mpUserCtlr );
 	GetGameEnvironment()->UserMove( mpUserCtlr );
 	GetGameEnvironment()->SetStartPositionToActor( mpUserCtlr, 0 );
 	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), mpUserCtlr );	
@@ -114,7 +116,6 @@ void GUserCtlrManager::Move(GnInterface* pInterface, GnIInputEvent* pEvent)
 		, mpButtonGroup->GetChild( GActionMove::MOVERIGHT )->IsPush() );
 	move->SetMoveY( mpButtonGroup->GetChild( GActionMove::MOVEUP )->IsPush()
 		, mpButtonGroup->GetChild( GActionMove::MOVEDOWN )->IsPush() );
-	GetGameEnvironment()->UserMove( mpUserCtlr );
 }
 
 gint32 GUserCtlrManager::GetUserCurrentHP()

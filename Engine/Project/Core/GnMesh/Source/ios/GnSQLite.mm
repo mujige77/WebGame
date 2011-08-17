@@ -33,18 +33,32 @@ void GnSQLite::Close()
 		sqlite3_close( mpDatabase );
 }
 
-GnSQLiteSingleQuery GnSQLite::ExecuteSingleQuery(const gchar *pcQuery)
+GnSQLiteQuery GnSQLite::ExecuteSingleQuery(const gchar *pcQuery, ...)
 {
-	sqlite3_stmt* state = NULL;
-	int ret = Query( pcQuery, state );
-
-	if ( ret == GNSQLITE_SUCCESS  )
+	gchar combineQuery[512] = { 0, };
+	va_list args;
+	va_start( args, pcQuery );
+#ifdef __GNUC__
+	gint err = vsprintf( combineQuery, pcQuery, args );
+#else // #ifdef __GNUC__
+	gint err = vsprintf_s( combineQuery, sizeof(combineQuery), format, args );
+#endif // #ifdef __GNUC__
+	va_end(args);
+	if( err != 0 )
 	{
-		ret = sqlite3_step(state);
-		if( ret == GNSQLITE_ROW ) 
-			return GnSQLiteSingleQuery( state, false );
+		sqlite3_stmt* state = NULL;
+		int ret = Query( combineQuery, state );
+
+		if ( ret == GNSQLITE_SUCCESS  )
+		{
+			ret = sqlite3_step(state);
+			if( ret == GNSQLITE_ROW ) 
+				return GnSQLiteQuery( state, false );
+			else if( GNSQLITE_DONE )
+				return GnSQLiteQuery( state, true );
+		}
 	}
-	return GnSQLiteSingleQuery( NULL, true );
+	return GnSQLiteQuery( NULL, true );
 }
 
 int GnSQLite::Query(const gchar *pcQuery, sqlite3_stmt*& pRetState)
@@ -58,12 +72,52 @@ int GnSQLite::Query(const gchar *pcQuery, sqlite3_stmt*& pRetState)
 	return ret;
 }
 
-int GnSQLite::Execute(const char* pcQuery)
+GnSQLiteTable GnSQLite::GetTable(const char* pcQuery, ...)
 {
-	char* error=0;
-	int ret = sqlite3_exec( mpDatabase, pcQuery, 0, 0, &error );	
-	if ( ret != GNSQLITE_SUCCESS )
-		GnLogA( "Error SQLite Execute - query = %s, code = %d, msg = %s", pcQuery, ret, error );
-	return ret;
+	gchar combineQuery[512] = { 0, };
+	va_list args;
+	va_start( args, pcQuery );
+#ifdef __GNUC__
+	gint err = vsprintf( combineQuery, pcQuery, args );
+#else // #ifdef __GNUC__
+	gint err = vsprintf_s( combineQuery, sizeof(combineQuery), format, args );
+#endif // #ifdef __GNUC__
+	va_end(args);
+	if( err != 0 )
+	{
+		char* error=0;
+		char** paszResults=0;
+		int nRows(0);
+		int nCols(0);
+		
+		int ret = sqlite3_get_table( mpDatabase, combineQuery, &paszResults, &nRows, &nCols, &error );
+		
+		if( ret == GNSQLITE_SUCCESS )
+			return GnSQLiteTable( paszResults, nRows, nCols );
+		else
+			GnLogA( "Error SQLite Execute - query = %s, code = %d, msg = %s", pcQuery, ret, error );
+	}	
+	return GnSQLiteTable( NULL, 0, 0 );
 }
 
+int GnSQLite::Execute(const char* pcQuery, ...)
+{
+	gchar combineQuery[512] = { 0, };
+	va_list args;
+	va_start( args, pcQuery );
+#ifdef __GNUC__
+	gint err = vsprintf( combineQuery, pcQuery, args );
+#else // #ifdef __GNUC__
+	gint err = vsprintf_s( combineQuery, sizeof(combineQuery), format, args );
+#endif // #ifdef __GNUC__
+	va_end(args);
+	if( err != 0 )
+	{
+		char* error=0;
+		int ret = sqlite3_exec( mpDatabase, combineQuery, 0, 0, &error );	
+		if ( ret != GNSQLITE_SUCCESS )
+			GnLogA( "Error SQLite Execute - query = %s, code = %d, msg = %s", combineQuery, ret, error );
+		return ret;	
+	}
+	return GNSQLITE_ERROR;
+}

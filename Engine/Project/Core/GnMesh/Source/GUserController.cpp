@@ -48,11 +48,9 @@ bool GUserController::InitActionComponents()
 	
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
-	moveAction->SetMoveRangeX( info->GetMoveRange() );
-	moveAction->SetMoveRangeY( info->GetMoveRange() );
+	moveAction->SetMoveRangeX( info->GetMoveSpeed() );
+	moveAction->SetMoveRangeY( info->GetMoveSpeed() );
 	moveAction->SetNumLine( 0 );
-	
-	GetGameEnvironment()->CreateActorControllerBasicAction( this );
 	return true;
 }
 

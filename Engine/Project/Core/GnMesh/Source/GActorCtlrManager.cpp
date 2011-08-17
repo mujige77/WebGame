@@ -79,36 +79,39 @@ void GActorCtlrManager::CollisionCheck(GActionAttackCheck* pAttackCheck, GActorC
 gtuint GActorCtlrManager::SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager)
 {
 	gtuint totalNumAttackCtrl = 0;
-	GCastle* castle = pCheckCtlrManager->GetCastle();
-	if( castle && CastleCollisionCheck( pAttackCheck, castle ) )
+
+	// attack enemy
+	gtuint enableAttackCount = pAttackCheck->GetEnableAttackCount();
+	gtuint numAttackCtrl = 0;
+	GActorController* attacksCtrl[GActionAttackCheck::MAX_ATTCK_COUNT] = { NULL, };
+	for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
 	{
-		GInfoBasic* fromActorBasic = 
-			(GInfoBasic*)pAttackCheck->GetController()->GetInfoComponent( GInfo::INFO_BASIC );
-		castle->ReceveAttack( (gint32)fromActorBasic->GetStrength() );
-		++totalNumAttackCtrl;
+		GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
+		if( CollisionCheck( pAttackCheck, checkCtrl ) )
+		{
+			attacksCtrl[numAttackCtrl++] = checkCtrl;
+			if( enableAttackCount <= numAttackCtrl )
+				break;
+		}
+	}	
+	for( gtuint i = 0; i < numAttackCtrl; i++ )
+	{
+		attacksCtrl[i]->ReceiveAttack( pAttackCheck->GetController() );
 	}
-		
-	gtuint enableAttackCount = pAttackCheck->GetEnableAttackCount() - totalNumAttackCtrl;
-	if( enableAttackCount )
+	totalNumAttackCtrl += numAttackCtrl;
+	
+	
+	// attack castle if ramains	attack count
+	if( totalNumAttackCtrl < enableAttackCount )
 	{
-		gtuint numAttackCtrl = 0;
-		GActorController* attacksCtrl[GActionAttackCheck::MAX_ATTCK_COUNT] = { NULL, };
-		for ( gtuint j = 0; j < pCheckCtlrManager->GetActorCtlrSize(); j++ )
+		GCastle* castle = pCheckCtlrManager->GetCastle();
+		if( castle && CastleCollisionCheck( pAttackCheck, castle ) )
 		{
-			GActorController* checkCtrl = pCheckCtlrManager->GetActorCtlr( j );
-			if( CollisionCheck( pAttackCheck, checkCtrl ) )
-			{
-				attacksCtrl[numAttackCtrl++] = checkCtrl;
-				if( enableAttackCount <= numAttackCtrl )
-					break;
-			}
-		}
-		
-		for( gtuint i = 0; i < numAttackCtrl; i++ )
-		{
-			attacksCtrl[i]->ReceiveAttack( pAttackCheck->GetController() );
-		}
-		totalNumAttackCtrl += numAttackCtrl;
+			GInfoBasic* fromActorBasic = 
+			(GInfoBasic*)pAttackCheck->GetController()->GetInfoComponent( GInfo::INFO_BASIC );
+			castle->ReceveAttack( (gint32)fromActorBasic->GetStrength() );
+			++totalNumAttackCtrl;
+		}	
 	}
 	return totalNumAttackCtrl;
 }

@@ -7,22 +7,46 @@ class GInterfaceLayer : public GLayer
 public:
 	enum eStartTabPage
 	{
-		eNewTab,
-		eLoadTab,
+		eSelectModeTab,
+		//eLoadTab,
 		eOptionTab,
 	};
 	enum eStartButtons
 	{
-		BT_NEW_EASY,
-		BT_NEW_NORMAL,
-		BT_NEW_HARD,
+		BT_SELECT_EASY,
+		BT_SELECT_NORMAL,
+		BT_SELECT_HARD,
+		BT_SOUNDON = 0,
+		BT_SOUNDOFF,
+		BT_RESETGAME,
 	};
 	enum eStateButtons
 	{
 		BT_STATE_FRONT,
+		BT_STATE_BACK,
 		LABEL_STATE_STAR,
 		LABEL_STATE_MONEY,
+		BT_ABILITY_UPGRADE,
+		LISTITEM_SHOP,
+		LISTITEM_INVEN,
+		LISTITEM_EQUIP,
+		BT_SELL_ITEM,
+		BT_BUY_ITEM,
+		BT_EQUIP_ITEM,
+		BT_UNEQUIP_ITEM,
+		BT_UPC1 = 1,
+		BT_UPC2,
+		BT_UPC3,
+		BT_UPC4,
+		BT_UPC5,
+		BT_UPC6,
+		BT_UPC7,
+		BT_UPC8,
+		BT_UPC9,
+		BT_UPC10,
+		BT_UNIT_UPGRADE,
 	};
+	
 	enum eSelectStageButtons
 	{
 		BT_PREVIOUS,
@@ -71,9 +95,9 @@ public:
 		UI_START_TAB,
 		UI_SELECTSTAGE_LIST,
 		UI_SELECTSTAGE_BT,
-		UI_STATE_ITEMTAB,
 		UI_STATE_UNITTAB,
-		UI_STATE_USERTAB,
+		UI_STATE_ABILITYTAB,
+		UI_STATE_SHOPTAB,
 		UI_STATE_OTHERUI,
 	};
 	

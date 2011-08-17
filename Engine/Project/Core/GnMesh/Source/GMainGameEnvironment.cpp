@@ -41,11 +41,11 @@ bool GMainGameEnvironment::SetStage(gtuint uiNumStage)
 	SetEnableMoveRect( GnFRect( 0.0f, top, GetStageInfo()->GetBackgroundSize().x
 		, bottom ) );
 	
-	float basePosition = GetStageInfo()->GetInterfaceSize().y + 3.0f;
+	//float basePosition = GetStageInfo()->GetInterfaceSize().y;
 	for( gtuint i = 0 ; i < GetStageInfo()->GetNumLine() ; i++ )
 	{
-		GMainGameEnvironment::GetSingleton()->AddLine( basePosition + 
-			( GetStageInfo()->GetLineHeight() * (float)i ) );
+		GnFRect lineRect = GetStageInfo()->GetLineRect( i );
+		AddLine( lineRect.bottom );
 	}
 	
 	GMainGameEnvironment::GetSingleton()->SetMoveRangeY( GetStageInfo()->GetLineHeight() );
@@ -104,11 +104,11 @@ void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr,
 	static gtint rendLinePosX = GetStageInfo()->GetLineHeight() / 3;
 	static gtint rendLine = rendLinePosX;
 	if( rendLine == rendLinePosX )
-		rendLine = rendLinePosX + rendLinePosX;
-	else if( rendLine == 0 )
+		rendLine = rendLinePosX + rendLinePosX - 5;
+	else if( rendLine == 5 )
 		rendLine = rendLinePosX;
 	else
-		rendLine = 0;
+		rendLine = 5;
 	
 	guint numLine = GetNumUserLine();
 	GnVector2 pos( 0.0f, 0.0f );

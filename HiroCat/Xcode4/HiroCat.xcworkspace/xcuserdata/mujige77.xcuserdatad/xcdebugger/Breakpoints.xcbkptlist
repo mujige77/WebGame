@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GActionMove.cpp"
-         timestampString = "334308214.592058"
+         filePath = "/Users/mujige77/Documents/PhoneGame/HiroCat/Source/GStateScene.cpp"
+         timestampString = "335243975.195258"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "18"
-         endingLineNumber = "18"
-         landmarkName = "GActionMove::Update(float fDeltaTime)"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
+         landmarkName = "GStateScene::UnitInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,69 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameMove.cpp"
-         timestampString = "334308783.649916"
+         filePath = "/Users/mujige77/Documents/PhoneGame/HiroCat/Source/GStateScene.cpp"
+         timestampString = "335243997.734606"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "32"
-         endingLineNumber = "32"
-         landmarkName = "GMainGameMove::SetMove(gtuint uiType)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameEnvironment.cpp"
-         timestampString = "334313981.620143"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
-         landmarkName = "GMainGameEnvironment::CorrectMoveY(float&amp; fPositionY)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GActionAttackCheck.cpp"
-         timestampString = "334322016.52528"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "34"
-         endingLineNumber = "34"
-         landmarkName = "GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect&amp; bodyRect)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GActionAttackCheck.cpp"
-         timestampString = "334322114.379543"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "19"
-         endingLineNumber = "19"
-         landmarkName = "GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect&amp; bodyRect)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameMove.cpp"
-         timestampString = "334322310.466607"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "27"
-         endingLineNumber = "27"
-         landmarkName = "GMainGameMove::SetMove(gtuint uiType)"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
+         landmarkName = "GStateScene::OtherInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

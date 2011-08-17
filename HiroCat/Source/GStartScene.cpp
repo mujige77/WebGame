@@ -43,11 +43,10 @@ bool GStartScene::CreateInterface()
 		delete interfaceLayer;
 		return false;
 	}
-	mpTab->SetActiveTab( 1 );
 	mpInterfaceLayer = interfaceLayer;
 	addChild( interfaceLayer, INTERFACE_ZORDER );
 	interfaceLayer->release();
-	SetLoadTabButton();
+	SetSelectModeTabButton();
 	return true;
 }
 
@@ -77,56 +76,50 @@ void GStartScene::InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)
 		for( gtuint i = 0 ; i < page->GetChildrenSize() ; i++ )
 		{
 			GnInterface* tabButton = page->GetChild( i );
-			if( pInterface == tabButton )
+			if( pInterface->GetTegID() != -1 && pInterface == tabButton )
 			{
-				if( page->GetNumTabPage() == GInterfaceLayer::eNewTab )
-					InputNewTabButton( i );
-				else if( page->GetNumTabPage() == GInterfaceLayer::eLoadTab )
-					InputLoadTabButton( i );
+				if( page->GetNumTabPage() == GInterfaceLayer::eSelectModeTab )
+					InputSelectModeTabButton( pInterface->GetTegID() );
+				else if( page->GetNumTabPage() == GInterfaceLayer::eOptionTab )
+					InputLoadTabButton( pInterface->GetTegID() );
 			}
 		}
 	}
 }
 
-void GStartScene::InputNewTabButton(gtuint uiNumButton)
+void GStartScene::InputSelectModeTabButton(gtuint uiNumButton)
 {
 	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();
-	guint32 curCount = playingDataManager->GetPlayingDataCount();
-	if( MAX_PLAYER <= curCount )
-		return;
-	GPlayingData* data = playingDataManager->CreatePlayingData( uiNumButton );
-	playingDataManager->AddPlayingData( data );
-	playingDataManager->SaveData();
-	playingDataManager->SetPlayingPlayerData( curCount );
-	
+	GPlayingData* data = playingDataManager->GetPlayingPlayerData();
+	data->SetCurrentMode( (eModeLevel)uiNumButton );
 	GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
 }
 
 void GStartScene::InputLoadTabButton(gtuint uiNumButton)
 {
-	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();
-	if( playingDataManager->GetPlayingDataCount() > uiNumButton )
-	{
-		playingDataManager->SetPlayingPlayerData( uiNumButton );
-		//GPlayingData* data = playingDataManager->GetPlayingPlayerData();
-		
-		GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
-	}
+//	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();
+//	if( playingDataManager->GetPlayingDataCount() > uiNumButton )
+//	{
+//		playingDataManager->SetPlayingPlayerData( uiNumButton );
+//		//GPlayingData* data = playingDataManager->GetPlayingPlayerData();
+//		
+//		GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+//	}
 }
 
-void GStartScene::SetLoadTabButton()
+void GStartScene::SetSelectModeTabButton()
 {
-	GnITabPage* page = mpTab->GetTabPage( 1 );
+	GnITabPage* page = mpTab->GetTabPage( 0 );
 	if( page == NULL )
 		return;
 	
 	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();
-	guint32 dataCount = playingDataManager->GetPlayingDataCount();
-	for ( gtuint i = 0 ; i < dataCount ; i++ )
+	GPlayingData* data = playingDataManager->GetPlayingPlayerData();
+	for (gtuint i = 0 ; i < eMaxMode ; i++ )
 	{
-		GPlayingData* data = playingDataManager->GetPlayingData( i );
-		GLoadButtonLabel* loadButton = GLoadButtonLabel::CreateLabel( i, data->GetModeLevel()
-			,  data->GetLastCrearStage() );
+		GPlayingData::ModeInfo& modeInfo = data->GetModeInfo( (eModeLevel)i );
+		GLoadButtonLabel* loadButton = GLoadButtonLabel::CreateLabel( i, modeInfo.mModeLevel
+			,  modeInfo.mLastClearStage );
 		page->AddChild( loadButton );
 	}
 }

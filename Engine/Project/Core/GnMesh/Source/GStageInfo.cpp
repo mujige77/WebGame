@@ -61,8 +61,9 @@ void GStageInfo::Set1_20Stage(gtuint uiStage)
 	mInterfaceSize = GnVector2( 480.0f, 105.0f );
 	mBackgroundSize = GnVector2( 800.0f, 223.0f );	
 	mUseCastleFile = true;
-	mNumLine = 2;
-	mLineHeight = 35.0f;
+	mLineHeight = 31.0f;
+	mLineRects.Add( GnFRect( 50.0f, 142.0f, 750.0f, 105.0f) );
+	mLineRects.Add( GnFRect( 50.0f, 179.0f, 750.0f, 136.1f) );
 	mBackgroundFileName = "./Data/Background/BG_01.png";
 	mInterfaceFileName = "./Data/Controll/0_215.png";
 	

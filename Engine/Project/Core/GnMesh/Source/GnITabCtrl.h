@@ -19,10 +19,13 @@ protected:
 	GnSignal2<gtuint, GnITabPage*> mSignal;
 	GnMemberSlot2<GnITabCtrl, GnInterface*, GnIInputEvent*> mTabButtonPushEvent;
 	gtint mNumActiveTab;
+	GnVector2 mDefaultButtonSize;
 	GnTPrimitiveSet< GnBaseSlot2< GnInterface*, GnIInputEvent*>* > mSignalSet;
 	
 public:
 	static GnITabCtrl* CreateTabCtrl(const gchar* pcBackgroundImage, float fSizeX, float fSizeY);
+	static GnITabCtrl* CreateTabCtrl(float fTabBackgroundSizeX, float fTabBackgroundSizeY
+		, float fTabButtonSizeX, float fTabButtonSizeY);
 
 public:
 	void AddTabCreateButtonImage(GnITabPage* pTabPage, const gchar* pcDefaultButtonImage

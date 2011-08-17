@@ -30,12 +30,16 @@ public:
 		gchar* name = NULL;
 		mForcesNames.GetAt(uiIndex, name);
 		return name;
-	};	
+	};
 	const gchar* GetEffectName(gtuint uiIndex)
 	{
 		gchar* name = NULL;
 		mEffectNames.GetAt(uiIndex, name);
 		return name;		
+	}	
+	void GetForcesFileName(gtuint uiIndex, gchar* pcOutName, gsize uiOutSize)
+	{
+		GnSprintf( pcOutName, uiOutSize, "C%d", uiIndex );
 	}
 private:
 	void ReadList(GnFile* pFile, const gchar* firstName, GnTPrimitiveDeleteMap<gtuint, gchar*>& names);

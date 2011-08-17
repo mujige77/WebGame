@@ -13,11 +13,18 @@ private:
 	
 public:
 	GnSQLiteQuery(sqlite3_stmt* pStatement, bool bEof);
+	virtual ~GnSQLiteQuery();
+	
 	gint GetFieldDataType(gint iNumColumn);
 	gint GetIntField(gint iNumColumn);
 	double GetFloatField(gint iNumColumn);
 	const gchar* GetStringField(gint iNumColumn);
-	
+	gint GetFieldIndex(const gchar* szField);
+	const gchar* GetFieldName(gint iCol);
+	const gchar* GetFieldDeclType(gint iCol);
+	void NextRow();
+	void Finalize();
+public:
 	inline void SetColumnCount(guint uiCount) {
 		mColumnCount = uiCount;
 	}
@@ -30,12 +37,6 @@ public:
 	inline bool IsEof() {
 		return mEof;
 	}
-};
-
-class GnSQLiteSingleQuery : public GnSQLiteQuery
-{
-public:
-	GnSQLiteSingleQuery(sqlite3_stmt* pStatement, bool bEof);
 };
 
 #endif
