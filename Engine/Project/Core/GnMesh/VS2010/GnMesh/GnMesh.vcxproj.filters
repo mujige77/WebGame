@@ -296,6 +296,9 @@
     <ClInclude Include="..\..\Source\GExtraData.h">
       <Filter>소스 파일\Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\GStageLevel.h">
+      <Filter>소스 파일\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\GnMeshPCH.cpp">
@@ -518,6 +521,9 @@
       <Filter>소스 파일\2DEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GExtraData.cpp">
+      <Filter>소스 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GStageLevel.cpp">
       <Filter>소스 파일\Game</Filter>
     </ClCompile>
   </ItemGroup>

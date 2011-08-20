@@ -1,7 +1,7 @@
 #ifndef GNGAMESTATE_H
 #define GNGAMESTATE_H
 
-#define DEFAULT_SCALE 0.7
+#define DEFAULT_SCALE 0.7f
 class GnGameState
 {
 private:

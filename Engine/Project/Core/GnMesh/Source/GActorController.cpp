@@ -104,11 +104,8 @@ bool GActorController::IsEnableMove()
 
 void GActorController::AddCurrentAction(GAction* pComponent)
 {
-	if( pComponent )
-	{
-		pComponent->AttachActionToController();
-		mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );	
-	}
+	pComponent->AttachActionToController();
+	mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );
 }
 
 void GActorController::RemoveCurrentAction(gtuint uiIndex)
@@ -150,7 +147,8 @@ void GActorController::ReceiveAttack(GActorController* pFromActor)
 				AddCurrentAction( gage );
 		}
 		GInfoBasic* thisInfo = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
-		gage->SetGagePercent( (float)GetCurrentInfo()->GetHP() / (float)thisInfo->GetHP() * 100.0f );
+		gage->SetGagePercent( (gint32)
+			( (float)GetCurrentInfo()->GetHP() / (float)thisInfo->GetHP() * 100.0f ) );
 	}
 	else
 	{
@@ -193,8 +191,7 @@ void GActorController::SetEndAttack()
 	if( action )
 		return;
 	
-	if( GetGameEnvironment() )
-		GetGameEnvironment()->RemoveBasicCurrentAction( this );
+	GetGameEnvironment()->RemoveBasicCurrentAction( this );
 	action = GetActionComponent( GAction::ACTION_STAND );
 	AddCurrentAction( action );
 	action = GetActionComponent( GAction::ACTION_ATTACKCHECK );
@@ -219,7 +216,7 @@ void GActorController::MoveStopCheck()
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
-		if( GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) == false )
+		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
 		{
 			GetGameEnvironment()->RemoveBasicCurrentAction( this );
 			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
@@ -231,7 +228,7 @@ void GActorController::MoveStopCheck()
 	else
 	{
 		GAction* action = GetCurrentAction( GAction::ACTION_STAND );
-		if( action && GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) )
+		if( action && GetGameEnvironment()->CorrectMove( GetMovePosition() ) )
 		{
 			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
 			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )

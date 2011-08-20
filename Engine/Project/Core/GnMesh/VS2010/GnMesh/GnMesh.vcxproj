@@ -199,6 +199,7 @@
     <ClInclude Include="..\..\Source\GnSQLiteQuery.h" />
     <ClInclude Include="..\..\Source\GnTegIDKey.h" />
     <ClInclude Include="..\..\Source\GScene.h" />
+    <ClInclude Include="..\..\Source\GStageLevel.h" />
     <ClInclude Include="..\..\Source\GUserController.h" />
     <ClInclude Include="..\..\Source\GUserCtlrManager.h" />
   </ItemGroup>
@@ -277,6 +278,7 @@
     <ClCompile Include="..\..\Source\GnLayer.cpp" />
     <ClCompile Include="..\..\Source\GnTegIDKey.cpp" />
     <ClCompile Include="..\..\Source\GScene.cpp" />
+    <ClCompile Include="..\..\Source\GStageLevel.cpp" />
     <ClCompile Include="..\..\Source\GUserController.cpp" />
     <ClCompile Include="..\..\Source\GUserCtlrManager.cpp" />
     <ClCompile Include="..\..\Source\win32\GnPathUtil.cpp" />
