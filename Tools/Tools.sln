@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CocosTool", "CocosTool\CocosTool.vcxproj", "{1794BA05-F3B5-468A-8044-C50354624A61}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameDesign", "GameDesign\GameDesign.vcxproj", "{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -16,6 +18,12 @@ Global
 		{1794BA05-F3B5-468A-8044-C50354624A61}.Log|Win32.Build.0 = Log|Win32
 		{1794BA05-F3B5-468A-8044-C50354624A61}.Release|Win32.ActiveCfg = Release|Win32
 		{1794BA05-F3B5-468A-8044-C50354624A61}.Release|Win32.Build.0 = Release|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Debug|Win32.Build.0 = Debug|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Log|Win32.ActiveCfg = Release|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Log|Win32.Build.0 = Release|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Release|Win32.ActiveCfg = Release|Win32
+		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

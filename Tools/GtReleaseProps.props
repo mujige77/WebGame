@@ -7,6 +7,9 @@
     <ClCompile>
       <PreprocessorDefinitions>GNRELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>GridControl.lib;PropControl.lib;ToolTipControl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

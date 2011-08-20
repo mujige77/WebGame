@@ -7,7 +7,8 @@ class GcExtraDataPropEntity : public GcPropertyEntity
 public:
 	enum eMessage
 	{
-		MSG_EXTRA_ID = 450,
+		MSG_EXTRA_TYPE = 450,
+		MSG_EXTRA_ID,
 		MSG_EXTRA_POSITIONX,
 		MSG_EXTRA_POSITIONY,
 		MSG_EXTRA_INT,
@@ -15,6 +16,7 @@ public:
 
 	enum
 	{
+		PROP_EXTRA_TYPE,
 		PROP_EXTRA_ID,
 		PROP_EXTRA_POSITIONX,
 		PROP_EXTRA_POSITIONY,
@@ -44,6 +46,9 @@ public:
 
 	virtual bool Init();
 	virtual bool ParseToEntity(EntityData* pData);
+	inline GcPropertyGridProperty* GetExtraTypeProp() {
+		return mpUseGridProperty[PROP_EXTRA_TYPE];
+	}
 	inline GcPropertyGridProperty* GetExtraIDProp() {
 		return mpUseGridProperty[PROP_EXTRA_ID];
 	}

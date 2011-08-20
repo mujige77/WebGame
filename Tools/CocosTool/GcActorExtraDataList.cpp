@@ -3,6 +3,9 @@
 #include "GcActorExtraDataList.h"
 #include "GcCreateExtraDataDlg.h"
 
+int GcActorExtraDataList::msLastSelectNumber = 0;
+
+
 GcActorExtraDataList::GcActorExtraDataList(void)
 {
 	SetEnableEdit( false );
@@ -26,10 +29,18 @@ void GcActorExtraDataList::ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObj
 	for( gtuint i = 0 ; i < mpExtraDatas->GetSize() ; i++ )
 	{
 		GnExtraData* extra = mpExtraDatas->GetAt( i );
-		CString str = GetMakeName( GetCount(), extra->GetType() );
-		AddItem( str.GetString(), extra->GetType() );
+		int type = GetExtraDataType( extra );		
+		GnAssert( type != -1 );
+		if( type == -1 )
+			continue;
+		CString str = GetMakeExtraDataTypeName( GetCount(), type );
+		AddItem( str.GetString(), type );
 	}
 	mpMeshObject = pMeshObject;
+	if( msLastSelectNumber != -1 && msLastSelectNumber < GetCount() )
+		SelectItem( msLastSelectNumber );
+	else
+		msLastSelectNumber = 0;
 }
 
 void GcActorExtraDataList::CreateNewItem()
@@ -41,9 +52,9 @@ void GcActorExtraDataList::CreateNewItem()
 
 	GnExtraData* extra = NULL;
 	int type = addDlg.GetSelectedExtraDataType();
-	if( type == GExtraData::EXTRA_EFFECT_POSITION )
+	if( type == GExtraData::EXTRA_POSITION_DATA )
 		extra = GnNew GnVector2ExtraData();
-	else if( type == GExtraData::EXTRA_EFFECT_POSITIONID )
+	else if( type == GExtraData::EXTRA_INT_DATA )
 		extra = GnNew GnIntExtraData();
 
 	if( extra == NULL )
@@ -55,8 +66,8 @@ void GcActorExtraDataList::CreateNewItem()
 	extra->SetID( 0 );
 	mpExtraDatas->Add( extra );
 
-	CString str = GetMakeName( GetCount(), extra->GetType() );
-	int sel = AddItem( str.GetString(), extra->GetType() );
+	CString str = GetMakeExtraDataTypeName( GetCount(), type );
+	int sel = AddItem( str.GetString(), type );
 	SelectItem( sel );
 	OnAfterAddItem( sel );	
 	mpGtObject->SetModifed( true );
@@ -65,16 +76,26 @@ void GcActorExtraDataList::CreateNewItem()
 
 BOOL GcActorExtraDataList::RemoveItem(int iIndex)
 {
+	mpExtraDatas->RemoveAtAndFillAll( iIndex );
+
+	if( GcVSListBox::RemoveItem( iIndex ) == false )
+		return FALSE;
+
+	for( int i = iIndex ; i < GetCount() ; i++ )
+	{
+		int type = GetExtraDataType( mpExtraDatas->GetAt( i ) );
+		GnAssert( type != -1 );
+		CString makeName = GetMakeExtraDataTypeName( i, type );
+		SetItemText( i , makeName );
+	}
+
 	mpGtObject->SetModifed( true );
 	SendMediateMessage( GTMG_REDRAW, NULL );
 	return TRUE;
 }
 
-CString GcActorExtraDataList::GetMakeName(gtuint i, int iType)
+void GcActorExtraDataList::OnSelectionChanged()
 {
-	GtNumberString collisionName;
-	gtstring type = _T("_");
-	type += gsExtraType[iType];
-	collisionName.SetNumber( 2, i, NULL, type.c_str() );
-	return collisionName.GetString().c_str();
+	GcVSListBox::OnSelectionChanged(  );
+	msLastSelectNumber = GetSelItem();
 }

@@ -13,7 +13,7 @@ IMPLEMENT_DYNAMIC(GcNewObjectDlg, CDialogEx)
 
 	GcNewObjectDlg::GcNewObjectDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(GcNewObjectDlg::IDD, pParent)
-	, mObjectType(0)
+	, mObjectType(0), mShowObjectType( SW_SHOW )
 {
 
 }
@@ -47,7 +47,8 @@ void GcNewObjectDlg::OnOK()
 
 BOOL GcNewObjectDlg::OnInitDialog()
 {
-	CDialogEx::OnInitDialog();
+	CDialogEx::OnInitDialog();	
 	mCBObjectType.SetCurSel( 0 );
+	mCBObjectType.ShowWindow( mShowObjectType );
 	return TRUE;  // return TRUE unless you set the focus to a control
 }

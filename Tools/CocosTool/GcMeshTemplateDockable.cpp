@@ -103,13 +103,13 @@ void GcMeshTemplateDockable::SelectItem(int iIndex)
 	TemplateListData data = GetTemplateListData( iIndex );
 	object->Set2DObjectType( data.mObjectType );
 	mpsCurrentObject = object;
-	if( object->IsNewItem() == false )
-	{
+	//if( object->IsNewItem() == false )
+	//{
 		if( object->LoadData() == false )
 			GnVerify( object->CreateData() );
-	}
-	else
-		GnVerify( object->CreateData() );
+	//}
+	//else
+	//	GnVerify( object->CreateData() );
 
 	GcObjectMessage info;
 	info.mpObject = object;

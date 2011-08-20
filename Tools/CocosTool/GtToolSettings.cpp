@@ -86,7 +86,7 @@ void GtToolSettings::CreateWorkDirectory()
 	for( gtuint i = 0 ; i < TYPE_2DOBJECT_MAX; i++ )
 	{
 		workDataPath = mWorkPath;
-		workDataPath =+ gs2DObjectPath[i];
+		workDataPath += gs2DObjectPath[i];
 		::CreateDirectoryA( workDataPath.c_str(), NULL );
 	}
 }

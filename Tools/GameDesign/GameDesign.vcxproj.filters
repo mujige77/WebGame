@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="StageLevelDesign">
+      <UniqueIdentifier>{243e4495-7c8d-4eb6-8a4a-79594dab1b5a}</UniqueIdentifier>
+      <Extensions>cpp;h</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="GameDesign.reg" />
+    <None Include="res\nav_large.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\nav_large_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\pages_small_hc.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\buttons.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\filesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\main.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writelarge.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\writesmall.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\ribbon.mfcribbon-ms">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\GameDesign.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\GameDesignDoc.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\GameDesign.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameDesign.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDesignDoc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDesignView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CalendarBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GStageLevelDesignView.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GToolEBM.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GMobAttackLineGrid.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GMobAppearGrid.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GGridCtrl.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GStageLevelDesignDefine.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GToolAssistFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GDesignFormView.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
+    <ClInclude Include="GtNumberString.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GtConvertString.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameDesign.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDesignDoc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDesignView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CalendarBar.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GStageLevelDesignView.cpp">
+      <Filter>StageLevelDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="GToolEBM.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GMobAttackLineGrid.cpp">
+      <Filter>StageLevelDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="GMobAppearGrid.cpp">
+      <Filter>StageLevelDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="GGridCtrl.cpp">
+      <Filter>StageLevelDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="GToolAssistFunction.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GDesignFormView.cpp">
+      <Filter>StageLevelDesign</Filter>
+    </ClCompile>
+    <ClCompile Include="GtNumberString.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GtConvertString.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameDesign.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

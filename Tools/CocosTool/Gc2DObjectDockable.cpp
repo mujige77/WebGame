@@ -145,7 +145,8 @@ void Gc2DObjectDockable::ChangeProperty(GcMediateObjectMessage* pMessage)
 	if( mpsCurrentObject && mpsCurrentObject->GetType() != Gt2DObject::OBJECT_TYPE )
 		return;
 
-	mListCtrl.ResetData( mpsCurrentObject );	
+	mListCtrl.ResetData( mpsCurrentObject );
+	SendMediateMessage( GTMG_REDRAW, NULL );
 }
 
 void Gc2DObjectDockable::OnBtSavetemplate()

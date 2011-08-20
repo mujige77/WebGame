@@ -108,13 +108,13 @@ void GcActorTemplateDockable::SelectItem(int iIndex)
 		return;
 
 	mpsCurrentObject = object;
-	if( object->IsNewItem() == false )
-	{
+// 	if( object->IsNewItem() == false )
+// 	{
 		if( object->LoadData() == false )
 			GnVerify( object->CreateData() );
-	}
-	else
-		GnVerify( object->CreateData() );
+// 	}
+// 	else
+// 		GnVerify( object->CreateData() );
 
 	GcObjectMessage info;
 	info.mpObject = object;
@@ -125,6 +125,7 @@ void GcActorTemplateDockable::SelectItem(int iIndex)
 void GcActorTemplateDockable::DoNewTemplate()
 {
 	GcNewObjectDlg dlg;
+	dlg.HideObjectTypeComboBox();
 	if( dlg.DoModal() == IDCANCEL )
 		return;
 

@@ -122,37 +122,26 @@ void GcDrawObjectManager::AttachEffectToActor()
 	if( mps2DObject == NULL )
 		return;
 
-	GnExtraData* effectData = NULL;
 	Gn2DMeshObject* effectMesh = mps2DObject->Get2DMeshObjecct();
-	for( gtuint i = 0; i < effectMesh->GetExtraDataSize(); i++ )
-	{
-		GnExtraData* data = effectMesh->GetExtraData( i );
-		if( data->GetType() == GExtraData::EXTRA_EFFECT_POSITIONID )
-		{
-			effectData = data;
-			break;
-		}
-	}
-	if( effectData == NULL )
+	if( effectMesh == NULL )
 		return;
+
+	const gchar* name = mps2DObject->GetObjectName();
+	gchar tempString[16] = { 0, };
+	guint32 numID = 0;
+	sscanf_s( name, "%c%d", tempString, sizeof(tempString), &numID );
 
 	GnVector2ExtraData* posData = NULL;
 	Gn2DMeshObject* actorMesh = mpsActor->GetRootNode();
 	for( gtuint i = 0; i < actorMesh->GetExtraDataSize(); i++ )
 	{
 		GnExtraData* data = actorMesh->GetExtraData( i );
-		if( data->GetType() == GExtraData::EXTRA_EFFECT_POSITION )
+		if( data->GetID() == numID )
 		{
 			posData = (GnVector2ExtraData*)data;
+			GnVector2 effectPos = posData->GetValueVector2() + actorMesh->GetPosition();
+			effectMesh->SetPosition( effectPos );
 			break;
 		}
 	}
-	if( posData == NULL )
-		return;
-
-	if( effectData->GetID() == posData->GetID() )
-	{
-		GnVector2 effectPos = posData->GetValueVector2() + actorMesh->GetPosition();
-		effectMesh->SetPosition( effectPos );
-	}	
 }

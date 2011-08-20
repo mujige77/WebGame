@@ -91,7 +91,7 @@ void GcAnimationKeyPropEntity::UpdateEvent(GcPropertyGridProperty* pChangedGridP
 
 void GcAnimationKeyPropEntity::SetCurrentTime(float val)
 {
-	if( mpsSequence == NULL )
+	if( mpsSequence == NULL || mpAniKeyManager == NULL )
 		return;
 	GetKeyTimeProp()->SetValue( val );
 

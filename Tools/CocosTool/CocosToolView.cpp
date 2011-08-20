@@ -465,9 +465,14 @@ void CCocosToolView::OnScaleRange()
 			{
 				int btRet = MessageBox( 
 					_T("스케일을 조정 하면 데이터를 저장 할 수 없습니다. 미리 저장 하시겠습니까?") 
-					,_T("Warring"), MB_OKCANCEL );
+					,_T("Warring"), MB_YESNOCANCEL );
 				if( btRet == IDOK )
 					GetObjectFactory()->SaveObjects(true);
+				else if( btRet == IDCANCEL )
+				{
+					spin->SetPos( GtToolSettings::GetScalePercent() );
+					return;
+				}
 			}
 			GetObjectFactory()->RemvoeAllObject();
 			SendMediateMessage( GTMG_DESTORY, NULL );
@@ -488,6 +493,28 @@ void CCocosToolView::OnFlipx()
 		if( mesh )
 		{
 			mesh->SetFlipX( !mesh->GetMesh()->isFlipX() );
+// 			for( gtuint i = 0; i < mesh->GetExtraDataSize(); i++ )
+// 			{
+// 				GnVector2ExtraData* vectorData = GnDynamicCast(GnVector2ExtraData, mesh->GetExtraData( i ));
+// 				if( vectorData )
+// 				{
+// 					if( mesh->GetAVData() )
+// 					{
+// 						if( mesh->GetFlipX() )
+// 						{
+// 							Gn2DAVData::CollisionRect& baseRect = mesh->GetAVData()->GetCollisionRect( 0 );
+// 							float center = baseRect.mRect.GetWidth();							
+// 							vectorData->SetValueX( center - vectorData->GetValueVector2().x );
+// 						}
+// 						else
+// 						{
+// 							Gn2DAVData::CollisionRect& baseRect = mesh->GetAVData()->GetCollisionRect( 0 );
+// 							float center = baseRect.mRect.GetWidth();// - vectorData->GetValueVector2().x;
+// 							vectorData->SetValueX( center -  vectorData->GetValueVector2().x);
+// 						}
+// 					}
+// 				}
+// 			}			
 			Invalidate( false );
 		}
 	}

@@ -4,6 +4,8 @@
 
 class GcActorExtraDataList : public GcVSListBox, public GcMediateObject
 {
+private:
+	static int msLastSelectNumber;
 protected:
 	GtObject* mpGtObject;
 	Gn2DMeshObject* mpMeshObject;
@@ -14,11 +16,10 @@ public:
 	~GcActorExtraDataList(void);
 
 	void ResetData(GtObject* pObject, Gn2DMeshObject* pMeshObject);
-
-	CString GetMakeName(gtuint i, int iType);
 protected:
 
 	virtual void CreateNewItem();	
 	virtual BOOL RemoveItem(int iIndex);
+	virtual void OnSelectionChanged();
 };
 

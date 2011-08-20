@@ -78,7 +78,9 @@ bool Gt2DActor::LoadData()
 		{
 			GnObjectStream objStream;
 			mpsActor = Gn2DActor::Create( outPath, objStream, false );
-			//mpsActor = GnNew Gn2DActor();
+			if( mpsActor == NULL )
+				return false;
+				//mpsActor = GnNew Gn2DActor();
 		}
 
 		if( mpsActor->GetActorTool() == NULL )

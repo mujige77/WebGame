@@ -10,7 +10,7 @@ class GcNewObjectDlg : public CDialogEx
 private:
 	CComboBox mCBObjectType;
 	int mObjectType;
-
+	int mShowObjectType;
 protected:
 	CString mObjectName;
 	CEdit mObjectNameEdt;
@@ -28,6 +28,9 @@ public:
 	}
 	inline int GetObjectType() {
 		return mObjectType;
+	}
+	inline void HideObjectTypeComboBox() {
+		mShowObjectType = SW_HIDE;
 	}
 
 protected:

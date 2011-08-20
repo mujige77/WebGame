@@ -7,6 +7,9 @@
     <ClCompile>
       <PreprocessorDefinitions>GNDEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>GridControld.lib;PropControld.lib;ToolTipControld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

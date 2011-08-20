@@ -1,5 +1,6 @@
 #include "GcMessageDefine.h"
 #include "Gn2DTextureAniCtlr.h"
+#include "GnExtraData.h"
 
 static const TCHAR gsCollisionType[Gg2DCollision::COLLISION_MAX][256] = {
 	_T("Body Box"),
@@ -7,13 +8,32 @@ static const TCHAR gsCollisionType[Gg2DCollision::COLLISION_MAX][256] = {
 };
 
 static const TCHAR gsExtraType[GExtraData::EXTRA_DATA_MAX][256] = {
-	_T("Effect Position Data"),
-	_T("Effect Position ID Data")
+	_T("Position Data"),
+	_T("ID Data")
 };
 
 static const TCHAR gsTimeControllerType[][256] = {
 	_T("Texture Controller")
 };
+
+static int GetExtraDataType(GnExtraData* pExtraData)
+{
+	if( GnDynamicCast(GnIntExtraData, pExtraData) != NULL )
+		return 1;
+
+	if( GnDynamicCast(GnVector2ExtraData, pExtraData) != NULL )
+		return 0;
+	return -1;
+}
+
+static CString GetMakeExtraDataTypeName(gtuint i, int iType)
+{
+	GtNumberString collisionName;
+	gtstring type = _T("_");
+	type += gsExtraType[iType];
+	collisionName.SetNumber( 2, i, NULL, type.c_str() );
+	return collisionName.GetString().c_str();
+}
 
 static const TCHAR* GetTimeControllerName(GnTimeController* pController)
 {
