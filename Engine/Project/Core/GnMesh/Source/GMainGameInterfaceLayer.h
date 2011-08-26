@@ -40,6 +40,7 @@ public:
 private:
 	GnTPrimitiveArray<ButtonInfo> mForcesButtonInfos;
 	GnInterfaceGroup* mpForcesButtonGroup;
+	GnInterfaceGroup* mpSkillButtonGroup;
 	GEnergyBar* mpForcesEnergyBar;
 	GnMemberSlot2<GMainGameInterfaceLayer, GnInterface*, GnIInputEvent*> mForcesInputEvent;
 	
@@ -66,6 +67,9 @@ protected:
 	GnInterfaceGroup* CreateMainController();
 	GnInterfaceGroup* CreateMainForcesButtons();
 	GnInterfaceGroup* CreateMainSkillButtons();
+	GnInterfaceGroup* CreatePauseDialog();
+	GnInterfaceGroup* CreateWinScoreDialog();
+	GnInterfaceGroup* CreateLoseDialog();
 	bool SetForcesButtonInfo(GnIButton** ppButtons);
 	void UpdateButtonState();
 	void InputForcesButton(GnInterface* pInterface, GnIInputEvent* pEvent);

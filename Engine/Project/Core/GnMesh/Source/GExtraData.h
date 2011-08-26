@@ -11,6 +11,7 @@ public:
 	enum eExtraType
 	{
 		EXTRA_DAMAGE_POSITION,
+		EXTRA_SHADOW_POSITION,
 		EXTRA_GAGE_POSITION,
 	};
 };

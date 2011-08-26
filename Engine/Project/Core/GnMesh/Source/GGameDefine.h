@@ -67,6 +67,7 @@ enum eItemIndex
 	eIndexItemFire,
 	eIndexItemSwitchUnit,
 	eIndexItemHPUp,
+	eIndexItemMissile,
 	eMaxIndexItem,
 };
 

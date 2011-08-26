@@ -188,7 +188,7 @@ void GnIListCtrl::PushUp()
 					mRevisionPosition = GnVector2( 0, uiPoint.y - GetRect().top );
 					if( mRevisionPosition.y >= 0 )
 					{
-						mRevisionDelta = -5.0f;
+						mRevisionDelta = -3.0f;
 						mIsRevision = eMoveUpDown;
 					}
 				}
@@ -207,7 +207,7 @@ void GnIListCtrl::PushUp()
 					if( mRevisionPosition.y >= 0 )
 					{
 						mIsRevision = eMoveUpDown;
-						mRevisionDelta = 5.0f;
+						mRevisionDelta = 3.0f;
 					}
 				}
 			}		
@@ -241,9 +241,10 @@ void GnIListCtrl::Update(float fTime)
 		if( mTimer.Update( fTime ) )
 		{
 			float revision = 0.0f;
+			float delta = mRevisionDelta * mTimer.GetAmplify();
 			if( mRevisionDelta < 0 )
 			{
-				revision = mRevisionPosition.y + mRevisionDelta;
+				revision = mRevisionPosition.y + delta;
 				if( revision < 0.0f )
 				{
 					revision = -mRevisionPosition.y;
@@ -251,13 +252,13 @@ void GnIListCtrl::Update(float fTime)
 				}
 				else
 				{
-					revision = mRevisionDelta;
-					mRevisionPosition.y += mRevisionDelta;
+					revision = delta;
+					mRevisionPosition.y += revision;
 				}
 			}
 			else
 			{
-				revision = mRevisionPosition.y - mRevisionDelta;
+				revision = mRevisionPosition.y - delta;
 				if( revision < 0.0f )
 				{
 					revision = mRevisionPosition.y;
@@ -265,8 +266,8 @@ void GnIListCtrl::Update(float fTime)
 				}
 				else
 				{
-					revision = mRevisionDelta;
-					mRevisionPosition.y -= mRevisionDelta;
+					revision = delta;
+					mRevisionPosition.y -= revision;
 				}
 			}			
 			
@@ -290,6 +291,7 @@ void GnIListCtrl::Update(float fTime)
 					}
 				}
 			}
+			mTimer.Reset();
 		}
 	}
 	else
@@ -308,7 +310,7 @@ void GnIListCtrl::Init(GnVector2 cStartUIPosition, gtuint uiNumColumn, gtuint ui
 	mMoveType = eNone;
 	mIsRevision = eNone;
 	mItemCount = 0;
-	mTimer.SetPercentTime( 0.0001f );
+	mTimer.SetPercentTime( 0.005f );
 	SetSize( uiNumColumn, uiNumRow );
 }
 

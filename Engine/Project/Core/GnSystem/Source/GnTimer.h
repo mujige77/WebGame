@@ -15,6 +15,9 @@ public:
 
 	
 public:
+	inline float GetAmplify() {
+		return mAcumTime/mPerTime;
+	}
 	inline void Reset()	{
 		mAcumTime = 0.0f;
 	};

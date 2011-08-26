@@ -40,10 +40,19 @@
 		213137A313DA80C400D6C4D1 /* GnPathUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C957E213AB2BFD00978181 /* GnPathUtil.h */; };
 		2132815A13F0127E00DA1EB8 /* GShootAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2132815513F0126D00DA1EB8 /* GShootAttack.cpp */; };
 		2132815B13F0127E00DA1EB8 /* GShootAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2132815813F0127B00DA1EB8 /* GShootAttack.h */; };
+		213366A31401180A0065FB0E /* GDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 213366A21401180A0065FB0E /* GDialog.h */; };
+		213366A6140118180065FB0E /* GDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213366A5140118180065FB0E /* GDialog.cpp */; };
 		213787E713BBED200025E1CC /* GnICoolTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 213787E613BBED200025E1CC /* GnICoolTime.h */; };
 		213787EA13BBED310025E1CC /* GnICoolTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213787E913BBED310025E1CC /* GnICoolTime.cpp */; };
 		213787F013BC0FD40025E1CC /* GnColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213787EF13BC0FD40025E1CC /* GnColor.cpp */; };
+		213B914014074AED00C706D7 /* GFallBoomAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 213B913F14074AED00C706D7 /* GFallBoomAttack.cpp */; };
+		213B914214074AF700C706D7 /* GFallBoomAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 213B914114074AF700C706D7 /* GFallBoomAttack.h */; };
 		2140832813F0EC7600A9C5A2 /* GGameDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2140832713F0EC7600A9C5A2 /* GGameDefine.h */; };
+		2143C80214049CAF00AF357E /* GBoltAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2143C80114049CAF00AF357E /* GBoltAttack.h */; };
+		2143C80514049CBB00AF357E /* GBoltAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2143C80414049CBB00AF357E /* GBoltAttack.cpp */; };
+		2143C80714049E1800AF357E /* GFarAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 2143C80614049E1800AF357E /* GFarAttack.h */; };
+		2143C80914049E2200AF357E /* GFarAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2143C80814049E2100AF357E /* GFarAttack.cpp */; };
+		2143C80F1404CFBD00AF357E /* GAttackMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2143C80E1404CFBA00AF357E /* GAttackMacro.h */; };
 		214402F113EED9E1001DDE9E /* GUserHaveItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 214402F013EED9E1001DDE9E /* GUserHaveItem.cpp */; };
 		214402F413EED9F7001DDE9E /* GUserHaveItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 214402F313EED9F7001DDE9E /* GUserHaveItem.h */; };
 		21462E9213C0EE0300AEA3B7 /* GCurrentActorInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 21462E9113C0EE0300AEA3B7 /* GCurrentActorInfo.h */; };
@@ -126,6 +135,7 @@
 		21A66B1413B245FC00E839A0 /* GnPlatformConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A66B1313B245FB00E839A0 /* GnPlatformConfig.h */; };
 		21AE915813B3100500AB2CCC /* GInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AE915713B3100500AB2CCC /* GInfo.h */; };
 		21AE915B13B3157F00AB2CCC /* Ginfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AE915913B312EF00AB2CCC /* Ginfo.cpp */; };
+		21BBEE23140795D80072FEE1 /* GAttackDamageInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BBEE22140795D80072FEE1 /* GAttackDamageInfo.h */; };
 		21BECB9113BC568400C5355C /* GGameEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 21BECB9013BC568400C5355C /* GGameEnvironment.h */; };
 		21BECB9413BC568C00C5355C /* GGameEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BECB9313BC568C00C5355C /* GGameEnvironment.cpp */; };
 		21BECB9613BC56CA00C5355C /* GMainGameEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BECB9513BC56C900C5355C /* GMainGameEnvironment.cpp */; };
@@ -370,6 +380,8 @@
 		21ECFFAD13B2AF0900D3F12E /* GActorInfoDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 21ECFFA713B2AED400D3F12E /* GActorInfoDatabase.h */; };
 		21ECFFB213B2CC0800D3F12E /* GnPathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21ECFFB013B2CC0800D3F12E /* GnPathUtil.cpp */; };
 		21ECFFB313B2CC0800D3F12E /* GnSQLite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21ECFFB113B2CC0800D3F12E /* GnSQLite.mm */; };
+		21EE7EAE14007FDE008E3146 /* GStageLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EE7EAC14007FDE008E3146 /* GStageLevel.cpp */; };
+		21EE7EAF14007FDE008E3146 /* GStageLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = 21EE7EAD14007FDE008E3146 /* GStageLevel.h */; };
 		21F4A7F513EA776B00645C19 /* GPlayingItemData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4A7EF13EA774000645C19 /* GPlayingItemData.cpp */; };
 		21F4A7F613EA776B00645C19 /* GPlayingItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 21F4A7ED13EA772D00645C19 /* GPlayingItemData.h */; };
 		21F4A7F713EA776B00645C19 /* GPlayingForcesData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F4A7F113EA775300645C19 /* GPlayingForcesData.cpp */; };
@@ -437,10 +449,19 @@
 		212FB7F513B5D06400F2F597 /* GInfoEnemyBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInfoEnemyBasic.cpp; sourceTree = "<group>"; };
 		2132815513F0126D00DA1EB8 /* GShootAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GShootAttack.cpp; sourceTree = "<group>"; };
 		2132815813F0127B00DA1EB8 /* GShootAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GShootAttack.h; sourceTree = "<group>"; };
+		213366A21401180A0065FB0E /* GDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDialog.h; sourceTree = "<group>"; };
+		213366A5140118180065FB0E /* GDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GDialog.cpp; sourceTree = "<group>"; };
 		213787E613BBED200025E1CC /* GnICoolTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnICoolTime.h; sourceTree = "<group>"; };
 		213787E913BBED310025E1CC /* GnICoolTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnICoolTime.cpp; sourceTree = "<group>"; };
 		213787EF13BC0FD40025E1CC /* GnColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnColor.cpp; sourceTree = "<group>"; };
+		213B913F14074AED00C706D7 /* GFallBoomAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GFallBoomAttack.cpp; sourceTree = "<group>"; };
+		213B914114074AF700C706D7 /* GFallBoomAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFallBoomAttack.h; sourceTree = "<group>"; };
 		2140832713F0EC7600A9C5A2 /* GGameDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameDefine.h; sourceTree = "<group>"; };
+		2143C80114049CAF00AF357E /* GBoltAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBoltAttack.h; sourceTree = "<group>"; };
+		2143C80414049CBB00AF357E /* GBoltAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBoltAttack.cpp; sourceTree = "<group>"; };
+		2143C80614049E1800AF357E /* GFarAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFarAttack.h; sourceTree = "<group>"; };
+		2143C80814049E2100AF357E /* GFarAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GFarAttack.cpp; sourceTree = "<group>"; };
+		2143C80E1404CFBA00AF357E /* GAttackMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAttackMacro.h; sourceTree = "<group>"; };
 		214402F013EED9E1001DDE9E /* GUserHaveItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUserHaveItem.cpp; sourceTree = "<group>"; };
 		214402F313EED9F7001DDE9E /* GUserHaveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUserHaveItem.h; sourceTree = "<group>"; };
 		21462E9113C0EE0300AEA3B7 /* GCurrentActorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCurrentActorInfo.h; sourceTree = "<group>"; };
@@ -527,6 +548,7 @@
 		21AE915913B312EF00AB2CCC /* Ginfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ginfo.cpp; sourceTree = "<group>"; };
 		21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionDie.cpp; sourceTree = "<group>"; };
 		21AF5AA413CE8A4400EBF785 /* GActionDie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionDie.h; sourceTree = "<group>"; };
+		21BBEE22140795D80072FEE1 /* GAttackDamageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAttackDamageInfo.h; sourceTree = "<group>"; };
 		21BECB9013BC568400C5355C /* GGameEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameEnvironment.h; sourceTree = "<group>"; };
 		21BECB9313BC568C00C5355C /* GGameEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GGameEnvironment.cpp; sourceTree = "<group>"; };
 		21BECB9513BC56C900C5355C /* GMainGameEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameEnvironment.cpp; sourceTree = "<group>"; };
@@ -773,6 +795,8 @@
 		21ECFFAA13B2AEEA00D3F12E /* GActorInfoDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; path = GActorInfoDatabase.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		21ECFFB013B2CC0800D3F12E /* GnPathUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnPathUtil.cpp; sourceTree = "<group>"; };
 		21ECFFB113B2CC0800D3F12E /* GnSQLite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GnSQLite.mm; sourceTree = "<group>"; };
+		21EE7EAC14007FDE008E3146 /* GStageLevel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStageLevel.cpp; sourceTree = "<group>"; };
+		21EE7EAD14007FDE008E3146 /* GStageLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStageLevel.h; sourceTree = "<group>"; };
 		21F4A7ED13EA772D00645C19 /* GPlayingItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPlayingItemData.h; sourceTree = "<group>"; };
 		21F4A7EF13EA774000645C19 /* GPlayingItemData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GPlayingItemData.cpp; sourceTree = "<group>"; };
 		21F4A7F113EA775300645C19 /* GPlayingForcesData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GPlayingForcesData.cpp; sourceTree = "<group>"; };
@@ -831,6 +855,8 @@
 				214402F313EED9F7001DDE9E /* GUserHaveItem.h */,
 				2151BBCC13F4F0A8006807F5 /* GItemInfo.cpp */,
 				2151BBCE13F4F0B2006807F5 /* GItemInfo.h */,
+				21EE7EAC14007FDE008E3146 /* GStageLevel.cpp */,
+				21EE7EAD14007FDE008E3146 /* GStageLevel.h */,
 				2107244913D65C8B006965F4 /* GStageInfo.cpp */,
 				2107244613D65C7F006965F4 /* GStageInfo.h */,
 				21E984AC13FA6A3300EC0833 /* GUnitInfo.cpp */,
@@ -900,6 +926,8 @@
 				21CE251F13EAF1190032698D /* GLoadButtonLabel.h */,
 				21DDB63913FA9B8A00C7D658 /* GUnitViewer.cpp */,
 				21DDB63B13FA9BC900C7D658 /* GUnitViewer.h */,
+				213366A5140118180065FB0E /* GDialog.cpp */,
+				213366A21401180A0065FB0E /* GDialog.h */,
 			);
 			name = "Scene&Layer&GameInterface";
 			sourceTree = "<group>";
@@ -917,9 +945,8 @@
 				215F22E913B1FB71003FF8CD /* GForcesController.h */,
 				2164978613B763260023E03A /* GUserController.cpp */,
 				2164978713B763260023E03A /* GUserController.h */,
+				21BBEE22140795D80072FEE1 /* GAttackDamageInfo.h */,
 				21462E9113C0EE0300AEA3B7 /* GCurrentActorInfo.h */,
-				2132815513F0126D00DA1EB8 /* GShootAttack.cpp */,
-				2132815813F0127B00DA1EB8 /* GShootAttack.h */,
 			);
 			name = Actors;
 			sourceTree = "<group>";
@@ -954,6 +981,15 @@
 				2119962B13D27655008753B4 /* GActionGage.h */,
 				21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */,
 				21AF5AA413CE8A4400EBF785 /* GActionDie.h */,
+				2143C80E1404CFBA00AF357E /* GAttackMacro.h */,
+				2143C80814049E2100AF357E /* GFarAttack.cpp */,
+				2143C80614049E1800AF357E /* GFarAttack.h */,
+				213B913F14074AED00C706D7 /* GFallBoomAttack.cpp */,
+				213B914114074AF700C706D7 /* GFallBoomAttack.h */,
+				2143C80414049CBB00AF357E /* GBoltAttack.cpp */,
+				2143C80114049CAF00AF357E /* GBoltAttack.h */,
+				2132815513F0126D00DA1EB8 /* GShootAttack.cpp */,
+				2132815813F0127B00DA1EB8 /* GShootAttack.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -1594,6 +1630,13 @@
 				2192F1AA13F6BAAA00A66A72 /* GStateListCtrlItem.h in Headers */,
 				21E984AA13FA6A2900EC0833 /* GUnitInfo.h in Headers */,
 				21DDB63C13FA9BCA00C7D658 /* GUnitViewer.h in Headers */,
+				21EE7EAF14007FDE008E3146 /* GStageLevel.h in Headers */,
+				213366A31401180A0065FB0E /* GDialog.h in Headers */,
+				2143C80214049CAF00AF357E /* GBoltAttack.h in Headers */,
+				2143C80714049E1800AF357E /* GFarAttack.h in Headers */,
+				2143C80F1404CFBD00AF357E /* GAttackMacro.h in Headers */,
+				213B914214074AF700C706D7 /* GFallBoomAttack.h in Headers */,
+				21BBEE23140795D80072FEE1 /* GAttackDamageInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1906,6 +1949,11 @@
 				2192F1AD13F6BAB400A66A72 /* GStateListCtrlItem.cpp in Sources */,
 				21E984AD13FA6A3300EC0833 /* GUnitInfo.cpp in Sources */,
 				21DDB63A13FA9B8A00C7D658 /* GUnitViewer.cpp in Sources */,
+				21EE7EAE14007FDE008E3146 /* GStageLevel.cpp in Sources */,
+				213366A6140118180065FB0E /* GDialog.cpp in Sources */,
+				2143C80514049CBB00AF357E /* GBoltAttack.cpp in Sources */,
+				2143C80914049E2200AF357E /* GFarAttack.cpp in Sources */,
+				213B914014074AED00C706D7 /* GFallBoomAttack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

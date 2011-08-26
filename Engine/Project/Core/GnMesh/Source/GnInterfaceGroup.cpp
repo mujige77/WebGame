@@ -8,7 +8,20 @@ GnInterfaceGroup::GnInterfaceGroup()
 {
 	SetIsCantPush( false );
 }
-
+GnInterfaceGroup::~GnInterfaceGroup()
+{
+	for(gtuint i = 0 ; i < mChildren.GetSize() ; i++)
+	{
+		GnInterfacePtr child = mChildren.GetAt( i );
+		child->GetRect();
+	}
+	
+	for(gtuint i = 0 ; i < mPersonalChildren.GetSize() ; i++)
+	{
+		GnInterface* child = mPersonalChildren.GetAt( i );
+		child = NULL;
+	}	
+}
 bool GnInterfaceGroup::Push(float fPointX, float fPointY)
 {
 	if( IfUseCheckCollision( fPointX, fPointY ) == false )
@@ -93,7 +106,12 @@ bool GnInterfaceGroup::PushMove(float fPointX, float fPointY)
 			for ( gtuint i = 0; i < GetChildrenSize(); i++ )
 			{
 				GnInterface* child = GetChild( i );
-				child->PushUp( fPointX, fPointY );			
+				if( child->IsPush() )
+				{
+					child->PushUp( fPointX, fPointY );
+					GnIInputEvent event(GnIInputEvent::PUSHUP, fPointX, fPointY);
+					mSignal.EmitSignal( child, &event );
+				}
 			}
 		}
 		return false;

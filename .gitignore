@@ -7,6 +7,7 @@
 *.vcxproj.user
 *.filters
 *.vcxproj.filters
+*.suo
 /Built
 /Tools/GnTools/Release
 /Tools/Log
@@ -71,3 +72,4 @@ HiroCat/Resource/ActorInfo.sqlite
 /Tools/ControlLibProject/ToolTipControl/ToolTipControl.vcxproj.user
 /Tools/ControlLibProject/FolderGroup/Debug
 /Tools/ControlLibProject/FolderGroup/Release
+/Engine/Builder/VS2010/Core/ipch

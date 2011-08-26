@@ -10,7 +10,7 @@
 #include "GFileList.h"
 
 
-GActionDamage::GActionDamage(GActorController* pController) : GAction( pController ), mpMeshObject( NULL )
+GActionDamage::GActionDamage(GActorController* pController) : GAction( pController ), mpsMeshObject( NULL )
 	, mEffectIndex( -1 )
 {
 }
@@ -18,32 +18,27 @@ GActionDamage::GActionDamage(GActorController* pController) : GAction( pControll
 GActionDamage::~GActionDamage()
 {
 	RemoveMeshParent();
-	if( mpMeshObject )
-		GnDelete mpMeshObject;
-
 }
 
 GnVector2ExtraData* GActionDamage::CreateDamageEffect()
 {
 	GnVector2ExtraData* pos = (GnVector2ExtraData*)
-	GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
+		GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
 	if( pos )
 	{	
-		if( mpMeshObject == NULL )
+		if( mpsMeshObject == NULL )
 		{
 			gstring fullName;
 			if( GetFileList()->GetFullEffectName( pos->GetID(), fullName ) )
 			{
-				mpMeshObject = Gn2DMeshObject::CreateFullPath( fullName.c_str(), true );
-				if( mpMeshObject == NULL )
+				mpsMeshObject = Gn2DMeshObject::CreateFullPath( fullName.c_str(), true );
+				if( mpsMeshObject == NULL )
 				{
-					SetEffectIndexDamage();
 					return NULL;
 				}
 			}
 			else
 			{
-				SetEffectIndexDamage();
 				return NULL;
 			}
 		}
@@ -53,11 +48,11 @@ GnVector2ExtraData* GActionDamage::CreateDamageEffect()
 
 void GActionDamage::Update(float fTime)
 {
-	if( mpMeshObject )
+	if( mpsMeshObject )
 	{
-		mpMeshObject->Update( fTime );
+		mpsMeshObject->Update( fTime );
 		bool bAllStop = true;
-		GnTimeController* ctrl = mpMeshObject->GetTimeControllers();
+		GnTimeController* ctrl = mpsMeshObject->GetTimeControllers();
 		GnAssert( ctrl );
 		while ( ctrl )
 		{
@@ -70,7 +65,7 @@ void GActionDamage::Update(float fTime)
 		}
 		if( bAllStop )
 		{
-			GetActorLayer()->RemoveChild( mpMeshObject );
+			GetActorLayer()->RemoveChild( mpsMeshObject );
 			GetController()->RemoveCurrentAction( GAction::ACTION_DAMAGE );
 		}
 	}
@@ -93,17 +88,14 @@ void GActionDamage::AttachActionToController()
 		}
 		
 		RemoveMeshParent();
-		mpMeshObject->SetPosition( effectPos );
-		if( mpMeshObject->GetMesh()->getParent() == NULL )
-			GetActorLayer()->AddChild( mpMeshObject, GetController()->GetMesh()->GetZOrder() + 1 );
+		mpsMeshObject->SetPosition( effectPos );
+		if( mpsMeshObject->GetMesh()->getParent() == NULL )
+			GetActorLayer()->AddChild( mpsMeshObject, GetController()->GetMesh()->GetZOrder() + 1 );
 	}
 	else
-	{
-		SetEffectIndexDamage();
 		return;
-	}
 	
-	GnTimeController* ctrl = mpMeshObject->GetTimeControllers();
+	GnTimeController* ctrl = mpsMeshObject->GetTimeControllers();
 	GnAssert( ctrl );
 	while ( ctrl )
 	{
@@ -113,7 +105,10 @@ void GActionDamage::AttachActionToController()
 	}	
 }
 
-void GActionDamage::SetEffectIndexDamage()
+void GActionDamage::SetAttackDamage(GAttackDamageInfo& cInfo)
 {
-	
+	mAttackDamage = cInfo;
+	if( mEffectIndex != cInfo.GetDamageFileIndex() )
+		mpsMeshObject = NULL;
+	mEffectIndex = cInfo.GetDamageFileIndex();	
 }

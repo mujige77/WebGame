@@ -78,8 +78,8 @@ void GStateUILayer::Update(float fTime)
 	if( mpTabCtrl )
 		mpTabCtrl->Update( fTime );
 	
-	if( mpAbilityListCtrl )
-		mpAbilityListCtrl->Update( fTime );
+//	if( mpAbilityListCtrl )
+//		mpAbilityListCtrl->Update( fTime );
 }
 GItemListCtrlItem* GStateUILayer::CreateItemCtrlItem(gtuint uiIndex)
 {

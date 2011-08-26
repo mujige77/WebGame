@@ -37,11 +37,11 @@ bool GnInterface::PushUp(float fPointX, float fPointY)
 	if( IsPush() == false )
 		return false;
 	
-	if( IfUseCheckCollision( fPointX, fPointY ) == false )
-	{
-		PushUp();
-		return false;
-	}
+//	if( IfUseCheckCollision( fPointX, fPointY ) == false )
+//	{
+//		PushUp();
+//		return false;
+//	}
 	PushUp();
 	return true;
 }

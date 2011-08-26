@@ -2,25 +2,25 @@
 #include "GnGamePCH.h"
 #include "GFileList.h"
 
-//GnImplementSingleton(GFileList);
-GFileList* GFileList::mpSingleton = CreateSingletonObjects(GFileList);
-
-GFileList* GFileList::GetSingleton()
-{
-	return mpSingleton;
-}
-
-GnMemoryObject* GFileList::Create()
-{
-	mpSingleton = GnNew GFileList();
-	return mpSingleton;
-}
-
-void GFileList::Destroy(GnMemoryObject *pThisObject)
-{
-	if( mpSingleton )
-		GnDelete mpSingleton;	
-}
+GnImplementSingleton(GFileList);
+//GFileList* GFileList::mpSingleton = CreateSingletonObjects(GFileList);
+//
+//GFileList* GFileList::GetSingleton()
+//{
+//	return mpSingleton;
+//}
+//
+//GnMemoryObject* GFileList::Create()
+//{
+//	mpSingleton = GnNew GFileList();
+//	return mpSingleton;
+//}
+//
+//void GFileList::Destroy(GnMemoryObject *pThisObject)
+//{
+//	if( mpSingleton )
+//		GnDelete mpSingleton;	
+//}
 
 GFileList::GFileList()
 {
@@ -32,7 +32,9 @@ GFileList::GFileList()
 
 GFileList::~GFileList()
 {
-	
+	mEffectNames.RemoveAll( true );
+	mEnemyNames.RemoveAll( true );
+	mForcesNames.RemoveAll( true );
 }
 
 bool GFileList::LoadFile(const gchar *pcFilePath)

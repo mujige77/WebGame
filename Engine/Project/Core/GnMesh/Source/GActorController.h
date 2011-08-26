@@ -5,7 +5,7 @@
 
 class GInfo;
 class GAction;
-
+class GAttackDamageInfo;
 class GActorController : public GnMemoryObject
 {
 	friend class GGameEnvironment;
@@ -51,7 +51,7 @@ public:
 	void AddCurrentAction(GAction* pComponent);
 	void RemoveCurrentAction(gtuint uiIndex);
 	void RemoveAllCurrentAction();
-	void ReceiveAttack(GActorController* pFromActor);
+	void ReceiveAttack(GAttackDamageInfo* pDamage);
 	
 public:
 	virtual inline void SetPosition(GnVector2& pos) {

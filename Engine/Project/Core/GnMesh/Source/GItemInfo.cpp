@@ -19,9 +19,24 @@ const gchar* GItemInfo::GetIconFileName(gtuint uiIndex)
 	
 	static const char fileName[mscNumMaxItem][256] = 	
 	{
-		{"Upgrade/items/400_74 a.png"}, {"Upgrade/items/400_124.png"},
-		{"Upgrade/items/400_174.png"}, {"Upgrade/items/400_74 .png"},
+		{"Upgrade/items/400_74 a.png"}, {"Upgrade/items/400_174.png"},
+		{"Upgrade/items/400_124.png"}, {"Upgrade/items/400_74 .png"},
 		{"Upgrade/items/400_174 a.png"}, {"Upgrade/items/30_140 s.png"}
+	};
+	
+	return fileName[uiIndex];
+}
+
+const gchar* GItemInfo::GetGameIconFileName(gtuint uiIndex)
+{
+	if( mscNumMaxItem <= uiIndex  )
+		return NULL;
+	
+	static const char fileName[mscNumMaxItem][256] = 	
+	{
+		{"Controll/N5_g.png"}, {"Controll/N4_g.png"},
+		 {"Controll/N3_g.png"}, {"Controll/N2_g.png"},
+		{"Controll/N6_g.png"}, {"Controll/N1_g.png"}
 	};
 	
 	return fileName[uiIndex];
@@ -34,8 +49,8 @@ const gchar* GItemInfo::GetPriceIconFileName(gtuint uiIndex)
 	
 	static const char fileName[mscNumMaxItem][256] = 	
 	{
-		{"Upgrade/items/30_140.png"}, {"Upgrade/items/82_74.png"},
-		{"Upgrade/items/134_74.png"}, {"Upgrade/items/30_74.png"},
+		{"Upgrade/items/30_140.png"}, {"Upgrade/items/134_74.png"},
+		{"Upgrade/items/82_74.png"}, {"Upgrade/items/30_74.png"},
 		{"Upgrade/items/82_140.png"}, {"Upgrade/items/400_124 a.png"}
 	};
 	return fileName[uiIndex];

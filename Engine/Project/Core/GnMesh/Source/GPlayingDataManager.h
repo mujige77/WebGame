@@ -20,7 +20,7 @@ private:
 	static const gchar* mscPlayingDataName;
 	
 private:
-	GnTPrimitiveArray<GPlayingData*> mPlayingDatas;
+	GnTObjectArray<GPlayingDataPtr> mPlayingDatas;
 	GPlayingData* mPlayingPlayerData;
 	GUserHaveItem mPlayingItemData;
 	

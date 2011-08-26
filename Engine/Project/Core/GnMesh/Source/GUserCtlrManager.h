@@ -15,6 +15,7 @@ private:
 	GActorController* mpUserCtlr;
 	GnInterfaceGroup* mpButtonGroup;
 	GnMemberSlot2<GUserCtlrManager, GnInterface*, GnIInputEvent*> mMoveInputEvent;
+	GnMemberSlot2<GUserCtlrManager, GnInterface*, GnIInputEvent*> mSkillInputEvent;
 	
 public:
 	static GUserCtlrManager* CreateActorCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
@@ -25,12 +26,14 @@ public:
 public:
 	void Update(float fDeltaTime);
 	void Init();
-	void Move(GnInterface* pInterface, GnIInputEvent* pEvent);
 	gint32 GetUserCurrentHP();
 protected:
 	GUserCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLayer);
 	void UpdateBackgroundLayer();
 
+protected:
+	void Move(GnInterface* pInterface, GnIInputEvent* pEvent);
+	void SkillInput(GnInterface* pInterface, GnIInputEvent* pEvent);
 };
 
 #endif
