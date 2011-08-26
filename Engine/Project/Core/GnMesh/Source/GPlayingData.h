@@ -3,7 +3,7 @@
 
 #include "GGameDefine.h"
 
-class GPlayingData : public GnMemoryObject
+class GPlayingData : public GnSmartObject
 {
 	GnDeclareDataStream;
 public:
@@ -61,4 +61,5 @@ public:
 	}
 };
 
+GnSmartPointer(GPlayingData);
 #endif

@@ -17,6 +17,10 @@
 #include <cocos2d.h>
 #include <GnPathUtil.h>
 
+#include "GBoltAttack.h"
+#include "GShootAttack.h"
+#include "GFallBoomAttack.h"
+
 static std::string gFilePath;
 
 static inline void StartupEBM()
@@ -25,6 +29,10 @@ static inline void StartupEBM()
 	GnSystemEBM::StartupEBM();
 	GnMainEBM::StartupEBM();
 	GnMeshEBM::StartupEBM();
+	
+	GnRegsterCreateFunction(GBoltAttack);
+	GnRegsterCreateFunction(GShootAttack);
+	GnRegsterCreateFunction(GFallBoomAttack);
 	
 	gFilePath = GetFullPath( "Data" );
 	gFilePath += "/";

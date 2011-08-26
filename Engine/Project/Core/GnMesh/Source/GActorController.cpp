@@ -7,6 +7,7 @@
 #include "GActionAttackCheck.h"
 #include "GActionDie.h"
 #include "GActionGage.h"
+#include "GAttackDamageInfo.h"
 
 void GActorController::GetFullActorFilePath(const gchar* pcID, gstring& pcOutPath)
 {
@@ -62,7 +63,7 @@ void GActorController::Update(float fDeltaTime)
 				RemoveCurrentAction( action->GetActionType() );
 		}		
 	}
-
+	
 	MoveStopCheck();
 	
 	mpsActor->Update( fDeltaTime );
@@ -104,8 +105,11 @@ bool GActorController::IsEnableMove()
 
 void GActorController::AddCurrentAction(GAction* pComponent)
 {
-	pComponent->AttachActionToController();
-	mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );
+	if( pComponent )
+	{
+		pComponent->AttachActionToController();
+		mCurrentActions.SetAt( pComponent->GetActionType(), pComponent );	
+	}
 }
 
 void GActorController::RemoveCurrentAction(gtuint uiIndex)
@@ -124,10 +128,9 @@ void GActorController::RemoveAllCurrentAction()
 	}
 }
 
-void GActorController::ReceiveAttack(GActorController* pFromActor)
+void GActorController::ReceiveAttack(GAttackDamageInfo* pDamage)
 {
-	GInfoBasic* fromActorBasic = (GInfoBasic*)pFromActor->GetInfoComponent( GInfo::INFO_BASIC );
-	mCurrentInfo.SetHP( mCurrentInfo.GetHP() - (gint32)fromActorBasic->GetStrength() );
+	mCurrentInfo.SetHP( mCurrentInfo.GetHP() - (gint32)pDamage->GetDamage() );
 	if( mCurrentInfo.GetHP() > 0 )
 	{
 		GAction* damage = GetCurrentAction( GAction::ACTION_DAMAGE );
@@ -137,7 +140,7 @@ void GActorController::ReceiveAttack(GActorController* pFromActor)
 		GnAssert( damage );
 		if( damage )
 			AddCurrentAction( damage );
-
+		
 		GActionGage* gage = (GActionGage*)GetCurrentAction( GAction::ACTION_GAGE );
 		if( gage == NULL )
 		{
@@ -147,8 +150,7 @@ void GActorController::ReceiveAttack(GActorController* pFromActor)
 				AddCurrentAction( gage );
 		}
 		GInfoBasic* thisInfo = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
-		gage->SetGagePercent( (gint32)
-			( (float)GetCurrentInfo()->GetHP() / (float)thisInfo->GetHP() * 100.0f ) );
+		gage->SetGagePercent( (float)GetCurrentInfo()->GetHP() / (float)thisInfo->GetHP() * 100.0f );
 	}
 	else
 	{
@@ -181,7 +183,7 @@ void GActorController::SetAttack(guint32 uiSequenceID)
 	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetCurrentAction( GAction::ACTION_ATTACKCHECK );
 	if( attackCheck == NULL )
 		return;
-
+	
 	attackCheck->SetIsEnableAttack( true );
 }
 
@@ -191,7 +193,8 @@ void GActorController::SetEndAttack()
 	if( action )
 		return;
 	
-	GetGameEnvironment()->RemoveBasicCurrentAction( this );
+	if( GetGameEnvironment() )
+		GetGameEnvironment()->RemoveBasicCurrentAction( this );
 	action = GetActionComponent( GAction::ACTION_STAND );
 	AddCurrentAction( action );
 	action = GetActionComponent( GAction::ACTION_ATTACKCHECK );
@@ -200,7 +203,7 @@ void GActorController::SetEndAttack()
 
 void GActorController::SetEndDie()
 {
-
+	
 }
 
 void GActorController::MoveStopCheck()
@@ -216,7 +219,7 @@ void GActorController::MoveStopCheck()
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
 	if( move )
 	{
-		if( GetGameEnvironment()->CorrectMove( GetMovePosition() ) == false )
+		if( GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) == false )
 		{
 			GetGameEnvironment()->RemoveBasicCurrentAction( this );
 			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
@@ -228,7 +231,7 @@ void GActorController::MoveStopCheck()
 	else
 	{
 		GAction* action = GetCurrentAction( GAction::ACTION_STAND );
-		if( action && GetGameEnvironment()->CorrectMove( GetMovePosition() ) )
+		if( action && GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) )
 		{
 			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
 			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )

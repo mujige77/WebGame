@@ -38,13 +38,18 @@ void HiroCatDirector::mainLoop(void)
 	}
 	else if (! m_bInvalid)
  	{
+		static GDialog* beforeModal = NULL;
+		
 		calculateDeltaTime();
+		if( beforeModal == NULL )
+		{
+			GSceneSelector::GetSingleton()->Update( m_fDeltaTime );
 		
-		GSceneSelector::GetSingleton()->Update( m_fDeltaTime );
-		
- 		drawScene();		
- 		// release the objects
- 		CCPoolManager::getInstance()->pop();
+			drawScene();		
+			// release the objects
+			CCPoolManager::getInstance()->pop();
+		}
+		beforeModal = GScene::GetModalStateDialog();
  	}
 }
 

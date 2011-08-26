@@ -35,23 +35,25 @@ void GnIListPageCtrl::InitListCtrl(GnVector2 cStartUIPosition, GnVector2 cEndUIP
 
 void GnIListPageCtrl::Update(float fDeltaTime)
 {
-	GnVector2 moveDelta( 30.0f, 0.0f );
+	GnVector2 moveDelta( 2.0f, 0.0f );
 	
 	
 	if( mPageMoveFlag == eMovePosNext )
 	{
 		if( mTimer.Update( fDeltaTime ) )
 		{
-			MovePosNext( moveDelta );
+			MovePosNext( moveDelta * mTimer.GetAmplify() );
 			MoveAlpha();
+			mTimer.Reset();
 		}
 	}
 	else if( mPageMoveFlag == eMovePosPrevious )
 	{
 		if( mTimer.Update( fDeltaTime ) )
 		{
-			MovePosPrevious( moveDelta );
+			MovePosPrevious( moveDelta * mTimer.GetAmplify() );
 			MoveAlpha();
+			mTimer.Reset();
 		}
 	}
 }

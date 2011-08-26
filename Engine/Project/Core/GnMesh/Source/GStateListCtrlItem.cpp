@@ -13,6 +13,6 @@ GStateListCtrlItem::GStateListCtrlItem(const gchar* pcDefaultImage, const gchar*
 
 GStateListCtrlItem::~GStateListCtrlItem()
 {
-	if( mpItemExplain )
-		mpExplainParent->RemoveChild( mpItemExplain );
+//	if( mpItemExplain )
+//		mpExplainParent->RemoveChild( mpItemExplain );
 }

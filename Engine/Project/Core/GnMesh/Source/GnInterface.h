@@ -44,6 +44,9 @@ public:
 	virtual inline GnInterface* GetChild(gtuint uiIndex) {
 		return NULL;
 	}
+	virtual inline GnInterface* GetChildFromTegID(gint32 iID) {
+		return NULL;
+	}
 	virtual inline void SetIsCantPush(bool val) {
 		SetBit( val, MASK_CANTPUSH );
 	}

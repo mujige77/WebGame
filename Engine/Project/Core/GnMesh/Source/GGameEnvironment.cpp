@@ -44,12 +44,12 @@ void GGameEnvironment::InitActorControllerAction(GLayer* pActorLayer, GActorCont
 	gage->SetActorLayer( pActorLayer );
 	
 #ifdef GNDEBUG
-//	GnSingleDrawPrimitiveslayer* pLayer = new GnSingleDrawPrimitiveslayer();
-//	pLayer->GetDrawObject()->SetController( pActorCtrl );
-//	pLayer->autorelease();
-//	pActorLayer->addChild( pLayer, 500 );
-//	pActorCtrl->SetDebugLayer( pLayer );
-	pActorCtrl->SetDebugLayer( NULL );
+	GnSingleDrawPrimitiveslayer* pLayer = new GnSingleDrawPrimitiveslayer();
+	pLayer->GetDrawObject()->SetController( pActorCtrl );
+	pLayer->autorelease();
+	pActorLayer->addChild( pLayer, 500 );
+	pActorCtrl->SetDebugLayer( pLayer );
+//	pActorCtrl->SetDebugLayer( NULL );
 #endif
 }
 

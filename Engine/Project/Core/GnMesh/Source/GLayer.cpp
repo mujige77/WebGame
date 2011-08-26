@@ -2,6 +2,18 @@
 #include "GnGamePCH.h"
 #include "GLayer.h"
 
+GnInterfacePtr GLayer::smpModalInterface = NULL;
+
+void GLayer::SetModalState(GnInterface* pModalInterface)
+{
+	smpModalInterface = pModalInterface;
+}
+
+GnInterface* GLayer::GetModalState()
+{
+	return smpModalInterface;
+}
+
 void GLayer::AddChild(GnInterface* pObject)
 {
 	AddChild(pObject, 0 );
@@ -33,6 +45,17 @@ void GLayer::RemoveChild(GnInterface* pObject)
 
 void GLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
 {	
+	if( smpModalInterface )
+	{
+		GnInterfacePtr ptr = smpModalInterface;
+		for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
+		{
+			CCTouch* touch = (CCTouch*)(*it);
+			CCPoint touchPoint = touch->locationInView( touch->view() );
+			ptr->Push( touchPoint.x, touchPoint.y );
+		}
+		return;
+	}
 	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
 	{
 		CCTouch* touch = (CCTouch*)(*it);
@@ -50,6 +73,17 @@ void GLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
 
 void GLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 {
+	if( smpModalInterface )
+	{
+		GnInterfacePtr ptr = smpModalInterface;
+		for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
+		{
+			CCTouch* touch = (CCTouch*)(*it);
+			CCPoint touchPoint = touch->locationInView( touch->view() );
+			ptr->PushMove( touchPoint.x, touchPoint.y );
+		}
+		return;
+	}
 	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
 	{
 		CCTouch* touch = (CCTouch*)(*it);
@@ -64,6 +98,17 @@ void GLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 
 void GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 {
+	if( smpModalInterface )
+	{
+		GnInterfacePtr ptr = smpModalInterface;
+		for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
+		{
+			CCTouch* touch = (CCTouch*)(*it);
+			CCPoint touchPoint = touch->locationInView( touch->view() );
+			ptr->PushUp( touchPoint.x, touchPoint.y );
+		}
+		return;
+	}
 	for( CCSetIterator it = pTouches->begin(); it != pTouches->end(); ++it )
 	{
 		CCTouch* touch = (CCTouch*)(*it);
@@ -90,14 +135,10 @@ void GDrawActorController::Draw()
 		GnColorA color[Gg2DCollision::COLLISION_MAX] =
 		{
 			GnColorA( 255, 255, 0, 1 ),
-			GnColorA( 255, 0, 0, 1 )
+			GnColorA( 155, 155, 0, 1 )
 		};		
 		Gn2DAVData::CollisionRect drawRect = avData->GetCollisionRect( i );
 		mColor = color[drawRect.mType];
-		//float scale = drawRect.mRect.GetWidth() * GetGameState()->GetGameScale();
-		//drawRect.mRect.SetWidth( scale );
-		//scale = drawRect.mRect.GetHeight() * GetGameState()->GetGameScale();
-		//drawRect.mRect.SetHeight( scale  );
 		DrawRect( drawRect.mRect );
 	}
 	
@@ -142,6 +183,12 @@ void GDrawActorController::Draw()
 	mColor = tempColor;
 }
 
+void GDrawFarAttack::Draw()
+{
+	mColor = GnColorA( 255, 0, 0, 1 );	
+	DrawRect( mpFarAttack->GetAttackRect() );
+}
+
 void GnExtraDataPrimitivesLayer::Draw()
 {
 	if( mpMeshObject == NULL )
@@ -158,3 +205,4 @@ void GnExtraDataPrimitivesLayer::Draw()
 		}
 	}
 }
+

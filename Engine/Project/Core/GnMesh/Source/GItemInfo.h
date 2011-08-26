@@ -17,6 +17,7 @@ public:
 	
 public:
 	const gchar* GetIconFileName(gtuint uiIndex);
+	const gchar* GetGameIconFileName(gtuint uiIndex);
 	const gchar* GetPriceIconFileName(gtuint uiIndex);
 	const gchar* GetExplainFileName(gtuint uiIndex);
 	guint32 GetBuyPrice(gtuint uiIndex);

@@ -11,6 +11,7 @@ private:
 	
 public:
 	GnInterfaceGroup();
+	virtual ~GnInterfaceGroup();
 public:
 	bool PushUp(float fPointX, float fPointY);
 	bool PushMove(float fPointX, float fPointY);
@@ -44,6 +45,15 @@ public:
 	virtual GnInterface* GetChild(gtuint uiIndex) {
 		return mChildren.GetAt( uiIndex );
 	}	
+	virtual inline GnInterface* GetChildFromTegID(gint32 iID) {
+		for ( gtuint i = 0 ; i < GetChildrenSize(); i++ )
+		{
+			GnInterface* child = GetChild( i );
+			if( child->GetTegID() == iID )
+				return child;
+		}
+		return NULL;
+	}
 	virtual inline void SubscribeClickedEvent(GnBaseSlot2<GnInterface*, GnIInputEvent*>* pSlot) {
 		mSignal.Subscribe( pSlot );
 	}

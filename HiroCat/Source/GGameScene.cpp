@@ -18,6 +18,7 @@
 #include "GCastleEnemy.h"
 
 GGameScene::GGameScene() : mpStageInfo( NULL ), mInputEvent( this, &GGameScene::InputEvent ), mIsWinGame( false )
+	, mDialogEvent( this, &GGameScene::DialogInputEvent )
 {
 	memset( mLayers, NULL, sizeof(mLayers) );
 }
@@ -149,9 +150,42 @@ void GGameScene::InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)
 	{
 		if( mpOtherUI->GetChild( GInterfaceLayer::MENU_BUTTON ) == pInterface )
 		{
-			GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+			GInterfaceLayer* interfaceLayer =(GInterfaceLayer*)mLayers[LAYER_INTERFACE];
+			GnInterfaceGroup* group = interfaceLayer->CreateInterface(
+				GInterfaceLayer::UI_MAIN_DLG_PAUSE, &mDialogEvent );
+			
+			GScene::SetModalState( GDialog::CreateModalColor( group ) );
 		}
 	}
+}
+
+void GGameScene::DialogInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)
+{
+	if( pEvent->GetEventType() == GnIInputEvent::PUSHUP )
+	{
+		bool bDialogClose = true;
+		switch ( pInterface->GetTegID() )
+		{
+			case GInterfaceLayer::DIALOG_LEVELSELECT_BUTTON:
+				GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+				break;
+			case GInterfaceLayer::DIALOG_RESUME_BUTTON:
+				break;
+			case GInterfaceLayer::DIALOG_REPLAY_BUTTON:
+				break;
+			case GInterfaceLayer::DIALOG_NEXT_BUTTON:
+				GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+				break;
+			default:
+				bDialogClose = false;
+				break;
+		}
+		
+		if( bDialogClose )
+		{
+			GScene::SetModalState( NULL );
+		}
+	}	
 }
 
 bool GGameScene::CheckEndGame()

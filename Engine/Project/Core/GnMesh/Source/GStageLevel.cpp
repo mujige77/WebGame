@@ -2,10 +2,10 @@
 #include "GnGamePCH.h"
 #include "GStageLevel.h"
 
-GStageLevel* GStageLevel::CreateStageLevel(const gcahr* pcFilePath)
+GStageLevel* GStageLevel::CreateStageLevel(const gchar* pcFilePath)
 {
 	GnStream stream;
-	if( stream.Load( filePath ) )
+	if( stream.Load( pcFilePath ) )
 	{
 		gint32 tempCount = 0;
 		stream.LoadStream( tempCount );
@@ -18,7 +18,8 @@ GStageLevel* GStageLevel::CreateStageLevel(const gcahr* pcFilePath)
 		}
 		
 		GStageLevel* thisVal = GnNew GStageLevel();
-		thisVal->LoadStream( filePath );
+		thisVal->LoadStream( &stream );
+		return thisVal;
 	}
 	return NULL;
 }

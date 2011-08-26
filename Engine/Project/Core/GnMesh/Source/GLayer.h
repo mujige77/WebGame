@@ -4,7 +4,14 @@
 class GLayer : public CCLayer
 {
 protected:
+	static GnInterfacePtr smpModalInterface;
+	
+protected:
 	GnTObjectArray<GnInterfacePtr> mInterfaceChildren;
+	
+public:
+	static void SetModalState(GnInterface* pModalInterface);
+	static GnInterface* GetModalState();
 	
 public:
 	void AddChild(GnInterface* pObject);
@@ -57,11 +64,38 @@ public:
 	}
 };
 
+class GFarAttack;
+class GDrawFarAttack : public GnDrawPrimitives
+{
+protected:
+	GFarAttack* mpFarAttack;
+	
+public:
+	void Draw();
+	void SetFarAttack(GFarAttack* pAttack) {
+		mpFarAttack = pAttack;
+	}
+};
+
 class GnSingleDrawPrimitiveslayer : public GLayer
 {
 public:
 	GDrawActorController mpsDrawObject;
 	GDrawActorController* GetDrawObject() {
+		return &mpsDrawObject;
+	}
+	void draw()
+	{
+		GLayer::draw();
+		mpsDrawObject.Draw();
+	};
+};
+
+class GnFarAttackDrawPrimitiveslayer : public GLayer
+{
+public:
+	GDrawFarAttack mpsDrawObject;
+	GDrawFarAttack* GetDrawObject() {
 		return &mpsDrawObject;
 	}
 	void draw()
@@ -82,4 +116,5 @@ public:
 		mpMeshObject = pMeshObject;
 	}
 };
+
 #endif

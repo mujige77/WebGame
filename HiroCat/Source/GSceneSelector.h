@@ -34,7 +34,7 @@ public:
 	void RunApplication();
 	void Update(float fTime);
 	void ReleaseScene();
-	
+	void SetCurrentScene(GScene* pScene);
 public:
 	inline GScene* GetCurrentScene() {
 		return mpCurrentScene;

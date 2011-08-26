@@ -8,7 +8,25 @@
 
 #ifndef Core_GShootAttack_h
 #define Core_GShootAttack_h
+#include "GFarAttack.h"
 
+class GShootAttack : public GFarAttack
+{
+	GnDeclareCreateAttack;
+	
+protected:
+	GnVector2 mShootDirection;
+	GnTimer mShootTimer;
+public:
+	static GFarAttack* CreateAttack(guint32 uiIndex);
+
+public:
+	virtual void Update(float fTime);
+	virtual void SetPosition(GnVector2 cPos);
+	
+protected:
+	void InitShooting(float fDirectionX, float fDirectionY);
+};
 
 
 #endif

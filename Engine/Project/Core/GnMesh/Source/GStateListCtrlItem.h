@@ -8,8 +8,8 @@ class GStateListCtrlItem : public GnIListCtrlItem
 {
 	GnDeclareRTTI;
 private:
-	GnInterfacePtr mpItemExplain;
-	GnInterfacePtr mpExplainParent;
+	GnInterface* mpItemExplain;
+	GnInterface* mpExplainParent;
 	guint32 mItemIndex;
 	
 public:

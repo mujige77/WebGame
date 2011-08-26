@@ -39,6 +39,7 @@ private:
 	GCastlePtr mpsForcesCastle;
 	GStageInfo* mpStageInfo;
 	GnMemberSlot2<GGameScene, GnInterface*, GnIInputEvent*> mInputEvent;
+	GnMemberSlot2<GGameScene, GnInterface*, GnIInputEvent*> mDialogEvent;
 	GnInterfaceGroup* mpOtherUI;
 	bool mIsWinGame;
 	
@@ -63,6 +64,7 @@ public:
 
 protected:
 	void InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
+	void DialogInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
 	bool CheckEndGame();
 	void WinGame();
 	void LoseGame();

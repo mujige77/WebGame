@@ -33,8 +33,8 @@ void GSceneSelector::RunApplication()
 	GScene* gameScene = CreateStartScene();
 	if( gameScene )
 		pDirector->runWithScene( gameScene );
-	mpCurrentScene = gameScene;
 
+	SetCurrentScene( gameScene );
 //	GScene* gameScene = CreateStateScene();
 //	if( gameScene )
 //		pDirector->runWithScene( gameScene );
@@ -117,7 +117,7 @@ void GSceneSelector::ChangeSceneCheck()
 			changeScene = CreateGameScene();
 		}
 		
-		mpCurrentScene = changeScene;
+		SetCurrentScene( changeScene );
 		if( changeScene )
 			pDirector->replaceScene( changeScene );
 		changeName.clear();
@@ -218,6 +218,11 @@ void GSceneSelector::ReleaseScene()
 		mpGameScene = NULL;
 		GetGameState()->SetGameScale( 1.0 );
 	}
+}
+void GSceneSelector::SetCurrentScene(GScene* pScene)
+{
+	mpCurrentScene = pScene;
+	GScene::SetCurrentScene( pScene );
 }
 
 void GSceneSelector::CreatePlayingData()

@@ -10,7 +10,7 @@ GnIButton::GnIButton(const gchar* pcDefaultImage, const gchar* pcClickImage
 	: mpProgressTime(NULL)
 {
 	SetIsEnableCoolTime( false );
-	SetIsDisableCantpushBlind( false );
+	SetIsDisableCantpushBlind( true );
 	SetIsHidePushDefaultButton( true );
 	SetIsHidePushUpClickButton( true );
 	switch( (gint)eDefaultType )

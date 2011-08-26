@@ -76,16 +76,16 @@ float GnGetTicks()
 
 GnTimer::GnTimer()
 {
-	mPerTime = 0.00001f;
-    Reset();
+	mPerTime = 0.01f;
+	mAcumTime = 0.0f;
 }
 
 bool GnTimer::Update(float fPerSec)
 {
 	mAcumTime += fPerSec;
-	if( mAcumTime / mPerTime >= 1.0f )
+	//if( 1 > mAcumTime/mPerTime ? mAcumTime/mPerTime : 1 )
+	if( 1 < mAcumTime/mPerTime )
 	{
-		Reset();
 		return true;
 	}
 	
