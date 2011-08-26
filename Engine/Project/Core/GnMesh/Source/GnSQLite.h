@@ -14,6 +14,7 @@ protected:
 		GNSQLITE_ERROR = 1, // SQLITE_ERROR
 		GNSQLITE_ROW = 100, // SQLITE_ROW
 		GNSQLITE_DONE = 101,
+		GNSQLITE_NULL = 5,
 	};
 private:
 	sqlite3* mpDatabase;

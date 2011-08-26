@@ -19,7 +19,7 @@ gint GnSQLiteQuery::GetFieldDataType(gint iNumColumn)
 	
 	return sqlite3_column_type( mpStatement, iNumColumn);
 #else
-	return SQLITE_NULL;
+	return GNSQLITE_NULL ;
 #endif
 }
 
@@ -31,7 +31,7 @@ gint GnSQLiteQuery::GetIntField(gint iNumColumn)
 	else
 		return sqlite3_column_int( mpStatement, iNumColumn );
 #else
-	return SQLITE_NULL;
+	return GNSQLITE_NULL ;
 #endif
 }
 
@@ -43,7 +43,7 @@ double GnSQLiteQuery::GetFloatField(gint iNumColumn)
 	else
 		return sqlite3_column_double( mpStatement, iNumColumn );
 #else
-	return SQLITE_NULL;
+	return GNSQLITE_NULL;
 #endif	
 }
 
@@ -57,10 +57,4 @@ const gchar* GnSQLiteQuery::GetStringField(gint iNumColumn)
 #else
 	return NULL;
 #endif
-}
-
-GnSQLiteSingleQuery::GnSQLiteSingleQuery(sqlite3_stmt* pStatement, bool bEof)
-	: GnSQLiteQuery( pStatement, bEof )
-{
-	
 }

@@ -242,8 +242,8 @@ void Gn2DMeshObject::SetVectorExtraDataFlipX()
 			vector2Extra = GnDynamicCast( GnVector2ExtraData, GetExtraData( i ) );
 			if( vector2Extra )
 			{
-				Gn2DAVData::CollisionRect& baseRect = GetAVData()->GetCollisionRect( 0 );
-				float flip = baseRect.mRect.GetWidth();
+				Gn2DAVData::CollisionRect& baseRect = GetAVData()->GetOriginalCollisionRect( 0 );
+				float flip = baseRect.mRect.left + baseRect.mRect.right;
 				point = vector2Extra->GetValue();
 				point[0] = flip - point[0];
 				vector2Extra->SetValue( point );	

@@ -173,9 +173,6 @@
     <ClInclude Include="..\..\Source\GGameFactory.h">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\GGameManager.h">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\GInfo.h">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
@@ -188,9 +185,6 @@
     <ClInclude Include="..\..\Source\GInfoForcesBasic.h">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\GInterface.h">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\GInterfaceLayer.h">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
@@ -198,9 +192,6 @@
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GMainGameEnvironment.h">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GMainGameInterface.h">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GMainGameInterfaceLayer.h">
@@ -267,9 +258,6 @@
       <Filter>소스 파일\Interface</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GnIInputEvent.h">
-      <Filter>소스 파일\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GnInterface.h">
       <Filter>소스 파일\Interface</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GnInterfaceGroup.h">
@@ -412,9 +400,6 @@
     <ClCompile Include="..\..\Source\GGameFactory.cpp">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\GGameManager.cpp">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Ginfo.cpp">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
@@ -427,9 +412,6 @@
     <ClCompile Include="..\..\Source\GInfoForcesBasic.cpp">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\GInterface.cpp">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\GInterfaceLayer.cpp">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
@@ -437,9 +419,6 @@
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GMainGameEnvironment.cpp">
-      <Filter>소스 파일\Game\NewFilter1</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GMainGameInterface.cpp">
       <Filter>소스 파일\Game\NewFilter1</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GMainGameInterfaceLayer.cpp">
@@ -503,9 +482,6 @@
       <Filter>소스 파일\Interface</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GnICoolTime.cpp">
-      <Filter>소스 파일\Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GnInterface.cpp">
       <Filter>소스 파일\Interface</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GnInterfaceGroup.cpp">

@@ -26,7 +26,7 @@ protected:
 	GnTPrimitiveArray<AttackLine> mAttackLines;
 
 public:
-	static GStageLevel* CreateStageLevel(const gcahr* pcFilePath);
+	static GStageLevel* CreateStageLevel(const gchar* pcFilePath);
 
 public:
 	GStageLevel(){};

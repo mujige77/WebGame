@@ -6,6 +6,10 @@
 class sqlite3_stmt;
 class GnSQLiteQuery
 {
+	enum
+	{
+		GNSQLITE_NULL = 5,
+	};
 private:
 	sqlite3_stmt* mpStatement;
 	bool mEof;

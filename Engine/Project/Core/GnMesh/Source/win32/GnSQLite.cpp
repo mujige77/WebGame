@@ -20,7 +20,7 @@ gint GnSQLite::Open(const gchar* pcFileName)
 
 	return result;
 #else
-	return SQLITE_NULL;
+	return GNSQLITE_NULL;
 #endif
 }
 
@@ -32,7 +32,7 @@ void GnSQLite::Close()
 #endif
 }
 
-GnSQLiteSingleQuery GnSQLite::ExecuteSingleQuery(const gchar *pcQuery)
+GnSQLiteQuery GnSQLite::ExecuteSingleQuery(const gchar *pcQuery, ...)
 {
 	sqlite3_stmt* state = NULL;
 	int ret = Query( pcQuery, state );
@@ -44,7 +44,7 @@ GnSQLiteSingleQuery GnSQLite::ExecuteSingleQuery(const gchar *pcQuery)
 			return GnSQLiteSingleQuery( state, false );
 	}
 #endif
-	return GnSQLiteSingleQuery( NULL, true );
+	return GnSQLiteQuery( NULL, true );
 }
 
 int GnSQLite::Query(const gchar *pcQuery, sqlite3_stmt*& pRetState)
@@ -58,6 +58,6 @@ int GnSQLite::Query(const gchar *pcQuery, sqlite3_stmt*& pRetState)
 	}
 	return ret;
 #else
-	return SQLITE_NULL;
+	return GNSQLITE_NULL;
 #endif
 }
