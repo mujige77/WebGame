@@ -42,8 +42,7 @@ void GForcesCtlrManager::CreateForces(GnInterface* pInterface, GnIInputEvent* pE
 	{
 		if( mpButtonGroup->GetChild( i ) == pInterface )
 		{
-			gtuint numID = GetActorIndex( i );
-			idName = GetFileList()->GetForcesFileName( numID );
+			idName = GetFileList()->GetForcesFileName( pInterface->GetTegID() );
 			GnAssert( idName );
 			if( idName == NULL )
 				return;

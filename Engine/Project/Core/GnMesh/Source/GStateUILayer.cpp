@@ -38,6 +38,9 @@ GnInterfaceGroup* GStateUILayer::CreateInterface(gtuint uiIndex
 			mpTabCtrl->AddTabCreateButtonImage( pTabPage, "Upgrade/upgrade/51_18.png", NULL );
 			pGroup = pTabPage;
 			mpTabCtrl->SetActiveTab( 0 );
+			
+			if( mpUnitGroup )
+				mpUnitGroup->SubscribeClickedEvent( pReceiveSlot );
 		}
 		break;
 		case UI_STATE_SHOPTAB:
@@ -89,7 +92,7 @@ GItemListCtrlItem* GStateUILayer::CreateItemCtrlItem(gtuint uiIndex)
 
 GItemListCtrlItem* GStateUILayer::CreateItemCtrlItem(gtuint uiIndex, GnInterface* pExplainParent)
 {
-	if( GItemInfo::mscNumMaxItem <= uiIndex  )
+	if( GItemInfo::mscNumMaxItem + INDEX_ITEM <= uiIndex  )
 		return NULL;
 	GnInterface* explian = GnNew GnInterface( GetItemInfo()->GetExplainFileName( uiIndex ) );
 	SetUIPosition( explian, 28.0f, 222.0f );
@@ -99,8 +102,8 @@ GItemListCtrlItem* GStateUILayer::CreateItemCtrlItem(gtuint uiIndex, GnInterface
 	GItemListCtrlItem* item = GnNew GItemListCtrlItem( GetItemInfo()->GetPriceIconFileName( uiIndex ) );
 	item->CreateLabelPrice();
 	item->SetItemExplain( pExplainParent, explian );
-	item->SetPrice( GetItemInfo()->GetBuyPrice( uiIndex ) );
-	item->SetItemIndex( uiIndex + INDEX_ITEM );
+	item->SetPrice( GetItemInfo()->GetBuyPrice( uiIndex, 0 ) );
+	item->SetItemIndex( uiIndex );
 	return item;
 }
 
@@ -112,8 +115,9 @@ GItemListCtrlItem* GStateUILayer::CreateEquipCtrlItem(gtuint uiIndex)
 
 GItemListCtrlItem* GStateUILayer::CreateEquipCtrlItem(gtuint uiIndex, GnInterface* pExplainParent)
 {
-	if( GItemInfo::mscNumMaxItem <= uiIndex  )
+	if( GItemInfo::mscNumMaxItem + INDEX_ITEM <= uiIndex  )
 		return NULL;
+	
 	GnInterface* explian = GnNew GnInterface( GetItemInfo()->GetExplainFileName( uiIndex ) );
 	SetUIPosition( explian, 28.0f, 222.0f );
 	explian->SetIsVisible( false );			
@@ -123,8 +127,7 @@ GItemListCtrlItem* GStateUILayer::CreateEquipCtrlItem(gtuint uiIndex, GnInterfac
 		, "Upgrade/items/400_174 s.png" );
 	
 	item->SetItemExplain( pExplainParent, explian );
-	//item->SetPrice( GetItemInfo()->GetBuyPrice( uiIndex ) );
-	item->SetItemIndex( uiIndex + INDEX_ITEM );
+	item->SetItemIndex( uiIndex );
 	return item;	
 }
 
@@ -147,81 +150,83 @@ GnITabCtrl* GStateUILayer::CreateTabCtrl(GnVector2& cTabctrlSize)
 GnITabPage* GStateUILayer::CreateUnitPage()
 {
 	GnITabPage* pTabPage = GnNew GnITabPage( "Upgrade/upgrade/11_41.png" );
-	GnInterfaceGroup* unitGroup = pTabPage;//GnNew GnInterfaceGroup();
+	
+	mpUnitGroup = GnNew GnInterfaceGroup();
+	GnInterfaceGroup* unitGroup = mpUnitGroup;
 	const gint32 buttonZorder = INTERFACE_ZORDER + 1;
 	GnIButton* buttons = GnNew GnIButton( "Upgrade/upgrade/32_74.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );	
-	buttons->SetTegID( BT_UPC1 );
+	buttons->SetTegID( eIndexC1 );
 	SetUIPosition( buttons, 32.0f, 74.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/82_74.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC2 );
+	buttons->SetTegID( eIndexC2 );
 	SetUIPosition( buttons, 82.0f, 74.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/132_74.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC3 );
+	buttons->SetTegID( eIndexC3 );
 	SetUIPosition( buttons, 132.0f, 74.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 
 	buttons = GnNew GnIButton( "Upgrade/upgrade/182_74.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC4 );
+	buttons->SetTegID( eIndexC4 );
 	SetUIPosition( buttons, 182.0f, 74.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/232_74.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC5 );
+	buttons->SetTegID( eIndexC5 );
 	SetUIPosition( buttons, 232.0f, 74.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/32_124.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC6 );
+	buttons->SetTegID( eIndexC6 );
 	SetUIPosition( buttons, 32.0f, 124.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/82_124.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC7 );
+	buttons->SetTegID( eIndexC7 );
 	SetUIPosition( buttons, 82.0f, 124.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 
 	buttons = GnNew GnIButton( "Upgrade/upgrade/132_124.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC8 );
+	buttons->SetTegID( eIndexC8 );
 	SetUIPosition( buttons, 132.0f, 124.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/182_124.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC9 );
+	buttons->SetTegID( eIndexC9 );
 	SetUIPosition( buttons, 182.0f, 124.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	
 	buttons = GnNew GnIButton( "Upgrade/upgrade/232_124.png", "Upgrade/upgrade/80_124.png" );
 	buttons->SetIsHidePushDefaultButton( false );
 	buttons->SetIsHidePushUpClickButton( false );
-	buttons->SetTegID( BT_UPC10 );
+	buttons->SetTegID( eIndexC10 );
 	SetUIPosition( buttons, 232.0f, 124.0f );
 	unitGroup->AddChild( buttons, buttonZorder );
 	unitGroup->SetRect( 30.0f, 80.0f, 275.0f, 180.0f );
 
 
-	//pTabPage->AddChild( unitGroup, buttonZorder );
+	pTabPage->AddChild( unitGroup, buttonZorder );
 	
 	// upgrade button
 	buttons = GnNew GnIButton( "Upgrade/upgrade/315_204 on.png", "Upgrade/upgrade/315_204 off.png" );
@@ -238,10 +243,10 @@ GnITabPage* GStateUILayer::CreateUnitPage()
 	gstring fullPath;
 	GetFullPathFromWorkPath( "Upgrade/upgrade/352_176.png", fullPath );
 	
-	GnINumberLabel* label = GnNew GnINumberLabel( NULL, 10 );
-	label->Init( "0", fullPath.c_str(), 12, 14, '.' );
-	SetUIPosition( label, 352.0f, 176.0f );	
-	pTabPage->AddChild( label, buttonZorder );
+	mpUnitMoneyLabel = GnNew GnINumberLabel( NULL, 10 );
+	mpUnitMoneyLabel->Init( "0", fullPath.c_str(), 12, 14, '.' );
+	SetUIPosition( mpUnitMoneyLabel, 362.0f, 176.0f );	
+	pTabPage->AddChild( mpUnitMoneyLabel, buttonZorder );
 	return pTabPage;
 }
 
@@ -470,9 +475,9 @@ void GStateUILayer::CreateBasicShopCtrlItem(GnInterface* pExplainParent)
 	{
 		for ( gtuint j = 0; j < columnSize; j++ )
 		{			
-			if( i == 5 )
+			if( i == MAX_ITEM_TYPE )
 				break;
-			GItemListCtrlItem* item = CreateItemCtrlItem( i, pExplainParent );
+			GItemListCtrlItem* item = CreateItemCtrlItem( i + INDEX_ITEM, pExplainParent );
 			mpShopListCtrl->SetItem( j, k, item );
 			item->SetTegID( LISTITEM_SHOP );
 			++i;
@@ -498,19 +503,11 @@ void GStateUILayer::CreateBasicInventoryCtrlItem(GnInterface* pExplainParent)
 			mpInventoryListCtrl->AddRow();
 			
 		GUserHaveItem::Item& item = iter.Item();
-		gtuint itemIndex = item.mIndex - INDEX_ITEM;		
-		
-		GItemListCtrlItem* listItem = CreateItemCtrlItem( itemIndex, pExplainParent );
-//		if( itemIndex < GItemInfo::mscNumMaxItem )
-//		{
-//			GnInterface* explian = GnNew GnInterface( GetItemInfo()->GetExplainFileName( itemIndex ) );
-//			SetUIPosition( explian, 28.0f, 222.0f );
-//			explian->SetIsVisible( false );			
-//			pExplainParent->AddChild( explian, INTERFACE_ZORDER );
-//			listItem->SetItemExplain( pExplainParent, explian );
-//		}
+		GItemListCtrlItem* listItem = CreateItemCtrlItem( item.mIndex, pExplainParent );	
 		
 		listItem->SetTegID( LISTITEM_INVEN );
+		listItem->SetItemCount( item.mCount );
+		
 		gtuint numRow = itemCount / NUM_ITEMINVEN_COLUMN;
 		mpInventoryListCtrl->SetItem( itemCount % NUM_ITEMINVEN_COLUMN, numRow, listItem );
 		
@@ -534,10 +531,13 @@ void GStateUILayer::CreateBasicEquipCtrlItem(GnInterface* pExplainParent)
 	while( iter.Valid() )
 	{
 		GUserHaveItem::Item& item = iter.Item();
-		gtuint itemIndex = item.mIndex - INDEX_ITEM;
-		GItemListCtrlItem* listItem = CreateEquipCtrlItem( itemIndex, pExplainParent );
-		mpEquipListCtrl->AddItem( listItem );
+		GItemListCtrlItem* listItem = CreateEquipCtrlItem( item.mIndex, pExplainParent );
+		
 		listItem->SetTegID( LISTITEM_EQUIP );
+		listItem->SetItemCount( item.mCount );		
+		
+		mpEquipListCtrl->AddItem( listItem );
+		
 	
 		iter.Forth();
 		++itemCount;

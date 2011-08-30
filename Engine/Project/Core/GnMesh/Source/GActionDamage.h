@@ -26,7 +26,7 @@ public:
 	GActionDamage(GActorController* pController);
 	virtual ~ GActionDamage();
 	GnVector2ExtraData* CreateDamageEffect();
-	
+	void SetAttackDamage(GAttackDamageInfo* pInfo);
 public:
 	void Update(float fTime);
 	void AttachActionToController();
@@ -48,8 +48,7 @@ public:
 		mEffectIndex = uiIndex;
 	}
 
-protected:
-	void SetAttackDamage(GAttackDamageInfo& cInfo);
+protected:	
 	GAttackDamageInfo* GetAttackDamageInfo() {
 		return &mAttackDamage;
 	}

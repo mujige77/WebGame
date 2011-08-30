@@ -15,7 +15,6 @@ void GShootAttack::RegisterCreateFunction()
 	if(bRegistered)
 		return;
 	
-	GFarAttack::RegCreateFunction( eIndexItemMissile, GShootAttack::CreateAttack );
 	GFarAttack::RegCreateFunction( eIndexItemSwitchUnit, GShootAttack::CreateAttack );
 	bRegistered = true;
 }
@@ -25,9 +24,6 @@ GFarAttack* GShootAttack::CreateAttack(guint32 uiIndex)
 	GShootAttack* attck = GnNew GShootAttack();
 	switch ( uiIndex )
 	{
-		case eIndexItemMissile:
-			attck->InitShooting( 5.0f, 0.0f );
-			break;
 		case eIndexItemSwitchUnit:
 			attck->InitShooting( 5.0f, 0.0f );
 			break;
@@ -40,23 +36,32 @@ GFarAttack* GShootAttack::CreateAttack(guint32 uiIndex)
 
 void GShootAttack::Update(float fTime)
 {
-	if( mShootTimer.Update( fTime ) )
+	if( GetCurrentAttackCount() >= GetAttackCount() )
+		SetIsDestory( true );
+	else
 	{
-		GnVector2 pos = GetAttackMesh()->GetPosition();
-		pos += ( mShootDirection * mShootTimer.GetAmplify() );
-		SetPosition( pos );
+		GFarAttack::Update( fTime );
+		if( mShootTimer.Update( fTime ) )
+		{
+			GnVector2 pos = GetAttackMesh()->GetPosition();
+			float bgSize =  GetGameEnvironment()->GetStageInfo()->GetBackgroundSize().x;
+			if( pos.x < 0.0f || pos.x > bgSize )
+			{
+				SetIsDestory( true );
+			}
+			else
+			{
+				pos += ( mShootDirection * mShootTimer.GetAmplify() );
+				SetPosition( pos );
+			}
+			mShootTimer.Reset();
+		}
 	}
 }
 
 void GShootAttack::SetPosition(GnVector2 cPos)
 {
 	GFarAttack::SetPosition( cPos );
-//	GnFRect originalRect = GetOriginalAttackRect();
-//	originalRect.MoveX( cPos.x );
-//	originalRect.MoveY( cPos.y );
-//	SetAttackRect( originalRect );
-//	
-//	GetAttackMesh()->SetPosition( cPos );
 }
 
 void GShootAttack::InitShooting(float fDirectionX, float fDirectionY)

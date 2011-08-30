@@ -56,4 +56,5 @@ public:
 	}
 };
 
+GUserHaveItem* GetCurrentHaveItem();
 #endif

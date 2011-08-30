@@ -20,6 +20,8 @@
 #include "GBoltAttack.h"
 #include "GShootAttack.h"
 #include "GFallBoomAttack.h"
+#include "GMultiShootAttack.h"
+#include "GFireAttack.h"
 
 static std::string gFilePath;
 
@@ -33,6 +35,8 @@ static inline void StartupEBM()
 	GnRegsterCreateFunction(GBoltAttack);
 	GnRegsterCreateFunction(GShootAttack);
 	GnRegsterCreateFunction(GFallBoomAttack);
+	GnRegsterCreateFunction(GMultiShootAttack);
+	GnRegsterCreateFunction(GFireAttack);
 	
 	gFilePath = GetFullPath( "Data" );
 	gFilePath += "/";

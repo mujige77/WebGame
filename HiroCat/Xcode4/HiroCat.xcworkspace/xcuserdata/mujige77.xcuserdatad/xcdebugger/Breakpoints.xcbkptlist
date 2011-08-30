@@ -8,69 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GActorCtlrManager.h"
-         timestampString = "336021588.767499"
+         filePath = "/Users/mujige77/Documents/PhoneGame/HiroCat/Source/GStateScene.cpp"
+         timestampString = "336397004.823922"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
-         landmarkName = "AddFarAttack(GFarAttack* pAttack, gint iZorder = 1)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GFarAttack.cpp"
-         timestampString = "336021687.894715"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "14"
-         endingLineNumber = "14"
-         landmarkName = "GFarAttack::GFarAttack()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GFarAttack.cpp"
-         timestampString = "336021762.95365"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
-         landmarkName = "GFarAttack::GFarAttack()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/Gn2DMeshObject.cpp"
-         timestampString = "336054931.580649"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
-         landmarkName = "Gn2DMeshObject::SetVectorExtraDataFlipX()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/Gn2DMeshObject.cpp"
-         timestampString = "336055096.312815"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "247"
-         endingLineNumber = "247"
-         landmarkName = "Gn2DMeshObject::SetVectorExtraDataFlipX()"
+         startingLineNumber = "250"
+         endingLineNumber = "250"
+         landmarkName = "GStateScene::SellItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel , GStateListCtrlItem* pItem)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

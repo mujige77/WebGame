@@ -150,4 +150,21 @@ void GUserCtlrManager::SkillInput(GnInterface* pInterface, GnIInputEvent* pEvent
 		attack->SetPosition( mpUserCtlr->GetPosition() );
 		AddFarAttack( attack, (int)(GetGameState()->GetGameHeight() - mpUserCtlr->GetPosition().y) );
 	}
+	else if( attack )
+	{
+		GnVector2ExtraData* pos = NULL;
+		if( eIndexItemFire != pInterface->GetTegID() )
+			pos = (GnVector2ExtraData*)
+				mpUserCtlr->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_FARATTACK_POSITION );
+		else
+			pos = (GnVector2ExtraData*)
+				mpUserCtlr->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_HEROFIRE_POSITION );
+		if( pos )
+		{
+			GnVector2 effectPos = mpUserCtlr->GetMesh()->GetPosition() + pos->GetValueVector2();
+			
+			attack->SetPosition( effectPos );
+			AddFarAttack( attack, (int)(GetGameState()->GetGameHeight() - mpUserCtlr->GetPosition().y) );
+		}
+	}
 }

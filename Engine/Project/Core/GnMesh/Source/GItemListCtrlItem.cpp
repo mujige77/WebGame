@@ -7,6 +7,12 @@ GItemListCtrlItem::GItemListCtrlItem(const gchar* pcDefaultImage, const gchar* p
 	, const gchar* pcDisableImage, eButtonType eDefaultType) : GStateListCtrlItem( pcDefaultImage
 	, pcClickImage, pcDisableImage, eDefaultType ), mCreateLabelPrice( false )
 {
+	gstring fullPath;
+	GetFullPathFromWorkPath( "Upgrade/items/1234.png", fullPath );
+	
+	mItemCount.Init( "1", fullPath.c_str(), 6, 8, '.' );
+	SetItemCount( 1 );
+	AddInterfaceToParentNode( &mItemCount, INTERFACE_ZORDER + 1 );
 }
 
 void GItemListCtrlItem::CreateLabelPrice()
@@ -17,7 +23,7 @@ void GItemListCtrlItem::CreateLabelPrice()
 	mLabelPrice.Init( "0", fullPath.c_str(), 6, 8, '.' );
 	SetPrice( 0 );
 	AddInterfaceToParentNode( &mLabelPrice, INTERFACE_ZORDER + 1 );
-
+	
 	mCreateLabelPrice = true;
 }
 
@@ -41,4 +47,12 @@ void GItemListCtrlItem::SetPosition(GnVector2& cPos)
 		pos.x -= 20.0f;
 		mpsIconMoney->SetPosition( pos );
 	}
+	
+	pos = cPos;
+	if( mCreateLabelPrice )		
+		pos.y -= 6.0f;
+	else
+		pos.y -= 12.0f;
+	pos.x += 11.0f;
+	mItemCount.SetPosition( pos );
 }

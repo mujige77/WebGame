@@ -7,7 +7,9 @@
 #include "GActionAttackCheck.h"
 #include "GActionDie.h"
 #include "GActionGage.h"
+#include "GActionDamage.h"
 #include "GAttackDamageInfo.h"
+
 
 void GActorController::GetFullActorFilePath(const gchar* pcID, gstring& pcOutPath)
 {
@@ -133,14 +135,17 @@ void GActorController::ReceiveAttack(GAttackDamageInfo* pDamage)
 	mCurrentInfo.SetHP( mCurrentInfo.GetHP() - (gint32)pDamage->GetDamage() );
 	if( mCurrentInfo.GetHP() > 0 )
 	{
-		GAction* damage = GetCurrentAction( GAction::ACTION_DAMAGE );
-		if( damage )
-			return;
-		damage = GetActionComponent( GAction::ACTION_DAMAGE );
-		GnAssert( damage );
-		if( damage )
-			AddCurrentAction( damage );
-		
+		GActionDamage* damage = (GActionDamage*)GetCurrentAction( GAction::ACTION_DAMAGE );
+		if( damage == NULL )
+		{
+			damage = (GActionDamage*)GetActionComponent( GAction::ACTION_DAMAGE );
+			GnAssert( damage );
+			if( damage )
+			{
+				damage->SetAttackDamage( pDamage );
+				AddCurrentAction( damage );
+			}
+		}
 		GActionGage* gage = (GActionGage*)GetCurrentAction( GAction::ACTION_GAGE );
 		if( gage == NULL )
 		{

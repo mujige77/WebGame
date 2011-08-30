@@ -41,6 +41,9 @@ public:
 	inline bool IsEof() {
 		return mEof;
 	}
+	inline bool QueryReturn() {
+		return ( mpStatement != NULL );
+	}
 };
 
 #endif

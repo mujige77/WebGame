@@ -77,6 +77,37 @@ guint32 GUserHaveItem::GetItemLevel(guint32 uiIndex)
 	return query.GetIntField( eLevel );
 }
 
+guint32 GUserHaveItem::GetItemCount(guint32 uiIndex)
+{
+	GnSQLiteQuery query = ExecuteSingleQuery( "SELECT * FROM %s WHERE idx=%d"
+		, mCurrentTableName.GetHandle(), uiIndex );
+#if GNDEBUG
+	gint levelIndex = query.GetFieldIndex( "count" );
+	if( levelIndex != eCount )		
+		GnLogA( "Error UserHaveItem GetItemCount not equal count" );
+#endif
+	return query.GetIntField( eCount );
+}
+
+bool GUserHaveItem::GetItem(guint32 uiIndex, GUserHaveItem::Item& outItem)
+{
+	GnSQLiteQuery query = ExecuteSingleQuery( "SELECT * FROM %s WHERE idx=%d"
+		, mCurrentTableName.GetHandle(), uiIndex );
+
+	if( query.QueryReturn() == false )
+		return false;
+	
+	GUserHaveItem::Item item = 
+	{
+		query.GetIntField( 0 ),
+		(eItemType)query.GetIntField( 1 ),
+		query.GetIntField( 2 ),
+		query.GetIntField( 3 )
+	};
+	outItem = item;
+	return true;
+}
+
 bool GUserHaveItem::GetItems(eItemType uiType, GnList<GUserHaveItem::Item>& outItem)
 {
 	GnSQLiteQuery query = ExecuteSingleQuery( "SELECT * FROM %s WHERE type=%d"
@@ -90,7 +121,7 @@ bool GUserHaveItem::GetItems(eItemType uiType, GnList<GUserHaveItem::Item>& outI
 			(eItemType)query.GetIntField( 1 ),
 			query.GetIntField( 2 ),
 			query.GetIntField( 3 )
-		};	
+		};
 
 		outItem.Append( item );
 		query.NextRow();
@@ -116,7 +147,10 @@ void GUserHaveItem::CreateBasicUnit()
 	guint32 count = eMaxIndexUnit - INDEX_UNIT;
 	for ( gtuint i = 0; i < count; i++ )
 	{
-		AddItem( i + INDEX_UNIT, eUnit );
+		if( i == 1 )
+			AddItem( i + INDEX_UNIT, eUnit, 1 );
+		else
+			AddItem( i + INDEX_UNIT, eUnit );
 	}	
 }
 

@@ -13,6 +13,15 @@ GnImplementSingleton(GPlayingDataManager);
 
 const gchar* GPlayingDataManager::mscPlayingDataName = "PlayingData.dat";
 
+GUserHaveItem* GetCurrentHaveItem()
+{
+	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();
+	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
+	GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
+	haveItem->OpenPlayerItem( playingData->GetPlayerName() );
+	return haveItem;
+}
+
 void GPlayingDataManager::SaveData()
 {
 	if( GetPlayingDataCount() <= 0 )

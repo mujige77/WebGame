@@ -59,6 +59,11 @@ public:
 			return true;
 		return false;
 	}
+	inline bool ContainsRectHeight(GnRect<T>& rect) {
+		if( ( rect.top >= top && rect.top <= bottom ) || ( rect.bottom >= top && rect.bottom <= bottom ) )
+			return true;
+		return false;
+	}
 	inline bool ContainsRectWidth(GnRect<T>& rect) {
 		if ( ( rect.left >= left && rect.left <= right ) 
 			|| ( rect.right >= left && rect.right <= right ) )

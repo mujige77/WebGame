@@ -9,6 +9,7 @@ class GStateListCtrlItem;
 class GnIListCtrl;
 class GnINumberLabel;
 class GUnitViewer;
+class GUserHaveItem;
 class GStateScene : public GScene
 {
 private:
@@ -25,6 +26,7 @@ private:
 	GStateListCtrlItem* mpCurrentEquipItem;
 	gint64 mCurrentControllerIndex;
 	GUnitViewer* mpsUnitViewer;
+	
 public:
 	GStateScene();
 	virtual ~GStateScene();
@@ -44,13 +46,18 @@ protected:
 	void ShopInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
 	void AbilityInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
 	bool ViewItemExplain(GStateListCtrlItem*& pCurrentItem, GnInterface* pInterface);
-	void SellItem(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, GStateListCtrlItem* pItem);
-	void BuyItem(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, GStateListCtrlItem* pItem);
+	guint32 SellItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel
+		, GStateListCtrlItem* pItem);
+	void BuyItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel
+		, GStateListCtrlItem* pItem);
 	void EquipItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GStateListCtrlItem* pItem);
 	void UnEquipItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GStateListCtrlItem* pItem);
 	void UpgradeAbility(GnINumberLabel* pStartLabel, GStateListCtrlItem*& pCurrentItem);
-	void ViewUnit(guint32 uiUnitIndex);
-	void UpgradeUnit(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, GStateListCtrlItem* pItem);
+	void SelectUnit(guint32 uiUnitIndex, GnINumberLabel* pUnitMoneyLabel);
+	void UpgradeUnit(gtuint uiUnitIndex, GnINumberLabel* pTotalMoneyLabel, GnINumberLabel* pUnitMoneyLabel);
+	void UpdateItemCount(GUserHaveItem* pHaveItem, GnIListCtrl* pInvenList, GnIListCtrl* pEquipList
+		, guint32 uiItemIndex, guint32 uiItemCount);
+	GItemListCtrlItem* GetListCtrlItemFromIndex(GnIListCtrl* pInvenList, guint32 uiIndex);
 };
 
 

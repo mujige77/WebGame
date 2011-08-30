@@ -20,6 +20,9 @@ GActionGage::GActionGage(GActorController* pController) : GAction( pController )
 
 GActionGage::~GActionGage()
 {
+	if( mpGageBar && mpGageBar->GetParentUseNode()->getParent() )
+		GetActorLayer()->removeChild( mpGageBar->GetParentUseNode(), true );
+	
 	if( mpGageBar )
 		GnDelete mpGageBar;
 }
@@ -81,7 +84,7 @@ void GActionGage::SetGagePosition()
 //		gagePos += GetController()->GetMesh()->GetPosition();
 //	}
 //	else
-//	{
+//	{	
 		gagePos = GetController()->GetMesh()->GetPosition() + posExtraData->GetValueVector2();
 //	}
 	if( mpGageBar )

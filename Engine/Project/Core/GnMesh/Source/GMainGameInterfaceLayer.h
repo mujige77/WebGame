@@ -15,6 +15,7 @@ public:
 		gint32 mCanPushEnergy;
 		float mCoolTime;
 		GnIButton* mpButton;
+		guint32 mItemLevel;
 		
 	public:
 		inline gint32 GetCanPushEnergy() {
@@ -28,12 +29,18 @@ public:
 		}
 		inline void SetCoolTime(float val) {
 			mCoolTime = val;
-		}
+		}		
 		inline void SetButton(GnIButton* pButton) {
 			mpButton = pButton;
 		};
 		inline GnIButton* GetButton() {
 			return mpButton;
+		}
+		inline guint32 GetItemLevel() {
+			return mItemLevel;
+		}
+		inline void SetItemLevel(guint32 uiItemLevel) {
+			mItemLevel = uiItemLevel;
 		}
 	};
 	

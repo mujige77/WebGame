@@ -14,6 +14,7 @@
 		2103503913B570430055238B /* GInfoForcesBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2103503813B570430055238B /* GInfoForcesBasic.cpp */; };
 		2107244713D65C7F006965F4 /* GStageInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107244613D65C7F006965F4 /* GStageInfo.h */; };
 		2107244A13D65C8B006965F4 /* GStageInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2107244913D65C8B006965F4 /* GStageInfo.cpp */; };
+		210CFAA0140BB8F600961F3F /* GFireAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210CFA9D140BB8F300961F3F /* GFireAttack.cpp */; };
 		210F61D113BAB16700D546B9 /* GGameFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F61CC13BAAD6800D546B9 /* GGameFactory.cpp */; };
 		210F61D213BAB16700D546B9 /* GGameFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 210F61CF13BAAD7200D546B9 /* GGameFactory.h */; };
 		210F61D913BAB1B900D546B9 /* GMainGameMove.h in Headers */ = {isa = PBXBuildFile; fileRef = 210F61D713BAB1B000D546B9 /* GMainGameMove.h */; };
@@ -153,6 +154,7 @@
 		21D2FAA813CF18AE00B81589 /* GEnergyBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D2FAA413CF189600B81589 /* GEnergyBar.cpp */; };
 		21D2FB0313CF2A1C00B81589 /* GnINumberLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D2FB0213CF2A1C00B81589 /* GnINumberLabel.h */; };
 		21D2FB0513CF2A2A00B81589 /* GnINumberLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D2FB0413CF2A2900B81589 /* GnINumberLabel.cpp */; };
+		21D3B80F140BB88F00721B1D /* GFireAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D3B80E140BB88F00721B1D /* GFireAttack.h */; };
 		21D5401113D6D35A00AE15B3 /* GnIPositionConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D5401013D6D35A00AE15B3 /* GnIPositionConvert.h */; };
 		21D5401313D705E800AE15B3 /* GCastleEnemy.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D5401213D705E700AE15B3 /* GCastleEnemy.h */; };
 		21D5401513D705FD00AE15B3 /* GCastleEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D5401413D705FC00AE15B3 /* GCastleEnemy.cpp */; };
@@ -370,6 +372,8 @@
 		21E01BE813BD910E002EBB55 /* GInterfaceLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E01BE413BD910E002EBB55 /* GInterfaceLayer.h */; };
 		21E01BF213BD9450002EBB55 /* GMainGameInterfaceLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E01BF013BD944B002EBB55 /* GMainGameInterfaceLayer.h */; };
 		21E01BF313BD9450002EBB55 /* GMainGameInterfaceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E01BEE13BD943B002EBB55 /* GMainGameInterfaceLayer.cpp */; };
+		21E91823140B78F300D630E1 /* GMultiShootAttack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E91822140B78F300D630E1 /* GMultiShootAttack.cpp */; };
+		21E91826140B790600D630E1 /* GMultiShootAttack.h in Headers */ = {isa = PBXBuildFile; fileRef = 21E91825140B790600D630E1 /* GMultiShootAttack.h */; };
 		21E91BA713CEA3D200641F22 /* GActionDie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21AF5AA213CE8A3400EBF785 /* GActionDie.cpp */; };
 		21E91BA813CEA3D200641F22 /* GActionDie.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AF5AA413CE8A4400EBF785 /* GActionDie.h */; };
 		21E91BAC13CEBA6400641F22 /* GActionAttackCheck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E91BAB13CEBA6400641F22 /* GActionAttackCheck.cpp */; };
@@ -424,6 +428,7 @@
 		2103503813B570430055238B /* GInfoForcesBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInfoForcesBasic.cpp; sourceTree = "<group>"; };
 		2107244613D65C7F006965F4 /* GStageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GStageInfo.h; sourceTree = "<group>"; };
 		2107244913D65C8B006965F4 /* GStageInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStageInfo.cpp; sourceTree = "<group>"; };
+		210CFA9D140BB8F300961F3F /* GFireAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GFireAttack.cpp; sourceTree = "<group>"; };
 		210F61CC13BAAD6800D546B9 /* GGameFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GGameFactory.cpp; sourceTree = "<group>"; };
 		210F61CF13BAAD7200D546B9 /* GGameFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGameFactory.h; sourceTree = "<group>"; };
 		210F61D513BAB1A000D546B9 /* GMainGameMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameMove.cpp; sourceTree = "<group>"; };
@@ -567,6 +572,7 @@
 		21D2FAA613CF18A400B81589 /* GEnergyBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEnergyBar.h; sourceTree = "<group>"; };
 		21D2FB0213CF2A1C00B81589 /* GnINumberLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnINumberLabel.h; sourceTree = "<group>"; };
 		21D2FB0413CF2A2900B81589 /* GnINumberLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GnINumberLabel.cpp; sourceTree = "<group>"; };
+		21D3B80E140BB88F00721B1D /* GFireAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFireAttack.h; sourceTree = "<group>"; };
 		21D5401013D6D35A00AE15B3 /* GnIPositionConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnIPositionConvert.h; sourceTree = "<group>"; };
 		21D5401213D705E700AE15B3 /* GCastleEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCastleEnemy.h; sourceTree = "<group>"; };
 		21D5401413D705FC00AE15B3 /* GCastleEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GCastleEnemy.cpp; sourceTree = "<group>"; };
@@ -787,6 +793,8 @@
 		21E01BE413BD910E002EBB55 /* GInterfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInterfaceLayer.h; sourceTree = "<group>"; };
 		21E01BEE13BD943B002EBB55 /* GMainGameInterfaceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMainGameInterfaceLayer.cpp; sourceTree = "<group>"; };
 		21E01BF013BD944B002EBB55 /* GMainGameInterfaceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMainGameInterfaceLayer.h; sourceTree = "<group>"; };
+		21E91822140B78F300D630E1 /* GMultiShootAttack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GMultiShootAttack.cpp; sourceTree = "<group>"; };
+		21E91825140B790600D630E1 /* GMultiShootAttack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMultiShootAttack.h; sourceTree = "<group>"; };
 		21E91BAB13CEBA6400641F22 /* GActionAttackCheck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GActionAttackCheck.cpp; sourceTree = "<group>"; };
 		21E91BAD13CEBA8300641F22 /* GActionAttackCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GActionAttackCheck.h; sourceTree = "<group>"; };
 		21E984A913FA6A2900EC0833 /* GUnitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUnitInfo.h; sourceTree = "<group>"; };
@@ -990,6 +998,10 @@
 				2143C80114049CAF00AF357E /* GBoltAttack.h */,
 				2132815513F0126D00DA1EB8 /* GShootAttack.cpp */,
 				2132815813F0127B00DA1EB8 /* GShootAttack.h */,
+				21E91822140B78F300D630E1 /* GMultiShootAttack.cpp */,
+				21E91825140B790600D630E1 /* GMultiShootAttack.h */,
+				210CFA9D140BB8F300961F3F /* GFireAttack.cpp */,
+				21D3B80E140BB88F00721B1D /* GFireAttack.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -1637,6 +1649,8 @@
 				2143C80F1404CFBD00AF357E /* GAttackMacro.h in Headers */,
 				213B914214074AF700C706D7 /* GFallBoomAttack.h in Headers */,
 				21BBEE23140795D80072FEE1 /* GAttackDamageInfo.h in Headers */,
+				21E91826140B790600D630E1 /* GMultiShootAttack.h in Headers */,
+				21D3B80F140BB88F00721B1D /* GFireAttack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1954,6 +1968,8 @@
 				2143C80514049CBB00AF357E /* GBoltAttack.cpp in Sources */,
 				2143C80914049E2200AF357E /* GFarAttack.cpp in Sources */,
 				213B914014074AED00C706D7 /* GFallBoomAttack.cpp in Sources */,
+				21E91823140B78F300D630E1 /* GMultiShootAttack.cpp in Sources */,
+				210CFAA0140BB8F600961F3F /* GFireAttack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

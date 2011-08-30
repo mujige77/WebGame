@@ -22,14 +22,20 @@ GActionDamage::~GActionDamage()
 
 GnVector2ExtraData* GActionDamage::CreateDamageEffect()
 {
-	GnVector2ExtraData* pos = (GnVector2ExtraData*)
-		GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
+	GnVector2ExtraData* pos = NULL;
+	if( mEffectIndex == 1 )
+		pos = (GnVector2ExtraData*)
+			GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_DAMAGE_POSITION );
+	else
+		pos = (GnVector2ExtraData*)
+			GetController()->GetMesh()->GetExtraDataFromType( GExtraData::EXTRA_MISSILEDAMAGE_POSITION );
+	
 	if( pos )
 	{	
 		if( mpsMeshObject == NULL )
 		{
 			gstring fullName;
-			if( GetFileList()->GetFullEffectName( pos->GetID(), fullName ) )
+			if( GetFileList()->GetFullEffectName( mEffectIndex, fullName ) )
 			{
 				mpsMeshObject = Gn2DMeshObject::CreateFullPath( fullName.c_str(), true );
 				if( mpsMeshObject == NULL )
@@ -44,6 +50,14 @@ GnVector2ExtraData* GActionDamage::CreateDamageEffect()
 		}
 	}
 	return pos;
+}
+
+void GActionDamage::SetAttackDamage(GAttackDamageInfo* pInfo)
+{
+	mAttackDamage = *pInfo;
+	if( mEffectIndex != pInfo->GetDamageFileIndex() )
+		mpsMeshObject = NULL;
+	mEffectIndex = pInfo->GetDamageFileIndex();	
 }
 
 void GActionDamage::Update(float fTime)
@@ -76,16 +90,7 @@ void GActionDamage::AttachActionToController()
 	GnVector2ExtraData* posExtraData = CreateDamageEffect();
 	if( posExtraData )
 	{
-		GnVector2 effectPos;
-		//if( GetController()->GetMesh()->GetFlipX() )
-		//{
-			//effectPos = posExtraData->GetValueVector2() - GetController()->GetMesh()->GetFlipCenter();
-		//	effectPos += GetController()->GetMesh()->GetPosition();
-		//}
-		//else
-		{
-			effectPos = GetController()->GetMesh()->GetPosition() + posExtraData->GetValueVector2();
-		}
+		GnVector2 effectPos = GetController()->GetMesh()->GetPosition() + posExtraData->GetValueVector2();
 		
 		RemoveMeshParent();
 		mpsMeshObject->SetPosition( effectPos );
@@ -103,12 +108,4 @@ void GActionDamage::AttachActionToController()
 		ctrl->Start();
 		ctrl = ctrl->GetNext();
 	}	
-}
-
-void GActionDamage::SetAttackDamage(GAttackDamageInfo& cInfo)
-{
-	mAttackDamage = cInfo;
-	if( mEffectIndex != cInfo.GetDamageFileIndex() )
-		mpsMeshObject = NULL;
-	mEffectIndex = cInfo.GetDamageFileIndex();	
 }

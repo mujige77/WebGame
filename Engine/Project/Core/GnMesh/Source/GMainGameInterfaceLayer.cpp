@@ -128,108 +128,62 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainController()
 
 GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainForcesButtons()
 {
+	GnInterfaceGroup* group = GnNew GnInterfaceGroup();
+	group->SetRect( 120.0f, 219.0f, 120.0f+232.0f, 219.0f+100.0f );
+	
 	GnIButton* buttons[FORCESBT_NUM];
 	buttons[BT_C2] = GnNew GnIButton( "Controll/125_223.png", NULL, "Controll/125_223G.png" );
-	float pointX = 125;
-	float pointY = 223;
-	GnVector2 vec = buttons[BT_C2]->GetContentSize();	
-	buttons[BT_C2]->SetUIPoint( pointX, pointY );	
-	buttons[BT_C2]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-		
+	SetUIPosition( buttons[BT_C2], 125.0f, 223.0f, eIndexC2 );
+	
 	
     buttons[BT_C3] = GnNew GnIButton( "Controll/170_223.png", NULL, "Controll/170_223G.png" );
-	pointX = 170;
-	pointY = 223;
-	vec = buttons[BT_C3]->GetContentSize();
-	buttons[BT_C3]->SetUIPoint( pointX, pointY );
-	buttons[BT_C3]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C3], 170.0f, 223.0f, eIndexC3 );
 	
     buttons[BT_C4] = GnNew GnIButton( "Controll/215_223.png", NULL, "Controll/215_223G.png" );	
-	pointX = 215;
-	pointY = 223;
-	vec = buttons[BT_C4]->GetContentSize();
-	buttons[BT_C4]->SetUIPoint( pointX, pointY );
-	buttons[BT_C4]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C4], 215.0f, 223.0f, eIndexC4 );
 	
 	buttons[BT_C5] = GnNew GnIButton( "Controll/260_223.png", NULL, "Controll/260_223G.png"
 		, GnIButton::TYPE_DISABLE );
-	pointX = 260;
-	pointY = 223;
-	vec = buttons[BT_C5]->GetContentSize();
-	buttons[BT_C5]->SetUIPoint( pointX, pointY );
-	buttons[BT_C5]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C5], 260.0f, 223.0f, eIndexC5 );
 	
 	buttons[BT_C6] = GnNew GnIButton( "Controll/305_223.png", NULL, "Controll/305_223G.png"
 		, GnIButton::TYPE_DISABLE );
-	pointX = 305;
-	pointY = 223;
-	vec = buttons[BT_C6]->GetContentSize();	
-	buttons[BT_C6]->SetUIPoint( pointX, pointY );	
-	buttons[BT_C6]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C6], 305.0f, 223.0f, eIndexC6 );
 	
     buttons[BT_C7] = GnNew GnIButton( "Controll/125_268.png", NULL, "Controll/125_268G.png"
 		,GnIButton::TYPE_DISABLE );
-	pointX = 125;
-	pointY = 268;
-	vec = buttons[BT_C7]->GetContentSize();
-	buttons[BT_C7]->SetUIPoint( pointX, pointY );
-	buttons[BT_C7]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C7], 125.0f, 268.0f, eIndexC7 );
 	
     buttons[BT_C8] = GnNew GnIButton( "Controll/170_268.png", NULL, "Controll/170_268G.png"
 		, GnIButton::TYPE_DISABLE );
-	pointX = 170;
-	pointY = 268;
-	vec = buttons[BT_C8]->GetContentSize();
-	buttons[BT_C8]->SetUIPoint( pointX, pointY );
-	buttons[BT_C8]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C8], 170.0f, 268.0f, eIndexC8 );
 	
 	buttons[BT_C9] = GnNew GnIButton( "Controll/215_268.png", NULL, "Controll/215_268G.png",
 		GnIButton::TYPE_DISABLE );
-	pointX = 215;
-	pointY = 268;
-	vec = buttons[BT_C9]->GetContentSize();
-	buttons[BT_C9]->SetUIPoint( pointX, pointY );
-	buttons[BT_C9]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C9], 215.0f, 268.0f, eIndexC9 );
 	
 	buttons[BT_C10] = GnNew GnIButton( "Controll/260_268.png", NULL, "Controll/260_268G.png",
 		GnIButton::TYPE_DISABLE );
-	pointX = 260;
-	pointY = 268;
-	vec = buttons[BT_C10]->GetContentSize();
-	buttons[BT_C10]->SetUIPoint( pointX, pointY );
-	buttons[BT_C10]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
-
+	SetUIPosition( buttons[BT_C10], 260.0f, 268.0f, eIndexC10 );
 	
 	buttons[BT_C11] = GEnergyBar::Create( 100, 0.5, "Controll/305_268.png" );
-	pointX = 305;
-	pointY = 268;
-	vec = buttons[BT_C11]->GetContentSize();
-	buttons[BT_C11]->SetUIPoint( pointX, pointY );
-	buttons[BT_C11]->SetRect( pointX, pointY, pointX+vec.x, pointY+vec.y );
+	SetUIPosition( buttons[BT_C11], 305.0f, 268.0f );
 	mpForcesEnergyBar = (GEnergyBar*)buttons[BT_C11];
 	
-	GnInterfaceGroup* pGroup = GnNew GnInterfaceGroup();
-	pGroup->SetRect( 120.0f, 219.0f, 120.0f+232.0f, 219.0f+100.0f );
-	for (gtuint i = 0; i < FORCESBT_NUM ; i++ )
-	{
-		pGroup->AddChild( buttons[i] );
-	}
+	
+	for (gtuint i = 0; i < FORCESBT_NUM; i++ )		
+		group->AddChild( buttons[i] );
+	
+	
 	
 	GnInterface* energyBarLine = GnNew GnInterface( "Controll/309_288.png" );
 	SetUIPosition( energyBarLine, 309.0f, 288.0f );
-	pGroup->AddChild( energyBarLine );
+	group->AddChild( energyBarLine );
 	
-	AddChild( pGroup, 1 );	
+	AddChild( group, 1 );	
 	
 	SetForcesButtonInfo( buttons );
-	return pGroup;
+	return group;
 }
 GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainSkillButtons()
 {
@@ -256,7 +210,7 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateMainSkillButtons()
 	while( iter.Valid() )
 	{
 		GUserHaveItem::Item& item = iter.Item();
-		gtuint itemIndex = item.mIndex - INDEX_ITEM;
+		gtuint itemIndex = item.mIndex;
 		
 		GnSQLiteQuery query = sqlite.ExecuteSingleQuery( "SELECT * FROM GameItem WHERE idx=%d",
 			item.mIndex );
@@ -407,7 +361,9 @@ GnInterfaceGroup* GMainGameInterfaceLayer::CreateLoseDialog()
 }
 
 bool GMainGameInterfaceLayer::SetForcesButtonInfo(GnIButton** ppButtons)
-{
+{	
+	GUserHaveItem* haveItem = GetCurrentHaveItem();
+	
 	gstring filename = GetFullPath( "ItemInfo.sqlite" );
 	GnSQLite sqlite( filename.c_str() );
 	for (gtuint i = 0; i < FORCESBT_NUM - 1 ; i++ )
@@ -419,6 +375,12 @@ bool GMainGameInterfaceLayer::SetForcesButtonInfo(GnIButton** ppButtons)
 			GnLogA( "error execute query - getting UnitButton %d", i + INDEX_UNIT + 1 );
 			continue;
 		}
+	
+		guint32 itemLevel = haveItem->GetItemLevel( ppButtons[i]->GetTegID() );
+		if( itemLevel > 0 )
+			ppButtons[i]->SetIsDisable( false );
+		else
+			ppButtons[i]->SetIsDisable( true );
 		
 		float energy = query.GetFloatField( 1 );
 		float cooltime = query.GetFloatField( 2 );
@@ -431,7 +393,10 @@ bool GMainGameInterfaceLayer::SetForcesButtonInfo(GnIButton** ppButtons)
 		btInfo.SetButton( ppButtons[i] );
 		btInfo.SetCanPushEnergy( energy );
 		btInfo.SetCoolTime( cooltime );
+		btInfo.SetItemLevel( itemLevel );
 	}
+	
+	haveItem->Close();
 	return true;
 }
 

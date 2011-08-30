@@ -46,10 +46,11 @@ private:
 	float mStartAttackTime;
 	float mAccumulateTime;
 	guint32 mAttackCount;
-	guint32 mCurrentAttackCount;
 	bool mStopAnimation;
 	guint32 mAttackIndex;
 	GAttackDamageInfo mAttackDamage;
+protected:
+	guint32 mCurrentAttackCount;
 #ifdef GNDEBUG
 private:
 	GLayer* mpDebugLayer;
@@ -106,7 +107,10 @@ public:
 	}
 	inline guint32 GetAttackCount() {
 		return mAttackCount;
-	}	
+	}
+	inline guint32 GetCurrentAttackCount() {
+		return mCurrentAttackCount;
+	}
 	inline void SetStartAttackTime(float val) {
 		mStartAttackTime = val;
 	}
@@ -136,10 +140,10 @@ public:
 	}
 protected:
 	inline GnFRect& GetOriginalAttackRect() {
-		return mAttackRect;
+		return mOriginalAttackRect;
 	}
 	inline void SetOriginalAttackRect(GnFRect cRect) {
-		mAttackRect = cRect;
+		mOriginalAttackRect = cRect;
 	}
 };
 

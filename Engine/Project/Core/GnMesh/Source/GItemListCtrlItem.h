@@ -10,6 +10,7 @@ class GItemListCtrlItem : public GStateListCtrlItem
 private:
 	bool mCreateLabelPrice;
 	GnINumberLabel mLabelPrice;
+	GnINumberLabel mItemCount;
 	GnInterfacePtr mpsIconMoney;
 	
 public:
@@ -22,10 +23,14 @@ public:
 	void CreateIconMoney();
 	void SetPosition(GnVector2& cPos);
 	
+	
 public:
 	inline void SetPrice(guint32 val) {
 		mLabelPrice.SetNumber( val );
-	}	
+	}
+	inline void SetItemCount(guint32 val) {
+		mItemCount.SetNumber( val );
+	}
 };
 
 #endif

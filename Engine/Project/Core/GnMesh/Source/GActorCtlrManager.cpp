@@ -192,7 +192,9 @@ bool GActorCtlrManager::FarAttackCollisionCheck(GFarAttack* pFarAttack, GActorCo
 		return false;
 	
 	Gn2DAVData::CollisionRect& rect	= avData->GetCollisionRect( 0 );
-	if( pFarAttack->GetAttackRect().ContainsRectWidth( rect.mRect ) )
+	GnFRect& attackRect = pFarAttack->GetAttackRect();
+	if( ( attackRect.ContainsRectHeight( rect.mRect ) || rect.mRect.ContainsRectHeight( attackRect ) )
+	   && ( rect.mRect.ContainsRectWidth( attackRect ) || attackRect.ContainsRectWidth( rect.mRect ) ) )
 		return true;
 	
 	return false;

@@ -43,6 +43,7 @@ private:
 	GnIListCtrl* mpEquipListCtrl;
 	GnINumberLabel* mStarLabel;
 	GnINumberLabel* mMoneyLabel;
+	GnINumberLabel* mpUnitMoneyLabel;
 	GnInterfaceGroup* mpUnitGroup;
 	
 public:
@@ -80,6 +81,9 @@ public:
 	}
 	inline GnINumberLabel* GetMoneyLabel() {
 		return mMoneyLabel;
+	}
+	inline GnINumberLabel* GetUnitMoneyLabel() {
+		return mpUnitMoneyLabel;
 	}
 	
 protected:

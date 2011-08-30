@@ -26,11 +26,16 @@ inline static GnFRect GetRectFromCenterPosition(GnVector2 cMeshSize, GnVector2 c
 	return GnFRect( cPosition.x, cPosition.y, cPosition.x + cMeshSize.x, cPosition.y + cMeshSize.y );
 }
 
-
 inline static void SetUIPosition(GnInterface* pUI, float fPosX, float fPosY)
 {
 	GnVector2 vec = pUI->GetContentSize();	
 	pUI->SetUIPoint( fPosX, fPosY );	
 	pUI->SetRect( fPosX, fPosY, fPosX+vec.x, fPosY+vec.y );
+}
+
+inline static void SetUIPosition(GnInterface* pUI, float fPosX, float fPosY, gint32 iTegID)
+{
+	SetUIPosition( pUI, fPosX, fPosY );
+	pUI->SetTegID( iTegID );
 }
 #endif

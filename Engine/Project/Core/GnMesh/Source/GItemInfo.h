@@ -20,9 +20,9 @@ public:
 	const gchar* GetGameIconFileName(gtuint uiIndex);
 	const gchar* GetPriceIconFileName(gtuint uiIndex);
 	const gchar* GetExplainFileName(gtuint uiIndex);
-	guint32 GetBuyPrice(gtuint uiIndex);
-	guint32 GetSellPrice(gtuint uiIndex);
-};
+	guint32 GetBuyPrice(gtuint uiIndex, guint32 uiLevel);
+	guint32 GetSellPrice(gtuint uiIndex, guint32 uiLevel);
+};	
 
 #define GetItemInfo GItemInfo::GetSingleton
 

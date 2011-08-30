@@ -8,7 +8,7 @@ GFarAttack* GFallBoomAttack::CreateAttack(guint32 uIndex)
 	GFallBoomAttack* attck = GnNew GFallBoomAttack();
 	attck->SetAttackCount( 10 );
 	attck->CreateAttackMesh( 22 );
-	attck->SetOriginalAttackRect( GnFRect(0.0f, 0.0f, 150.0f, 35.0f ) );
+	attck->SetOriginalAttackRect( GnFRect(0.0f, 0.0f, 150.0f, 20.0f ) );
 	attck->SetStartAttackTime( 0.7f );
 	GnTimeController::SetCycleType( GnTimeController::ONCE, attck->GetAttackMesh() );
 	return attck;

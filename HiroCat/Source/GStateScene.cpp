@@ -115,14 +115,19 @@ void GStateScene::UnitInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)
 	if( pEvent->GetEventType() == GnIInputEvent::PUSH )
 	{
 		if( pInterface->GetTegID() > -1 )
-			ViewUnit( (guint32)pInterface->GetTegID() );
+		{
+			GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;			
+			SelectUnit( (guint32)pInterface->GetTegID(), interfaceLayer->GetUnitMoneyLabel() );
+		}
 	}
 	else if( pEvent->GetEventType() == GnIInputEvent::PUSHUP )
 	{
+		GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
 		switch( pInterface->GetTegID() )
 		{
 			case GInterfaceLayer::BT_UNIT_UPGRADE:
-				//UpgradeAbility( mpCurrentStetItem )
+				UpgradeUnit( mCurrentControllerIndex, interfaceLayer->GetMoneyLabel()
+					, interfaceLayer->GetUnitMoneyLabel() );
 				break;
 		}
 	}
@@ -169,23 +174,37 @@ void GStateScene::ShopInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent)
 		switch( pInterface->GetTegID() )
 		{
 			case GInterfaceLayer::BT_BUY_ITEM:
-				BuyItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetMoneyLabel()
-					, mpCurrentShopItem );
+				BuyItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetEquipListCtrl()
+					, interfaceLayer->GetMoneyLabel(), mpCurrentShopItem );
 				break;
 			case GInterfaceLayer::BT_SELL_ITEM:
-				SellItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetMoneyLabel()
-					, mpCurrentInvenItem );
-				mpCurrentInvenItem = NULL;
+				if( SellItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetEquipListCtrl()
+					, interfaceLayer->GetMoneyLabel(), mpCurrentInvenItem ) == 0 )
+				{
+					if( mpCurrentInvenItem )
+					{
+						mpCurrentInvenItem->SetVisibleExplain( false );
+						mpCurrentInvenItem = NULL;
+					}
+				}
 				break;
 			case GInterfaceLayer::BT_EQUIP_ITEM:
 				EquipItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetEquipListCtrl()
 					, mpCurrentInvenItem );
-				mpCurrentInvenItem = NULL;
+//				if( mpCurrentInvenItem )
+//				{
+//					mpCurrentInvenItem->SetVisibleExplain( false );
+//					mpCurrentInvenItem = NULL;
+//				}
 				break;
 			case GInterfaceLayer::BT_UNEQUIP_ITEM:
 				UnEquipItem( interfaceLayer->GetInventoryListCtrl(), interfaceLayer->GetEquipListCtrl()
 					, mpCurrentEquipItem );
-				mpCurrentEquipItem = NULL;
+				if( mpCurrentEquipItem )
+				{
+					mpCurrentEquipItem->SetVisibleExplain( false );
+					mpCurrentEquipItem = NULL;
+				}
 				break;
 		}	
 	}
@@ -222,25 +241,43 @@ bool GStateScene::ViewItemExplain(GStateListCtrlItem*& pCurrentItem, GnInterface
 	return false;
 }
 
-void GStateScene::SellItem(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, GStateListCtrlItem* pItem)
+guint32 GStateScene::SellItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel
+	, GStateListCtrlItem* pItem)
 {
 	if( pItem == NULL )
-		return;
+		return 0;
 	
 	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();
-	
 	GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
 	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
-	
 	haveItem->OpenPlayerItem( playingData->GetPlayerName() );
 	
-	guint32 sellMoney = GetItemInfo()->GetSellPrice( pItem->GetItemIndex() - INDEX_ITEM );
-	
+	guint32 itemIndex = pItem->GetItemIndex();
 	// delete item
-	haveItem->DeleteItem( pItem->GetItemIndex(), eItem );
-	pListCtrl->RemoveItem( pItem );
-	
+	guint32 itemCount = haveItem->GetItemCount( itemIndex ) - 1;
+	if( itemCount < 1 )
+	{
+		GItemListCtrlItem* existItem = GetListCtrlItemFromIndex( pInvenList, itemIndex );
+		if( existItem )
+		{
+			haveItem->DeleteItem( itemIndex, eItem );
+			pInvenList->RemoveItem( pItem );
+		}
+		
+		existItem = GetListCtrlItemFromIndex( pEquipList, itemIndex );
+		if( existItem )
+		{
+			haveItem->DeleteItem( itemIndex, eEquip );
+			pEquipList->RemoveItem( pItem );
+		}		
+	}
+	else
+	{
+		UpdateItemCount( haveItem, pInvenList, pEquipList, itemIndex, itemCount );
+	}
+
 	// set money
+	guint32 sellMoney = GetItemInfo()->GetSellPrice( itemIndex, 0 );
 	guint32 money = sellMoney + playingData->GetMoneyCount();
 	playingData->SetMoneyCount( money );
 	pMoneyLabel->SetNumber( money );
@@ -248,31 +285,48 @@ void GStateScene::SellItem(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, 
 	haveItem->Close();
 	
 	dataMng->SaveData();
+	return itemCount;
 }
 
-void GStateScene::BuyItem(GnIListCtrl* pListCtrl, GnINumberLabel* pMoneyLabel, GStateListCtrlItem* pItem)
+void GStateScene::BuyItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel
+	, GStateListCtrlItem* pItem)
 {
 	if( pItem == NULL )
 		return;	
 	
-	gtuint iteminfoIndex = pItem->GetItemIndex() - INDEX_ITEM;
-	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();
-
-	GPlayingData* playingData = dataMng->GetPlayingPlayerData();	
-	guint32 buyMoney = GetItemInfo()->GetBuyPrice( iteminfoIndex );
+	gtuint itemIndex = pItem->GetItemIndex();
+	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();	
+	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
+	
+	guint32 buyMoney = GetItemInfo()->GetBuyPrice( itemIndex, 0 );
 	if( playingData->GetMoneyCount() < buyMoney )
 		return;
 
-	// add item to haveitem
 	GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
-	haveItem->OpenPlayerItem( playingData->GetPlayerName() );	
-	haveItem->AddItem( pItem->GetItemIndex(), eItem );
-	haveItem->Close();
+	haveItem->OpenPlayerItem( playingData->GetPlayerName() );
+
+	GItemListCtrlItem* equipItem = NULL;
+	guint32 itemCount = haveItem->GetItemCount( pItem->GetItemIndex() ) + 1;
 	
-	GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
-	GItemListCtrlItem* newItem = interfaceLayer->CreateItemCtrlItem( iteminfoIndex );
-	newItem->SetTegID( GInterfaceLayer::LISTITEM_INVEN );
-	pListCtrl->AddItem( newItem );
+	if( itemCount == 1 )
+	{
+		// add item to haveitem
+		haveItem->AddItem( itemIndex, eItem );
+		
+		// add item to list
+		GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
+		equipItem = interfaceLayer->CreateItemCtrlItem( itemIndex );
+		pInvenList->AddItem( equipItem );
+		equipItem->SetTegID( GInterfaceLayer::LISTITEM_INVEN );
+		equipItem->SetItemIndex( itemIndex );
+		equipItem->SetItemCount( itemCount );
+	}
+	else
+	{
+		UpdateItemCount( haveItem, pInvenList, pEquipList, itemIndex, itemCount );
+	}
+	
+	haveItem->Close();
 	
 	// set money
 	guint32 money = playingData->GetMoneyCount() - buyMoney;
@@ -289,47 +343,44 @@ void GStateScene::EquipItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GS
 	if( pEquipList->GetItemCount() >= ENABLE_MAX_EQUIP )
 		return;
 	
-	gtuint iteminfoIndex = pItem->GetItemIndex() - INDEX_ITEM;
+	gtuint itemIndex = pItem->GetItemIndex();
 	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();
 	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
 	
-	// add equip item to haveitem
-	GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
-	haveItem->OpenPlayerItem( playingData->GetPlayerName() );	
-	haveItem->DeleteItem( pItem->GetItemIndex(), eItem );
-	haveItem->AddItem( pItem->GetItemIndex(), eEquip );
-	haveItem->Close();
-	
-	// add equip
-	GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
-	GItemListCtrlItem* newItem = interfaceLayer->CreateEquipCtrlItem( iteminfoIndex );
-	newItem->SetTegID( GInterfaceLayer::LISTITEM_EQUIP );
-	pEquipList->AddItem( newItem );	
-	
-	// remove invenitem
-	pInvenList->RemoveItem( pItem );	
+	if( GetListCtrlItemFromIndex(pEquipList, pItem->GetItemIndex() ) == NULL )
+	{
+		GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
+		haveItem->OpenPlayerItem( playingData->GetPlayerName() );
+		guint32 itemCount = haveItem->GetItemCount( itemIndex );
+		
+		// add equip item to haveitem
+		haveItem->AddItem( itemIndex, eEquip, 0, itemCount );
+		
+		// add equip
+		GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
+		GItemListCtrlItem* newItem = interfaceLayer->CreateEquipCtrlItem( itemIndex );
+		newItem->SetTegID( GInterfaceLayer::LISTITEM_EQUIP );
+		
+		newItem->SetItemIndex( itemIndex );
+		newItem->SetItemCount( itemCount );
+		pEquipList->AddItem( newItem );
+		
+		haveItem->Close();
+	}
 }
 void GStateScene::UnEquipItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GStateListCtrlItem* pItem)
 {
 	if( pItem == NULL )
 		return;
 	
-	gtuint iteminfoIndex = pItem->GetItemIndex() - INDEX_ITEM;
 	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();
 	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
 	
-	// add equip item to haveitem
+	// delete equip item to haveitem
 	GUserHaveItem* haveItem = dataMng->GetPlayingHaveItem();
-	haveItem->OpenPlayerItem( playingData->GetPlayerName() );	
-	haveItem->DeleteItem( pItem->GetItemIndex(), eEquip );
-	haveItem->AddItem( pItem->GetItemIndex(), eItem );
+	haveItem->OpenPlayerItem( playingData->GetPlayerName() );
+	haveItem->DeleteItem( pItem->GetItemIndex(), eEquip );	
 	haveItem->Close();
-	
-	// add equip
-	GStateUILayer* interfaceLayer = (GStateUILayer*)mpInterfaceLayer;
-	GItemListCtrlItem* newItem = interfaceLayer->CreateItemCtrlItem( iteminfoIndex );
-	newItem->SetTegID( GInterfaceLayer::LISTITEM_INVEN );
-	pInvenList->AddItem( newItem );	
 	
 	// remove invenitem
 	pEquipList->RemoveItem( pItem );
@@ -371,16 +422,103 @@ void GStateScene::UpgradeAbility(GnINumberLabel* pStartLabel, GStateListCtrlItem
 	dataMng->SaveData();
 }
 
-void GStateScene::ViewUnit(guint32 uiUnitIndex)
+void GStateScene::SelectUnit(guint32 uiUnitIndex, GnINumberLabel* pUnitMoneyLabel)
 {
-	
+	// view unit
 	GActorController* ctrl = mpsUnitViewer->GetActorCtrlFromUnitIndex( uiUnitIndex );
 	if( ctrl )
 	{
 		if( mCurrentControllerIndex != -1 )
 			mpsUnitViewer->SetVisibleActorCtlr( (guint32)mCurrentControllerIndex, false );
 		mpsUnitViewer->SetVisibleActorCtlr( uiUnitIndex, true );
-		mCurrentControllerIndex = uiUnitIndex;
-		
+		mCurrentControllerIndex = uiUnitIndex;	
 	}
+	
+	if( eIndexC1 <= uiUnitIndex && eMaxIndexUnit > uiUnitIndex )
+	{
+		GUserHaveItem* haveItem = GetCurrentHaveItem();
+		
+		// set upgrade money
+		guint32 itemLevel = haveItem->GetItemLevel( uiUnitIndex );	
+		guint32 price = GetItemInfo()->GetBuyPrice( uiUnitIndex, itemLevel );
+		pUnitMoneyLabel->SetNumber( price );
+		
+		haveItem->Close();	
+	}	
+}
+
+void GStateScene::UpgradeUnit(gtuint uiUnitIndex, GnINumberLabel* pTotalMoneyLabel, GnINumberLabel* pUnitMoneyLabel)
+{
+	if( uiUnitIndex == -1 )
+		return;
+	
+	GUserHaveItem* haveItem = GetCurrentHaveItem();
+	GPlayingDataManager* dataMng = GPlayingDataManager::GetSingleton();	
+	GPlayingData* playingData = dataMng->GetPlayingPlayerData();
+	
+	// check upgrade money
+	guint32 itemLevel = haveItem->GetItemLevel( uiUnitIndex );
+	
+	if( MAX_UNIT_LEVEL <= itemLevel )
+	{
+		haveItem->Close();
+		return;
+	}
+	
+	guint32 buyMoney = GetItemInfo()->GetBuyPrice( uiUnitIndex, itemLevel );
+	if( playingData->GetMoneyCount() < buyMoney )
+	{
+		haveItem->Close();
+		return;	
+	}
+
+	itemLevel += 1;
+	
+	// update level
+	haveItem->UpdateLevel( uiUnitIndex, itemLevel );
+	
+	// set money data
+	guint32 money = playingData->GetMoneyCount() - buyMoney;
+	playingData->SetMoneyCount( money );
+	pTotalMoneyLabel->SetNumber( money );
+	dataMng->SaveData();
+	
+	// set unit money label
+	buyMoney = GetItemInfo()->GetBuyPrice( uiUnitIndex, itemLevel );
+	pUnitMoneyLabel->SetNumber( buyMoney );
+	
+	
+	haveItem->Close();
+	
+	
+}
+
+void GStateScene::UpdateItemCount(GUserHaveItem* pHaveItem, GnIListCtrl* pInvenList, GnIListCtrl* pEquipList
+	, guint32 uiItemIndex, guint32 uiItemCount)
+{
+	
+	pHaveItem->UpdateCount( uiItemIndex, uiItemCount );
+	GItemListCtrlItem* item = GetListCtrlItemFromIndex( pInvenList, uiItemIndex );
+	if( item )
+		item->SetItemCount( uiItemCount );
+	
+	item = GetListCtrlItemFromIndex( pEquipList, uiItemIndex );
+	if( item )
+		item->SetItemCount( uiItemCount );	
+}
+
+GItemListCtrlItem* GStateScene::GetListCtrlItemFromIndex(GnIListCtrl* pList, guint32 uiIndex)
+{
+	for( gtuint i = 0 ; i < pList->GetColumnSize() ; i++ )
+	{
+		for( gtuint j = 0 ; j < pList->GetRowSize() ; j++ )
+		{
+			GItemListCtrlItem* item = (GItemListCtrlItem*)pList->GetItem( i , j );
+			if( item && item->GetItemIndex() == uiIndex )
+			{
+				return item;
+			}
+		}
+	}
+	return NULL;
 }

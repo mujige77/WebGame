@@ -76,4 +76,6 @@ enum eItemIndex
 #define INDEX_ITEM 1000
 #define ENABLE_MAX_EQUIP 3
 #define MAX_ABILITY_LEVEL 20
+#define MAX_UNIT_LEVEL 20
+#define MAX_ITEM_TYPE 6
 #endif

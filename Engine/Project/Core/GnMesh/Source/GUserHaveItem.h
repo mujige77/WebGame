@@ -43,6 +43,8 @@ public:
 	void AddItem(guint32 uiIndex, eItemType uiType = eItem, guint32 uiLevel = 0, guint32 uiCount = 1);
 	void DeleteItem(guint32 uiIndex, eItemType type);
 	guint32 GetItemLevel(guint32 uiIndex);
+	guint32 GetItemCount(guint32 uiIndex);
+	bool GetItem(guint32 uiIndex, GUserHaveItem::Item& outItem);
 	bool GetItems(eItemType uiType, GnList<GUserHaveItem::Item>& outItem);
 	void UpdateLevel(guint32 uiIndex, guint32 uiLevel);
 	void UpdateCount(guint32 uiIndex, guint32 uiCount);
