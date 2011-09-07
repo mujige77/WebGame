@@ -16,6 +16,7 @@ END_MESSAGE_MAP()
 GStageLevelDesignView::GStageLevelDesignView() : GDesignFormView(GStageLevelDesignView::IDD)	
 	, mStageNumber(0), mBossMobIndex(0), mLoadedStageLevel( false ), mpGcMopAppear( NULL )
 	, mpGcMobAttackLine( NULL )
+	, mCastleHP(0)
 {
 
 }
@@ -37,6 +38,7 @@ void GStageLevelDesignView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_ET_BOSSMOBINDEX, mEtBossMobIndex);
 	DDX_Text(pDX, IDC_ET_STAGENUMBER, mStageNumber);
 	DDX_Text(pDX, IDC_ET_BOSSMOBINDEX, mBossMobIndex);
+	DDX_Control(pDX, IDC_ET_CASTLEHP, mEtCastleHP);
 }
 
 void GStageLevelDesignView::Save(GnStream* pStream)
@@ -81,6 +83,11 @@ void GStageLevelDesignView::SaveStageLevel(GStageLevel* pStageLevel)
 	number = convertNumber.GetNumber( 0 );
 	pStageLevel->SetBossMobIndex( number );
 
+	mEtCastleHP.GetWindowText( strNumber );
+	convertNumber.SetNumber( (gtchar*)strNumber.GetString() );
+	number = convertNumber.GetNumber( 0 );
+	pStageLevel->SetCastleHP( number );
+
 	mpGcMopAppear->SaveParse( pStageLevel );
 	mpGcMobAttackLine->SaveParse( pStageLevel );
 }
@@ -93,6 +100,9 @@ void GStageLevelDesignView::LoadStageLevel(GStageLevel* pStageLevel)
 
 	convertNumber.SetNumber( pStageLevel->GetBossMobIndex() );	
 	mEtBossMobIndex.SetWindowText( convertNumber.c_str() );
+
+	convertNumber.SetNumber( pStageLevel->GetCastleHP() );	
+	mEtCastleHP.SetWindowText( convertNumber.c_str() );
 
 	mpGcMopAppear->LoadParse( pStageLevel );
 	mpGcMobAttackLine->LoadParse( pStageLevel );

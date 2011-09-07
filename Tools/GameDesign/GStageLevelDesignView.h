@@ -11,11 +11,15 @@ protected:
 	CStatic mGpMobAttackLine;
 	CStatic mGpMopAppear;
 	CEdit mEtStageNumber;
-	CEdit mEtBossMobIndex;	
+	CEdit mEtBossMobIndex;
+	CEdit mEtCastleHP;
 	GStageLevelGridCtrl* mpGcMopAppear;
 	GStageLevelGridCtrl* mpGcMobAttackLine;
 	bool mLoadedStageLevel;
 	GStageLevel mLoadStageLevelValue;
+	UINT mStageNumber;
+	UINT mBossMobIndex;
+	unsigned int mCastleHP;
 
 public:
 	static CRuntimeClass* CreateFormView() {
@@ -64,8 +68,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	UINT mStageNumber;
-	UINT mBossMobIndex;
+
+
 };
 
 

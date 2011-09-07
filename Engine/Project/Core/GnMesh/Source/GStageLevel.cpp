@@ -26,6 +26,8 @@ void GStageLevel::LoadStream(GnStream* pStream)
 {
 	pStream->LoadStream( mLevelIndex );
 	pStream->LoadStream( mBossMobIndex );
+	pStream->LoadStream( mCastleHP );
+
 	guint32 count = 0;
 	pStream->LoadStream( count );
 	for( gtuint i = 0 ; i < count ; i++ )
@@ -33,7 +35,7 @@ void GStageLevel::LoadStream(GnStream* pStream)
 		GStageLevel::AppearMob mob;
 		pStream->LoadStream( mob.mIndex );
 		pStream->LoadStream( mob.mLevel );
-		pStream->LoadStream( mob.mIntervalAppearTime );
+		pStream->LoadStream( mob.mIntervalAppearPercent );
 		AddAppearMob( mob );
 	}
 	
@@ -52,6 +54,7 @@ void GStageLevel::SaveStream(GnStream* pStream)
 {
 	pStream->SaveStream( mLevelIndex );
 	pStream->SaveStream( mBossMobIndex );
+	pStream->SaveStream( mCastleHP );
 
 	guint32 count = GetAppearMobCount();
 	pStream->SaveStream( count );
@@ -60,7 +63,7 @@ void GStageLevel::SaveStream(GnStream* pStream)
 		GStageLevel::AppearMob& mob = GetAppearMob( i );
 		pStream->SaveStream( mob.mIndex );
 		pStream->SaveStream( mob.mLevel );
-		pStream->SaveStream( mob.mIntervalAppearTime );
+		pStream->SaveStream( mob.mIntervalAppearPercent );
 	}
 
 	count = GetAttackLineCount();
