@@ -73,3 +73,8 @@ HiroCat/Resource/ActorInfo.sqlite
 /Tools/ControlLibProject/FolderGroup/Debug
 /Tools/ControlLibProject/FolderGroup/Release
 /Engine/Builder/VS2010/Core/ipch
+/Tools/GameDesignSetup/Release
+/Tools/GameDesignSetup/Debug
+/Tools/Setup1/Debug
+/Tools/Setup1/Release
+/Tools/GameDesign/Release

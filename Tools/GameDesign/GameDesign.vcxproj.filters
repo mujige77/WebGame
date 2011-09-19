@@ -136,6 +136,9 @@
     <ClInclude Include="GtConvertString.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GMassMobAppearGrid.h">
+      <Filter>StageLevelDesign</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameDesign.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="GtConvertString.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GMassMobAppearGrid.cpp">
+      <Filter>StageLevelDesign</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

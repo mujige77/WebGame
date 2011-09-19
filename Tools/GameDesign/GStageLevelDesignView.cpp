@@ -11,6 +11,8 @@ IMPLEMENT_DYNCREATE(GStageLevelDesignView, GDesignFormView)
 BEGIN_MESSAGE_MAP(GStageLevelDesignView, GDesignFormView)
 	ON_BN_CLICKED(IDC_BT_ADDMOB, &GStageLevelDesignView::OnClickedAddMob)
 	ON_BN_CLICKED(IDC_BT_DELETEMOB, &GStageLevelDesignView::OnClickedDeleteMob)
+	ON_BN_CLICKED(IDC_BT_ADDMASSMOB, &GStageLevelDesignView::OnBnClickedAddMassMob)
+	ON_BN_CLICKED(IDC_BT_DELETEMASSMOB, &GStageLevelDesignView::OnBnClickedBtDeleteMassMob)
 END_MESSAGE_MAP()
 
 GStageLevelDesignView::GStageLevelDesignView() : GDesignFormView(GStageLevelDesignView::IDD)	
@@ -27,6 +29,8 @@ GStageLevelDesignView::~GStageLevelDesignView()
 		delete mpGcMopAppear;
 	if( mpGcMobAttackLine )
 		delete mpGcMobAttackLine;
+	if( mpGcMassMopAppear )
+		delete mpGcMassMopAppear;
 }
 
 void GStageLevelDesignView::DoDataExchange(CDataExchange* pDX)
@@ -39,6 +43,7 @@ void GStageLevelDesignView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_ET_STAGENUMBER, mStageNumber);
 	DDX_Text(pDX, IDC_ET_BOSSMOBINDEX, mBossMobIndex);
 	DDX_Control(pDX, IDC_ET_CASTLEHP, mEtCastleHP);
+	DDX_Control(pDX, IDC_GP_MASSMOBAPPEAR, mGpMassMobAppear);
 }
 
 void GStageLevelDesignView::Save(GnStream* pStream)
@@ -67,6 +72,20 @@ BOOL GStageLevelDesignView::PreTranslateMessage(MSG* pMsg)
 	return GDesignFormView::PreTranslateMessage(pMsg);
 }
 
+#ifdef _DEBUG
+void GStageLevelDesignView::AssertValid() const
+{
+	GDesignFormView::AssertValid();
+}
+
+#ifndef _WIN32_WCE
+void GStageLevelDesignView::Dump(CDumpContext& dc) const
+{
+	GDesignFormView::Dump(dc);
+}
+#endif
+#endif //_DEBUG
+
 void GStageLevelDesignView::SaveStageLevel(GStageLevel* pStageLevel)
 {
 	guint32 number = 0;
@@ -90,6 +109,7 @@ void GStageLevelDesignView::SaveStageLevel(GStageLevel* pStageLevel)
 
 	mpGcMopAppear->SaveParse( pStageLevel );
 	mpGcMobAttackLine->SaveParse( pStageLevel );
+	mpGcMassMopAppear->SaveParse( pStageLevel );
 }
 
 void GStageLevelDesignView::LoadStageLevel(GStageLevel* pStageLevel)
@@ -106,6 +126,7 @@ void GStageLevelDesignView::LoadStageLevel(GStageLevel* pStageLevel)
 
 	mpGcMopAppear->LoadParse( pStageLevel );
 	mpGcMobAttackLine->LoadParse( pStageLevel );
+	mpGcMassMopAppear->LoadParse( pStageLevel );
 }
 
 void GStageLevelDesignView::OnInitialUpdate()
@@ -119,6 +140,10 @@ void GStageLevelDesignView::OnInitialUpdate()
 	mpGcMopAppear = (GStageLevelGridCtrl*)CGridCtrl::FunctionRegGet( gcMobAppearGridCtrlName )();
 	mpGcMopAppear->Create( rect, &mGpMopAppear, ID_GMobAppearGrid );
 
+	mpGcMassMopAppear = (GStageLevelGridCtrl*)CGridCtrl::FunctionRegGet( gcMassMobAppearGridCtrlName )();
+	mpGcMassMopAppear->Create( rect, &mGpMassMobAppear, ID_GMassMobAppearGrid );
+
+	
 	if( mLoadedStageLevel )
 		LoadStageLevel( &mLoadStageLevelValue );
 }
@@ -137,19 +162,22 @@ void GStageLevelDesignView::OnClickedDeleteMob()
 	{
 		mpGcMopAppear->DeleteRow( nRow );
 		mpGcMopAppear->Invalidate();
-	}	
+	}
 }
 
-#ifdef _DEBUG
-void GStageLevelDesignView::AssertValid() const
+void GStageLevelDesignView::OnBnClickedAddMassMob()
 {
-	GDesignFormView::AssertValid();
+	mpGcMassMopAppear->InsertRow();
+	mpGcMassMopAppear->Invalidate();
 }
 
-#ifndef _WIN32_WCE
-void GStageLevelDesignView::Dump(CDumpContext& dc) const
+
+void GStageLevelDesignView::OnBnClickedBtDeleteMassMob()
 {
-	GDesignFormView::Dump(dc);
+	int nRow = mpGcMassMopAppear->GetFocusCell().row;
+	if( nRow != -1 )
+	{
+		mpGcMassMopAppear->DeleteRow( nRow );
+		mpGcMassMopAppear->Invalidate();
+	}
 }
-#endif
-#endif //_DEBUG

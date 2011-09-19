@@ -127,6 +127,7 @@
     <ClInclude Include="GameDesignView.h" />
     <ClInclude Include="GDesignFormView.h" />
     <ClInclude Include="GGridCtrl.h" />
+    <ClInclude Include="GMassMobAppearGrid.h" />
     <ClInclude Include="GMobAppearGrid.h" />
     <ClInclude Include="GMobAttackLineGrid.h" />
     <ClInclude Include="GStageLevelDesignDefine.h" />
@@ -148,6 +149,7 @@
     <ClCompile Include="GameDesignView.cpp" />
     <ClCompile Include="GDesignFormView.cpp" />
     <ClCompile Include="GGridCtrl.cpp" />
+    <ClCompile Include="GMassMobAppearGrid.cpp" />
     <ClCompile Include="GMobAppearGrid.cpp" />
     <ClCompile Include="GMobAttackLineGrid.cpp" />
     <ClCompile Include="GtConvertString.cpp" />

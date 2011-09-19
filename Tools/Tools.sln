@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CocosTool", "CocosTool\Coco
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameDesign", "GameDesign\GameDesign.vcxproj", "{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GameDesignSetup", "GameDesignSetup\GameDesignSetup.vdproj", "{7C53A316-AD98-4DF5-95DA-04FBE99F047D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -24,6 +26,9 @@ Global
 		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Log|Win32.Build.0 = Release|Win32
 		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Release|Win32.ActiveCfg = Release|Win32
 		{57FFDFD8-C3EF-4A23-92F8-B846BB1C3DE3}.Release|Win32.Build.0 = Release|Win32
+		{7C53A316-AD98-4DF5-95DA-04FBE99F047D}.Debug|Win32.ActiveCfg = Debug
+		{7C53A316-AD98-4DF5-95DA-04FBE99F047D}.Log|Win32.ActiveCfg = Release
+		{7C53A316-AD98-4DF5-95DA-04FBE99F047D}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

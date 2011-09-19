@@ -10,11 +10,13 @@ class GStageLevelDesignView : public GDesignFormView
 protected:
 	CStatic mGpMobAttackLine;
 	CStatic mGpMopAppear;
+	CStatic mGpMassMobAppear;
 	CEdit mEtStageNumber;
 	CEdit mEtBossMobIndex;
 	CEdit mEtCastleHP;
 	GStageLevelGridCtrl* mpGcMopAppear;
 	GStageLevelGridCtrl* mpGcMobAttackLine;
+	GStageLevelGridCtrl* mpGcMassMopAppear;
 	bool mLoadedStageLevel;
 	GStageLevel mLoadStageLevelValue;
 	UINT mStageNumber;
@@ -42,18 +44,8 @@ protected:
 
 protected:
 	virtual void OnInitialUpdate();
-	
-
-protected:
-	GStageLevelDesignView();           // 동적 만들기에 사용되는 protected 생성자입니다.
-	virtual ~GStageLevelDesignView();
-
-protected:
-	afx_msg void OnClickedAddMob();
-	afx_msg void OnClickedDeleteMob();	
-
-
-
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 public:
 	enum { IDD = IDD_GSTAGELEVELDESIGNVIEW };
 #ifdef _DEBUG
@@ -64,10 +56,16 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
+	GStageLevelDesignView();           // 동적 만들기에 사용되는 protected 생성자입니다.
+	virtual ~GStageLevelDesignView();
+
+protected:
+	afx_msg void OnClickedAddMob();
+	afx_msg void OnClickedDeleteMob();	
+	afx_msg void OnBnClickedAddMassMob();
+	afx_msg void OnBnClickedBtDeleteMassMob();
 
 	DECLARE_MESSAGE_MAP()
-public:
 
 
 };

@@ -65,12 +65,27 @@ void GStageLevel::LoadStream(GnStream* pStream)
 		pStream->LoadStream( attline.mIntervalAppearTime );
 		AddAttackLine( attline );
 	}
+
+	if( pStream->GetFileVersion() > GnStream::GetVersion( 1, 0, 0, 2 ) )
+	{
+		pStream->LoadStream( count );
+		for( gtuint i = 0 ; i < count ; i++ )
+		{
+			GStageLevel::MassAppearMob mob;
+			pStream->LoadStream( mob.mIndex );
+			pStream->LoadStream( mob.mLevel );
+			pStream->LoadStream( mob.mNumLine );
+			pStream->LoadStream( mob.mAppearTime );
+			AddMassAppearMob( mob );
+		}
+	}
 }
 
 void GStageLevel::SaveStream(GnStream* pStream)
 {
 	pStream->SaveStream( mLevelIndex );
 	pStream->SaveStream( mBossMobIndex );
+	pStream->SaveStream( mCastleHP );
 
 	guint32 count = GetAppearMobCount();
 	pStream->SaveStream( count );
@@ -90,5 +105,16 @@ void GStageLevel::SaveStream(GnStream* pStream)
 		pStream->SaveStream( attline.mNumLine );
 		pStream->SaveStream( attline.mStartAppearTime );
 		pStream->SaveStream( attline.mIntervalAppearTime );
+	}
+
+	count = GetMassAppearMobCount();
+	pStream->SaveStream( count );
+	for( gtuint i = 0 ; i < count ; i++ )
+	{
+		GStageLevel::MassAppearMob& mob = GetMassAppearMob( i );
+		pStream->SaveStream( mob.mIndex );
+		pStream->SaveStream( mob.mLevel );
+		pStream->SaveStream( mob.mNumLine );
+		pStream->SaveStream( mob.mAppearTime );
 	}
 }

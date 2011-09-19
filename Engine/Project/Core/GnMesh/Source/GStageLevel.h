@@ -19,12 +19,22 @@ public:
 		guint32 mLevel;
 		guint32 mIntervalAppearPercent;
 	};
+
+	class MassAppearMob
+	{
+	public:
+		guint32 mIndex;
+		guint32 mLevel;
+		guint32 mNumLine;
+		float mAppearTime;
+	};
 protected:
 	guint32 mLevelIndex;
 	guint32 mBossMobIndex;
 	guint32 mCastleHP;
 	GnTPrimitiveArray<AppearMob> mAppearMobs;
 	GnTPrimitiveArray<AttackLine> mAttackLines;
+	GnTPrimitiveArray<MassAppearMob> mMassAppearMobs;
 
 public:
 	static GStageLevel* CreateStageLevel(guint32 uiStageLevel);
@@ -53,6 +63,9 @@ public:
 	inline guint32 GetCastleHP() {
 		return mCastleHP;
 	}
+	inline void SetCastleHP(guint32 val) {
+		mCastleHP = val;
+	}
 	inline gtuint GetAppearMobCount() {
 		return mAppearMobs.GetSize();
 	}
@@ -70,6 +83,15 @@ public:
 	}
 	inline void AddAttackLine(GStageLevel::AttackLine cMob) {
 		mAttackLines.Add( cMob );
+	}
+	inline gtuint GetMassAppearMobCount() {
+		return mMassAppearMobs.GetSize();
+	}
+	inline GStageLevel::MassAppearMob& GetMassAppearMob(gtuint uiIndex) {
+		return mMassAppearMobs.GetAt( uiIndex );
+	}
+	inline void AddMassAppearMob(GStageLevel::MassAppearMob cMob) {
+		mMassAppearMobs.Add( cMob );
 	}
 };
 

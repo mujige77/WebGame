@@ -2,7 +2,9 @@
 #include "GToolEBM.h"
 #include "GMobAppearGrid.h"
 #include "GMobAttackLineGrid.h"
+#include "GMassMobAppearGrid.h"
 #include "GStageLevelDesignView.h"
+
 
 #include <GnSystemEBM.h>
 #include <GnMainEBM.h>
@@ -12,6 +14,7 @@ void GToolEBM::StartupEBM()
 {
 	SaveClass(GMobAttackLineGrid);
 	SaveClass(GMobAppearGrid);
+	SaveClass(GMassMobAppearGrid);
 	
 	RegFormView(GStageLevelDesignView);
 
