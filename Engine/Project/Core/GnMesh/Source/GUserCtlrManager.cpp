@@ -62,13 +62,17 @@ void GUserCtlrManager::Init()
 	float saveScale = GetGameState()->GetGameScale();
 	GetGameState()->SetGameScale( DEFAULT_SCALE );
 	mpUserCtlr = GUserController::Create( "C1", 1 );
-	GetGameState()->SetGameScale( saveScale );
-	AddActorCtlr( mpUserCtlr );
+	GetGameState()->SetGameScale( saveScale );	
 	
 	GetGameEnvironment()->CreateActorControllerBasicAction( mpUserCtlr );
 	GetGameEnvironment()->UserMove( mpUserCtlr );
-	GetGameEnvironment()->SetStartPositionToActor( mpUserCtlr, 0 );
 	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), mpUserCtlr );	
+	GetGameEnvironment()->SetStartPositionToActor( mpUserCtlr, 1, 0 );	
+	
+	GnVector2 pos = mpUserCtlr->GetPosition();
+	pos.x = 50.0f;
+	mpUserCtlr->SetPosition( pos );
+	AddActorCtlr( mpUserCtlr );
 	
 	mpButtonGroup = mpInterfaceLayer->CreateInterface( (gtuint)GInterfaceLayer::UI_MAIN_CONTROLLERS,
 		  &mMoveInputEvent );
@@ -91,7 +95,7 @@ void GUserCtlrManager::Move(GnInterface* pInterface, GnIInputEvent* pEvent)
 	
 	// stop check
 	bool setStand = true;
-	for ( gtuint i = 0; i < GActionMove::MOVE_MAX; i++ )
+	for ( gtuint i = 0; i < GInterfaceLayer::MOVE_NUM; i++ )
 	{
 		if( mpButtonGroup->GetChild( i )->IsPush() )
 		{
@@ -120,33 +124,45 @@ void GUserCtlrManager::Move(GnInterface* pInterface, GnIInputEvent* pEvent)
 	}
 	
 	move->CleanMove();
-	bool moveLeft = mpButtonGroup->GetChild( GActionMove::MOVELEFT )->IsPush() 
-		|| mpButtonGroup->GetChild( GActionMove::MOVELEFTUP )->IsPush()
-		|| mpButtonGroup->GetChild( GActionMove::MOVELEFTDOWN )->IsPush();
-	bool moveRight = mpButtonGroup->GetChild( GActionMove::MOVERIGHT )->IsPush()
-		|| mpButtonGroup->GetChild( GActionMove::MOVERIGHTUP )->IsPush()
-		|| mpButtonGroup->GetChild( GActionMove::MOVERIGHTDOWN )->IsPush();
+	bool moveLeft = mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFT )->IsPush() 
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTSMALL )->IsPush() 
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTUP )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTUPSMALL )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTDOWN )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTDOWNSMALL )->IsPush();
+	bool moveRight = mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHT )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTSMALL )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTUP )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTUPSMALL )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTDOWN )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTDOWNSMALL )->IsPush();
 	move->SetMoveX( moveLeft, moveRight );
 	
-	bool moveUp = mpButtonGroup->GetChild( GActionMove::MOVEUP )->IsPush() 
-		|| mpButtonGroup->GetChild( GActionMove::MOVELEFTUP )->IsPush()
-		||  mpButtonGroup->GetChild( GActionMove::MOVERIGHTUP )->IsPush(); 
-	bool moveDown = mpButtonGroup->GetChild( GActionMove::MOVEDOWN )->IsPush()
-		|| mpButtonGroup->GetChild( GActionMove::MOVELEFTDOWN )->IsPush()
-		|| mpButtonGroup->GetChild( GActionMove::MOVERIGHTDOWN )->IsPush();
+	bool moveUp = mpButtonGroup->GetChild( GInterfaceLayer::MOVEUP )->IsPush() 
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVEUPSMALL )->IsPush() 
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTUP )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTUPSMALL )->IsPush()
+		||  mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTUP )->IsPush()
+		||  mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTUPSMALL )->IsPush(); 
+	bool moveDown = mpButtonGroup->GetChild( GInterfaceLayer::MOVEDOWN )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVEDOWNSMALL )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTDOWN )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVELEFTDOWNSMALL )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTDOWN )->IsPush()
+		|| mpButtonGroup->GetChild( GInterfaceLayer::MOVERIGHTDOWNSMALL )->IsPush();
 	
 	move->SetMoveY( moveUp, moveDown );
 }
 
 void GUserCtlrManager::SkillInput(GnInterface* pInterface, GnIInputEvent* pEvent)
 {
-	if( pEvent->GetEventType() != GnIInputEvent::PUSHUP )
+	if( pEvent->GetEventType() != GnIInputEvent::PUSH )
 		return;
-	
 
 	GFarAttack* attack =  GFarAttack::CreateAttack( (gtuint)pInterface->GetTegID() );
 	if( attack && attack->GetBasicStartPosition() == GFarAttack::eUserPosition )
 	{
+		attack->SetFilpX( mpUserCtlr->GetMesh()->GetFlipX() );
 		attack->SetPosition( mpUserCtlr->GetPosition() );
 		AddFarAttack( attack, (int)(GetGameState()->GetGameHeight() - mpUserCtlr->GetPosition().y) );
 	}
@@ -162,7 +178,7 @@ void GUserCtlrManager::SkillInput(GnInterface* pInterface, GnIInputEvent* pEvent
 		if( pos )
 		{
 			GnVector2 effectPos = mpUserCtlr->GetMesh()->GetPosition() + pos->GetValueVector2();
-			
+			attack->SetFilpX( mpUserCtlr->GetMesh()->GetFlipX() );
 			attack->SetPosition( effectPos );
 			AddFarAttack( attack, (int)(GetGameState()->GetGameHeight() - mpUserCtlr->GetPosition().y) );
 		}

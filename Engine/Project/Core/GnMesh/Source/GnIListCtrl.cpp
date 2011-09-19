@@ -176,6 +176,7 @@ void GnIListCtrl::PushUp()
 	GnInterfaceGroup::PushUp();
 	if( mMoveType == eMoveUpDown )
 	{
+		GnLogA( "GnIListCtrl PushUp" );
 		if( mListItems.GetSize() )
 		{
 			GnTObjectArray<GnIListCtrlItemPtr>* columns = mListItems.GetAt( 0 );

@@ -17,7 +17,7 @@ public:
 	
 public:
 	void Update(float fTime);
-	//void SetPosition(GnVector2 cPos);
+	void SetPosition(GnVector2 cPos);
 };
 
 

@@ -16,8 +16,10 @@ class GMultiShootAttack : public GShootAttack
 	GnDeclareCreateAttack;
 	
 protected:
+	GnTPrimitiveArray<GActorController*> mAttackToActors;
 	GnVector2 mShootDirection;
 	GnTimer mShootTimer;
+	
 public:
 	static GFarAttack* CreateAttack(guint32 uiIndex);
 	
@@ -28,6 +30,15 @@ public:
 	virtual inline void EndedAttackTo() {
 		if( GetCurrentAttackCount() >= GetAttackCount() )
 			SetIsEnableAttack( false );
+	}
+	virtual inline gtuint GetAttackedControllerSize() {
+		return mAttackToActors.GetSize();
+	}
+	virtual inline GActorController* GetAttackedController(gtuint uiIndex) {
+		return mAttackToActors.GetAt( uiIndex );
+	}
+	virtual inline void AddToAttackController(GActorController* pController) {
+		mAttackToActors.Add( pController );
 	}
 };
 

@@ -1,5 +1,6 @@
 #include "GnGamePCH.h"
 #include "GMultiShootAttack.h"
+#include "GGameDefine.h"
 
 void GMultiShootAttack::RegisterCreateFunction()
 {
@@ -17,8 +18,13 @@ GFarAttack* GMultiShootAttack::CreateAttack(guint32 uiIndex)
 	attck->CreateAttackMesh( 23 );
 	attck->InitShooting( 3.0f, 0.0f );
 	attck->SetAttackCount( 3 );
-	attck->GetAttackDamageInfo()->SetDamage( 15 );
-	attck->GetAttackDamageInfo()->SetDamageFileIndex( 25 );
 	attck->SetOriginalAttackRect( GnFRect(20.0f, -5.0f, 25.0f, 3.0f ) );
+	
+	if( uiIndex == eIndexItemMissile )
+	{
+		guint32 level = GUserAbility::GetAbilityLevel( eIndexSkillUp );
+		attck->GetAttackDamageInfo()->SetDamage( 10 + level * 5  );
+		attck->GetAttackDamageInfo()->SetDamageFileIndex( 25 );
+	}
 	return attck;
 }

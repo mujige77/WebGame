@@ -8,16 +8,24 @@ class GInfoEnemyBasic : public GInfoBasic
 public:
 	enum eEnemyColType
 	{
-		ENEMYCOL_MAX = GInfoBasic::COL_MAX,
+		COL_DROPMONEY = GInfoBasic::COL_MAX,
+		ENEMYCOL_MAX,
 	};
 	
-public:
+private:
+	guint32 mDropMoney;
 
+public:
+	inline guint32 GetDropMoney() {
+		return mDropMoney;
+	}
+	
 protected:
 	void LoadDataFromQuery(GnSQLiteQuery* pQuery);
 	inline virtual const gchar* GetUseDatabaseTableName() {
 		return "EnemyBasicInfo";
 	}
+
 };
 
 #endif

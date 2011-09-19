@@ -65,6 +65,7 @@ void GLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
 			GnInterface* child = mInterfaceChildren.GetAt( i );
 			if( child->Push( touchPoint.x, touchPoint.y ) )
 			{
+				child->SetCurrentTouch( touch );
 				break;
 			}
 		}
@@ -91,7 +92,8 @@ void GLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
 		{
 			GnInterface* child = mInterfaceChildren.GetAt( i );
-			child->PushMove( touchPoint.x, touchPoint.y );
+			if( touch == child->GetCurrentTouch() )
+				child->PushMove( touchPoint.x, touchPoint.y );
 		}
 	}
 }
@@ -116,8 +118,16 @@ void GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 		for ( gtuint i = 0 ; i < mInterfaceChildren.GetSize(); i++ )
 		{
 			GnInterface* child = mInterfaceChildren.GetAt( i );
-			if( child->PushUp( touchPoint.x, touchPoint.y ) )
-				break;
+			if( touch == child->GetCurrentTouch() )
+			{
+			   if( child->PushUp( touchPoint.x, touchPoint.y ) )
+				   break;
+			}
+			else
+			{
+				child->PushUpPersonalChildren( touchPoint.x, touchPoint.y );
+			}
+				
 		}
 	}
 }

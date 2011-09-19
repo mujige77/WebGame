@@ -7,3 +7,4 @@
 #include "GAction.h"
 #include "GCastle.h"
 #include "GActorCtlrManager.h"
+#include "GUserAbility.h"

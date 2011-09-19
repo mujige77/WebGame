@@ -6,6 +6,8 @@ const gchar* GScene::SCENENAME_START = "StartScene";
 const gchar* GScene::SCENENAME_STATE = "StateScene";;
 const gchar* GScene::SCENENAME_SELECTSTAGE = "SelectStageScene";
 const gchar* GScene::SCENENAME_GAME = "GameScene";
+const gchar* GScene::SCENENAME_OPENING = "OpeningScene";
+const gchar* GScene::SCENENAME_LOADING = "LoadingScene";
 
 gstring GScene::mChangeSceneName;
 GScene* GScene::smpCurrentScene = NULL;

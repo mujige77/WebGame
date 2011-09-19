@@ -26,6 +26,7 @@ protected:
 	FILE* mpFile;
 	char* mpBuffer;
 	eOpenMode mMode;	
+	guint mNumber;
 
 public:
 	virtual ~GnFile();

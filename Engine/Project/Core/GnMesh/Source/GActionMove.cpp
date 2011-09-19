@@ -13,9 +13,16 @@ GActionMove::GActionMove(GActorController* pController) : GAction( pController )
 
 void GActionMove::Update(float fDeltaTime)
 {
-	GnVector2 movePos = GetController()->GetPosition();
-	movePos +=  GetMoveVector();
-	GetController()->SetMovePosition( movePos );
+	GnVector2 movePos = GetMoveVector() + GetController()->GetMoveDeltaPosition();
+	GetController()->SetMoveDeltaPosition( movePos );
+
+	if( ( GetMoveUp() || GetMoveDown() ) && GetActorLayer() )
+	{
+		GnVector2 controllerPos = GetController()->GetPosition();
+		controllerPos +=  movePos;
+		GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
+		  , (gint)(GetGameState()->GetGameHeight() - controllerPos.y) );
+	}
 }
 
 void GActionMove::SetMove(gtuint uiType)

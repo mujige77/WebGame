@@ -7,4 +7,8 @@ void GInfoForcesBasic::LoadDataFromQuery(GnSQLiteQuery *pQuery)
 {
 	GnAssert( pQuery->GetColumnCount() == FORCESCOL_MAX );
 	GInfoBasic::LoadDataFromQuery( pQuery );
+	
+	guint32 abLevel = GUserAbility::GetAbilityLevel( eIndexUnitSpeed );
+	float flise = (float)pQuery->GetFloatField( COL_LISESPEED );
+	mMoveSpeed += abLevel * flise;
 }

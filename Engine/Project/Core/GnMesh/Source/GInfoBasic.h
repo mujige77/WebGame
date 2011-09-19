@@ -17,15 +17,18 @@ public:
 		COL_LISEHP,
 		COL_LISEPOWER,
 		COL_LISESPEED,
+		COL_LISEATTACKSPEED,
+		COL_PUSH,
 		COL_MAX,
 	};
-private:
+protected:
 	gint32 mHP;
 	guint32 mStrength;
 	float mMoveSpeed;
 	float mAttackSpeed;
 	gint32 mAttackType;
 	guint32 mAttackCount;
+	guint32 mPush;
 	
 public:
 	virtual void LoadDataFromQuery(GnSQLiteQuery* pQuery);
@@ -68,6 +71,12 @@ public:
 		return mAttackCount;
 	}
 	inline void SetAttackCount(guint32 val) {
+		mAttackCount = val;
+	}
+	inline guint32 GetPush() {
+		return mAttackCount;
+	}
+	inline void SetPush(guint32 val) {
 		mAttackCount = val;
 	}
 };

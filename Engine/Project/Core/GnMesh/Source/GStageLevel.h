@@ -17,15 +17,17 @@ public:
 	public:
 		guint32 mIndex;
 		guint32 mLevel;
-		float mIntervalAppearTime;
+		guint32 mIntervalAppearPercent;
 	};
 protected:
 	guint32 mLevelIndex;
 	guint32 mBossMobIndex;
+	guint32 mCastleHP;
 	GnTPrimitiveArray<AppearMob> mAppearMobs;
 	GnTPrimitiveArray<AttackLine> mAttackLines;
 
 public:
+	static GStageLevel* CreateStageLevel(guint32 uiStageLevel);
 	static GStageLevel* CreateStageLevel(const gchar* pcFilePath);
 
 public:
@@ -47,6 +49,9 @@ public:
 	}
 	inline void SetBossMobIndex(guint32 val) {
 		mBossMobIndex = val;
+	}
+	inline guint32 GetCastleHP() {
+		return mCastleHP;
 	}
 	inline gtuint GetAppearMobCount() {
 		return mAppearMobs.GetSize();

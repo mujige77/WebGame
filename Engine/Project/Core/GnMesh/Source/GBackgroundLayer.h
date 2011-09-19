@@ -7,7 +7,8 @@ class GBackgroundLayer : public GLayer
 protected:
 	CCPoint mLastBackgroundMovePostion;
 	GnIRect mBackgroundRect;
-
+	bool mIsMoveBackground;
+	CCTouch* mpCurrentTouch;
 public:
 	inline static GBackgroundLayer* Create(const gchar* pcName) {
 		CCSprite* sprite = CCSprite::spriteWithFile( pcName );		

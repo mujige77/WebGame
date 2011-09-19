@@ -36,4 +36,5 @@ public:
 		mLabelMaxLevel.SetNumber( val );
 	}
 };
+
 #endif

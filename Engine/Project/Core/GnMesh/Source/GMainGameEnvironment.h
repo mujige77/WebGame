@@ -9,7 +9,6 @@ class GMainGameEnvironment : public GGameEnvironment
 private:
 	GnTPrimitiveArray<float> mLines;
 	GnFRect mEnableMoveRect;
-	gtuint mNumUserLine;
 	
 public:
 	static GMainGameEnvironment* Create();
@@ -19,9 +18,9 @@ public:
 public:
 	bool SetStage(gtuint uiNumStage);
 	void Reset();
-	bool CorrectMoveX(float& fPositionX);
+	bool CorrectMoveX(float& fPositionX, bool uiDirection, bool bUser = false);
 	bool CorrectMoveY(float& fPositionY);
-	void SetStartPositionToActor(GActorController* pActorCtlr, gtuint uiDirection);
+	void SetStartPositionToActor(GActorController* pActorCtlr, guint32 uiLine, gtuint uiDirection);
 	void UserMove(GActorController* pActorCtlr);
 public:
 	void AddLine(float fLinePos) { // lower to upper
@@ -38,14 +37,6 @@ public:
 	void SetEnableMoveRect(GnFRect cRect) {
 		mEnableMoveRect = cRect;
 	}
-	inline void SetNumUserLine(gtuint uiLine) {
-		mNumUserLine = uiLine;
-	};
-	inline gtuint GetNumUserLine() {
-		return mNumUserLine;
-	}
-	
-
 	
 protected:
 	inline GMainGameEnvironment(){};

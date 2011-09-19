@@ -21,11 +21,12 @@ public:
 	static GFarAttack* CreateAttack(guint32 uiIndex);
 
 public:
+	void InitShooting(float fDirectionX, float fDirectionY);
+	
+public:
 	virtual void Update(float fTime);
 	virtual void SetPosition(GnVector2 cPos);
-	
-protected:
-	void InitShooting(float fDirectionX, float fDirectionY);
+	virtual void SetFilpX(bool val);
 };
 
 

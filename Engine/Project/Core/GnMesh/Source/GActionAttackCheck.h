@@ -19,6 +19,7 @@ class GActionAttackCheck : public GAction
 		MASK_READYATTACK = 0x000001, // ready attack
 		MASK_ENABLEATTACK = 0x000002, // i'm ready send attack message to my enemy
 		MASK_WAITATTACKANI = 0x000004, // Sended attack meassage, wait end attack animation
+		MASK_WAITATTACKTIME = 0x000008, // wait over attack time after ready attack, if fail collision check false
 	};
 public:
 	enum
@@ -30,10 +31,13 @@ private:
 	gtuint mAttackAniIndex;
 	gtuint mNumAttackLine;
 	gtuint mEnableAttackCount;
+	float mAttackSpeed;
+	float mAcumAttackTime;
 	
 public:
 	GActionAttackCheck(GActorController* pController);
-	bool CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect);
+	void Update(float fTime);
+	bool CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect, bool bDetailCheck);
 	
 public:
 	inline gtuint GetAttackAniIndex() {
@@ -61,13 +65,29 @@ public:
 	inline void SetIsEnableAttack(bool val) {
 		SetBit( val, MASK_ENABLEATTACK );
 	}
-
+	
+	inline bool IsWaitAttackTime() {
+		return GetBit( MASK_WAITATTACKTIME );
+	}
+	
+	inline void SetIsWaitAttackTime(bool val) {
+		SetBit( val, MASK_WAITATTACKTIME );
+	}
+	inline void SetAttackSpeed(float val) {
+		mAttackSpeed = val;
+	}
+	inline void ResetAttackTime() {
+		mAcumAttackTime = 0.0f;
+	}
 public:
 	inline gtuint GetEnableAttackCount() {
 		return mEnableAttackCount;
 	}
 	inline void SetEnableAttackCount(gtuint val) {
 		mEnableAttackCount = val;
+	}
+	inline bool IsOverAttackTime() {
+		return mAttackSpeed < mAcumAttackTime;
 	}
 	
 public:

@@ -69,6 +69,11 @@ Gn2DMeshObject* Gn2DMeshObject::CreateFullPath(const gchar* pcFullPath, bool bUs
 		meshObject->GetMesh()->setScale( GetGameState()->GetGameScale() );
 		meshObject->SetVisible( true );
 	}
+	else
+	{
+		stream.Load( pcFullPath );
+		return NULL;
+	}
 	meshObject->SetRootMeshFromTextureAniCtlr();
 	meshObject->Create2DAVData( meshObject->GetSize() );
 	return meshObject;

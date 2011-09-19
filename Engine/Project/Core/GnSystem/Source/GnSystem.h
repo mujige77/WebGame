@@ -53,6 +53,7 @@
 #include "GnPath.h"
 #include "GnSingletonManager.h"
 #include "GnTimer.h"
+#include "GnStandardFunction.h"
 namespace GnSystem
 {
 	GNSYSTEM_ENTRY void SetWorkDirectory(const gchar* pcVal);

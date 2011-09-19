@@ -3,56 +3,84 @@
 #include "GEnemyCtlrManager.h"
 #include "GEnemyController.h"
 #include "GActionMove.h"
+#include "GStageLevelManager.h"
 #include <GFileList.h>
+#include "GPlayingDataManager.h"
+#include "GInfoEnemyBasic.h"
 
-GEnemyCtlrManager* GEnemyCtlrManager::CreateActorCtlrManager(GLayer* pLayer, GCastle* pCastle)
+GEnemyCtlrManager* GEnemyCtlrManager::CreateActorCtlrManager(GLayer* pLayer, GStageLevelManager* pStageLevelManager
+	, GCastle* pCastle)
 {
-	GEnemyCtlrManager* ctlrManager = GnNew GEnemyCtlrManager( pLayer, pCastle );
+	GEnemyCtlrManager* ctlrManager = GnNew GEnemyCtlrManager( pLayer, pStageLevelManager, pCastle );
+	GStageLevel* stageLevel = pStageLevelManager->GetStageLevel();
+	if( pCastle )
+	{
+		pCastle->SetHP( stageLevel->GetCastleHP() );
+		pCastle->SetCurrentHP( stageLevel->GetCastleHP() );
+	}
+		
 	return ctlrManager;
 }
 
-GEnemyCtlrManager::GEnemyCtlrManager(GLayer* pLayer, GCastle* pCastle) : GActorCtlrManager( pLayer, pCastle )
+GEnemyCtlrManager::GEnemyCtlrManager(GLayer* pLayer, GStageLevelManager* pStageLevelManager, GCastle* pCastle)
+	: GActorCtlrManager( pLayer, pCastle ), mpStageLevelManager(pStageLevelManager )
 {
-	srand( 10000 );
-	mNewEnemyTimeEvent.Reset( 1.0f );
+	mEnableDropMoneyTime.SetPercentTime( 30000.0f );
+}
+
+GEnemyCtlrManager::~GEnemyCtlrManager()
+{
+	if( mpStageLevelManager )
+		GnDelete mpStageLevelManager;
 }
 
 void GEnemyCtlrManager::Update(float fDeltaTime)
 {
 	GActorCtlrManager::Update( fDeltaTime );
 	
-	if( mNewEnemyTimeEvent.UpdateEvent( fDeltaTime ) )
+	mpStageLevelManager->Update( fDeltaTime );
+	
+	mEnableDropMoneyTime.Update(  fDeltaTime  );
+		
+	static int ikj = 0;
+	for( gtuint i = 0 ; i < mpStageLevelManager->GetReadyAppearMobCount() ; i++ )
 	{
-		mNewEnemyTimeEvent.Reset( 5.0f );
-		CreateEnemy();
+		GStageLevelManager::ReadyAppearMobCtrl& mob = mpStageLevelManager->GetReadyAppearMob( i );
+		//if( ikj == 0 )
+		CreateEnemy( mob.index, mob.level, mob.line );
+		//ikj++;
 	}
+	mpStageLevelManager->RemoveAllReadyAppearMob();
 }
 
-void GEnemyCtlrManager::CreateEnemy()
+void GEnemyCtlrManager::RemoveAndDeleteActorCtlr(gtuint uiIndex)
 {
-	int numID = GetActorIndex( rand() % GetActorIndexSize() );
-	const gchar* idName = GetFileList()->GetEnemyFileName( numID );
-	GnAssert( idName );
+	if( mEnableDropMoneyTime.IsPullTime() == false )
+	{
+		GInfoEnemyBasic* basic = (GInfoEnemyBasic*)GetActorCtlr( uiIndex )->GetInfoComponent( GInfo::INFO_BASIC );
+		mDropMoney += basic->GetDropMoney() + 1 + GUserAbility::GetAbilityLevel( eIndexMoney ) ;	
+	}
 	
+	GActorCtlrManager::RemoveAndDeleteActorCtlr( uiIndex );
+}
+
+void GEnemyCtlrManager::CreateEnemy(guint32 uiIndex, guint32 uiLevel, guint32 uiLine)
+{
+	const gchar* idName = GetFileList()->GetEnemyFileName( uiIndex );
+	if( idName == NULL )
+	{
+		GnAssert( idName );
+		return;
+	}
 	
-	GEnemyController* controller = GEnemyController::Create( idName, 1 );
+	GEnemyController* controller = GEnemyController::Create( idName, uiLevel );
 	GetGameEnvironment()->CreateActorControllerBasicAction( controller );
-	GetGameEnvironment()->SetStartPositionToActor( controller, 1 );
 	GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
+	GetGameEnvironment()->SetStartPositionToActor( controller, uiLine, 1 );	
 	
 	GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
 	move->SetMove( GActionMove::MOVELEFT );
 	move->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );
-		
-//	Gn2DSequence* attackSequence = NULL;
-//	GnVerify( controller->GetActor()->GetSequence( GAction::ACTION_ATTACK
-//		, attackSequence ) );
-//	Gn2DAVData* avData = attackSequence->GetAVData();
-//	if( avData->GetCollisionCount() <= 1 )
-//	{
-//		avData->FlipX( true, controller->GetMesh()->GetOriginalPosition().x );
-//	}
-
 	
 	AddActorCtlr( controller );
 }

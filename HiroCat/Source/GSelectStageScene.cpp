@@ -88,8 +88,9 @@ void GSelectStageScene::InputEvent(GnInterface* pInterface, GnIInputEvent* pEven
 			{
 				gtuint pageItemSize = mpListPageCtrl->GetColumnSize() * mpListPageCtrl->GetRowSize();
 				gtuint rowSize = mpListPageCtrl->GetRowSize();
+				gtuint colSize = mpListPageCtrl->GetColumnSize();
 				gtuint numStage = ( mpListPageCtrl->GetCurrentPage() * pageItemSize )
-					+ ( ( listItme->GetNumColumn() * rowSize ) + listItme->GetNumRow() );
+					+ ( ( listItme->GetNumRow() * colSize ) + listItme->GetNumColumn() );
 				
 				SelectStage( numStage );
 			}

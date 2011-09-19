@@ -45,6 +45,8 @@ private:
 	bool mIsDamage;
 	float mDamageEffectTime;
 	float mDamageEffectAcumTime;
+	GnTimer mAutoRecoveryHPTimer;
+	gint32 mAutoRecoveryHP;
 	
 public:
 	void Update(float fTime);
@@ -81,6 +83,7 @@ protected:
 		, GStageInfo::GCastlePositions* pPositions);
 	void SetCurrentState();
 	void SetStopDamageEffect();
+	void UpdateHP(float fTime);
 	
 protected:
 	inline void SetGageIcon(GnInterface* pGageIcon) {
@@ -94,6 +97,12 @@ protected:
 	}
 	inline GnIProgressBar* GetCastleGege() {
 		return mpCastleGage;
+	}
+	inline gint32 GetAutoRecoveryHP() {
+		return mAutoRecoveryHP;
+	}
+	inline void SetAutoRecoveryHP(gint32 uiHP) {
+		mAutoRecoveryHP = uiHP;
 	}
 };
 

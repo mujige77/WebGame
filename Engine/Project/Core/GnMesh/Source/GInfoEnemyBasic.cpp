@@ -7,4 +7,6 @@ void GInfoEnemyBasic::LoadDataFromQuery(GnSQLiteQuery *pQuery)
 {
 	GnAssert( pQuery->GetColumnCount() == ENEMYCOL_MAX );
 	GInfoBasic::LoadDataFromQuery( pQuery );
+	
+	mDropMoney = pQuery->GetIntField( COL_DROPMONEY );
 }

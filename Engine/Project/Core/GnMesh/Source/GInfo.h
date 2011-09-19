@@ -13,12 +13,18 @@ public:
 		INFO_BASIC,
 		INFO_MAX,
 	};
+private:
+	guint32 mLevel;
 	
 public:
 	bool LoadDataFromSql(const gchar* pcID, const guint32 uiLevel, GnSQLite* pSql);
 	
 	virtual inline gtint GetInfoType() {
 		return GInfo::NULL_TYPE;
+	}
+	
+	inline guint32 GetLevel() {
+		return mLevel;
 	}
 protected:
 	virtual void LoadDataFromQuery(GnSQLiteQuery* pQuery) = 0;

@@ -45,7 +45,7 @@ bool GMainGameEnvironment::SetStage(gtuint uiNumStage)
 	for( gtuint i = 0 ; i < GetStageInfo()->GetNumLine() ; i++ )
 	{
 		GnFRect lineRect = GetStageInfo()->GetLineRect( i );
-		AddLine( lineRect.bottom );
+		AddLine( lineRect.bottom + ( GetStageInfo()->GetLineHeight() / 2 ) );
 	}
 	
 	GMainGameEnvironment::GetSingleton()->SetMoveRangeY( GetStageInfo()->GetLineHeight() );
@@ -57,17 +57,31 @@ void GMainGameEnvironment::Reset()
 	mLines.RemoveAll();
 }
 
-bool GMainGameEnvironment::CorrectMoveX(float& fPositionX)
+bool GMainGameEnvironment::CorrectMoveX(float& fPositionX, bool uiDirection, bool bUser)
 {
 	bool ret = true;
-	if( mEnableMoveRect.ContainsPointX( fPositionX ) == false )
+	float userRect = 0.0f;
+	if( uiDirection )
 	{
-		if( fPositionX <= mEnableMoveRect.left )
-			fPositionX = mEnableMoveRect.left;
-		else
-			fPositionX = mEnableMoveRect.right;
-		ret = false;
+		if( bUser == true )
+			userRect = 50.0f;
+		if( fPositionX <= mEnableMoveRect.left + userRect)
+		{
+			fPositionX = mEnableMoveRect.left + userRect;
+			ret = false;
+		}
 	}
+	else
+	{
+		if( bUser == true )
+			userRect = 110.0f;
+		if( fPositionX >= mEnableMoveRect.right - userRect)
+		{
+			fPositionX = mEnableMoveRect.right - userRect;
+			ret = false;
+		}
+	}
+	
 //	gtuint size = mLines.GetSize();
 //	float maxLinePos = mLines.GetAt( size - 1 );
 //	float minLinePos = mLines.GetAt( 0 );
@@ -98,34 +112,34 @@ bool GMainGameEnvironment::CorrectMoveY(float& fPositionY)
 	return ret;
 }
 
-void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr, gtuint uiDirection)
+void GMainGameEnvironment::SetStartPositionToActor(GActorController* pActorCtlr, guint32 uiLine, gtuint uiDirection)
 {
 	
-	static gtint rendLinePosX = GetStageInfo()->GetLineHeight() / 3;
+	static gtint rendLinePosX = GetStageInfo()->GetLineHeight() / 4;
 	static gtint rendLine = rendLinePosX;
 	if( rendLine == rendLinePosX )
-		rendLine = rendLinePosX + rendLinePosX - 5;
-	else if( rendLine == 5 )
-		rendLine = rendLinePosX;
+		rendLine = 0;
+	else if( rendLine == 0 )
+		rendLine = -rendLinePosX;
 	else
-		rendLine = 5;
+		rendLine = rendLinePosX;
 	
-	guint numLine = GetNumUserLine();
+//	guint numLine = GetNumUserLine();
 	GnVector2 pos( 0.0f, 0.0f );
 	if( uiDirection == 1 )
 	{
 		pos.x = GetStageInfo()->GetBackgroundSize().x;
-		numLine = rand() % GetLineCount();
 	}
-
+	pos.y = GetLine( uiLine ) + (float)rendLine;
+	
+	
 	GActionAttackCheck* attackCheck = (GActionAttackCheck*)pActorCtlr->GetActionComponent( GAction::ACTION_ATTACKCHECK );
 	if( attackCheck )
-		attackCheck->SetAttackLine( numLine );
+		attackCheck->SetAttackLine( uiLine );
 
 	GMainGameMove* moveAction = (GMainGameMove*)pActorCtlr->GetActionComponent( GAction::ACTION_MOVE );
-	moveAction->SetNumLine( numLine );
+	moveAction->SetNumLine( uiLine );
 	
-	pos.y = GetLine( numLine ) + (float)rendLine;
 	pActorCtlr->SetPosition( pos );
 	pActorCtlr->Start();
 }

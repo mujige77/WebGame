@@ -8,17 +8,20 @@
 #include "GSelectStageScene.h"
 #include "GStateScene.h"
 #include "GPlayingDataManager.h"
+#include "GLoadingScene.h"
+#include "GOpeningScene.h"
 
 GnImplementSingleton(GSceneSelector);
 
 GSceneSelector::GSceneSelector() : mpCurrentScene( NULL ), mpStartScene( NULL ), mpStateScene( NULL )
-	, mpSelectStageScene( NULL ), mpGameScene( NULL )
+, mpSelectStageScene( NULL ), mpGameScene( NULL ), mPlayOpening( false ), mpLoadingScene( NULL )
 {
 	
 }
 
 void GSceneSelector::RunApplication()
 {
+	GnSrand( time( 0 ) );
 	// initialize director
 	CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(&CCEGLView::sharedOpenGLView());
@@ -35,20 +38,8 @@ void GSceneSelector::RunApplication()
 		pDirector->runWithScene( gameScene );
 
 	SetCurrentScene( gameScene );
-//	GScene* gameScene = CreateStateScene();
-//	if( gameScene )
-//		pDirector->runWithScene( gameScene );
-//	mpCurrentScene = gameScene;
 	
-//	GScene* gameScene = CreateSelectStageScene();
-//	if( gameScene )
-//		pDirector->runWithScene( gameScene );
-//	mpCurrentScene = gameScene;
-	
-//	GScene* gameScene = CreateGameScene( 1 );
-//	if( gameScene )
-//		pDirector->runWithScene( gameScene );
-//	mpCurrentScene = gameScene;
+	CCDirector::sharedDirector()->setDisplayFPS(false);
 }
 
 void GSceneSelector::Update(float fTime)
@@ -67,12 +58,28 @@ void GSceneSelector::ChangeSceneCheck()
 		GScene* changeScene = NULL;
 		if( changeName == GScene::SCENENAME_START )
 		{
+			if( mpLoadingScene == NULL )
+			{
+				SetLoadingScene();
+				return;
+			}
 			ReleaseScene();
 			changeScene = CreateStartScene();
 		}
 		else if( changeName == GScene::SCENENAME_STATE )
 		{
-			if( mpCurrentScene->GetSceneName() == GScene::SCENENAME_SELECTSTAGE )
+			if( mPlayOpening )
+			{
+				mPlayOpening = false;
+				CCScene* openingScene = GOpeningScene::CreateLoadingScene( 0 );
+				if( openingScene )
+				{
+					pDirector->replaceScene( openingScene );
+					changeName.clear();
+				}
+				return;
+			}			
+			else if( mpCurrentScene->GetSceneName() == GScene::SCENENAME_SELECTSTAGE )
 			{
 				if( mpStateScene )
 					changeScene = mpStateScene;
@@ -81,15 +88,20 @@ void GSceneSelector::ChangeSceneCheck()
 			}
 			else
 			{
-				if( mpCurrentScene->GetSceneName() == GScene::SCENENAME_GAME )
+//				if( mpCurrentScene->GetSceneName() == GScene::SCENENAME_GAME )
+//				{
+//					if( mpGameScene->IsWinGame() )
+//					{
+//						GPlayingData* playing = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
+//						GPlayingData::ModeInfo& info = playing->GetCurrentModeInfo();
+//						info.mLastClearStage += 1;
+//						GPlayingDataManager::GetSingleton()->SaveData();
+//					}
+//				}
+				if( mpLoadingScene == NULL )
 				{
-					if( mpGameScene->IsWinGame() )
-					{
-						GPlayingData* playing = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
-						GPlayingData::ModeInfo& info = playing->GetCurrentModeInfo();
-						info.mLastClearStage += 1;
-						GPlayingDataManager::GetSingleton()->SaveData();
-					}
+					SetLoadingScene();
+					return;
 				}
 				ReleaseScene();
 				changeScene = CreateStateScene();
@@ -107,12 +119,22 @@ void GSceneSelector::ChangeSceneCheck()
 			}
 			else
 			{
+				if( mpLoadingScene == NULL )
+				{
+					SetLoadingScene();
+					return;
+				}
 				ReleaseScene();
 				changeScene = CreateSelectStageScene();
 			}
 		}
 		else if( changeName == GScene::SCENENAME_GAME )
 		{
+			if( mpLoadingScene == NULL )
+			{
+				SetLoadingScene();
+				return;
+			}
 			ReleaseScene();
 			changeScene = CreateGameScene();
 		}
@@ -120,8 +142,17 @@ void GSceneSelector::ChangeSceneCheck()
 		SetCurrentScene( changeScene );
 		if( changeScene )
 			pDirector->replaceScene( changeScene );
+		mpLoadingScene = NULL;
 		changeName.clear();
 	}
+}
+
+void GSceneSelector::SetLoadingScene()
+{
+	mpLoadingScene = GLoadingScene::CreateLoadingScene();
+	CCDirector* pDirector = CCDirector::sharedDirector();
+	if( mpLoadingScene )
+		pDirector->replaceScene( mpLoadingScene );
 }
 
 GScene* GSceneSelector::CreateGameScene()
@@ -218,6 +249,8 @@ void GSceneSelector::ReleaseScene()
 		mpGameScene = NULL;
 		GetGameState()->SetGameScale( 1.0 );
 	}
+	
+	CCTextureCache::sharedTextureCache()->removeAllTextures();
 }
 void GSceneSelector::SetCurrentScene(GScene* pScene)
 {
@@ -232,6 +265,7 @@ void GSceneSelector::CreatePlayingData()
 	if( GnFileUtil::ExitsFile( fullPath.c_str() ) == false )
 	{
 		GnVerify( GnFileUtil::FileCopy( GetFullPath( USER_HAVEDATA_FILENAME ), fullPath.c_str() ) );
+		mPlayOpening = true;
 	}
 	
 	GPlayingDataManager* playingDataManager = GPlayingDataManager::GetSingleton();

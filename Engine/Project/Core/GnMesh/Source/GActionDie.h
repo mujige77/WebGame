@@ -36,4 +36,25 @@ public:
 	};
 };
 
+
+#include "GAction.h"
+class GActionVanishDie : public GAction
+{
+private:
+	float mAcumTime;
+	
+public:
+	GActionVanishDie(GActorController* pController);	
+	
+public:
+	virtual void Update(float fTime);
+	virtual inline gtint GetActionType() {
+		return ACTION_VANISHDIE;
+	}
+	inline void AttachActionToController() {
+		mAcumTime = 0.0f;
+		Gn2DMeshObject* mesh = GetController()->GetMesh();
+		mesh->SetAlpha( (guchar)0);
+	};
+};
 #endif

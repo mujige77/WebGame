@@ -11,6 +11,7 @@
 
 #include "GActorCtlrManager.h"
 #include <GStageInfo.h>
+#include <GStageLevelManager.h>
 
 class GGameScene : public GScene
 {
@@ -42,6 +43,7 @@ private:
 	GnMemberSlot2<GGameScene, GnInterface*, GnIInputEvent*> mDialogEvent;
 	GnInterfaceGroup* mpOtherUI;
 	bool mIsWinGame;
+	bool mEndGame;
 	
 public:
 	GGameScene();
@@ -61,6 +63,9 @@ public:
 	inline bool IsWinGame() {
 		return mIsWinGame;
 	}
+	inline bool IsEndGame() {
+		return mEndGame;
+	}
 
 protected:
 	void InputEvent(GnInterface* pInterface, GnIInputEvent* pEvent);
@@ -73,6 +78,10 @@ protected:
 	inline void SetIsWinGame(bool val) {
 		mIsWinGame = val;
 	}
+	inline void SetEndGame(bool val) {
+		mEndGame = val;
+	}
+	
 };
 
 #endif

@@ -13,6 +13,7 @@ public:
 		return ACTION_STAND;
 	}
 	inline void AttachActionToController() {
+		GetController()->SetMoveDeltaPosition( GnVector2( 0.0f, 0.0f ) );
 		GetController()->GetActor()->SetTargetAnimation( ANI_STAND );
 	};
 };

@@ -8,13 +8,209 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Users/mujige77/Documents/PhoneGame/HiroCat/Source/GStateScene.cpp"
-         timestampString = "336397004.823922"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GnIListCtrl.cpp"
+         timestampString = "338012681.265844"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "180"
+         endingLineNumber = "180"
+         landmarkName = "GnIListCtrl::PushUp()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GnInterfaceGroup.cpp"
+         timestampString = "338016489.225856"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "GnInterfaceGroup::PushUp()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/ThirdParty/Cocos2d/cocos2d-x/cocos2dx/touch_dispatcher/CCTouchDispatcher.cpp"
+         timestampString = "338014509.899688"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "250"
          endingLineNumber = "250"
-         landmarkName = "GStateScene::SellItem(GnIListCtrl* pInvenList, GnIListCtrl* pEquipList, GnINumberLabel* pMoneyLabel , GStateListCtrlItem* pItem)"
+         landmarkName = "CCTouchDispatcher::touches(CCSet *pTouches, CCEvent *pEvent, unsigned int uIndex)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GLayer.cpp"
+         timestampString = "338015674.818478"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
+         landmarkName = "GLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GLayer.cpp"
+         timestampString = "338034465.653164"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GLayer.cpp"
+         timestampString = "338016897.622195"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
+         landmarkName = "GLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GLayer.cpp"
+         timestampString = "338016897.622195"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "91"
+         endingLineNumber = "91"
+         landmarkName = "GLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GnInterfaceGroup.cpp"
+         timestampString = "338017387.351034"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
+         landmarkName = "GnInterfaceGroup::Push(float fPointX, float fPointY)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GnInterfaceGroup.cpp"
+         timestampString = "338017400.330843"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "29"
+         endingLineNumber = "29"
+         landmarkName = "GnInterfaceGroup::Push(float fPointX, float fPointY)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GnInterfaceGroup.cpp"
+         timestampString = "338017405.50805"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
+         landmarkName = "GnInterfaceGroup::Push(float fPointX, float fPointY)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GBackgroundLayer.cpp"
+         timestampString = "338035078.217426"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
+         landmarkName = "GBackgroundLayer::MoveLayer(float fDeltaX, float fDeltaY)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GBackgroundLayer.cpp"
+         timestampString = "338035284.728431"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
+         landmarkName = "GBackgroundLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameEnvironment.cpp"
+         timestampString = "338037174.471491"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "GMainGameEnvironment::CorrectMoveX(float&amp; fPositionX, bool uiDirection, bool bUser)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameEnvironment.cpp"
+         timestampString = "338037174.471491"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "78"
+         endingLineNumber = "78"
+         landmarkName = "GMainGameEnvironment::CorrectMoveX(float&amp; fPositionX, bool uiDirection, bool bUser)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "0"
+         filePath = "/Users/mujige77/Documents/PhoneGame/Engine/Project/Core/GnMesh/Source/GMainGameEnvironment.cpp"
+         timestampString = "338037174.471491"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
+         landmarkName = "GMainGameEnvironment::CorrectMoveX(float&amp; fPositionX, bool uiDirection, bool bUser)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

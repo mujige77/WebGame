@@ -12,6 +12,14 @@
          contextName = "cocos2d::CCNode::setContentSize(cocos2d::CCSize):CCNode.cpp">
       </ContextState>
       <ContextState
+         contextName = "GActionAttack::IsFarAttack():GActionAttack.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "mAttackType &gt; eTypeMultiAttack">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GnTMap&lt;char const*, GnObject* (*)(), GnDefaultDeallocate, GnTStringMapHash, GnTStringEqual&gt;::Find(char const*):GnTMap.h">
       </ContextState>
       <ContextState
@@ -63,6 +71,9 @@
                value = "mAcumtime * 0.5f">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GActionAttack::CreateFarAttack():GActionAttack.cpp">
       </ContextState>
       <ContextState
          contextName = "GnIListPageCtrl::SetPreviousPage():GnIListPageCtrl.cpp">
@@ -119,6 +130,9 @@
       </ContextState>
       <ContextState
          contextName = "GnTimer::Reset():GnTimer.h">
+      </ContextState>
+      <ContextState
+         contextName = "GActorCtlrManager::ProcessAttack(GActorCtlrManager*):GActorCtlrManager.cpp">
       </ContextState>
       <ContextState
          contextName = "GnTArray&lt;GnTMallocInterface&lt;GInfo*&gt;, GInfo*&gt;::GetAt(unsigned int):GnTArray.h">

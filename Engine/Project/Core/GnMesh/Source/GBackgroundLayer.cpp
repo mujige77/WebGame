@@ -15,7 +15,8 @@ void GBackgroundLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event)
    
    if( mBackgroundRect.ContainsPoint( (gint)touchPoint.x, (gint)touchPoint.y ) == false ) 
 	  return;
-
+	mpCurrentTouch = touch;
+	mIsMoveBackground = true;
    mLastBackgroundMovePostion = touchPoint;
 }
 
@@ -25,8 +26,10 @@ void GBackgroundLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
    CCTouch* touch = (CCTouch*)(*it);
 
    CCPoint touchPoint = touch->locationInView( touch->view() );
-   if( mBackgroundRect.ContainsPoint( (gint)touchPoint.x, (gint)touchPoint.y ) == false )
-	  return;
+   if( mpCurrentTouch != touch || mBackgroundRect.ContainsPoint( (gint)touchPoint.x, (gint)touchPoint.y ) == false )
+   {
+	   return;  
+   }
    
    float moveX = touchPoint.x - mLastBackgroundMovePostion.x; 	
    mLastBackgroundMovePostion = touchPoint;
@@ -36,7 +39,10 @@ void GBackgroundLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event)
 
 void GBackgroundLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event)
 {
-	
+	CCSetIterator it = pTouches->begin();
+	CCTouch* touch = (CCTouch*)(*it);
+	if( mpCurrentTouch == touch )
+		mpCurrentTouch = NULL;
 }
 
 void GBackgroundLayer::Create(CCSprite* pSprite)
@@ -53,7 +59,7 @@ void GBackgroundLayer::Create(CCSprite* pSprite)
    mBackgroundRect.left = 0;
    mBackgroundRect.top = 0;
    mBackgroundRect.right = (gint32)bgSize.width;
-   mBackgroundRect.bottom = (gint32)bgSize.height;
+   mBackgroundRect.bottom = (gint32)bgSize.height - 30;
 }
 
 void GBackgroundLayer::MoveLayer(float fDeltaX, float fDeltaY)

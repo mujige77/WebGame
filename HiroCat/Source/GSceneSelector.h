@@ -27,7 +27,9 @@ private:
 	GStartScene* mpStartScene;
 	GStateScene* mpStateScene;
 	GSelectStageScene* mpSelectStageScene;
-	GGameScene* mpGameScene;	
+	GGameScene* mpGameScene;
+	bool mPlayOpening;
+	GScene* mpLoadingScene;
 	
 public:
 	GSceneSelector();
@@ -43,11 +45,13 @@ public:
 private:
 	void ChangeSceneCheck();
 	void SetUseActorFile();
+	void SetLoadingScene();
 	GScene* CreateGameScene();
 	GScene* CreateStartScene();
 	GScene* CreateStateScene();
 	GScene* CreateSelectStageScene();
 	void CreatePlayingData();
+	void GameSceneCheck();
 };
 
 #endif

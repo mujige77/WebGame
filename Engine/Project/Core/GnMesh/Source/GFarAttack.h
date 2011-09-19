@@ -13,6 +13,7 @@
 #include "GAttackDamageInfo.h"
 
 class GLayer;
+class GActorController;
 class GFarAttack : public GnSmartObject
 {
 	GnDeclareFlags( guint32 );
@@ -49,6 +50,8 @@ private:
 	bool mStopAnimation;
 	guint32 mAttackIndex;
 	GAttackDamageInfo mAttackDamage;
+	gint32 mLine;
+	
 protected:
 	guint32 mCurrentAttackCount;
 #ifdef GNDEBUG
@@ -71,6 +74,15 @@ public:
 public:
 	virtual void Update(float fTime);
 	virtual void SetPosition(GnVector2 cPos);
+	virtual inline gtuint GetAttackedControllerSize() {
+		return 0;
+	}
+	virtual inline GActorController* GetAttackedController(gtuint uiIndex) {
+		return NULL;
+	}
+	virtual inline void AddToAttackController(GActorController* pController) {
+	
+	}
 	virtual inline eBasicStartPosition GetBasicStartPosition() {
 		return eExtraPosition;
 	}
@@ -138,12 +150,17 @@ public:
 	inline GAttackDamageInfo* GetAttackDamageInfo() {
 		return &mAttackDamage;
 	}
-protected:
 	inline GnFRect& GetOriginalAttackRect() {
 		return mOriginalAttackRect;
 	}
 	inline void SetOriginalAttackRect(GnFRect cRect) {
 		mOriginalAttackRect = cRect;
+	}
+	inline void SetLine(gint32 val) {
+		mLine = val;
+	}
+	inline gint32 GetLine() {
+		return mLine;
 	}
 };
 

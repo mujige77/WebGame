@@ -65,7 +65,7 @@ void GStageInfo::Set1_20Stage(gtuint uiStage)
 	mLineRects.Add( GnFRect( 50.0f, 142.0f, 750.0f, 105.0f) );
 	mLineRects.Add( GnFRect( 50.0f, 179.0f, 750.0f, 136.1f) );
 	mBackgroundFileName = "./Data/Background/BG_01.png";
-	mInterfaceFileName = "./Data/Controll/0_215.png";
+	mInterfaceFileName = "./Data/Controll/0_198.png";
 	
 	// forces
 	mForcesCastleFiles.mCastle = "Background/1/0_4 a.png";

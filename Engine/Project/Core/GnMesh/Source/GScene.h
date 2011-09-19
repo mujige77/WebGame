@@ -10,6 +10,9 @@ public:
 	static const gchar* SCENENAME_STATE;
 	static const gchar* SCENENAME_SELECTSTAGE;
 	static const gchar* SCENENAME_GAME;
+	static const gchar* SCENENAME_OPENING;
+	static const gchar* SCENENAME_LOADING;
+	
 private:
 	static gstring mChangeSceneName;
 	static GScene* smpCurrentScene;

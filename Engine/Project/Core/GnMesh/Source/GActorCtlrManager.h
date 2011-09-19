@@ -26,14 +26,7 @@ public:
 public:
 	virtual void Update(float fDeltaTime);
 	virtual void ProcessAttack(GActorCtlrManager* pCheckCtlrManager);
-	
-public:
-	inline void AddActorCtlr(GActorController* pActorCtlr) {
-		GetActorLayer()->AddChild( pActorCtlr->GetMesh()
-			, (int)(GetGameState()->GetGameHeight() - pActorCtlr->GetPosition().y) );
-		mActors.Add( pActorCtlr );
-	};
-	GNFORCEINLINE void RemoveAndDeleteActorCtlr(gtuint uiIndex) {
+	virtual void RemoveAndDeleteActorCtlr(gtuint uiIndex) {
 		GActorController* actorCtlr = mActors.GetAt( uiIndex );
 		mActors.RemoveAtAndFill( uiIndex );
 		GetActorLayer()->RemoveChild( actorCtlr->GetMesh() );
@@ -43,6 +36,13 @@ public:
 #endif
 		GnDelete actorCtlr;
 	}
+public:
+	inline void AddActorCtlr(GActorController* pActorCtlr) {
+		GetActorLayer()->AddChild( pActorCtlr->GetMesh()
+			, (int)(GetGameState()->GetGameHeight() - pActorCtlr->GetPosition().y) );
+		mActors.Add( pActorCtlr );
+	};
+
 	inline void AddFarAttack(GFarAttack* pAttack, gint iZorder = 1) {
 		GetActorLayer()->AddChild( pAttack->GetAttackMesh(), iZorder );
 		
@@ -92,9 +92,11 @@ public:
 		return mpCastle;
 	}
 protected:
-	virtual void CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
+	virtual bool CollisionCheck(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager
+		, bool bDetailCheck);
 	virtual gtuint SendAttackToEnemy(GActionAttackCheck* pAttackCheck, GActorCtlrManager* pCheckCtlrManager);
-	bool CollisionCheck(GActionAttackCheck* pAttackCheck, GActorController* pCheckCtrl);
+	bool CollisionCheck(GActionAttackCheck* pAttackCheck, GActorController* pCheckCtrl
+		, bool bDetailCheck);
 	bool CastleCollisionCheck(GActionAttackCheck* pAttackCheck, GCastle* pCheckCastel);
 	bool FarAttackCollisionCheck(GFarAttack* pFarAttack, GActorController* pCheckCtrl);
 	GActionAttackCheck* EnableAttackToCtrl(GActorController* pCtrl);	

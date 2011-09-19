@@ -18,7 +18,6 @@ GForcesCtlrManager::GForcesCtlrManager(GLayer* pActorLayer, GLayer* pInterfaceLa
 	: GActorCtlrManager( pActorLayer, pCastle ), mpInterfaceLayer( (GInterfaceLayer*)pInterfaceLayer )
 	, mCreateForcesInputEvent( this, &GForcesCtlrManager::CreateForces )
 {
-	
 }
 
 void GForcesCtlrManager::Update(float fDeltaTime)
@@ -54,9 +53,8 @@ void GForcesCtlrManager::CreateForces(GnInterface* pInterface, GnIInputEvent* pE
 	if( controller )
 	{
 		GetGameEnvironment()->CreateActorControllerBasicAction( controller );
-		GetGameEnvironment()->SetStartPositionToActor( controller, 0 );
-		GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );		
-		
+		GetGameEnvironment()->InitActorControllerAction( GetActorLayer(), controller );
+		GetGameEnvironment()->SetStartPositionToActor( controller, GetGameEnvironment()->GetNumUserLine(), 0 );		
 		
 		GActionMove* move = (GActionMove*)controller->GetCurrentAction( GAction::ACTION_MOVE );
 		move->SetMoveRangeY( GetGameEnvironment()->GetMoveRangeY() );

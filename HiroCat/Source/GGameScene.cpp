@@ -16,9 +16,10 @@
 #include "GMainGameEnvironment.h"
 #include "GCastleForces.h"
 #include "GCastleEnemy.h"
+#include "GPlayingDataManager.h"
 
 GGameScene::GGameScene() : mpStageInfo( NULL ), mInputEvent( this, &GGameScene::InputEvent ), mIsWinGame( false )
-	, mDialogEvent( this, &GGameScene::DialogInputEvent )
+	, mDialogEvent( this, &GGameScene::DialogInputEvent ), mEndGame( false )
 {
 	memset( mLayers, NULL, sizeof(mLayers) );
 }
@@ -34,6 +35,8 @@ GGameScene::~GGameScene()
 
 bool GGameScene::CreateScene(GStageInfo* pStageInfo)
 {
+	mpStageInfo = pStageInfo;
+	
 	if( CreateBackgroundLayer( pStageInfo->GetBackgroundFileName() ) == false )
 		return false;
 	
@@ -80,22 +83,18 @@ bool GGameScene::CreateActorManager()
 	CCSize interfaceSize = interfaceLayer->getContentSize();
 	CCSize bgSize = backlayer->getContentSize();
 
-	GEnemyCtlrManager* enemyCtlrManager = GEnemyCtlrManager::CreateActorCtlrManager( backlayer, mpsEnemyCastle );
-		mpsActorManages[ENEMY_CTLRMANAGER] = enemyCtlrManager;
-	enemyCtlrManager->AddEnableActorIndex( 3 );
-	enemyCtlrManager->AddEnableActorIndex( 12 );
-	
 	GUserCtlrManager* userCtlrManager = GUserCtlrManager::CreateActorCtlrManager( backlayer, mLayers[LAYER_INTERFACE] );
 	mpsActorManages[USER_CTLRMANAGER] = userCtlrManager;
 	userCtlrManager->Init();
+	
+	GEnemyCtlrManager* enemyCtlrManager = GEnemyCtlrManager::CreateActorCtlrManager( backlayer
+		, GStageLevelManager::CreateManager( mpStageInfo->GetNumStage() ), mpsEnemyCastle );
+		mpsActorManages[ENEMY_CTLRMANAGER] = enemyCtlrManager;
 			
 	GForcesCtlrManager* forcesCtlrManager = GForcesCtlrManager::CreateActorCtlrManager( backlayer
 		, mLayers[LAYER_INTERFACE], mpsForcesCastle );
 	mpsActorManages[FORCES_CTLRMANAGER] = forcesCtlrManager;
 	forcesCtlrManager->Init();
-	forcesCtlrManager->AddEnableActorIndex( 2 );
-	forcesCtlrManager->AddEnableActorIndex( 3 );
-	forcesCtlrManager->AddEnableActorIndex( 4 );
 	return true;
 }
 
@@ -172,10 +171,15 @@ void GGameScene::DialogInputEvent(GnInterface* pInterface, GnIInputEvent* pEvent
 			case GInterfaceLayer::DIALOG_RESUME_BUTTON:
 				break;
 			case GInterfaceLayer::DIALOG_REPLAY_BUTTON:
-				break;
+			{
+				GScene::SetChangeSceneName( GScene::SCENENAME_GAME );
+			}
+			break;
 			case GInterfaceLayer::DIALOG_NEXT_BUTTON:
+			{
 				GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
-				break;
+			}
+			break;
 			default:
 				bDialogClose = false;
 				break;
@@ -193,12 +197,16 @@ bool GGameScene::CheckEndGame()
 	GUserCtlrManager* userCtlrManager = (GUserCtlrManager*)((GActorCtlrManager*)mpsActorManages[USER_CTLRMANAGER]);
 	if( mpsEnemyCastle->GetCurrentHP() <= 0 )
 	{
-		WinGame();
+		if( IsEndGame() == false )
+			WinGame();
+		SetEndGame( true );
 		return true;
 	}
 	else if( mpsForcesCastle->GetCurrentHP() <= 0 || userCtlrManager->GetUserCurrentHP() <= 0 )
 	{
-		LoseGame();
+		if( IsEndGame() == false )
+			LoseGame();
+		SetEndGame( true );
 		return true;
 	}
 	
@@ -208,11 +216,25 @@ bool GGameScene::CheckEndGame()
 void GGameScene::WinGame()
 {
 	SetIsWinGame( true );
-	GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+	GInterfaceLayer* interfaceLayer =(GInterfaceLayer*)mLayers[LAYER_INTERFACE];
+	GnInterfaceGroup* group = interfaceLayer->CreateInterface(
+		GInterfaceLayer::UI_MAIN_DLG_WINSCORE, &mDialogEvent );	
+	GScene::SetModalState( GDialog::CreateModalColor( group ) );
+	
+	GPlayingData* playing = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
+	GPlayingData::ModeInfo& info = playing->GetCurrentModeInfo();
+	if( info.mLastClearStage <= mpStageInfo->GetNumStage() )
+	{
+		info.mLastClearStage += 1;
+		GPlayingDataManager::GetSingleton()->SaveData();	
+	}
 }
 
 void GGameScene::LoseGame()
 {
 	SetIsWinGame( false );
-	GScene::SetChangeSceneName( GScene::SCENENAME_STATE );
+	GInterfaceLayer* interfaceLayer =(GInterfaceLayer*)mLayers[LAYER_INTERFACE];
+	GnInterfaceGroup* group = interfaceLayer->CreateInterface(
+		GInterfaceLayer::UI_MAIN_DLG_LOSE, &mDialogEvent );	
+	GScene::SetModalState( GDialog::CreateModalColor( group ) );
 }

@@ -32,40 +32,27 @@ void GMainGameMove::SetMove(gtuint uiType)
 	{
 		if( GetMoveUp() )
 		{
-//			if( mNumLine < GMainGameEnvironment::GetSingleton()->GetLineCount() - 1 )
-//			{
-//				++mNumLine;
-				GnVector2 movePos = GetController()->GetPosition();
-				movePos.y += GetMoveVector().y;
-				GetController()->SetPosition( movePos );
-				if( GetActorLayer() )
-				{
-					GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
-						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
-				}
-//			}
-//			SetMoveUp( false );
+			GnVector2 movePos = GetController()->GetPosition();
+			movePos.y += GetMoveVector().y;
+			GetController()->SetPosition( movePos );
+			if( GetActorLayer() )
+			{
+				GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
+					, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
+			}
 		}
 		else
 		{
-//			if( mNumLine > 0 )
-//			{
-//				--mNumLine;
-				GnVector2 movePos = GetController()->GetPosition();
-				movePos.y += GetMoveVector().y;
-				GetController()->SetPosition( movePos );
-				if( GetActorLayer() )
-				{
-					GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
-						, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
-				}
-					
-//			}
-//			SetMoveDown( false );			
+			GnVector2 movePos = GetController()->GetPosition();
+			movePos.y += GetMoveVector().y;
+			GetController()->SetPosition( movePos );
+			if( GetActorLayer() )
+			{
+				GetActorLayer()->reorderChild( GetController()->GetMesh()->GetMesh()
+					, (gint)(GetGameState()->GetGameHeight() - movePos.y) );
+			}			
 		}
-//		mMoveVector.y = 0;
 	}
-	//GMainGameEnvironment::GetSingleton()->GetLine(  )
 }
 
 void GMainGameMove::SetCurrentLine()
@@ -75,7 +62,7 @@ void GMainGameMove::SetCurrentLine()
 	GnVector2 movePos = GetController()->GetPosition();
 	for( gtuint i = 0 ; i < env->GetLineCount() ; i++ )
 	{
-		float line = env->GetLine( i );
+		float line = env->GetLine( i ) - ( lineHeight / 2 );
 		if( line <= movePos.y && lineHeight + line >= movePos.y )
 		{
 			mNumLine = i;

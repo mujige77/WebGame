@@ -25,13 +25,20 @@ GFarAttack* GShootAttack::CreateAttack(guint32 uiIndex)
 	switch ( uiIndex )
 	{
 		case eIndexItemSwitchUnit:
-			attck->InitShooting( 5.0f, 0.0f );
+			attck->InitShooting( 4.0f, 0.0f );
 			break;
 		default:
-			attck->InitShooting( 5.0f, 0.0f );
+			attck->InitShooting( 4.0f, 0.0f );
 			break;
 	}
 	return attck;
+}
+
+void GShootAttack::InitShooting(float fDirectionX, float fDirectionY)
+{
+	mShootTimer.SetPercentTime( 0.01f );
+	mShootDirection.x = fDirectionX;
+	mShootDirection.y = fDirectionY;
 }
 
 void GShootAttack::Update(float fTime)
@@ -64,9 +71,9 @@ void GShootAttack::SetPosition(GnVector2 cPos)
 	GFarAttack::SetPosition( cPos );
 }
 
-void GShootAttack::InitShooting(float fDirectionX, float fDirectionY)
+void GShootAttack::SetFilpX(bool val)
 {
-	mShootTimer.SetPercentTime( 0.01f );
-	mShootDirection.x = fDirectionX;
-	mShootDirection.y = fDirectionY;
+	GFarAttack::SetFilpX( val );
+	float dir = val ? -1.0f : 1.0f;
+	InitShooting( mShootDirection.x * dir, mShootDirection.y );
 }

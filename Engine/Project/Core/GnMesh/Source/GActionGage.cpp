@@ -1,11 +1,3 @@
-//
-//  GActionGage.cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 7. 17..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #include "GnGamePCH.h"
 #include "GActionGage.h"
 #include "GnIProgressBar.h"

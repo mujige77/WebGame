@@ -2,6 +2,21 @@
 #include "GnGamePCH.h"
 #include "GStageLevel.h"
 
+GStageLevel* GStageLevel::CreateStageLevel(guint32 uiStageLevel)
+{
+	gchar fileName[256] = { 0, };
+	GnSprintf( fileName, sizeof( fileName ), "StageLevel/StageLevel%d.gd", uiStageLevel + 1);
+	gstring fullPathName;
+	GetFullPathFromWorkPath( fileName, fullPathName );
+	GStageLevel* retStage = CreateStageLevel( fullPathName.c_str() );
+	if( retStage == NULL )
+	{
+		GetFullPathFromWorkPath( "StageLevel/StageLevel5.gd", fullPathName );
+		retStage = CreateStageLevel( fullPathName.c_str() );	
+	}
+	return retStage;
+}
+
 GStageLevel* GStageLevel::CreateStageLevel(const gchar* pcFilePath)
 {
 	GnStream stream;
@@ -19,13 +34,17 @@ GStageLevel* GStageLevel::CreateStageLevel(const gchar* pcFilePath)
 		
 		GStageLevel* thisVal = GnNew GStageLevel();
 		thisVal->LoadStream( &stream );
+		return thisVal;
 	}
 	return NULL;
 }
+
 void GStageLevel::LoadStream(GnStream* pStream)
 {
 	pStream->LoadStream( mLevelIndex );
 	pStream->LoadStream( mBossMobIndex );
+	pStream->LoadStream( mCastleHP );
+	
 	guint32 count = 0;
 	pStream->LoadStream( count );
 	for( gtuint i = 0 ; i < count ; i++ )
@@ -33,7 +52,7 @@ void GStageLevel::LoadStream(GnStream* pStream)
 		GStageLevel::AppearMob mob;
 		pStream->LoadStream( mob.mIndex );
 		pStream->LoadStream( mob.mLevel );
-		pStream->LoadStream( mob.mIntervalAppearTime );
+		pStream->LoadStream( mob.mIntervalAppearPercent );
 		AddAppearMob( mob );
 	}
 	
@@ -60,7 +79,7 @@ void GStageLevel::SaveStream(GnStream* pStream)
 		GStageLevel::AppearMob& mob = GetAppearMob( i );
 		pStream->SaveStream( mob.mIndex );
 		pStream->SaveStream( mob.mLevel );
-		pStream->SaveStream( mob.mIntervalAppearTime );
+		pStream->SaveStream( mob.mIntervalAppearPercent );
 	}
 
 	count = GetAttackLineCount();

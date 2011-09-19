@@ -4,7 +4,7 @@
 
 GnImplementRTTI(GnInterfaceGroup, GnInterface);
 
-GnInterfaceGroup::GnInterfaceGroup()
+GnInterfaceGroup::GnInterfaceGroup() : mAllPush( false )
 {
 	SetIsCantPush( false );
 }
@@ -89,7 +89,7 @@ bool GnInterfaceGroup::PushMove(float fPointX, float fPointY)
 	if( IsEnablePushMove() == false )
 		return false;
 	
-	if( IfUseCheckCollision( fPointX, fPointY ) == false )
+	if( IfUseCheckCollision( fPointX, fPointY ) == false && mAllPush == false )
 	{
 		for ( gtuint i = 0; i < mPersonalChildren.GetSize(); i++ )
 		{
@@ -169,6 +169,18 @@ void GnInterfaceGroup::PushUp()
 ////			mSignal.EmitSignal( child, &event );
 //		}
 //	}
+}
+void GnInterfaceGroup::PushUpPersonalChildren(float fPointX, float fPointY)
+{
+	for ( gtuint i = 0; i < mPersonalChildren.GetSize(); i++ )
+	{
+		GnInterface* child = mPersonalChildren.GetAt( i );
+		if( child->IsVisible() && child->PushUp( fPointX, fPointY ) )
+		{
+			GnIInputEvent event(GnIInputEvent::PUSHUP, fPointX, fPointY);
+			mSignal.EmitSignal( child, &event );
+		}
+	}
 }
 
 void GnInterfaceGroup::Update(float fDeltaTime)

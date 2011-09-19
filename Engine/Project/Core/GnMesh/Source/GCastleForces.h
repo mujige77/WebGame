@@ -21,6 +21,9 @@ public:
 
 protected:
 	static bool CreateCastleGage(GLayer* pInterfaceLayer, GIconGage& cOutGage);
+	
+protected:
+	void Init();
 };
 
 #endif

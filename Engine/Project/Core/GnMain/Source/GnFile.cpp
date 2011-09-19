@@ -4,15 +4,19 @@
 GnFile::GnFile(FILE* pOpenedFile, eOpenMode eMode, gtuint uiBufferSize) : mpFile(pOpenedFile),
 	mMode(eMode), mBufferAllocSize(uiBufferSize)
 {
+	static guint i = 0;
+	mNumber = i++;
 	mpBuffer = GnAlloc(gchar, uiBufferSize);
 }
 
 GnFile::~GnFile()
 {
+	if( mpFile )
+	{
+		fclose(mpFile);	
+	}
 	if( mpBuffer )
 		GnFree(mpBuffer);
-	if( mpFile )
-		fclose(mpFile);
 }
 
 GnFile* GnFile::GetFile(const gchar* strFileName, eOpenMode eMode, gtuint uiBufferSize)

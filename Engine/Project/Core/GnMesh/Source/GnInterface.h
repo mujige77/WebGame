@@ -20,6 +20,7 @@ protected:
 	gtuint mPushCount;
 	Gn2DMeshObjectPtr mpsDefaultMesh;
 	gint32 mTegID;
+	CCTouch* mpCurrentTouch;
 public:
 	GnInterface();
 	GnInterface(const gchar* pcImageName);
@@ -28,9 +29,11 @@ public:
 public:
 	virtual bool Push(float fPointX, float fPointY);
 	virtual bool PushUp(float fPointX, float fPointY);
-	virtual bool PushMove(float fPointX, float fPointY);
+	virtual bool PushMove(float fPointX, float fPointY);	
+	virtual void PushUpPersonalChildren(float fPointX, float fPointY) {};
 	virtual void Push();
 	virtual void PushUp();
+	
 	
 	virtual inline void AddChild(GnInterface* pChild) {}
 	virtual inline void AddChild(GnInterface* pChild, gint32 iZorder) {}
@@ -162,7 +165,12 @@ public:
 	inline void SetTegID(gint32 iID) {
 		mTegID = iID;
 	}
-	
+	inline void SetCurrentTouch(CCTouch* pTouch) {
+		mpCurrentTouch = pTouch;
+	}
+	inline CCTouch* GetCurrentTouch() {
+		return mpCurrentTouch;
+	}
 protected:
 	void AddMeshToParentNode(Gn2DMeshObject* pChild);
 	void AddToParentNode(GnInterfaceNode* pNode);

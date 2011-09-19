@@ -9,6 +9,7 @@
 #include "GActionDamage.h"
 #include "GActionAttackCheck.h"
 #include "GActorInfoDatabase.h"
+#include "GActionFollows.h"
 
 GEnemyController::GEnemyController()
 {
@@ -43,17 +44,26 @@ bool GEnemyController::InitInfoCompenent(const gchar* pcID, guint32 uiLevel)
 	{
 		GnDelete pInfo;
 		return  false;
-	}	SetInfoComponent( pInfo->GetInfoType(), pInfo );
+	}
+	SetInfoComponent( pInfo->GetInfoType(), pInfo );
 	return true;
 }
 
 bool GEnemyController::InitActionComponents()
 {
+	GActorController::InitActionComponents();
 	GInfoEnemyBasic* info = (GInfoEnemyBasic*)GetInfoComponent( GInfo::INFO_BASIC );
 
 	GMainGameMove* moveAction = GnNew GMainGameMove( this );
 	SetActionComponent( moveAction->GetActionType(), moveAction );
 	moveAction->SetMoveRangeX( info->GetMoveSpeed() );
+	
+	GActionDamage* damageAction = (GActionDamage*)GetActionComponent( GAction::ACTION_DAMAGE );
+	damageAction->SetIsPushDamage( info->GetPush() == 1 );
+	damageAction->SetPushDelta( GnVector2( 1.0f, 0.0f) );
+	
+	GActionFollows* follows = (GActionFollows*)GetActionComponent( GAction::ACTION_FOLLOWS );
+	follows->CreateFollow( GActionFollows::eShadow );
 	return true;
 }
 

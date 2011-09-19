@@ -408,7 +408,7 @@ void GStateUILayer::CreateBasicAbilityCtrlItem(GnInterface* pExplainParent)
 	GPlayingData* playingData = GPlayingDataManager::GetSingleton()->GetPlayingPlayerData();
 	haveItem->OpenPlayerItem( playingData->GetPlayerName() );
 	
-	const char fileName[NUM_STET_ROW][NUM_STET_COLUMN][256] = 	
+	const char fileName[NUM_STET_ROW][NUM_STET_COLUMN][128] = 	
 	{
 		{ {"Upgrade/stet/a 40_77.png"}, {"Upgrade/stet/b 150_77.png"}, {"Upgrade/stet/c 260_77.png"} },
 		{ {"Upgrade/stet/d 40_134.png"}, {"Upgrade/stet/e 150_134.png"}, {"Upgrade/stet/f 260_134.png"} },
@@ -416,7 +416,7 @@ void GStateUILayer::CreateBasicAbilityCtrlItem(GnInterface* pExplainParent)
 		{ {"Upgrade/stet/j 40_248.png"}, {"Upgrade/stet/k 150_248.png"}, {"Upgrade/stet/l 260_248.png"} },
 		{ {"Upgrade/stet/m 40_305.png"}, {"Upgrade/stet/GabIcon.png"}, {"Upgrade/stet/GabIcon.png"} }
 	};
-	const char explianFileName[NUM_STET_ROW][NUM_STET_COLUMN][256] = 	
+	const char explianFileName[NUM_STET_ROW][NUM_STET_COLUMN][128] = 	
 	{
 		{ {"Upgrade/stet/a 40_212.png"}, {"Upgrade/stet/b 40_212.png"}, {"Upgrade/stet/c 40_212.png"} },
 		{ {"Upgrade/stet/d 40_212.png"}, {"Upgrade/stet/e 40_212.png"}, {"Upgrade/stet/f 40_212.png"} },

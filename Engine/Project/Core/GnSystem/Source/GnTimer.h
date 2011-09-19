@@ -15,6 +15,9 @@ public:
 
 	
 public:
+	inline bool IsPullTime() {
+		return 1 < mAcumTime/mPerTime;
+	}
 	inline float GetAmplify() {
 		return mAcumTime/mPerTime;
 	}

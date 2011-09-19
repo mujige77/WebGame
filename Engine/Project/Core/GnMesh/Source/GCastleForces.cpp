@@ -43,10 +43,21 @@ bool GCastleForces::CreateCastleGage(GLayer* pInterfaceLayer, GIconGage& cOutGag
 	
 	float pointX = 0.0f;
 	float pointY = 0.0f;
-	cOutGage.mpIcon->SetUIPoint( pointX, pointY );	
+	cOutGage.mpIcon->SetUIPoint( pointX, pointY );
 
 	pointX = 19.0f;
 	pointY = 6.0f;
 	cOutGage.mpGage->SetUIPoint( pointX, pointY ); 	
 	return true;
+}
+
+void GCastleForces::Init()
+{
+	guint32 level = GUserAbility::GetAbilityLevel( eIndexCastleMaxHP );
+	gint32 hp = 1000 + 200 * (gint32)level;
+	SetHP( hp );
+	SetCurrentHP( hp );
+	
+	level = GUserAbility::GetAbilityLevel( eIndexCastleAutoHP );
+	SetAutoRecoveryHP( 5 + level * 5 );
 }

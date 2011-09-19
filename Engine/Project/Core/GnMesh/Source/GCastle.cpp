@@ -1,11 +1,3 @@
-//
-//  GCastle .cpp
-//  Core
-//
-//  Created by Max Yoon on 11. 7. 19..
-//  Copyright 2011년 __MyCompanyName__. All rights reserved.
-//
-
 #include "GnGamePCH.h"
 #include "GCastle.h"
 #include "GnIProgressBar.h"
@@ -13,8 +5,9 @@
 GCastle::GCastle() : mpGageIcon( NULL ), mpCastleGage( NULL ), mpTopCastle( NULL )
 	, mpBottomCastle( NULL ), mpTopDamageEffect( NULL ),  mpBottomDamageEffect( NULL )
 	, mIsDamage( false ), mHP( 1000 ), mCurrentHP( 1000 ), mDamageEffectTime( 1.0f )
-	, mDamageEffectAcumTime( 0.0f )
+	, mDamageEffectAcumTime( 0.0f ), mAutoRecoveryHP( 5 )
 {
+	mAutoRecoveryHPTimer.SetPercentTime( 5 );
 	mCastleStateFlag = eNormal;
 }
 
@@ -217,4 +210,13 @@ void GCastle::SetStopDamageEffect()
 	
 	mIsDamage = false;
 	mDamageEffectAcumTime = 0.0f;
+}
+
+void GCastle::UpdateHP(float fTime)
+{
+	if( mAutoRecoveryHPTimer.Update( fTime ) )
+	{
+		SetCurrentHP( GetCurrentHP() + GetAutoRecoveryHP() );
+		mAutoRecoveryHPTimer.Reset();
+	}
 }

@@ -14,10 +14,12 @@ class GAttackDamageInfo
 public:
 	guint32 mDamage;
 	guint32 mDamageFileIndex;
+	guint32 mAttackType;
+	float mDontMoveTime;
 	
 public:
-	inline GAttackDamageInfo(guint32 uiDamage = 100, guint32 uiDamageIndex = 1) : mDamage( uiDamage )
-		, mDamageFileIndex( uiDamageIndex)
+	inline GAttackDamageInfo(guint32 uiDamage = 0, guint32 uiAttackType = 0, guint32 uiDamageIndex = 1)
+		: mAttackType( uiAttackType ), mDamage( uiDamage ), mDamageFileIndex( uiDamageIndex), mDontMoveTime( 0.0f )
 	{}
 	inline guint32 GetDamage() {
 		return mDamage;
@@ -30,6 +32,18 @@ public:
 	}
 	inline void SetDamageFileIndex(guint32 uiDamageFileIndex) {
 		mDamageFileIndex = uiDamageFileIndex;
+	}
+	inline guint32 GetAttackType() {
+		return mAttackType;
+	}
+	inline void SetAttackType(guint32 val) {
+		mAttackType = val;
+	}
+	inline void SetDontMoveTime(float val) {
+		mDontMoveTime = val;
+	}
+	inline float GetDontMoveTime() {
+		return mDontMoveTime;
 	}
 };
 

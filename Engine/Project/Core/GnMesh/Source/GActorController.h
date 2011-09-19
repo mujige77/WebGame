@@ -25,6 +25,10 @@ private:
 	GCurrentActorInfo mCurrentInfo;
 	GnVector2 mStrides;
 	GnVector2 mMovePosition;
+	GnVector2 mMoveDeltaPosition;
+	bool mUsedDownDamage;
+	bool mUsedDefence;
+	float mDefanceAcumTime;
 	
 #ifdef GNDEBUG
 	GLayer* mpDegubLayer;
@@ -49,11 +53,13 @@ public:
 	void RemoveAllActionComponets();
 	bool IsEnableMove();
 	void AddCurrentAction(GAction* pComponent);
-	void RemoveCurrentAction(gtuint uiIndex);
-	void RemoveAllCurrentAction();
-	void ReceiveAttack(GAttackDamageInfo* pDamage);
+	void ReceiveAttack(GAttackDamageInfo* pDamage);	
 	
 public:
+	virtual void SetStartAction();
+	virtual void RemoveCurrentAction(gtuint uiIndex);
+	virtual void RemoveAllCurrentAction();
+	virtual bool InitActionComponents();
 	virtual inline void SetPosition(GnVector2& pos) {
 		GetMesh()->SetPosition( pos );
 	};
@@ -94,8 +100,17 @@ public:
 	inline void SetMovePosition(GnVector2& cPosition) {
 		mMovePosition = cPosition;
 	}
+	inline GnVector2& GetMoveDeltaPosition() {
+		return mMoveDeltaPosition;
+	}
+	inline void SetMoveDeltaPosition(GnVector2 cPosition) {
+		mMoveDeltaPosition = cPosition;
+	}
 	inline GCurrentActorInfo* GetCurrentInfo() {
 		return &mCurrentInfo;
+	}
+	inline void RemoveBasicCurrentAction() {
+		GetGameEnvironment()->RemoveBasicCurrentAction( this );
 	}
 
 protected:
@@ -103,12 +118,11 @@ protected:
 	void SetAttack(guint32 uiSequenceID);
 	void SetEndAttack();
 	void SetEndDie();
-	
+	void UpdateAction(gtuint uiIndex);
 protected:
 	virtual void MoveStopCheck();
 	virtual void CallbackTimeEvent(Gn2DActor::TimeEvent* pTimeEvent);
 	virtual bool InitController() = 0;
-	virtual bool InitActionComponents() = 0;
 	virtual bool InitInfoCompenent(const gchar* pcID, guint32 uiLevel) = 0;
 	virtual void ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent) = 0;
 	

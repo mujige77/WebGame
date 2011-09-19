@@ -39,7 +39,7 @@ bool GnInterface::PushUp(float fPointX, float fPointY)
 	
 //	if( IfUseCheckCollision( fPointX, fPointY ) == false )
 //	{
-//		PushUp();
+////		PushUp();
 //		return false;
 //	}
 	PushUp();

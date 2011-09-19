@@ -39,17 +39,17 @@ public:
 	};
 	
 	inline bool ContainsPoint(T x, T y) {
-		if (x > left && x < right && y > top && y < bottom )
+		if (x >= left && x <= right && y >= top && y <= bottom )
 			return true;
 		return false;
 	}
 	inline bool ContainsPointX(T x) {
-		if (x > left && x < right )
+		if (x >= left && x <= right )
 			return true;
 		return false;
 	}
 	inline bool ContainsPointY(T y) {
-		if ( y > top && y < bottom )
+		if ( y >= top && y <= bottom )
 			return true;
 		return false;
 	}

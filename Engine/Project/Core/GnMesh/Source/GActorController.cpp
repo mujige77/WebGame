@@ -21,7 +21,8 @@ void GActorController::GetFullActorFilePath(const gchar* pcID, gstring& pcOutPat
 	pcOutPath += ".gat";
 }
 
-GActorController::GActorController()
+GActorController::GActorController() : mUsedDownDamage( false ), mUsedDefence( false )
+	, mMoveDeltaPosition( GnVector2(0.0f, 0.0f) )
 {
 }
 
@@ -47,14 +48,11 @@ bool GActorController::Init(const gchar* pcActorFilePath, const gchar* pcID, gui
 	if( InitInfoCompenent( pcID, uiLevel ) == false )
 		return false;
 	
-	if( InitActionComponents() == false )
-		return false;
-	
 	return true;
 }
 
 void GActorController::Update(float fDeltaTime)
-{	
+{
 	for( gtuint i = 0 ; i < mCurrentActions.GetSize() ; i++ )
 	{
 		GAction* action = mCurrentActions.GetAt( i );
@@ -64,6 +62,28 @@ void GActorController::Update(float fDeltaTime)
 			if( action->IsStopAction() )
 				RemoveCurrentAction( action->GetActionType() );
 		}		
+	}
+
+	GActionDamage* damage = (GActionDamage*)GetCurrentAction( GAction::ACTION_DAMAGE );
+	if( damage && damage->IsDontMove() && damage->IsDownDamage() == false )
+	{
+		//damage->Update( fDeltaTime );
+		GnVector2 movePos = GetPosition() + GetMoveDeltaPosition();
+		GetGameEnvironment()->CorrectMoveX( movePos.x, GetActor()->GetRootNode()->GetFlipX() );
+		SetPosition( movePos );
+		SetMoveDeltaPosition( GnVector2(0.0f, 0.0f) );
+		return;
+	}
+	
+	if( mUsedDefence )
+	{
+		mDefanceAcumTime += fDeltaTime;
+		if( mDefanceAcumTime < 10.0f )
+		{
+			return;
+		}
+		mUsedDefence = false;
+		SetStartAction();
 	}
 	
 	MoveStopCheck();
@@ -130,22 +150,89 @@ void GActorController::RemoveAllCurrentAction()
 	}
 }
 
+bool GActorController::InitActionComponents()
+{
+	GInfoBasic* info = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
+	
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	attackCheck->SetAttackSpeed( info->GetAttackSpeed() );
+	attackCheck->SetEnableAttackCount( info->GetAttackCount() );
+	
+	GActionDamage* damage = (GActionDamage*)GetActionComponent( GAction::ACTION_DAMAGE );
+	
+	if( info->GetAttackType() == GActionAttack::eTypeDefence )
+	{
+		if( damage )
+			damage->SetIsEnableSetStartAction( false );
+	}
+		
+	return true;
+}
+
 void GActorController::ReceiveAttack(GAttackDamageInfo* pDamage)
 {
+	if( pDamage->GetAttackType() == GActionAttack::eTypeMouthFul )
+	{
+		mCurrentInfo.SetHP( 0 );
+		AddCurrentAction( GetActionComponent( GAction::ACTION_DIE ) );
+		return;
+	}
+	
 	mCurrentInfo.SetHP( mCurrentInfo.GetHP() - (gint32)pDamage->GetDamage() );
 	if( mCurrentInfo.GetHP() > 0 )
 	{
-		GActionDamage* damage = (GActionDamage*)GetCurrentAction( GAction::ACTION_DAMAGE );
+		bool downDamage = false;
+		GInfoBasic* info = (GInfoBasic*)mInfoComponents.GetAt( GInfo::INFO_BASIC );
+		if( info )
+			downDamage = ( info->GetHP() / 2 ) > mCurrentInfo.GetHP() ? true : false;
+		
+		GActionDamage* damage = (GActionDamage*)GetActionComponent( GAction::ACTION_DAMAGE );
+		if( pDamage->GetDontMoveTime() > 0.0000001f && damage )
+		{
+			damage->SetIsDontMove( true );
+			damage->SetDontMoveTime( pDamage->GetDontMoveTime() );
+		}
+		
+		damage = (GActionDamage*)GetCurrentAction( GAction::ACTION_DAMAGE );
 		if( damage == NULL )
 		{
 			damage = (GActionDamage*)GetActionComponent( GAction::ACTION_DAMAGE );
 			GnAssert( damage );
 			if( damage )
 			{
+				if( mUsedDownDamage == false )
+				{
+					mUsedDownDamage = downDamage;
+					damage->SetIsDownDamage( downDamage );
+					if( mUsedDownDamage )
+					{
+						mUsedDefence = false;
+						mDefanceAcumTime = 0.0f;
+					}
+				}
+				
 				damage->SetAttackDamage( pDamage );
 				AddCurrentAction( damage );
 			}
 		}
+		else
+		{
+			if( damage->IsEnableDamage() )
+			{
+				bool dontMove = damage->IsDontMove();
+				bool ice = damage->IsIce();
+				RemoveCurrentAction( damage->GetActionType() );
+				if( mUsedDownDamage == false )
+				{
+					mUsedDownDamage = downDamage;
+					damage->SetIsDownDamage( downDamage );
+				}
+				damage->SetIsDontMove( dontMove, ice );
+				damage->SetAttackDamage( pDamage );
+				AddCurrentAction( damage );				
+			}
+		}
+		
 		GActionGage* gage = (GActionGage*)GetCurrentAction( GAction::ACTION_GAGE );
 		if( gage == NULL )
 		{
@@ -164,13 +251,18 @@ void GActorController::ReceiveAttack(GAttackDamageInfo* pDamage)
 	}
 }
 
+void GActorController::SetStartAction()
+{
+	AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
+	AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
+	AddCurrentAction( GetActionComponent( GAction::ACTION_FOLLOWS ) );
+}
+
 void GActorController::Start()
 {
 	GInfoBasic* basic = (GInfoBasic*)GetInfoComponent( GInfo::INFO_BASIC );
 	mCurrentInfo.SetHP( basic->GetHP() );
-	
-	AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
-	AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
+	SetStartAction();
 }
 
 bool GActorController::LoadActor(const gchar *pcFilePath)
@@ -198,15 +290,43 @@ void GActorController::SetEndAttack()
 	if( action )
 		return;
 	
+	GActionAttack* attack = (GActionAttack*)GetActionComponent( GAction::ACTION_ATTACK );
+	if( attack )
+	{
+		if( attack->GetAttackType() == GActionAttack::eTypeSelfBoom )
+		{
+			RemoveAllCurrentAction();
+			SetIsDestory( true );
+			GetActor()->GetRootNode()->SetAlpha( (guchar)0 );
+			return;
+		}
+		if( attack->GetAttackType() == GActionAttack::eTypeDefence )
+		{
+			mUsedDefence = true;
+			mDefanceAcumTime = 0.0f;
+			RemoveAllCurrentAction();
+			return;
+		}
+	}
+	
 	if( GetGameEnvironment() )
 		GetGameEnvironment()->RemoveBasicCurrentAction( this );
 	action = GetActionComponent( GAction::ACTION_STAND );
 	AddCurrentAction( action );
-	action = GetActionComponent( GAction::ACTION_ATTACKCHECK );
-	AddCurrentAction( action );
+	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
+	if( attackCheck )
+	{
+		AddCurrentAction( attackCheck );
+		attackCheck->ResetAttackTime();	
+	}
 }
 
 void GActorController::SetEndDie()
+{
+	
+}
+
+void GActorController::UpdateAction(gtuint uiIndex)
 {
 	
 }
@@ -216,27 +336,40 @@ void GActorController::MoveStopCheck()
 	GActionAttackCheck* attackCheck = (GActionAttackCheck*)GetActionComponent( GAction::ACTION_ATTACKCHECK );
 	if( attackCheck && attackCheck->IsReadyAttack() )
 	{
-		GetGameEnvironment()->RemoveBasicCurrentAction( this );
-		AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
+		if( attackCheck->IsOverAttackTime() )
+		{
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACK ) );
+		}
+		else			
+		{
+			GetGameEnvironment()->RemoveBasicCurrentAction( this );
+			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
+
+		}			
 		return;
 	}
 	
 	GAction* move = GetCurrentAction( GAction::ACTION_MOVE );
-	if( move )
+	GActionDamage* damage = (GActionDamage*)GetCurrentAction( GAction::ACTION_DAMAGE );
+	if( damage || move )
 	{
-		if( GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) == false )
+		GnVector2 movePos = GetPosition() + GetMoveDeltaPosition();
+		if( GetGameEnvironment()->CorrectMoveX( movePos.x, GetActor()->GetRootNode()->GetFlipX() ) == false )
 		{
 			GetGameEnvironment()->RemoveBasicCurrentAction( this );
 			AddCurrentAction( GetActionComponent( GAction::ACTION_STAND ) );
 			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )
 				AddCurrentAction( GetActionComponent( GAction::ACTION_ATTACKCHECK ) );
 		}
-		SetPosition( GetMovePosition() );
+		SetPosition( movePos );
+		SetMoveDeltaPosition( GnVector2(0.0f, 0.0f) );
 	}
 	else
 	{
 		GAction* action = GetCurrentAction( GAction::ACTION_STAND );
-		if( action && GetGameEnvironment()->CorrectMoveX( GetMovePosition().x ) )
+		GnVector2 movePos = GetPosition() + GetMoveDeltaPosition();
+		if( action && GetGameEnvironment()->CorrectMoveX( movePos.x, GetActor()->GetRootNode()->GetFlipX() ) )
 		{
 			AddCurrentAction( GetActionComponent( GAction::ACTION_MOVE ) );
 			if( GetCurrentAction( GAction::ACTION_ATTACKCHECK ) == NULL )

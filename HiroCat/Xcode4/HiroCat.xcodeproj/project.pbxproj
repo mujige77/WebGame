@@ -11,6 +11,8 @@
 		212527DF13E3DA6700BF800B /* GStateScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212527DE13E3DA6700BF800B /* GStateScene.cpp */; };
 		212FB7EE13B5AC7500F2F597 /* ActorInfo.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */; };
 		2132815D13F02CC200DA1EB8 /* UserHaveItem.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 2132815C13F02CC200DA1EB8 /* UserHaveItem.sqlite */; };
+		21338057141205E2000C98CD /* GLoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21338056141205E2000C98CD /* GLoadingScene.cpp */; };
+		2133805E1412086B000C98CD /* GOpeningScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2133805D1412086A000C98CD /* GOpeningScene.cpp */; };
 		2164AE0213DD65AA007617BE /* GSelectStageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */; };
 		2176019413A4E5A600A85384 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 2176019313A4E5A600A85384 /* Data */; };
 		218961FA13A6D9290074237B /* GGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218961F913A6D9280074237B /* GGameScene.cpp */; };
@@ -80,6 +82,10 @@
 		212527DE13E3DA6700BF800B /* GStateScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GStateScene.cpp; sourceTree = "<group>"; };
 		212FB7ED13B5AC7500F2F597 /* ActorInfo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ActorInfo.sqlite; sourceTree = "<group>"; };
 		2132815C13F02CC200DA1EB8 /* UserHaveItem.sqlite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UserHaveItem.sqlite; sourceTree = "<group>"; };
+		21338055141205D0000C98CD /* GLoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLoadingScene.h; sourceTree = "<group>"; };
+		21338056141205E2000C98CD /* GLoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLoadingScene.cpp; sourceTree = "<group>"; };
+		2133805C1412085D000C98CD /* GOpeningScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GOpeningScene.h; sourceTree = "<group>"; };
+		2133805D1412086A000C98CD /* GOpeningScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GOpeningScene.cpp; sourceTree = "<group>"; };
 		2164AE0013DD659C007617BE /* GSelectStageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSelectStageScene.h; sourceTree = "<group>"; };
 		2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GSelectStageScene.cpp; sourceTree = "<group>"; };
 		2176019313A4E5A600A85384 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -219,6 +225,10 @@
 				212527DD13E3DA5D00BF800B /* GStateScene.h */,
 				2164AE0113DD65AA007617BE /* GSelectStageScene.cpp */,
 				2164AE0013DD659C007617BE /* GSelectStageScene.h */,
+				21338056141205E2000C98CD /* GLoadingScene.cpp */,
+				21338055141205D0000C98CD /* GLoadingScene.h */,
+				2133805D1412086A000C98CD /* GOpeningScene.cpp */,
+				2133805C1412085D000C98CD /* GOpeningScene.h */,
 				21C89C5213A5F3FC00507155 /* GamePCH.h */,
 				21C89C5313A5F61A00507155 /* GGameEBM.h */,
 			);
@@ -386,6 +396,8 @@
 				218B717913A8D96C00730D9F /* HiroCatDirector.cpp in Sources */,
 				2164AE0213DD65AA007617BE /* GSelectStageScene.cpp in Sources */,
 				212527DF13E3DA6700BF800B /* GStateScene.cpp in Sources */,
+				21338057141205E2000C98CD /* GLoadingScene.cpp in Sources */,
+				2133805E1412086B000C98CD /* GOpeningScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

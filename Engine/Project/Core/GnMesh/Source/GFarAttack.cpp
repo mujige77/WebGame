@@ -10,14 +10,14 @@
 #include "GFarAttack.h"
 #include "GFileLIst.h"
 
-GFarAttack::GFarAttack() : mAttackCount( 1 )
+GFarAttack::GFarAttack() : mAttackCount( 1 ), mLine( -1 )
 {
 #ifdef GNDEBUG
 	GnFarAttackDrawPrimitiveslayer* pLayer = new GnFarAttackDrawPrimitiveslayer();
 	pLayer->GetDrawObject()->SetFarAttack( this );
 	pLayer->autorelease();	
 	mpDebugLayer = pLayer;
-	//mpDebugLayer = NULL;
+//	mpDebugLayer = NULL;
 #endif // GNDEBUG
 	
 	Reset();

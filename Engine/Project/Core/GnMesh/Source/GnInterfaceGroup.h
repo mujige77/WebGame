@@ -8,6 +8,7 @@ private:
 	GnSignal2<GnInterface*, GnIInputEvent*> mSignal;
 	GnTObjectArray<GnInterfacePtr> mChildren;
 	GnTObjectArray<GnInterfacePtr> mPersonalChildren; // Personal Push Check
+	bool mAllPush;
 	
 public:
 	GnInterfaceGroup();
@@ -15,7 +16,8 @@ public:
 public:
 	bool PushUp(float fPointX, float fPointY);
 	bool PushMove(float fPointX, float fPointY);
-	void PushUp();
+	void PushUpPersonalChildren(float fPointX, float fPointY);
+	void PushUp();	
 	void Update(float fDeltaTime);	
 
 	virtual bool Push(float fPointX, float fPointY);
@@ -61,6 +63,9 @@ public:
 public:
 	inline void AddPersonalChild(GnInterface* pChild) {
 		mPersonalChildren.Add( pChild );
+	}
+	inline void SetIsAllPush(bool val) {
+		mAllPush = val;
 	}
 protected:
 	bool PushChild(GnInterface* pChild, float fPointX, float fPointY);

@@ -57,7 +57,7 @@ enum eItemIndex
 	eIndexHeroMaxHP,
 	eIndexHeroAutoMP,
 	eIndexHeroMaxMP,
-	eIndexAutoFD,
+	eIndexFillFD,
 	eIndexMaxFD,
 	eIndexCastleAutoHP,
 	eIndexCastleMaxHP,

@@ -16,6 +16,7 @@ protected:
 	static GGameEnvironment* mpSingleton;
 	GStageInfo mStageInfo;
 	float mMoveRangeY;
+	gtuint mNumUserLine;
 	
 public:
 	static GGameEnvironment* GetSingleton();
@@ -27,9 +28,9 @@ public:
 	virtual void RemoveBasicCurrentAction(GActorController* pActorCtlr);
 	virtual void CreateActorControllerBasicAction(GActorController* pActorCtrl);
 	virtual void InitActorControllerAction(GLayer* pActorLayer, GActorController* pActorCtrl);
-	virtual bool CorrectMoveX(float& fPositionX) = 0;
+	virtual bool CorrectMoveX(float& fPositionX, bool uiDirection, bool bUser = false) = 0;
 	virtual bool CorrectMoveY(float& fPositionY) = 0;
-	virtual void SetStartPositionToActor(GActorController* pActorCtlr, gtuint uiDirection) = 0;
+	virtual void SetStartPositionToActor(GActorController* pActorCtlr, guint32 uiLine, gtuint uiDirection) = 0;
 	template<class T>
 	void CreateActionToActorController(GActorController* pActorCtrl);	
 	
@@ -42,6 +43,12 @@ public:
 	}
 	inline void SetMoveRangeY(float val) {
 		mMoveRangeY =  val;
+	}
+	inline void SetNumUserLine(gtuint uiLine) {
+		mNumUserLine = uiLine;
+	};
+	inline gtuint GetNumUserLine() {
+		return mNumUserLine;
 	}
 };
 

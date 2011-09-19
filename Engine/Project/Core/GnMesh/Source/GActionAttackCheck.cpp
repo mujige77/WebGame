@@ -12,9 +12,16 @@
 GActionAttackCheck::GActionAttackCheck(GActorController* pController) : GAction( pController )
 	,mEnableAttackCount( 1 ), mAttackAniIndex( ANI_ATTACK ), mNumAttackLine( 0 )
 {
+	SetIsWaitAttackTime( false );
 }
 
-bool GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect)
+void GActionAttackCheck::Update(float fTime)
+{
+	if( IsReadyAttack() )
+		mAcumAttackTime += fTime;
+}
+
+bool GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect, bool bDetailCheck)
 {
 	if( GetAttackLine() != uiAttackLine )
 		return false;
@@ -36,12 +43,18 @@ bool GActionAttackCheck::CollisionCheck(gtuint uiAttackLine, GnFRect& bodyRect)
 	{
 		attackAvData->FlipX( true, GetController()->GetMesh()->GetOriginalPosition().x );
 		Gn2DAVData::CollisionRect attackRect = attackAvData->GetCollisionRect( 1 );
+		if( bDetailCheck == false )
+			attackRect.mRect.left += 10.0f;
+		
 		if( attackRect.mRect.ContainsRectWidth( bodyRect ) == false )
 			return false;
 	}
 	else
 	{
 		Gn2DAVData::CollisionRect attackRect = attackAvData->GetCollisionRect( 1 );
+		if( bDetailCheck == false )
+			attackRect.mRect.right -= 10.0f;
+		
 		if( attackRect.mRect.ContainsRectWidth( bodyRect ) == false )
 			return false;
 	}

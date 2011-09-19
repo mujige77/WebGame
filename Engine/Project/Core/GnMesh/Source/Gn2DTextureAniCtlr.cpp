@@ -137,7 +137,10 @@ void Gn2DTextureAniCtlr::Playing(float fTime)
 		CreateData();
 
 	if( mpCurrentAni && Get2DMeshObject() )
+	{
+		mpCurrentAni->GetMesh()->setFlipX( Get2DMeshObject()->GetFlipX() );
 		Get2DMeshObject()->GetMesh()->addChild( mpCurrentAni->GetMesh() );
+	}
 }
 
 void Gn2DTextureAniCtlr::Stop()
@@ -161,14 +164,20 @@ void Gn2DTextureAniCtlr::Update(float fDeltaTime)
 	{
 		if( mCurrentAniIndex < mInfos.GetSize() )
 		{
-			if( mpCurrentAni )	
+			if( mpCurrentAni )
+			{
+				mpCurrentAni->GetMesh()->setFlipX( Get2DMeshObject()->GetFlipX() );
 				Get2DMeshObject()->GetMesh()->removeChild( mpCurrentAni->GetMesh(), true );
+			}
 
 			SetAccumulateTime( 0.0f );
 			mpCurrentAni = mInfos.GetAt(mCurrentAniIndex++);
 
 			if( mpCurrentAni )
+			{
+				mpCurrentAni->GetMesh()->setFlipX( Get2DMeshObject()->GetFlipX() );
 				Get2DMeshObject()->GetMesh()->addChild( mpCurrentAni->GetMesh() );
+			}
 		}
 		else
 		{
