@@ -23,7 +23,7 @@ BOOL GMobAppearGrid::Create(const RECT& rect, CWnd* parent, UINT nID, DWORD dwSt
 	SetRowCount( 1 );
 	SetItemText( 0, 0, GnText("몹 인덱스") );
 	SetItemText( 0, 1,  GnText("레벨") );
-	SetItemText( 0, 2,GnText("출현 간격(sec)") );
+	SetItemText( 0, 2,GnText("출현 간격(%)") );
 	
 	return TRUE;
 }
@@ -46,7 +46,7 @@ void GMobAppearGrid::SaveParse(GStageLevel* pStage)
 		
 		cell = GetCell( i, 2 );
 		num.SetNumber( (gtchar*)cell->GetText() );
-		mob.mIntervalAppearTime = (float)num.GetNumber( 0 );
+		mob.mIntervalAppearPercent = num.GetNumber( 0 );
 
 		pStage->AddAppearMob( mob );
 	}
@@ -67,7 +67,7 @@ void GMobAppearGrid::LoadParse(GStageLevel* pStage)
 		num.SetNumber( (glong)mob.mLevel );
 		SetItemText( i + 1, 1, num.c_str() );
 
-		num.SetNumber( (glong)mob.mIntervalAppearTime );
+		num.SetNumber( mob.mIntervalAppearPercent );
 		SetItemText( i + 1, 2, num.c_str() );
 	}
 }
