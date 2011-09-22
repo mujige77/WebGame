@@ -26,7 +26,7 @@ BOOL GMassMobAppearGrid::Create(const RECT& rect, CWnd* parent, UINT nID, DWORD 
 	SetItemText( 0, 0, GnText("몹 인덱스") );
 	SetItemText( 0, 1, GnText("레벨") );
 	SetItemText( 0, 2, GnText("출현 라인") );
-	SetItemText( 0, 3, GnText("출현 시간(sec)") );
+	SetItemText( 0, 3, GnText("출현 개수") );
 
 	return TRUE;
 }
@@ -53,7 +53,7 @@ void GMassMobAppearGrid::SaveParse(GStageLevel* pStage)
 
 		cell = GetCell( i, 3 );
 		num.SetNumber( (gtchar*)cell->GetText() );
-		mob.mAppearTime = (float)num.GetNumber( 0 );
+		mob.mNumMobCount = (guint32)num.GetNumber( 0 );
 
 		pStage->AddMassAppearMob( mob );
 	}
@@ -77,7 +77,7 @@ void GMassMobAppearGrid::LoadParse(GStageLevel* pStage)
 		num.SetNumber( (glong)mob.mNumLine );
 		SetItemText( i + 1, 2, num.c_str() );
 
-		num.SetNumber( (glong)mob.mAppearTime );
+		num.SetNumber( (glong)mob.mNumMobCount );
 		SetItemText( i + 1, 3, num.c_str() );
 	}
 }

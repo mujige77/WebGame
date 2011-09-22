@@ -26,7 +26,7 @@ public:
 		guint32 mIndex;
 		guint32 mLevel;
 		guint32 mNumLine;
-		float mAppearTime;
+		guint32 mNumMobCount;
 	};
 protected:
 	guint32 mLevelIndex;

@@ -75,7 +75,7 @@ void GStageLevel::LoadStream(GnStream* pStream)
 			pStream->LoadStream( mob.mIndex );
 			pStream->LoadStream( mob.mLevel );
 			pStream->LoadStream( mob.mNumLine );
-			pStream->LoadStream( mob.mAppearTime );
+			pStream->LoadStream( mob.mNumMobCount);
 			AddMassAppearMob( mob );
 		}
 	}
@@ -115,6 +115,6 @@ void GStageLevel::SaveStream(GnStream* pStream)
 		pStream->SaveStream( mob.mIndex );
 		pStream->SaveStream( mob.mLevel );
 		pStream->SaveStream( mob.mNumLine );
-		pStream->SaveStream( mob.mAppearTime );
+		pStream->SaveStream( mob.mNumMobCount );
 	}
 }
