@@ -21,6 +21,8 @@ public:
 		float mCurrentTime;
 		float mEventTime;
 		void* mpEventData;
+		gtuint mNumData;
+
 	public:
 		eType GetEventType() {
 			return mEventType;
@@ -31,6 +33,9 @@ public:
 		inline void* GetEvnetData() {
 			return mpEventData;
 		};
+		inline gtuint GetNumEventData() {
+			return mNumData;
+		}
 	protected:
 		GNFORCEINLINE void SetTimeEvent(eType eEvent, guint32 uiSequenceID, float fCurrentTime
 			, float fEventTime) {
@@ -41,7 +46,10 @@ public:
 		}
 		inline void SetEventData(void* pData) {
 			mpEventData = pData;
-		}		
+		}
+		inline void SetNumEventData(gtuint val) {
+			mNumData = val;
+		}
 	};
 	
 protected:
@@ -57,7 +65,7 @@ protected:
 	float mSequenceAccumulateDeltaTime;
 	GnBaseSlot1<TimeEvent*>* mpCallbackEventSlot;
 	TimeEvent mTimeEvent;
-	GnTPrimitiveSet<GnAnimationKeyManager::AniKey*> mSendedAniKeyEvent;
+	GnTPrimitiveSet<GnAnimationKey*> mSendedAniKeyEvent;
 	
 public:
 	Gn2DActor();

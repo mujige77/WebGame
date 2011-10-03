@@ -16,6 +16,7 @@ protected: \
 #define GnDeclareAnimationStream \
 GnDeclareRootAnimationStream; \
 public: \
+	static GnAnimationKey* GetKey(GnAnimationKey* pAnimations, guint32 uiIndex); \
 	static void Destroy(GnAnimationKey* pKeys); \
 
 #define GnRegsterAnimationKeyStream(classname) \
@@ -30,11 +31,17 @@ public: \
 		RegLoadFunction(type, classname::LoadFromStream); \
 		RegSaveFunction(type, classname::SaveToStream); \
 		RegDestroyFunction(type, classname::Destroy); \
+		RegGetKeyAnimationFunction(type, classname::GetKey); \
 		return 1; \
 	} \
 	void classname::Destroy(GnAnimationKey* pKeys) \
 	{ \
 		classname* thisKey = (classname*)pKeys; \
 		GnDelete[] thisKey; \
-	}
+	} \
+	GnAnimationKey* classname::GetKey(GnAnimationKey* pAnimations, guint32 uiIndex) \
+	{ \
+		classname* aniKey = (classname*)pAnimations; \
+		return &aniKey[uiIndex]; \
+	} 
 #endif // GNANIMATIONKEYMACRO_H

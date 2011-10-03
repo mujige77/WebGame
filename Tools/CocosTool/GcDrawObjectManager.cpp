@@ -2,8 +2,11 @@
 #include "GcDrawObjectManager.h"
 #include "ActorMacro.h"
 #include "GLayer.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 GcDrawObjectManager::GcDrawObjectManager(void) : mpDrawLayer( NULL )
+	, mCallbackActorEventSlot( this, &GcDrawObjectManager::ActorCallbackFunc )
 {
 }
 
@@ -28,6 +31,8 @@ void GcDrawObjectManager::SelectActor(GtObject* pObject)
 	if( mpsActor == NULL )
 		return;
 
+	if( mpsActor->GetActor() )
+		mpsActor->GetActor()->SetCallbackEvent( &mCallbackActorEventSlot );
 	mpsActor->GetRootNode()->GetMesh()->setAnchorPoint( CCPointMake(0,0) );
 	mpsActor->GetRootNode()->SetPosition( ActorBasePosition );
 	GnLayer* state = GetSceneManager()->GetMainGameLayer();
@@ -142,6 +147,30 @@ void GcDrawObjectManager::AttachEffectToActor()
 			GnVector2 effectPos = posData->GetValueVector2() + actorMesh->GetPosition();
 			effectMesh->SetPosition( effectPos );
 			break;
+		}
+	}
+}
+
+void GcDrawObjectManager::ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent)
+{
+	if( pEvent->GetEventType() == Gn2DActor::TimeEvent::ANIKEY )
+	{
+		GnAnimationKeyManager::AniKey* key = (GnAnimationKeyManager::AniKey*)pEvent->GetEvnetData();
+		if( GnAnimationKey::TEGIDKEY == key->mKeyType )
+		{
+			if( pEvent->GetNumEventData() >= key->mNumKey )
+			{
+				GnAssert( 0 );
+				return;
+			}
+			GnTegIDKey* tegAniKeys = (GnTegIDKey*)key->mAnimationKeys;
+			guint32 id = tegAniKeys[pEvent->GetNumEventData()].GetTegID();
+			if( id > 999 )
+			{
+				gchar buffer[GN_MAX_PATH] = {0, };
+				GnSprintf( buffer, sizeof(buffer), "%sSound/%d.wav", GnSystem::GetWorkDirectory(), id );
+				SimpleAudioEngine::sharedEngine()->playEffect( buffer );
+			}
 		}
 	}
 }

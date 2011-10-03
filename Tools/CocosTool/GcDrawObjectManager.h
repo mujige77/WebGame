@@ -8,6 +8,7 @@ private:
 	GnLayerDrawPrimitives* mpDrawLayer;
 	GnDrawPrimitivesPtr mpsActorExtraDraw;
 	GnDrawPrimitivesPtr mps2DObjectExtraDraw;
+	GnMemberSlot1<GcDrawObjectManager, Gn2DActor::TimeEvent*> mCallbackActorEventSlot;
 
 public:
 	GcDrawObjectManager(void);
@@ -39,5 +40,8 @@ public:
 	inline void SetSequence(Gt2DSequence* val) {
 		mpsSequence = val;
 	}
+
+protected:
+	void ActorCallbackFunc(Gn2DActor::TimeEvent* pEvent);
 };
 

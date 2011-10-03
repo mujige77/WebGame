@@ -105,24 +105,31 @@ void Gn2DActor::UpdateTimeEvent(float fAccumTime)
 {
 	if( mpCallbackEventSlot == NULL )
 		return;
-	
+
 	GnAnimationKeyManager* aniKeyMng = mpCurrentSequence->GetAnimationKeyManager();
 	for ( gtuint i = 0; i < aniKeyMng->GetAnimationKeySize(); i++ )
 	{
 		GnAnimationKeyManager::AniKey* key = aniKeyMng->GetAnimationKey( i );
-		if( mSendedAniKeyEvent.Find( key ) != -1 )
-			continue;
-		GnAnimationKey* aniKey = key->GetAniKey();
-		if( aniKey->GetKeyTime() <= fAccumTime )
+		GnAnimationKey::GetKeyAnimationFunction getFunc = GnAnimationKey::GetKeyFunction( key->mKeyType );
+
+		for( guint32 j = 0 ; j < key->mNumKey ; j++ )
 		{
-			mSendedAniKeyEvent.Add( key );
-			mTimeEvent.SetTimeEvent( TimeEvent::ANIKEY, mCurrentID, mSequenceAccumulateDeltaTime
-									, mpCurrentSequence->GetEndTime() );
-			mTimeEvent.SetEventData( (void*)key );
-			mpCallbackEventSlot->ReceiveSignal( &mTimeEvent );
+			GnAnimationKey* aniKey =  getFunc( key->mAnimationKeys, j );
+			if( mSendedAniKeyEvent.Find( aniKey ) != -1 )
+				continue;
+
+			if( aniKey->GetKeyTime() <= fAccumTime )
+			{			
+				mTimeEvent.SetTimeEvent( TimeEvent::ANIKEY, mCurrentID, mSequenceAccumulateDeltaTime
+					, mpCurrentSequence->GetEndTime() );
+				mTimeEvent.SetNumEventData( j );
+				mTimeEvent.SetEventData( (void*)key );
+				mpCallbackEventSlot->ReceiveSignal( &mTimeEvent );
+
+				mSendedAniKeyEvent.Add( aniKey );
+			}
 		}
 	}
-	
 }
 
 bool Gn2DActor::SetTargetAnimation(guint32 uiID)

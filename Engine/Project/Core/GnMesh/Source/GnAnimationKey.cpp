@@ -4,6 +4,7 @@
 GnAnimationKey::LoadFunction GnAnimationKey::msLoadFunction[GnAnimationKey::MAX_KEYTYPE];
 GnAnimationKey::SaveFunction GnAnimationKey::msSaveFunction[GnAnimationKey::MAX_KEYTYPE];
 GnAnimationKey::DestroyFunction GnAnimationKey::msDestroyFunction[GnAnimationKey::MAX_KEYTYPE];
+GnAnimationKey::GetKeyAnimationFunction GnAnimationKey::msGetKeyAnimationFunction[GnAnimationKey::MAX_KEYTYPE];
 
 GnAnimationKey::LoadFunction GnAnimationKey::GetLoadFunction(eKeyType eType)
 {
@@ -23,6 +24,12 @@ GnAnimationKey::DestroyFunction GnAnimationKey::GetDestroyFunction(eKeyType eTyp
 	return msDestroyFunction[eType];
 }
 
+GnAnimationKey::GetKeyAnimationFunction GnAnimationKey::GetKeyFunction(eKeyType eType)
+{
+	GnAssert( eType != MAX_KEYTYPE );
+	return msGetKeyAnimationFunction[eType];
+}
+
 void GnAnimationKey::RegLoadFunction(eKeyType eType, LoadFunction funcCreate)
 {
 	GnAssert( eType != MAX_KEYTYPE );
@@ -39,6 +46,12 @@ void GnAnimationKey::RegDestroyFunction(eKeyType eType, DestroyFunction funcCrea
 {
 	GnAssert( eType != MAX_KEYTYPE );
 	msDestroyFunction[eType] = funcCreate;
+}
+
+void GnAnimationKey::RegGetKeyAnimationFunction(eKeyType eType, GetKeyAnimationFunction funcCreate)
+{
+	GnAssert( eType != MAX_KEYTYPE );
+	msGetKeyAnimationFunction[eType] = funcCreate;
 }
 
 void GnAnimationKey::LoadStream(GnStream* pStream)
